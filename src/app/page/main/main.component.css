@@ -1,0 +1,157 @@
+.innerWrap {
+    width:1200px;
+    margin:0 auto;
+}
+.slideWrap {
+    width:100%;
+    height:400px;
+    overflow: hidden;
+}
+.slideWrap ul {
+    width:400%;
+    height:100%;
+}
+.slideWrap ul li {
+    float: left;
+    width:25%;
+    height:100%;
+}
+.slideWrap ul li:nth-child(1){
+    background: url(../../../assets/images/banner/Visual.png) no-repeat center center / cover;
+}
+/* preopen */
+.preopen {
+    padding-top: 50px;
+    width:100%;
+    height:766px;
+}
+.preopen .hline{
+    width:500px;
+    height:50px;
+    margin:0 auto;
+    border-bottom: 1px solid #DD5E5E;
+}
+.preopen .hline h2 {
+    font-size: 28px;
+    text-align: center;
+}
+.preopen .hline .center {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top:8px;
+    width:30px;
+    height:10px;
+    background-color: #DD5E5E;
+}
+
+.banner {
+    padding-top:50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 55px;
+    
+}
+.banner .pre1{
+    background: url(../../../assets/images/banner/preopen1.png) no-repeat center center / cover;
+    height:665px;
+}
+.banner .pre2{
+    background: url(../../../assets/images/banner/preopen2.png) no-repeat center center / cover;
+    height:665px;
+}
+/*  마감임박 */
+.closeSoon {
+    width:100%;
+    height:695px;
+    padding-top: 70px;
+    position: relative;
+}
+.closeSoon h2 {
+    font-size: 28px;
+    text-align: center;
+    height:60px;
+}
+.closeSoon .back { 
+    width:100%;
+    height:315px;
+    position: absolute;
+}
+.closeSoon .center {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top:-5px;
+    z-index: 1;
+    width:30px;
+    height:10px;
+    background-color: #DD5E5E;
+}
+.closeSoon .first {
+    top:130px;
+    background-color: #FFEEEE;;
+    border-top: 1px solid #DD5E5E;
+}
+.closeSoon .second {
+    top:445px;
+    background-color: #F2A6A3;;
+}
+.closeSoon .bannerWrap {
+    padding-top: 55px;
+    position: relative;
+    top:-10px;
+    height:630px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 60px;
+    box-sizing: border-box;
+}
+.closeSoon .close {
+    height:527px;
+    background: no-repeat center center / cover;
+}
+.closeSoon .soon1 {
+    background-image: url(../../../assets/images/banner/soon1.png);
+}
+.closeSoon .soon2 {
+    background-image: url(../../../assets/images/banner/soon2.png);
+}
+
+/* 오늘의 컨텐츠 */
+.today {
+    padding-top: 45px;
+    height:746px;
+}
+.today .hline{
+    width:500px;
+    height:50px;
+    margin:0 auto;
+    border-bottom: 1px solid #DD5E5E;
+}
+.today .hline h2 {
+    font-size: 28px;
+    text-align: center;
+}
+.today .hline .center {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top:8px;
+    width:30px;
+    height:10px;
+    background-color: #DD5E5E;
+}
+.today .innerWrap {
+    padding-top:45px;
+}
+.today .content {
+    height:300px;
+    background: no-repeat center center / cover;
+}
+.today .first {
+    background-image: url(../../../assets/images/banner/today1.png);
+}
+.today .second {
+    margin-top: 50px;
+    background-image: url(../../../assets/images/banner/today2.png);
+}
