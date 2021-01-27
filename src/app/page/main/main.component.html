@@ -10,80 +10,184 @@
       </li>
     </ul>
     <ul class="dotWrap">
-      <li class="dot show"></li>
-      <li class="dot"></li>
+      <li class="dot pointer show" (click)='dotClick($event)'></li>
+      <li class="dot pointer" (click)='dotClick($event)'></li>
     </ul>
   </div>
   <section class="preopen">
     <div class="innerWrap">
       <h2>오픈예정 라이브 컨텐츠</h2>
       <div class="banner">
-        <div class="pre1">
+        <div class="pre open1">
           <div class="openTime uppercase bold">1월 5일 PM 17:00 open</div>
-          <p class="cardTitle bold"></p>
+          <p class="cardTitle bold">바쁠수록 차분하게, 마음챙김 영상</p>
           <div class="bannerImg">
-            <img src="../../../assets/images/banner/list1.png" alt="배너사진">
+            <img src="../../../assets/images/banner/open.png" alt="배너사진">
           </div>
           <div class="temp">
             <div class="tempDynamic"></div>
           </div>
-          <div class="bannerTexts"></div>
-          <div class="goArrow"></div>
+          <div class="bannerTexts">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+          </div>
+          <div class="goArrow pointer"></div>
         </div>
-        <div class="pre2">
+        <div class="pre open2">
           <div class="openTime uppercase bold">1월 5일 PM 17:00 open</div>
-          <p class="cardTitle bold"></p>
+          <p class="cardTitle bold">바쁠수록 차분하게, 마음챙김 영상</p>
           <div class="bannerImg">
-            <img src="../../../assets/images/banner/list1.png" alt="배너사진">
+            <img src="../../../assets/images/banner/flower.png" alt="배너사진">
           </div>
           <div class="temp">
             <div class="tempDynamic"></div>
           </div>
-          <div class="bannerTexts"></div>
-          <div class="goArrow"></div>
+          <div class="bannerTexts">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+          </div>
+          <div class="goArrow pointer"></div>
         </div>
       </div>
     </div>
   </section>
   <section class="closeSoon">
     <h2>마감임박! 라이브 컨텐츠</h2>
-    <span class="center"></span>
-    <div class="back first"></div>
-    <div class="back second"></div>
+    <div class="back"></div>
     <div class="innerWrap">
-      <div class="bannerWrap">
-        <div class="close soon1"></div>
-        <div class="close soon2"></div>
+      <div class="banner">
+        <div class="close soon1">
+          <div class="openTime uppercase bold">1월 5일 THU - PM 8시 30분 (90분)</div>
+          <p class="cardTitle bold">바쁠수록 차분하게, 마음챙김 영상</p>
+          <div class="bannerImg">
+            <img src="../../../assets/images/banner/yoga1.png" alt="배너사진">
+          </div>
+          <div class="temp">
+            <div class="tempDynamic"></div>
+          </div>
+          <div class="closeInfo">
+            <div class="timeRound">
+              <span class="time bold">90분</span>
+              <p class="round">
+                <span class="during bold">1</span>
+                <span class="bold">2</span>
+                <span class="bold">3</span>
+              </p>
+            </div>
+            <div class="degree bold"><span class="howMuch">100</span>ºC 마음도씨</div>
+          </div>
+          <div class="bannerTexts">
+            각종 요가자세를 이용한 힐링 프로그램
+          </div>
+          <div class="goArrow pointer"></div>
+        </div>
+        <div class="close soon2">
+          <div class="openTime uppercase bold">1월 5일 THU - PM 8시 30분 (90분)</div>
+          <p class="cardTitle bold">바쁠수록 차분하게, 마음챙김 영상</p>
+          <div class="bannerImg">
+            <img src="../../../assets/images/banner/yoga1.png" alt="배너사진">
+          </div>
+          <div class="temp">
+            <div class="tempDynamic"></div>
+          </div>
+          <div class="closeInfo">
+            <div class="timeRound">
+              <span class="time bold">90분</span>
+              <p class="round">
+                <span class="during bold">1</span>
+                <span class="bold">2</span>
+                <span class="bold">3</span>
+              </p>
+            </div>
+            <div class="degree bold"><span class="howMuch">100</span>ºC 마음도씨</div>
+          </div>
+          <div class="bannerTexts">
+            각종 요가자세를 이용한 힐링 프로그램
+          </div>
+          <div class="goArrow pointer"></div>
+        </div>
       </div>
     </div>
   </section>
   <section class="today">
-    <h2>오늘의 라이브 컨텐츠</h2>
-    <span class="center"></span>
+    <h2>오늘의 라이브</h2>
     <div class="innerWrap">
-      <div class="content first"></div>
-      <div class="content second"></div>
-    </div>
-  </section>
-  <section class="thisWeek">
-    <h2>이번주 라이브 컨텐츠</h2>
-    <span class="center"></span>
-    <div class="back first"></div>
-    <div class="back second"></div>
-    <div class="innerWrap">
-      <div class="bannerWrap">
-        <div class="week"></div>
-        <div class="week"></div>
-        <div class="week"></div>
+      <div class="content first">
+        <div class="img">
+          <div class="subject textHidden">힐링</div>
+          <div class="backImg"></div>
+        </div>
+        <div class="todayClassInfo">
+          <p class="teacher">강사 <span class="name">황신혜</span></p>
+          <p class="title bold">바쁠수록 차분하게, 마음챙김 명상</p>
+          <p class="description">바쁘고 복잡한 세상 속에서도 마음은 고요하게, 머리를 맑게</p>
+          <p class="remainTime bold"><span class="day">0</span>일 남음 <span class="time">00:30:12</span></p>
+          <div class="calendarIcon">
+            <div class="unfill">
+              <p class="day">25</p>
+              <p class="uppercase month">february</p>
+            </div>
+            <div class="fill">
+              <p class="year bold">2021</p>
+            </div>
+          </div>
+          <div class="goArrow pointer"></div>
+        </div>
+      </div>
+      <div class="content second">
+        <div class="img">
+          <div class="subject textHidden">힐링</div>
+          <div class="backImg"></div>
+        </div>
+        <div class="todayClassInfo">
+          <p class="teacher">강사 <span class="name">황신혜</span></p>
+          <p class="title bold">바쁠수록 차분하게, 마음챙김 명상</p>
+          <p class="description">바쁘고 복잡한 세상 속에서도 마음은 고요하게, 머리를 맑게</p>
+          <p class="remainTime bold"><span class="day">0</span>일 남음 <span class="time">00:30:12</span></p>
+          <div class="calendarIcon">
+            <div class="unfill">
+              <p class="day">25</p>
+              <p class="uppercase month">february</p>
+            </div>
+            <div class="fill">
+              <p class="year bold">2021</p>
+            </div>
+          </div>
+          <div class="goArrow pointer"></div>
+        </div>
       </div>
     </div>
   </section>
+  <section class="thisWeek">
+    <h2>마음도씨 이번주 라이브</h2>
+    <div class="back"></div>
+    <div class="innerWrap">
+      <div class="bannerWrap">
+        <div class="week content1">
+          <div class="conTitle bold">플라워 디퓨저</div>
+          <div class="conImg"></div>
+          <div class="conBottom"><span class="text">각종 가공 플라워를 이용한 힐링 프로그램</span></div>
+          <div class="goArrow pointer"></div>
+        </div>
+        <div class="week content2">
+          <div class="conTitle bold">플라워 디퓨저</div>
+          <div class="conImg"></div>
+          <div class="conBottom"><span class="text">각종 가공 플라워를 이용한 힐링 프로그램</span></div>
+          <div class="goArrow pointer"></div>
+        </div>
+        <div class="week content3">
+          <div class="conTitle bold">플라워 디퓨저</div>
+          <div class="conImg"></div>
+          <div class="conBottom"><span class="text">각종 가공 플라워를 이용한 힐링 프로그램</span></div>
+          <div class="goArrow pointer"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--  -->
   <section class='month'>
     <div class="innerWrap">
       <h2>이달의 TOP 라이브 컨텐츠</h2>
-      <span class="center"></span>
       <div class="contentBox">
-        <div>
+        <div class="leftList">
           <ul>
             <li>
               <span class="no">1</span>
@@ -127,7 +231,7 @@
             </li>
           </ul>
         </div>
-        <div>
+        <div class="rightList">
           <ul>
             <li>
               <span class="no">1</span>
