@@ -2,6 +2,20 @@
 * {
     padding:0; margin:0;
 }
+@font-face {
+    src: url('../src/assets/font/nanumSquare.ttf');
+    font-family: 'nanum';
+}
+@font-face {
+    src: url('../src/assets/font/NanumPenScript-Regular.ttf');
+    font-family: 'nanum_pen';
+}
+body {
+    font-family: 'nanum' ,sans-serif;
+}
+.nanum_pen {
+    font-family: 'nanum_pen' , sans-serif;
+}
 .textHidden{
     text-indent: -99999px;
 }
@@ -10,4 +24,18 @@ li {
 }
 .pointer {
     cursor: pointer;
+}
+.wrap{
+    width:1440px;
+    margin:0 auto;
+}
+.innerWrap {
+    width:1200px;
+    margin:0 auto;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.bold{
+    font-weight: bold;
 }
