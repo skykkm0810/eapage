@@ -1,0 +1,124 @@
+<div class="wrap">
+  <div class="innerWrap">
+    <h2>회원가입</h2>
+    <ul class="tabBox">
+      <li class="bold pointer on" (click)="tabclick($event)">이용약관 동의</li>
+      <li class="bold pointer " (click)="tabclick($event)">이메일 인증</li>
+      <li class="bold pointer " (click)="tabclick($event)">본인 인증</li>
+      <li class="bold pointer " (click)="tabclick($event)">회원 정보 입력</li>
+      <li class="bold pointer " (click)="tabclick($event)">가입 완료</li>
+    </ul>
+    <form action="/">
+
+      <div class="agreement tabContentBox hidden">
+        <p class="bold">서비스 이용을 위해 이용약관 동의가 필요합니다.</p>
+        <div class="agreeBox">
+          <p class="allAgree bold">전체 동의<span class="agreeHole pointer" (click)='allchk($event)'></span></p>
+          <div>
+            <p class="agreeKinds"><span class="underline">이용약관</span> 및 <span class="underline">개인정보취급방침</span> (필수)</p>
+            <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_info_useage"
+                class="hidden" required></label>
+            <div class="agreeDetail">
+              자세한 이야기는 어디에
+            </div>
+          </div>
+          <div>
+            <p class="agreeKinds"><span class="underline">위치기반서비스</span> 이용약관 (필수)</p>
+            <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_position"
+                class="hidden" required></label>
+            <div class="agreeDetail">
+              자세한 이야기는 어디에
+            </div>
+          </div>
+          <div>
+            <p class="agreeKinds"><span class="underline">마케팅 활용 동의</span> (선택)</p>
+            <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_marketing"
+                class="hidden"></label>
+            <div class="agreeDetail">
+              자세한 이야기는 어디에
+            </div>
+          </div>
+          <div class="btnBox">
+            <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
+          </div>
+        </div>
+      </div>
+      <div class="email tabContentBox hidden">
+        <p class="bold">마음도씨 이용을 위해 이메일 인증이 필요합니다.</p>
+        <div class="emailBox">
+          <p class="emailTitle bold">이메일 인증<span class="designA"></span></p>
+
+          <div class="mailAddress">
+            <div>
+              <span>이메일 주소</span>
+              <input type="email" name="c.email" placeholder="ex) aaa@bbbbb.com">
+            </div>
+            <button mat-button>인증코드 전송</button>
+          </div>
+          <div class="certification">
+            <div>
+              <span>인증코드</span>
+              <input type="text" name="c.code" placeholder="ex) 111111" required>
+            </div>
+            <button mat-button>인증코드 확인</button>
+          </div>
+          <div class="btnBox">
+            <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
+          </div>
+        </div>
+      </div>
+      <div class="jobs tabContentBox">
+        <p class="bold">마음도씨 이용을 위해 본인인증이 필요합니다.</p>
+        <div class="jobsBox">
+          <p class="jobsTitle bold">회사 정보 인증<span class="designA"></span></p>
+
+          <div class="companyCode">
+            <div>
+              <span>회사코드입력</span>
+              <input type="text" name="j.code" placeholder="ex) 111111" required>
+            </div>
+            <button mat-button>회사 코드 확인</button>
+          </div>
+          <div class="companyInfo">
+            <span class="bold infoTitle">회사 정보</span>
+            <div class="gridBox">
+              <div>
+                <span>회사명</span>
+                <input type="text" name="j.name" placeholder="ex) 니나노컴퍼니" required>
+              </div>
+              <div>
+                <span>소속/지점</span>
+                <input type="text" name="j.branch" placeholder="ex) 용산동 지점" required>
+              </div>
+              <div>
+                <span>부서명</span>
+                <input type="text" name="j.workGroup" placeholder="ex) 총무부" required>
+              </div>
+              <div>
+                <span>직급WLR</span>
+                <input type="text" name="j.workRank" placeholder="ex) 과장" required>
+              </div>
+              <div>
+                <span>근무지</span>
+                <input type="text" name="j.position" placeholder="ex) 대구시 달서구" required>
+              </div>
+              <div>
+                <span>회사이메일</span>
+                <input type="email" name="j.email" placeholder="ex) aaaa@bbbb.com" required>
+              </div>
+            </div>
+            <div class="btnBox">
+              <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tabContentBox hidden">
+        4
+      </div>
+      <div class="tabContentBox hidden">
+        5
+      </div>
+    </form>
+  </div>
+</div>

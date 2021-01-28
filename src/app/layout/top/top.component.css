@@ -39,7 +39,14 @@
     color: #3F3D56;
     text-align: center;
 }
+.gnb li h2 {
+    font-size: 12px;
+    color: #3F3D56;
+}
 .gnb li:hover {
+    color:#999;
+}
+.gnb li h2:hover {
     color:#999;
 }
 .gnb li:nth-last-child(1){
