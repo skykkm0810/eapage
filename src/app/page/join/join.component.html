@@ -3,14 +3,13 @@
     <h2>회원가입</h2>
     <ul class="tabBox">
       <li class="bold pointer on" (click)="tabclick($event)">이용약관 동의</li>
-      <li class="bold pointer " (click)="tabclick($event)">이메일 인증</li>
       <li class="bold pointer " (click)="tabclick($event)">본인 인증</li>
       <li class="bold pointer " (click)="tabclick($event)">회원 정보 입력</li>
       <li class="bold pointer " (click)="tabclick($event)">가입 완료</li>
     </ul>
     <form action="/">
 
-      <div class="agreement tabContentBox hidden">
+      <div class="agreement tabContentBox">
         <p class="bold">서비스 이용을 위해 이용약관 동의가 필요합니다.</p>
         <div class="agreeBox">
           <p class="allAgree bold">전체 동의<span class="agreeHole pointer" (click)='allchk($event)'></span></p>
@@ -43,43 +42,54 @@
           </div>
         </div>
       </div>
-      <div class="email tabContentBox hidden">
-        <p class="bold">마음도씨 이용을 위해 이메일 인증이 필요합니다.</p>
+      <div class="certification tabContentBox hidden">
+        <p class="bold">마음도씨 이용을 위해 본인인증이 필요합니다.</p>
         <div class="emailBox">
           <p class="emailTitle bold">이메일 인증<span class="designA"></span></p>
 
           <div class="mailAddress">
             <div>
               <span>이메일 주소</span>
-              <input type="email" name="c.email" placeholder="ex) aaa@bbbbb.com">
+              <input type="email" name="e.email">
             </div>
             <button mat-button>인증코드 전송</button>
           </div>
-          <div class="certification">
+          <div class="mailCertifi">
             <div>
               <span>인증코드</span>
-              <input type="text" name="c.code" placeholder="ex) 111111" required>
+              <input type="text" name="e.code"  required>
             </div>
             <button mat-button>인증코드 확인</button>
           </div>
-          <div class="btnBox">
-            <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
-          </div>
         </div>
-      </div>
-      <div class="jobs tabContentBox">
-        <p class="bold">마음도씨 이용을 위해 본인인증이 필요합니다.</p>
-        <div class="jobsBox">
-          <p class="jobsTitle bold">회사 정보 인증<span class="designA"></span></p>
-
+        <div class="companyBox">
+          <p class="companyTitle bold">회사 정보 인증<span class="designA"></span></p>
           <div class="companyCode">
             <div>
               <span>회사코드입력</span>
-              <input type="text" name="j.code" placeholder="ex) 111111" required>
+              <input type="text" name="c.code"  required>
             </div>
             <button mat-button>회사 코드 확인</button>
           </div>
-          <div class="companyInfo">
+          <div class="companyName">
+            <div>
+              <span>직장명</span>
+              <input type="text" name="c.name"  required>
+            </div>
+          </div>
+          <div class="companyPart">
+            <div>
+              <span>부서명</span>
+              <input type="text" name="c.part"  required>
+            </div>
+          </div>
+          <div class="companyRank">
+            <div>
+              <span>직급</span>
+              <input type="text" name="c.rank"  required>
+            </div>
+          </div>
+          <!-- <div class="companyInfo">
             <span class="bold infoTitle">회사 정보</span>
             <div class="gridBox">
               <div>
@@ -110,15 +120,123 @@
             <div class="btnBox">
               <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
             </div>
+          </div> -->
+          <div class="btnBox">
+            <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
           </div>
         </div>
       </div>
-      <div class="tabContentBox hidden">
-        4
+      <div class="personal tabContentBox hidden">
+        <div class="basic">
+          <div class="basicInfo">
+            <span class="bold infoTitle">기본정보</span>
+            <div class="gridBox">
+              <div>
+                <span>이름</span>
+                <input type="text" name="b.name"  required>
+              </div>
+              <div>
+                <span>연락처</span>
+                <input type="text" name="b.branch"   required>
+              </div>
+              <div>
+                <span>생년월일</span>
+                <input type="text" name="j.workGroup"  required>
+              </div>
+              <div>
+                <span>이메일</span>
+                <input type="email" name="j.workRank"  required>
+              </div>
+              <div>
+                <span>성별</span>
+                <mat-radio-group>
+                  <mat-radio-button value="1" name="sex" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
+                  <mat-radio-button value="2" name="sex" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div>
+                <span>자녀유무</span>
+                <mat-radio-group>
+                  <mat-radio-button value="1" name="child" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
+                  <mat-radio-button value="2" name="child" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
+                </mat-radio-group>
+                <!-- <input type="radio" name="child" value='1'> 유
+                <input type="radio" name="child" value='2'> 무 -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="jobs">
+          <div class="jobsInfo">
+            <span class="bold infoTitle">회사정보</span>
+            <div class="gridBox">
+              <div>
+                <span>직장명</span>
+                <input type="text" name="j.name"  required>
+              </div>
+              <div>
+                <span>부서</span>
+                <input type="text" name="j.part" required>
+              </div>
+              <div>
+                <span>직급</span>
+                <input type="text" name="j.rank"  required>
+              </div>
+              <div>
+                <span>회사 이메일</span>
+                <input type="email" name="j.mail"  required>
+              </div>
+              <div>
+                <span>근무지역</span>
+                <input type="text" name="j.position"  required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="interest">
+          <div class="interestInfo">
+            <span class="bold infoTitle">관심영역</span>
+            <div class="gridBox">
+              <div>
+                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_interact" class="hidden"> 대인관계 (갈등)</label>
+              </div>
+              <div>
+                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_stress" class="hidden"> 직무스트레스 해소</label>
+              </div>
+              <div>
+                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_couple" class="hidden">부부관계</label>
+              </div>
+              <div>
+                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_children" class="hidden"> 자녀양육</label>
+              </div>
+              <div>
+                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_yoga" class="hidden">  명상/요가</label>
+              </div>
+              <div>
+                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_artCure" class="hidden"> 예술치유(그림, 아로마, 공예 등)</label>
+              </div>
+              <div>
+                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_simri" class="hidden"> 심리특강</label>
+              </div>
+          </div>
+        </div>
       </div>
-      <div class="tabContentBox hidden">
-        5
+      <div class="btnBox">
+        <!-- 서브밋 버튼이 되어야함 -->
+        <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
       </div>
-    </form>
   </div>
+  <div class="finish tabContentBox hidden">
+    <div class="finishBox">
+      <div class="charactor"></div>
+      <p class="bold"><span>홍길동</span> 님 환영합니다!</p>
+      <p class="bold">마음도씨 회원가입이 완료 되었습니다.</p>
+    </div>
+    <div class="btnBox">
+      <button mat-button [routerLink]="['']" class="next bold">확인</button>
+    </div>
+  </div>
+  
+  </form>
+</div>
 </div>
