@@ -75,4 +75,16 @@ export class JoinComponent implements OnInit {
       }
     }
   }
+  interestChk(m:Event){
+    var thischk = m.currentTarget as HTMLElement;
+    m.preventDefault();
+    if(thischk.classList.contains('checking')){
+      thischk.classList.remove('checking');
+      (thischk.querySelector('input') as HTMLInputElement).checked = false;
+    }
+    else{
+      thischk.classList.add('checking');
+      (thischk.querySelector('input') as HTMLInputElement).checked = true;
+    }
+  }
 }

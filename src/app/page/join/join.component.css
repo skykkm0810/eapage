@@ -37,7 +37,7 @@ h2 {
 .tabBox li {
     height:60px;
     display: inline-block;
-    width:calc(20% - 1px);
+    width:calc(25% - 2px);
     border-right:1px solid #ffdddd;
     border-top: 1px solid #ffdddd;
     border-bottom:1px solid #dd5e5e;
@@ -48,7 +48,7 @@ h2 {
 }
 .tabBox li:nth-child(1){
     border-left: 1px solid #ffdddd;
-    width:calc(20% - 2px);
+    width:calc(25% - 2px);
 }
 .tabBox li.on {
     background-color: #dd5e5e;
@@ -145,7 +145,7 @@ h2 {
 .emailBox .mailAddress {
     padding-top: 104px;
 }
-.emailBox .certification {
+.emailBox .mailCertifi {
     padding-top: 56px;
 }
 .emailBox > div > div {
@@ -207,11 +207,10 @@ h2 {
     text-align: center;
     line-height: 60px;
 }
-/* 회사 정보 인증 */
-.jobsBox {
+.companyBox {
     padding-top: 100px;
 }
-.jobsBox > p {
+.companyBox > p {
     text-align: center;
     width: 600px;
     height:60px;
@@ -223,31 +222,31 @@ h2 {
     margin: 0 auto !important;
     position: relative;
 }
-.jobsBox > p .designA {
+.companyBox > p .designA {
     position: absolute;
     bottom:-6px;
     left:calc(50% - 15px);
 }
-.jobsBox .companyCode {
+.companyBox > div {
     position: relative;
     width:540px;
     height:70px;
     margin:0 auto;
-    padding-top: 104px;
+    padding-top: 40px;
 }
-.jobsBox .companyCode > div {
-    width:380px;
+.companyBox > div > div {
+    width:100%;
     height:70px;
 } 
-.jobsBox .companyCode > div span {
+.companyBox > div > div span {
     display:block;
     height:30px;
     font-size: 22px;
     color:#3F3D56;
     line-height: 30px;
 }
-.jobsBox .companyCode > div input {
-    width:380px;
+.companyBox > div > div input {
+    width:100%;
     color:#3F3D56;
     font-size: 22px;
     display:block;
@@ -258,18 +257,20 @@ h2 {
     border-bottom: 1px solid #c4c4c4;
     text-indent: 15px;
 }
-.jobsBox .companyCode > div input::placeholder{
+.companyBox .companyCode > div > input  {
+    width: 380px;
+}
+.companyBox > div > div input::placeholder{
     color:#ccc;
 }
-.jobsBox .companyCode > div input:focus{
+.companyBox > div > div input:focus{
     outline: none;
 }
-.jobsBox .companyCode > button{
+.companyBox > div > button{
     width:130px;
     height:40px;
     border:1px solid #dd5e5e;
-    background-color: #dd5e5e;
-    color:#fff;
+    color:#dd5e5e;
     font-size: 18px;
     line-height: 20px;
     border-radius: 0;
@@ -279,29 +280,62 @@ h2 {
     right:0;
     bottom:0;
 }
-.jobsBox .companyInfo {
+.companyBox .companyInfo {
     padding-top: 120px;
     position: relative;
 }
-.jobsBox .companyInfo .gridBox {
+
+.companyBox .btnBox {
+    padding-top: 50px;
+    text-align: center;
+} 
+.companyBox .btnBox .next {
+    position: relative;
+    display: inline-block;
+    width:300px;
+    height:60px;
+    border-radius: 0;
+    background-color: #dd5e5e;
+    color:#fff;
+    font-size:26px;
+    text-align: center;
+    line-height: 60px;
+}
+
+/* 회원정보입력 */
+/* 기본정보 */
+.basic {
+    padding-top : 100px;
+    position: relative;
+}
+.basicInfo .infoTitle {
+    font-size: 20px;
+    position: absolute;
+    left:0;
+    top:100px;
+    color:#dd5e5e;
+}
+.basicInfo .gridBox {
     margin:0 auto;
     width:790px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px 30px;
 }
-.jobsBox .companyInfo .gridBox div {
+.basicInfo .gridBox div {
     width:380px;
     height:70px;
 }
-.jobsBox .companyInfo .gridBox div span {
+.basicInfo .gridBox div span {
+    box-sizing: border-box;
     display:block;
     height:30px;
-    font-size: 22px;
+    font-size: 16px;
     color:#3F3D56;
     line-height: 30px;
+    padding-bottom: 15px;
 }
-.jobsBox .companyInfo .gridBox div input {
+.basicInfo .gridBox div input {
     width:380px;
     color:#3F3D56;
     font-size: 22px;
@@ -313,25 +347,216 @@ h2 {
     border-bottom: 1px solid #c4c4c4;
     text-indent: 15px;
 }
-.jobsBox .companyInfo .gridBox div input::placeholder {
+.basicInfo .gridBox div input::placeholder {
     color:#ccc;
 }
-.jobsBox .companyInfo .gridBox div input {
+.basicInfo .gridBox div input {
     outline: none;
 }
-.jobsBox .companyInfo .infoTitle {
-    display: inline-block;
-    font-size: 22px;
-    color:#dd5e5e;
-    position: absolute;
-    top:120px;
-    left:0;
+.basicInfo .gridBox div label {
+    width:50%;
+    font-size: 16px;
+    display:inline-block;
+    height:40px;
+    box-sizing: border-box;
+    padding-top: 12px;
+    border:0;
+    margin:0!important;
+    text-align: center;
 }
-.jobsBox .companyInfo .btnBox {
+.basicInfo .gridBox div label input[type=radio]{
+    width:auto;
+    font-size: 22px;
+    display:inline-block;
+    height:20px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+.basicInfo .gridBox div label input[type='radio']:checked{
+
+    background-color: #dd5e5e;
+}
+.basicInfo .gridBox div .mat-radio-group {
+    display: inline-block;
+    height:40px;
+    padding-top: 15px;
+    width:100%;
+}
+.basicInfo .gridBox div .mat-radio-group .mat-radio-button {
+    width:50%;
+    font-size: 16px;
+}
+/* 회사정보 */
+.jobs {
+    padding-top : 100px;
+    position: relative;
+}
+.jobsInfo .infoTitle {
+    font-size: 20px;
+    position: absolute;
+    left:0;
+    top:100px;
+    color:#dd5e5e;
+}
+.jobsInfo .gridBox {
+    margin:0 auto;
+    width:790px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 30px;
+}
+.jobsInfo .gridBox div {
+    width:380px;
+    height:70px;
+}
+.jobsInfo .gridBox div span {
+    box-sizing: border-box;
+    display:block;
+    height:30px;
+    font-size: 16px;
+    color:#3F3D56;
+    line-height: 30px;
+    padding-bottom: 15px;
+}
+.jobsInfo .gridBox div input {
+    width:380px;
+    color:#3F3D56;
+    font-size: 22px;
+    display:block;
+    height:40px;
+    box-sizing: border-box;
+    padding-bottom: 8px;
+    border:0;
+    border-bottom: 1px solid #c4c4c4;
+    text-indent: 15px;
+}
+.jobsInfo .gridBox div input::placeholder {
+    color:#ccc;
+}
+.jobsInfo .gridBox div input {
+    outline: none;
+}
+.jobsInfo .gridBox div label {
+    width:50%;
+    font-size: 16px;
+    display:inline-block;
+    height:40px;
+    box-sizing: border-box;
+    padding-top: 12px;
+    border:0;
+    margin:0!important;
+    text-align: center;
+}
+.jobsInfo .gridBox div label input[type=radio]{
+    width:auto;
+    font-size: 22px;
+    display:inline-block;
+    height:20px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+.jobsInfo .gridBox div label input[type='radio']:checked{
+
+    background-color: #dd5e5e;
+}
+.jobsInfo .gridBox div .mat-radio-group {
+    display: inline-block;
+    height:40px;
+    padding-top: 15px;
+    width:100%;
+}
+.jobsInfo .gridBox div .mat-radio-group .mat-radio-button {
+    width:50%;
+    font-size: 16px;
+}
+/* 관심영역 */
+.interest {
+    padding-top : 50px;
+    position: relative;
+}
+.interestInfo .infoTitle {
+    font-size: 20px;
+    position: absolute;
+    left:0;
+    top:70px;
+    color:#dd5e5e;
+}
+.interestInfo .gridBox {
+    margin:0 auto;
+    width:790px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px 19px;
+}
+.interestInfo .gridBox div {
+    width:260px;
+    height:34px;
+    border-bottom: 1px solid #c4c4c4;
+    box-sizing: border-box;
+    padding-bottom: 15px;
+}
+
+.interestInfo .gridBox div label {
+    width:100%;
+    font-size: 16px;
+}
+.interestInfo .gridBox div label span{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    border: 1px solid #c4c4c4;
+    border-radius: 2px;
+    vertical-align: middle;
+}
+.interestInfo .gridBox div label span.checking{
+    background-color: #dd5e5e;
+    border-color: #dd5e5e;
+}
+.personal .btnBox {
     padding-top: 100px;
     text-align: center;
 } 
-.jobsBox .btnBox .next {
+.personal .btnBox .next {
+    position: relative;
+    display: inline-block;
+    width:300px;
+    height:60px;
+    border-radius: 0;
+    background-color: #dd5e5e;
+    color:#fff;
+    font-size:26px;
+    text-align: center;
+    line-height: 60px;
+}
+
+/* 마지막 */
+.finish {
+    padding-top: 200px;
+}
+.finishBox {
+    width:450px;
+    margin:0 auto;
+}
+.finishBox .charactor {
+    margin:0 auto;
+    width:188px;
+    height:188px;
+    background: url(../../../assets/images/icon/charactor.png) no-repeat center center / cover;
+}
+.finishBox p {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 26px;
+}
+.finishBox p span {
+    color:#dd5e5e;
+}
+.finish .btnBox {
+    padding-top: 377px;
+    text-align: center;
+} 
+.finish .btnBox .next {
     position: relative;
     display: inline-block;
     width:300px;
