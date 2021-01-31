@@ -1,6 +1,6 @@
 <div class="wrap">
   <div class="innerWrap">
-    <h2>회원가입</h2>
+    <h2>마이페이지</h2>
     <ul class="tabBox">
       <li class="bold pointer on" (click)="tabclick($event)">신청 강의 목록</li>
       <li class="bold pointer " (click)="tabclick($event)">완료된 강의 목록</li>
@@ -10,6 +10,14 @@
 
       <div class="agreement tabContentBox">
         <table class="lecTb">
+          <colgroup>
+            <col width="180px">
+            <col width="230px">
+            <col width="370px">
+            <col width="130px">
+            <col width="180px">
+            <col width="110px">
+          </colgroup>
           <thead>
             <tr>
               <th>결재일</th>
@@ -21,202 +29,68 @@
             </tr>
           </thead>
           <tbody>
-            <colgroup>
-              <col width="180px">
-              <col width="230px">
-              <col width="370px">
-              <col width="130px">
-              <col width="180px">
-              <col width="110px">
-            </colgroup>
-            <tr>
-              <td rowspan="3">
-                2021-01-27
+            <tr *ngFor="let l of lectList">
+              <td rowspan="l.curr.length"  class="ft-22 c-pink">
+                {{ l.applied }}
+                <!-- {{ l.applied | date: 'YYYY-MM-dd' }} -->
               </td>
-              <td rowspan="3">
-                <img src="assets/images/banner/thumbnail.png" alt="">
+              <td rowspan="l.curr.length">
+                <img src="assets/images/banner/{{ l.file[0].path }}" alt="">
               </td>
-              <td>
-                <h1>바쁠수록 차분하게, 마음챙김 명상</h1>
-                <p>1. 커리큘럼 1회차 제목</p>
-              </td>
-              <td>
-                1회
-              </td>
-              <td>
-                2021년 1월 25일
-              </td>
-              <td>
-                90분
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h1>바쁠수록 차분하게, 마음챙김 명상</h1>
-                <p>1. 커리큘럼 1회차 제목</p>
-              </td>
-              <td>
-                1회
-              </td>
-              <td>
-                2021년 1월 25일
-              </td>
-              <td>
-                90분
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h1>바쁠수록 차분하게, 마음챙김 명상</h1>
-                <p>1. 커리큘럼 1회차 제목</p>
-              </td>
-              <td>
-                1회
-              </td>
-              <td>
-                2021년 1월 25일
-              </td>
-              <td>
-                90분
-              </td>
-            </tr>
-            <tr>
-              <td rowspan="3">
-                2021-01-27
-              </td>
-              <td rowspan="3">
-                <img src="assets/images/banner/thumbnail.png" alt="">
-              </td>
-              <td>
-                <h1>바쁠수록 차분하게, 마음챙김 명상</h1>
-                <p>1. 커리큘럼 1회차 제목</p>
-              </td>
-              <td>
-                1회
-              </td>
-              <td>
-                2021년 1월 25일
-              </td>
-              <td>
-                90분
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h1>바쁠수록 차분하게, 마음챙김 명상</h1>
-                <p>1. 커리큘럼 1회차 제목</p>
-              </td>
-              <td>
-                1회
-              </td>
-              <td>
-                2021년 1월 25일
-              </td>
-              <td>
-                90분
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h1>바쁠수록 차분하게, 마음챙김 명상</h1>
-                <p>1. 커리큘럼 1회차 제목</p>
-              </td>
-              <td>
-                1회
-              </td>
-              <td>
-                2021년 1월 25일
-              </td>
-              <td>
-                90분
+              <td colspan="4">
+                <p class="ft-bold ft-22" style="text-align: left; padding: 20px 20px;">{{ l.title }}</p>
+                <div class="tdgCtnr" *ngFor="let c of l.curr">
+                  <p class="subtitle ft-16">{{ c.number }}. {{ c.title }}</p>
+                  <p class="ft-22 ft-bold">{{ c.number }}회차</p>
+                  <p class="ft-16">{{ c.datetime }}<br>{{ c.datetime }}</p>
+                  <!-- <p class="ft-16">{{ c.datetime | date: 'YY년 MM월 dd일'}}<br>{{ c.datetime | date: 'HH시 mm분'}}</p> -->
+                  <p class="ft-22 ft-bold">{{ c.runtime }}</p>
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="certification tabContentBox hidden">
-        <p class="bold">마음도씨 이용을 위해 본인인증이 필요합니다.</p>
-        <div class="emailBox">
-          <p class="emailTitle bold">이메일 인증<span class="designA"></span></p>
-
-          <div class="mailAddress">
-            <div>
-              <span>이메일 주소</span>
-              <input type="email" name="e.email">
-            </div>
-            <button mat-button>인증코드 전송</button>
-          </div>
-          <div class="mailCertifi">
-            <div>
-              <span>인증코드</span>
-              <input type="text" name="e.code"  required>
-            </div>
-            <button mat-button>인증코드 확인</button>
-          </div>
-        </div>
-        <div class="companyBox">
-          <p class="companyTitle bold">회사 정보 인증<span class="designA"></span></p>
-          <div class="companyCode">
-            <div>
-              <span>회사코드입력</span>
-              <input type="text" name="c.code"  required>
-            </div>
-            <button mat-button>회사 코드 확인</button>
-          </div>
-          <div class="companyName">
-            <div>
-              <span>직장명</span>
-              <input type="text" name="c.name"  required>
-            </div>
-          </div>
-          <div class="companyPart">
-            <div>
-              <span>부서명</span>
-              <input type="text" name="c.part"  required>
-            </div>
-          </div>
-          <div class="companyRank">
-            <div>
-              <span>직급</span>
-              <input type="text" name="c.rank"  required>
-            </div>
-          </div>
-          <!-- <div class="companyInfo">
-            <span class="bold infoTitle">회사 정보</span>
-            <div class="gridBox">
-              <div>
-                <span>회사명</span>
-                <input type="text" name="j.name" placeholder="ex) 니나노컴퍼니" required>
-              </div>
-              <div>
-                <span>소속/지점</span>
-                <input type="text" name="j.branch" placeholder="ex) 용산동 지점" required>
-              </div>
-              <div>
-                <span>부서명</span>
-                <input type="text" name="j.workGroup" placeholder="ex) 총무부" required>
-              </div>
-              <div>
-                <span>직급WLR</span>
-                <input type="text" name="j.workRank" placeholder="ex) 과장" required>
-              </div>
-              <div>
-                <span>근무지</span>
-                <input type="text" name="j.position" placeholder="ex) 대구시 달서구" required>
-              </div>
-              <div>
-                <span>회사이메일</span>
-                <input type="email" name="j.email" placeholder="ex) aaaa@bbbb.com" required>
-              </div>
-            </div>
-            <div class="btnBox">
-              <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
-            </div>
-          </div> -->
-          <div class="btnBox">
-            <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
-          </div>
-        </div>
+        <table class="lecTb">
+          <colgroup>
+            <col width="180px">
+            <col width="230px">
+            <col width="370px">
+            <col width="130px">
+            <col width="180px">
+            <col width="110px">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>결재일</th>
+              <th>강의 이미지</th>
+              <th>강의 제목</th>
+              <th>회차</th>
+              <th>강의 일정</th>
+              <th>강의 시간</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let l of lectList">
+              <td rowspan="l.curr.length" class="ft-22 c-pink">
+                {{ l.applied }}
+              </td>
+              <td rowspan="l.curr.length">
+                <img src="assets/images/banner/{{ l.file[0].path }}" alt="">
+              </td>
+              <td colspan="4">
+                <p class="ft-bold ft-22" style="text-align: left; padding: 20px 20px;">{{ l.title }}</p>
+                <div class="tdgCtnr" *ngFor="let c of l.curr">
+                  <p class="subtitle ft-16">{{ c.number }}. {{ c.title }}</p>
+                  <p class="ft-22 ft-bold">{{ c.number }}회차</p>
+                  <p class="ft-16">{{ c.datetime }}<br>{{ c.datetime }}</p>
+                  <p class="ft-22 ft-bold">{{ c.runtime }}</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="personal tabContentBox hidden">
         <div class="basic">
@@ -307,14 +181,16 @@
             <span class="bold infoTitle">관심 영역</span>
             <div class="gridBox">
               <div *ngFor="let i of interests">
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="{{i.as}}" [(ngModel)]="i.completed"class="hidden">{{ i.name }}</label>
+                <mat-checkbox [(ngModel)]="i.completed" name="i.name">
+                  {{i.value}}
+                </mat-checkbox>
               </div>
           </div>
         </div>
       </div>
       <div class="btnBox">
         <!-- 서브밋 버튼이 되어야함 -->
-        <button mat-button class="next bold">저장</button>
+        <button mat-button class="next bold" (click)="click();">저장</button>
       </div>
     </div>
   </form>

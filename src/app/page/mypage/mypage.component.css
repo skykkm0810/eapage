@@ -621,8 +621,12 @@ h2 {
 .lecTb tr {
   text-align: center;
   height:50px;
-  border-top: 1px solid #111111;
-  border-bottom: 1px solid #111111;
+}
+.lecTb tr th {
+  border-bottom: 1px solid #C4C4C4;
+}
+.lecTb tr td {
+  border-bottom: 1px solid #C4C4C4;
 }
 .lecTb th {
   font-size: 18px;
@@ -630,13 +634,46 @@ h2 {
 }
 .lecTb img {
   width: 95%;
+  padding: 20px 0;
 }
 .lecTb h1 {
   font-size: 22px;
   line-height: 28px;
 }
-.lecTb p {
+.lecTb p{
+  text-align: center;
+  padding: 10px 15px;
+  margin: 0;
+}
+.tdgCtnr {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 370px 130px 180px 1fr;
+  justify-items: center;
+  align-items: center;
+  border-top: 1px dashed #C4C4C4;
+}
+.subtitle {
+  justify-self: left;
+}
+.fontA {
+  font-family: NanumSquare_ac;
+}
+.ft-16 {
+  font-size: 16px;
+  line-height: 18px;
+}
+.ft-18 {
   font-size: 18px;
   line-height: 20px;
-  text-align: left;
+}
+.ft-22 {
+  font-size: 22px;
+  line-height: 28px;
+}
+.ft-bold {
+  font-weight: bold;
+}
+.c-pink {
+  color: #DD5E5E;
 }

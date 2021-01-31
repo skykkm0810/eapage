@@ -53,3 +53,9 @@ li {
     height:10px;
     background-color: #dd5e5e;
 }
+.text-left {
+    text-align: left;
+}
+::-webkit-scrollbar {
+    display: none;
+}

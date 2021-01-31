@@ -46,6 +46,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { JoinComponent } from './page/join/join.component';
 import { DetailComponent } from './page/detail/detail.component';
 import { MypageComponent } from './page/mypage/mypage.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { MypageComponent } from './page/mypage/mypage.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
+    FormsModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,

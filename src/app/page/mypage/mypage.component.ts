@@ -1,3 +1,4 @@
+import { getLocaleDateTimeFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,21 +14,58 @@ export class MypageComponent implements OnInit {
   }
 
   interests = [
-    { as: 'ints', name: '연애결혼', completed: false },
-    { as: 'ints', name: '자녀양육', completed: false },
-    { as: 'ints', name: '부부관계', completed: false },
-    { as: 'ints', name: '인생 2막', completed: false },
-    { as: 'ints', name: '대인관계', completed: false },
-    { as: 'ints', name: '커뮤니케이션', completed: false },
-    { as: 'ints', name: '리더십', completed: false },
-    { as: 'ints', name: '조직적응', completed: false },
-    { as: 'ints', name: '명상요가', completed: false },
-    { as: 'ints', name: '몸 마음 건강', completed: false },
-    { as: 'ints', name: '예술 치유', completed: false },
-    { as: 'ints', name: '힐링 DIY', completed: false },
-    { as: 'ints', name: '자기 이해', completed: false },
-    { as: 'ints', name: '심리 특강', completed: false },
+    { name: 'merr', value: '연애결혼', completed: false },
+    { name: 'chil', value: '자녀양육', completed: false },
+    { name: 'coup', value: '부부관계', completed: false },
+    { name: 'life', value: '인생 2막', completed: false },
+    { name: 'rela', value: '대인관계', completed: false },
+    { name: 'comm', value: '커뮤니케이션', completed: false },
+    { name: 'lead', value: '리더십', completed: false },
+    { name: 'orga', value: '조직적응', completed: false },
+    { name: 'yoga', value: '명상요가', completed: false },
+    { name: 'body', value: '몸 마음 건강', completed: false },
+    { name: 'arty', value: '예술 치유', completed: false },
+    { name: 'heal', value: '힐링 DIY', completed: false },
+    { name: 'unde', value: '자기 이해', completed: false },
+    { name: 'tria', value: '심리 특강', completed: false },
   ];
+
+  lectList = [
+    {
+      applied: '2021-01-27T16:00:00',
+      file: [{
+        path: 'thumbnail.png'
+      }],
+      title: '바쁠수록 차분하게, 마음챙김 명상',
+      curr: [
+        {
+          title: '커리큘럼 1회차 제목',
+          number: 1,
+          datetime: '2021-01-27T16:00:00',
+          runtime: '90분'
+        },
+        {
+          title: '커리큘럼 2회차 제목',
+          number: 2,
+          datetime: '2021-01-27T16:00:00',
+          runtime: '90분'
+        },
+      ]
+    },
+    {
+      applied: '2021-01-27T16:00:00',
+      file: [{
+        path: 'thumbnail.png'
+      }],
+      title: '바쁠수록 마음챙김, 차분하게 명상',
+      curr: [{
+        title: '커리큘럼 1회차 제목',
+        number: 1,
+        datetime: '2021-01-27T16:00:00:00',
+        runtime: '90분'
+      }]
+    }
+  ]
 
 
 
@@ -107,5 +145,8 @@ export class MypageComponent implements OnInit {
       thischk.classList.add('checking');
       (thischk.querySelector('input') as HTMLInputElement).checked = true;
     }
+  }
+  click() {
+    console.log(this.interests);
   }
 }
