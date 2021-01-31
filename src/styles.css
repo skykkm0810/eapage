@@ -47,11 +47,11 @@ li {
 .underline {
     text-decoration: underline;
 }
-.designA {
+.block {
     display: block;
-    width:30px;
-    height:10px;
-    background-color: #dd5e5e;
+}
+.inlineBlock {
+    display: inline-block;
 }
 .text-left {
     text-align: left;

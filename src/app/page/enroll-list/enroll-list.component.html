@@ -1,0 +1,71 @@
+<div class="wrap">
+  <div class="innerWrap">
+    <p class="title bold">수강 신청 내역</p>
+    <div class="contentsBox">
+      <div class="classInfo">
+        <div class="headTag"><span class="bold inlineBlock">수강정보</span></div>
+        <div class="classinfoBox">
+
+          <table class="lecTb">
+            <colgroup>
+              <col width="180px">
+              <col width="190px">
+              <col width="370px">
+              <col width="90px">
+              <col width="180px">
+              <col width="90px">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>결재일</th>
+                <th>강의 이미지</th>
+                <th>강의 제목</th>
+                <th>회차</th>
+                <th>강의 일정</th>
+                <th>강의 시간</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let l of lectList">
+                <td rowspan="l.curr.length" class="ft-22 c-pink">
+                  {{ l.applied }}
+                  <!-- {{ l.applied | date: 'YYYY-MM-dd' }} -->
+                </td>
+                <td rowspan="l.curr.length">
+                  <img src="assets/images/banner/{{ l.file[0].path }}" alt="">
+                </td>
+                <td colspan="4">
+                  <p class="ft-bold ft-22" style="text-align: left; padding: 20px 20px;">{{ l.title }}</p>
+                  <div class="tdgCtnr" *ngFor="let c of l.curr">
+                    <p class="subtitle ft-16">{{ c.number }}. {{ c.title }}</p>
+                    <p class="ft-22 ft-bold">{{ c.number }}회차</p>
+                    <p class="ft-16">{{ c.datetime }}<br>{{ c.datetime }}</p>
+                    <!-- <p class="ft-16">{{ c.datetime | date: 'YY년 MM월 dd일'}}<br>{{ c.datetime | date: 'HH시 mm분'}}</p> -->
+                    <p class="ft-22 ft-bold">{{ c.runtime }}</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <div class="payment">
+        <div class="headTag"><span class="bold inlineBlock">포인트 결제</span></div>
+        <div class="paymentBox">
+          <div class="inlineBlock">
+            <span>차감 포인트</span>
+            <input type="text" name="pay.use" style="color:red;" readonly value="500">
+          </div>
+          <div class="inlineBlock">
+            <span>나의 보유 포인트</span>
+            <input type="text" name="pay.after" readonly value="500">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btnBox">
+      <button mat-button class="bold">수강 확인</button>
+    </div>
+  </div>
+</div>

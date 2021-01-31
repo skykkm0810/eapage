@@ -67,11 +67,11 @@
     font-weight: bold;
     text-align: center;
 }
-.snb li:hover {
+.snb li:hover, .snb li.on {
     color:#DD5E5E;
     position: relative;
 }
-.snb li:hover::after{
+.snb li:hover::after, .snb li.on::after{
     content: '';
     display: block;
     position: absolute;

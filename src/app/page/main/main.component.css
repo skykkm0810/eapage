@@ -105,16 +105,16 @@
     position: absolute;
     width:570px;
     height:90px;
-    background: url(../../../assets/images/icon/other.png) no-repeat center center / cover;
+    background: url(../../../assets/images/icon/other.png) no-repeat center center / contain;
     left:calc(50% - 285px);
     bottom:143px;
 }
 .preopen .tempDynamic {
     position: absolute;
-    width:503.74px;
-    height:25px;
-    left:51.64px;
-    top:32px;
+    width:450px;
+    height:22px;
+    left:76px;
+    top:29px;
     background-color: #DD5E5E;
     border-radius: 30px;
 }
@@ -365,10 +365,10 @@
 .today .second .todayClassInfo {
     background-color: #B08FCC;
 }
-.today .content .todayClassInfo > p { width:420px; padding-bottom: 25px;}
+.today .content .todayClassInfo > p { width:450px; padding-bottom: 25px;}
 .today .content .todayClassInfo .teacher {font-size: 20px; color:#fff; }
 .today .content .todayClassInfo .title {font-size: 30px; color:#3f3d56;}
-.today .content .todayClassInfo .description {font-size: 25px; color:#fff;}
+.today .content .todayClassInfo .description {font-size: 25px; color:#fff; line-height: 25px;}
 .today .content .todayClassInfo .remainTime {font-size: 35px;color:#fff; padding:0;}
 
 .today .content .todayClassInfo .calendarIcon {
