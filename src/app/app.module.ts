@@ -44,6 +44,8 @@ import { MainComponent } from './page/main/main.component';
 import { TopComponent } from './layout/top/top.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { JoinComponent } from './page/join/join.component';
+import { DetailComponent } from './page/detail/detail.component';
+import { MypageComponent } from './page/mypage/mypage.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { JoinComponent } from './page/join/join.component';
     MainComponent,
     TopComponent,
     FooterComponent,
-    JoinComponent
+    JoinComponent,
+    DetailComponent,
+    MypageComponent
   ],
   imports: [
     BrowserModule,

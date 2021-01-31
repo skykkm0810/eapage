@@ -1,0 +1,642 @@
+/* 체크박스 설정 */
+.agreeHole {
+  display: block;
+  width:24px;
+  height:24px;
+  border:1px solid #c4c4c4;
+  background-color: #f2f2f2;
+  border-radius: 100%;
+}
+.checked {
+  background-color: #3F3D56;
+  position: relative;
+  border-color: #3F3D56;
+}
+.checked::after{
+  content: '';
+  width:17px;
+  height:13px;
+  position: absolute;
+  left:3.5px;
+  top:5.5px;
+  background: url(../../../assets/images/icon/white/chk.png) no-repeat center center / cover;
+}
+/* --------------------------------------------------- */
+.wrap { padding-bottom: 50px;}
+.innerWrap {
+  padding-top: 40px;
+}
+h2 {
+  text-indent: 10px;
+  color:#3F3D56;
+  border-bottom:1px solid #c4c4c4;
+}
+.tabBox {
+  margin-top: 50px;
+}
+.tabBox li {
+  height:60px;
+  display: inline-block;
+  width:calc(33.3% - 2px);
+  border-right:1px solid #F7F8FC;
+  border-top: 1px solid #F7F8FC;
+  border-bottom:1px solid #3F3D56;
+  text-align: center;
+  line-height: 60px;
+  font-size: 26px;
+  color:#c4c4c4;
+}
+.tabBox li:nth-child(1){
+  border-left: 1px solid #F7F8FC;
+}
+.tabBox li.on {
+  background-color: #3F3D56;
+  color: #fff;
+  border-color: #3F3D56;
+}
+.tabContentBox {
+  padding-top: 0;
+}
+.tabContentBox > p {
+  color:#3F3D56;
+  font-size: 26px;
+  text-align: center;
+  margin: 0 !important;
+
+}
+
+/* 이용약관동의 */
+.agreeBox {
+  padding-top: 40px;
+}
+.agreeBox > p {
+  font-size: 20px;
+  border-bottom: 1px solid #3F3D56;
+  color:#3F3D56;
+  padding-bottom: 10px;
+  text-indent: 10px;
+  margin: 0 !important;
+}
+.agreeBox > p span {
+  float:right;
+}
+.agreeBox > div {
+  padding-top: 30px;
+  position: relative;
+}
+.agreeBox .agreeKinds {
+  font-size: 18px;
+  margin-bottom: 30px!important;
+}
+.agreeBox .agreeDetail {
+  height:162px;
+  border:1px solid #c4c4c4;
+  box-sizing: border-box;
+  padding:1rem;
+  overflow-y: scroll;
+}
+.agreeBox > div .agreeHole {
+  position: absolute;
+  right:0;
+  top:30px;
+}
+.agreeBox .btnBox {
+  padding-top: 45px;
+  text-align: center;
+} 
+.agreeBox .btnBox .next {
+  width:300px;
+  height:60px;
+  border-radius: 0;
+  background-color: #3F3D56;
+  color:#fff;
+  font-size:26px;
+  text-align: center;
+  line-height: 60px;
+}
+/* 이메일 인증 */
+.emailBox {
+  padding-top: 100px;
+}
+.emailBox > p {
+  text-align: center;
+  width: 600px;
+  height:60px;
+  line-height: 60px;
+  font-size: 30px;
+  border-bottom: 1px solid #3F3D56;
+  color:#3F3D56;
+  text-indent: 10px;
+  margin: 0 auto !important;
+  position: relative;
+}
+.emailBox > p .designA {
+  position: absolute;
+  bottom:-6px;
+  left:calc(50% - 15px);
+}
+.emailBox > div {
+  position: relative;
+  width:540px;
+  height:70px;
+  margin:0 auto;
+}
+.emailBox .mailAddress {
+  padding-top: 104px;
+}
+.emailBox .mailCertifi {
+  padding-top: 56px;
+}
+.emailBox > div > div {
+  width:380px;
+  height:70px;
+}
+.emailBox > div > div span {
+  display:block;
+  height:30px;
+  font-size: 22px;
+  color:#3F3D56;
+  line-height: 30px;
+}
+.emailBox > div > div input {
+  width:380px;
+  color:#3F3D56;
+  font-size: 22px;
+  display:block;
+  height:40px;
+  box-sizing: border-box;
+  padding-bottom: 8px;
+  border:0;
+  border-bottom: 1px solid #c4c4c4;
+  text-indent: 15px;
+}
+.emailBox > div > div input::placeholder{
+  color:#ccc;
+}
+.emailBox > div > div input:focus {
+  outline: none;
+}
+.emailBox > div > button {
+  width:130px;
+  height:40px;
+  border:1px solid #3F3D56;
+  color:#3F3D56;
+  font-size: 18px;
+  line-height: 20px;
+  border-radius: 0;
+  text-align: center;
+  padding:0;
+  position: absolute;
+  right:0;
+  bottom:0;
+}
+.emailBox > div.btnBox {
+  padding-top: 300px;
+  text-align: center;
+} 
+.emailBox .btnBox .next {
+  position: relative;
+  display: inline-block;
+  width:300px;
+  height:60px;
+  border-radius: 0;
+  background-color: #3F3D56;
+  color:#fff;
+  font-size:26px;
+  text-align: center;
+  line-height: 60px;
+}
+.companyBox {
+  padding-top: 100px;
+}
+.companyBox > p {
+  text-align: center;
+  width: 600px;
+  height:60px;
+  line-height: 60px;
+  font-size: 30px;
+  border-bottom: 1px solid #3F3D56;
+  color:#3F3D56;
+  text-indent: 10px;
+  margin: 0 auto !important;
+  position: relative;
+}
+.companyBox > p .designA {
+  position: absolute;
+  bottom:-6px;
+  left:calc(50% - 15px);
+}
+.companyBox > div {
+  position: relative;
+  width:540px;
+  height:70px;
+  margin:0 auto;
+  padding-top: 40px;
+}
+.companyBox > div > div {
+  width:100%;
+  height:70px;
+} 
+.companyBox > div > div span {
+  display:block;
+  height:30px;
+  font-size: 22px;
+  color:#3F3D56;
+  line-height: 30px;
+}
+.companyBox > div > div input {
+  width:100%;
+  color:#3F3D56;
+  font-size: 22px;
+  display:block;
+  height:40px;
+  box-sizing: border-box;
+  padding-bottom: 8px;
+  border:0;
+  border-bottom: 1px solid #c4c4c4;
+  text-indent: 15px;
+}
+.companyBox .companyCode > div > input  {
+  width: 380px;
+}
+.companyBox > div > div input::placeholder{
+  color:#ccc;
+}
+.companyBox > div > div input:focus{
+  outline: none;
+}
+.companyBox > div > button{
+  width:130px;
+  height:40px;
+  border:1px solid #3F3D56;
+  color:#3F3D56;
+  font-size: 18px;
+  line-height: 20px;
+  border-radius: 0;
+  text-align: center;
+  padding:0;
+  position: absolute;
+  right:0;
+  bottom:0;
+}
+.companyBox .companyInfo {
+  padding-top: 120px;
+  position: relative;
+}
+
+.companyBox .btnBox {
+  padding-top: 50px;
+  text-align: center;
+} 
+.companyBox .btnBox .next {
+  position: relative;
+  display: inline-block;
+  width:300px;
+  height:60px;
+  border-radius: 0;
+  background-color: #3F3D56;
+  color:#fff;
+  font-size:26px;
+  text-align: center;
+  line-height: 60px;
+}
+
+/* 회원정보입력 */
+/* 기본정보 */
+.basic {
+  padding-top : 100px;
+  position: relative;
+}
+.basicInfo .infoTitle {
+  font-size: 20px;
+  position: absolute;
+  left:0;
+  top:100px;
+  color:#3F3D56;
+}
+.basicInfo .gridBox {
+  margin:0 auto;
+  width:790px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 30px;
+}
+.basicInfo .gridBox div {
+  width:380px;
+  height:70px;
+}
+.basicInfo .gridBox div span {
+  box-sizing: border-box;
+  display:block;
+  height:30px;
+  font-size: 16px;
+  color:#3F3D56;
+  line-height: 30px;
+  padding-bottom: 15px;
+}
+.basicInfo .gridBox div input {
+  width:380px;
+  color:#3F3D56;
+  font-size: 22px;
+  display:block;
+  height:40px;
+  box-sizing: border-box;
+  padding-bottom: 8px;
+  border:0;
+  border-bottom: 1px solid #c4c4c4;
+  text-indent: 15px;
+}
+.basicInfo .gridBox div input::placeholder {
+  color:#ccc;
+}
+.basicInfo .gridBox div input {
+  outline: none;
+}
+.basicInfo .gridBox div label {
+  width:50%;
+  font-size: 16px;
+  display:inline-block;
+  height:40px;
+  box-sizing: border-box;
+  padding-top: 12px;
+  border:0;
+  margin:0!important;
+  text-align: center;
+}
+.basicInfo .gridBox div label input[type=radio]{
+  width:auto;
+  font-size: 22px;
+  display:inline-block;
+  height:20px;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+.basicInfo .gridBox div label input[type='radio']:checked{
+
+  background-color: #3F3D56;
+}
+.basicInfo .gridBox div .mat-radio-group {
+  display: inline-block;
+  height:40px;
+  padding-top: 15px;
+  width:100%;
+}
+.basicInfo .gridBox div .mat-radio-group .mat-radio-button {
+  width:50%;
+  font-size: 16px;
+}
+/* 회사정보 */
+.jobs {
+  padding-top : 100px;
+  position: relative;
+}
+.jobsInfo .infoTitle {
+  font-size: 20px;
+  position: absolute;
+  left:0;
+  top:100px;
+  color:#3F3D56;
+}
+.jobsInfo .gridBox {
+  margin:0 auto;
+  width:790px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 30px;
+}
+.jobsInfo .gridBox div {
+  width:380px;
+  height:70px;
+}
+.jobsInfo .gridBox div span {
+  box-sizing: border-box;
+  display:block;
+  height:30px;
+  font-size: 16px;
+  color:#3F3D56;
+  line-height: 30px;
+  padding-bottom: 15px;
+}
+.jobsInfo .gridBox div input {
+  width:380px;
+  color:#3F3D56;
+  font-size: 22px;
+  display:block;
+  height:40px;
+  box-sizing: border-box;
+  padding-bottom: 8px;
+  border:0;
+  border-bottom: 1px solid #c4c4c4;
+  text-indent: 15px;
+}
+.jobsInfo .gridBox div input::placeholder {
+  color:#ccc;
+}
+.jobsInfo .gridBox div input {
+  outline: none;
+}
+.jobsInfo .gridBox div label {
+  width:50%;
+  font-size: 16px;
+  display:inline-block;
+  height:40px;
+  box-sizing: border-box;
+  padding-top: 12px;
+  border:0;
+  margin:0!important;
+  text-align: center;
+}
+.jobsInfo .gridBox div label input[type=radio]{
+  width:auto;
+  font-size: 22px;
+  display:inline-block;
+  height:20px;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+.jobsInfo .gridBox div label input[type='radio']:checked{
+
+  background-color: #3F3D56;
+}
+.jobsInfo .gridBox div .mat-radio-group {
+  display: inline-block;
+  height:40px;
+  padding-top: 15px;
+  width:100%;
+}
+.jobsInfo .gridBox div .mat-radio-group .mat-radio-button {
+  width:50%;
+  font-size: 16px;
+}
+/* 추가 정보 */
+.addition {
+  padding-top : 100px;
+  position: relative;
+}
+.additionInfo .infoTitle {
+  font-size: 20px;
+  position: absolute;
+  left:0;
+  top:100px;
+  color:#3F3D56;
+}
+.additionInfo .gridBox {
+  margin:0 auto;
+  width:790px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 30px;
+}
+.additionInfo .gridBox div {
+  width:380px;
+  height:70px;
+}
+.additionInfo .gridBox div span {
+  box-sizing: border-box;
+  display:block;
+  height:30px;
+  font-size: 16px;
+  color:#3F3D56;
+  line-height: 30px;
+  padding-bottom: 15px;
+}
+.additionInfo .gridBox div input {
+  width:380px;
+  color:#3F3D56;
+  font-size: 22px;
+  display:block;
+  height:40px;
+  box-sizing: border-box;
+  padding-bottom: 8px;
+  border:0;
+  border-bottom: 1px solid #c4c4c4;
+  text-indent: 15px;
+}
+.additionInfo .gridBox div input::placeholder {
+  color:#ccc;
+}
+.additionInfo .gridBox div input {
+  outline: none;
+}
+.additionInfo .gridBox div label {
+  width:50%;
+  font-size: 16px;
+  display:inline-block;
+  height:40px;
+  box-sizing: border-box;
+  padding-top: 12px;
+  border:0;
+  margin:0!important;
+  text-align: center;
+}
+.additionInfo .gridBox div label input[type=radio]{
+  width:auto;
+  font-size: 22px;
+  display:inline-block;
+  height:20px;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+.additionInfo .gridBox div label input[type='radio']:checked{
+
+  background-color: #3F3D56;
+}
+.additionInfo .gridBox div .mat-radio-group {
+  display: inline-block;
+  height:40px;
+  padding-top: 15px;
+  width:100%;
+}
+.additionInfo .gridBox div .mat-radio-group .mat-radio-button {
+  width:50%;
+  font-size: 16px;
+}
+/* 관심영역 */
+.interest {
+  padding-top : 50px;
+  position: relative;
+}
+.interestInfo .infoTitle {
+  font-size: 20px;
+  position: absolute;
+  left:0;
+  top:70px;
+  color:#3F3D56;
+}
+.interestInfo .gridBox {
+  margin:0 auto;
+  width:790px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px 19px;
+}
+.interestInfo .gridBox div {
+  width:260px;
+  height:34px;
+  border-bottom: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  padding-bottom: 15px;
+}
+
+.interestInfo .gridBox div label {
+  width:100%;
+  font-size: 16px;
+}
+.interestInfo .gridBox div label span{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  border: 1px solid #c4c4c4;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+.interestInfo .gridBox div label span.checking{
+  background-color: #3F3D56;
+  border-color: #3F3D56;
+}
+.personal .btnBox {
+  padding-top: 100px;
+  text-align: center;
+} 
+.personal .btnBox .next {
+  position: relative;
+  display: inline-block;
+  width:300px;
+  height:60px;
+  border-radius: 0;
+  background-color: #3F3D56;
+  color:#fff;
+  font-size:26px;
+  text-align: center;
+  line-height: 60px;
+}
+
+
+/* lecture list */
+
+.lecTb {
+  width: 100%;
+}
+.lecTb tr {
+  text-align: center;
+  height:50px;
+  border-top: 1px solid #111111;
+  border-bottom: 1px solid #111111;
+}
+.lecTb th {
+  font-size: 18px;
+  line-height: 20px;
+}
+.lecTb img {
+  width: 95%;
+}
+.lecTb h1 {
+  font-size: 22px;
+  line-height: 28px;
+}
+.lecTb p {
+  font-size: 18px;
+  line-height: 20px;
+  text-align: left;
+}
