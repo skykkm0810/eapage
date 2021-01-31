@@ -11,5 +11,12 @@ export class TopComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  active(e:Event){
+    var menu = e.target as HTMLElement;
+    var allmenu = document.querySelectorAll('.snb li');
+    for(var i=0; i<allmenu.length; i++){
+      allmenu[i].classList.remove('on');
+    }
+    menu.classList.add('on');
+  }
 }
