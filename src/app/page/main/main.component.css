@@ -365,10 +365,10 @@
 .today .second .todayClassInfo {
     background-color: #B08FCC;
 }
-.today .content .todayClassInfo > p { width:420px; padding-bottom: 25px;}
+.today .content .todayClassInfo > p { width:450px; padding-bottom: 25px;}
 .today .content .todayClassInfo .teacher {font-size: 20px; color:#fff; }
 .today .content .todayClassInfo .title {font-size: 30px; color:#3f3d56;}
-.today .content .todayClassInfo .description {font-size: 25px; color:#fff;}
+.today .content .todayClassInfo .description {font-size: 25px; color:#fff; line-height: 25px;}
 .today .content .todayClassInfo .remainTime {font-size: 35px;color:#fff; padding:0;}
 
 .today .content .todayClassInfo .calendarIcon {
