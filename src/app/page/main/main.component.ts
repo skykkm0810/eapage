@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
   ngOnInit(): void {
     var dot = document.getElementsByClassName('dot');
     var dotWrap = document.getElementsByClassName('dotWrap')[0] as HTMLElement;
@@ -54,4 +57,5 @@ export class MainComponent implements OnInit {
     this.slideLeft();
     this.autoSlide = setInterval(()=>{this.slideLeft()},5000)
   }
+  
 }

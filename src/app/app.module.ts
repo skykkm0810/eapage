@@ -45,6 +45,11 @@ import { TopComponent } from './layout/top/top.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { JoinComponent } from './page/join/join.component';
 import { EnrollClassComponent } from './page/enroll-class/enroll-class.component';
+import { DetailComponent } from './page/detail/detail.component';
+import { MypageComponent } from './page/mypage/mypage.component';
+import { FormsModule } from '@angular/forms';
+import { EnrollListComponent } from './page/enroll-list/enroll-list.component';
+import { MypageTeacherComponent } from './page/mypage-teacher/mypage-teacher.component';
 
 @NgModule({
   declarations: [
@@ -53,13 +58,17 @@ import { EnrollClassComponent } from './page/enroll-class/enroll-class.component
     TopComponent,
     FooterComponent,
     JoinComponent,
-    EnrollClassComponent
+    EnrollClassComponent,
+    DetailComponent,
+    MypageComponent,
+    EnrollListComponent,
+    MypageTeacherComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
+    FormsModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,

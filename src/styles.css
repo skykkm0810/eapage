@@ -53,3 +53,9 @@ li {
 .inlineBlock {
     display: inline-block;
 }
+.text-left {
+    text-align: left;
+}
+::-webkit-scrollbar {
+    display: none;
+}
