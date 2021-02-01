@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog} from '@angular/material/dialog';
+import { MaumdociComponent} from '../../page/maumdoci/maumdoci.component';
 
 @Component({
   selector: 'app-top',
@@ -9,7 +11,9 @@ import { Router } from '@angular/router';
 export class TopComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    public dialog:MatDialog,
+
   ) { }
 
   ngOnInit(): void {
@@ -26,5 +30,8 @@ export class TopComponent implements OnInit {
 
   mypage() {
     this.router.navigate(['mypage']);
+  }
+  modal(){
+    const dialogRef = this.dialog.open(MaumdociComponent);
   }
 }

@@ -51,6 +51,10 @@ import { FormsModule } from '@angular/forms';
 import { EnrollListComponent } from './page/enroll-list/enroll-list.component';
 import { MypageTeacherComponent } from './page/mypage-teacher/mypage-teacher.component';
 import { AllLiveComponent } from './page/all-live/all-live.component';
+import { LoginComponent } from './layout/login/login.component';
+import { MaumdociComponent } from './page/maumdoci/maumdoci.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TodayLiveComponent } from './page/today-live/today-live.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +68,10 @@ import { AllLiveComponent } from './page/all-live/all-live.component';
     MypageComponent,
     EnrollListComponent,
     MypageTeacherComponent,
-    AllLiveComponent
+    AllLiveComponent,
+    LoginComponent,
+    MaumdociComponent,
+    TodayLiveComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +113,7 @@ import { AllLiveComponent } from './page/all-live/all-live.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

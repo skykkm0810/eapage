@@ -1,14 +1,16 @@
 import { Component, OnInit,AfterViewInit } from '@angular/core';
 
 @Component({
-  selector: 'app-all-live',
-  templateUrl: './all-live.component.html',
-  styleUrls: ['./all-live.component.css']
+  selector: 'app-today-live',
+  templateUrl: './today-live.component.html',
+  styleUrls: ['./today-live.component.css']
 })
-export class AllLiveComponent implements AfterViewInit {
+export class TodayLiveComponent implements AfterViewInit {
 
   constructor() { }
-  title = '전체보기'
+  date = new Date;
+  today = this.date.getFullYear() +"-"+( this.date.getMonth()+1) +"-"+ this.date.getDate();
+  title = '오늘의 라이브'
   ngAfterViewInit() {
     var tempBar = document.getElementsByClassName('tempDynamic');
     for(var i=0; i<tempBar.length; i++){
@@ -117,7 +119,6 @@ export class AllLiveComponent implements AfterViewInit {
       bigList[i].classList.remove('clicked')
     }
     thisList.classList.add('clicked')
-    this.title = thisList.textContent
     for(var i=0; i<lives.length; i++){
       (lives[i] as HTMLElement).style.display='none';
       if(lives[i].getElementsByClassName('big')[0].textContent == thisList.textContent){
@@ -146,4 +147,7 @@ export class AllLiveComponent implements AfterViewInit {
     (e.target as HTMLElement).classList.add('bold');
     this.filter(e)
   }
+
+  
+
 }
