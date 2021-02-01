@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
+import { Agreement, INTERESTS } from '../../interface/interface';
+import { PhxChannelService } from '../../service/phx-channel.service';
 
 @Component({
   selector: 'app-join',
@@ -8,10 +10,54 @@ import { Component, OnInit } from '@angular/core';
 
 export class JoinComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private phxChannel: PhxChannelService
+  ) {
+    phxChannel.Company.subscribe( data => {
+      if( data.body.length > 0 ) {
+        this.companyInfo = data.body[0];
+        this.info.companyId = this.companyInfo.id;
+      } else {
+        alert('회사코드를 정확히 입력해주세요. 예시 000-00-00000');
+      }
+    })
+    phxChannel.Users.subscribe( () => {
+      console.log('success');
+    })
+    phxChannel.Invalid.subscribe( data => {
+      alert('아이디가 이미 존재합니다.')
+    })
+  }
 
   ngOnInit(): void {
+
   }
+
+  agreement = Agreement;
+
+  companyInfo: any = {
+    reg: '',
+    name: '',
+    part: '',
+  };
+
+  info: any = {
+    name: '',
+    companyId: null,
+    email: '',
+    gender: null,
+    rank: '',
+    region: '',
+    age: null,
+    contact: '',
+    pwd: '',
+    child: null,
+    birth: '',
+    interests: null,
+  }
+
+  interests = INTERESTS;
+
   allchk(e:Event){
     var thischk = e.target as HTMLElement;
     var chkshow = document.querySelectorAll('.agreeBox div .agreeHole');
@@ -86,5 +132,15 @@ export class JoinComponent implements OnInit {
       thischk.classList.add('checking');
       (thischk.querySelector('input') as HTMLInputElement).checked = true;
     }
+  }
+
+  confirm() {
+    this.phxChannel.confirm( 'company', this.companyInfo );
+  }
+
+  reg() {
+    const inter = this.interests.filter( data => data.completed == true );
+    this.info.interests = inter;
+    this.phxChannel.send('user', this.info);
   }
 }

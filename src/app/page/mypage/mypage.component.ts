@@ -1,5 +1,6 @@
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { INTERESTS } from 'src/app/interface/interface';
 
 @Component({
   selector: 'app-mypage',
@@ -13,22 +14,7 @@ export class MypageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  interests = [
-    { name: 'merr', value: '연애결혼', completed: false },
-    { name: 'chil', value: '자녀양육', completed: false },
-    { name: 'coup', value: '부부관계', completed: false },
-    { name: 'life', value: '인생 2막', completed: false },
-    { name: 'rela', value: '대인관계', completed: false },
-    { name: 'comm', value: '커뮤니케이션', completed: false },
-    { name: 'lead', value: '리더십', completed: false },
-    { name: 'orga', value: '조직적응', completed: false },
-    { name: 'yoga', value: '명상요가', completed: false },
-    { name: 'body', value: '몸 마음 건강', completed: false },
-    { name: 'arty', value: '예술 치유', completed: false },
-    { name: 'heal', value: '힐링 DIY', completed: false },
-    { name: 'unde', value: '자기 이해', completed: false },
-    { name: 'tria', value: '심리 특강', completed: false },
-  ];
+  interests = INTERESTS;
 
   lectList = [
     {

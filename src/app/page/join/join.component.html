@@ -14,19 +14,19 @@
         <div class="agreeBox">
           <p class="allAgree bold">전체 동의<span class="agreeHole pointer" (click)='allchk($event)'></span></p>
           <div>
-            <p class="agreeKinds"><span class="underline">이용약관</span> 및 <span class="underline">개인정보취급방침</span> (필수)</p>
+            <p class="agreeKinds"><span class="underline">이용약관</span> (필수)</p>
             <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_info_useage"
                 class="hidden" required></label>
             <div class="agreeDetail">
-              자세한 이야기는 어디에
+              {{ agreement.userRule }}
             </div>
           </div>
           <div>
-            <p class="agreeKinds"><span class="underline">위치기반서비스</span> 이용약관 (필수)</p>
+            <p class="agreeKinds"><span class="underline">개인정보취급방침</span> 이용약관 (필수)</p>
             <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_position"
                 class="hidden" required></label>
             <div class="agreeDetail">
-              자세한 이야기는 어디에
+              {{ agreement.privRule }}
             </div>
           </div>
           <div>
@@ -34,7 +34,7 @@
             <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_marketing"
                 class="hidden"></label>
             <div class="agreeDetail">
-              자세한 이야기는 어디에
+              {{ agreement.marketing }}
             </div>
           </div>
           <div class="btnBox">
@@ -67,26 +67,26 @@
           <div class="companyCode">
             <div>
               <span>회사코드입력</span>
-              <input type="text" name="c.code"  required>
+              <input type="text" name="c.code" [(ngModel)]="companyInfo.reg"  required>
             </div>
-            <button mat-button>회사 코드 확인</button>
+            <button mat-button (click)="confirm()">회사 코드 확인</button>
           </div>
           <div class="companyName">
             <div>
               <span>직장명</span>
-              <input type="text" name="c.name"  required>
+              <input type="text" name="c.name" [(ngModel)]="companyInfo.name" disabled>
             </div>
           </div>
           <div class="companyPart">
             <div>
               <span>부서명</span>
-              <input type="text" name="c.part"  required>
+              <input type="text" name="c.part" [(ngModel)]="companyInfo.part" disabled>
             </div>
           </div>
           <div class="companyRank">
             <div>
               <span>직급</span>
-              <input type="text" name="c.rank"  required>
+              <input type="text" name="c.rank" [(ngModel)]="info.rank" required>
             </div>
           </div>
           <!-- <div class="companyInfo">
@@ -132,36 +132,40 @@
             <span class="bold infoTitle">기본정보</span>
             <div class="gridBox">
               <div>
+                <span>ID</span>
+                <input type="text" name="b.uname" [(ngModel)]="info.uname" required>
+              </div>
+              <div>
+                <span>Password</span>
+                <input type="password" name="b.pwd" [(ngModel)]="info.pwd" required>
+              </div>
+              <div>
                 <span>이름</span>
-                <input type="text" name="b.name"  required>
+                <input type="text" name="b.name" [(ngModel)]="info.name" required>
               </div>
               <div>
                 <span>연락처</span>
-                <input type="text" name="b.branch"   required>
+                <input type="text" name="b.branch"  [(ngModel)]="info.contact" required>
               </div>
               <div>
                 <span>생년월일</span>
-                <input type="text" name="j.workGroup"  required>
+                <input type="date" name="j.workGroup" [(ngModel)]="info.birth" required>
               </div>
               <div>
-                <span>이메일</span>
-                <input type="email" name="j.workRank"  required>
               </div>
               <div>
                 <span>성별</span>
-                <mat-radio-group>
-                  <mat-radio-button value="1" name="sex" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
-                  <mat-radio-button value="2" name="sex" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
+                <mat-radio-group [(ngModel)]="info.gender" [ngModelOptions]="{standalone: true}">
+                  <mat-radio-button value="남성" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
+                  <mat-radio-button value="여성" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
                 </mat-radio-group>
               </div>
               <div>
                 <span>자녀유무</span>
-                <mat-radio-group>
-                  <mat-radio-button value="1" name="child" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
-                  <mat-radio-button value="2" name="child" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
+                <mat-radio-group [(ngModel)]="info.child" [ngModelOptions]="{standalone: true}">
+                  <mat-radio-button value="유" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
+                  <mat-radio-button value="무" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
                 </mat-radio-group>
-                <!-- <input type="radio" name="child" value='1'> 유
-                <input type="radio" name="child" value='2'> 무 -->
               </div>
             </div>
           </div>
@@ -172,23 +176,23 @@
             <div class="gridBox">
               <div>
                 <span>직장명</span>
-                <input type="text" name="j.name"  required>
+                <input type="text" name="j.name" [(ngModel)]="companyInfo.name" disabled>
               </div>
               <div>
                 <span>부서</span>
-                <input type="text" name="j.part" required>
+                <input type="text" name="j.part" [(ngModel)]="companyInfo.part" disabled>
               </div>
               <div>
                 <span>직급</span>
-                <input type="text" name="j.rank"  required>
+                <input type="text" name="j.rank" [(ngModel)]="info.rank" disabled>
               </div>
               <div>
                 <span>회사 이메일</span>
-                <input type="email" name="j.mail"  required>
+                <input type="email" name="j.mail" [(ngModel)]="info.email" disabled>
               </div>
               <div>
                 <span>근무지역</span>
-                <input type="text" name="j.position"  required>
+                <input type="text" name="j.position" [(ngModel)]="info.region" required>
               </div>
             </div>
           </div>
@@ -197,33 +201,17 @@
           <div class="interestInfo">
             <span class="bold infoTitle">관심영역</span>
             <div class="gridBox">
-              <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_interact" class="hidden"> 대인관계 (갈등)</label>
-              </div>
-              <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_stress" class="hidden"> 직무스트레스 해소</label>
-              </div>
-              <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_couple" class="hidden">부부관계</label>
-              </div>
-              <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_children" class="hidden"> 자녀양육</label>
-              </div>
-              <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_yoga" class="hidden">  명상/요가</label>
-              </div>
-              <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_artCure" class="hidden"> 예술치유(그림, 아로마, 공예 등)</label>
-              </div>
-              <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_simri" class="hidden"> 심리특강</label>
+              <div *ngFor="let i of interests">
+                <mat-checkbox [(ngModel)]="i.completed" name="i.name">
+                  {{i.value}}
+                </mat-checkbox>
               </div>
           </div>
         </div>
       </div>
       <div class="btnBox">
         <!-- 서브밋 버튼이 되어야함 -->
-        <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
+        <button mat-button class="next bold" (click)='nextBtn($event); reg();'>다음</button>
       </div>
   </div>
   <div class="finish tabContentBox hidden">
