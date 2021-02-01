@@ -9,6 +9,7 @@ import {EnrollListComponent} from './page/enroll-list/enroll-list.component';
 import {MypageComponent} from './page/mypage/mypage.component';
 import {MypageTeacherComponent} from './page/mypage-teacher/mypage-teacher.component';
 import {DetailComponent} from './page/detail/detail.component';
+import {AllLiveComponent} from './page/all-live/all-live.component';
 const routes: Routes = [
   { path: TAGS.MAIN, component: MainComponent },
   { path: TAGS.JOIN, component: JoinComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: TAGS.DETAIL, component: DetailComponent },
   { path: TAGS.MYPAGE, component: MypageComponent },
   { path: TAGS.MYPAGETEACHER, component: MypageTeacherComponent },
+  { path: TAGS.ALLLIVE, component: AllLiveComponent },
 ];
 
 @NgModule({

@@ -50,6 +50,7 @@ import { MypageComponent } from './page/mypage/mypage.component';
 import { FormsModule } from '@angular/forms';
 import { EnrollListComponent } from './page/enroll-list/enroll-list.component';
 import { MypageTeacherComponent } from './page/mypage-teacher/mypage-teacher.component';
+import { AllLiveComponent } from './page/all-live/all-live.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MypageTeacherComponent } from './page/mypage-teacher/mypage-teacher.com
     DetailComponent,
     MypageComponent,
     EnrollListComponent,
-    MypageTeacherComponent
+    MypageTeacherComponent,
+    AllLiveComponent
   ],
   imports: [
     BrowserModule,

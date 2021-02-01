@@ -2,10 +2,10 @@
   <div class="innerWrap">
     <h2>회원가입</h2>
     <ul class="tabBox">
-      <li class="bold pointer on" (click)="tabclick($event)">이용약관 동의</li>
-      <li class="bold pointer " (click)="tabclick($event)">본인 인증</li>
-      <li class="bold pointer " (click)="tabclick($event)">회원 정보 입력</li>
-      <li class="bold pointer " (click)="tabclick($event)">가입 완료</li>
+      <li class="bold on">이용약관 동의</li>
+      <li class="bold ">본인 인증</li>
+      <li class="bold ">회원 정보 입력</li>
+      <li class="bold ">가입 완료</li>
     </ul>
     <form action="/">
 
@@ -17,7 +17,7 @@
             <p class="agreeKinds"><span class="underline">이용약관</span> (필수)</p>
             <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_info_useage"
                 class="hidden" required></label>
-            <div class="agreeDetail">
+            <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.userRule }}
             </div>
           </div>
@@ -25,7 +25,7 @@
             <p class="agreeKinds"><span class="underline">개인정보취급방침</span> 이용약관 (필수)</p>
             <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_position"
                 class="hidden" required></label>
-            <div class="agreeDetail">
+            <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.privRule }}
             </div>
           </div>
@@ -33,12 +33,12 @@
             <p class="agreeKinds"><span class="underline">마케팅 활용 동의</span> (선택)</p>
             <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_marketing"
                 class="hidden"></label>
-            <div class="agreeDetail">
+            <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.marketing }}
             </div>
           </div>
           <div class="btnBox">
-            <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
+            <button mat-button class="next bold" (click)='beforeNext1($event)'>다음</button>
           </div>
         </div>
       </div>
@@ -49,17 +49,17 @@
 
           <div class="mailAddress">
             <div>
-              <span>이메일 주소</span>
-              <input type="email" name="e.email">
+              <span class="need">이메일 주소</span>
+              <input type="email" name="e.email" [(ngModel)]="info.email">
             </div>
             <button mat-button>인증코드 전송</button>
           </div>
           <div class="mailCertifi">
             <div>
-              <span>인증코드</span>
-              <input type="text" name="e.code"  required>
+              <span class="need">인증코드</span>
+              <input type="text" name="e.code" class="neccesary" required>
             </div>
-            <button mat-button>인증코드 확인</button>
+            <button mat-button (click)="clear($event)">인증코드 확인</button>
           </div>
         </div>
         <div class="companyBox">
@@ -89,40 +89,9 @@
               <input type="text" name="c.rank" [(ngModel)]="info.rank" required>
             </div>
           </div>
-          <!-- <div class="companyInfo">
-            <span class="bold infoTitle">회사 정보</span>
-            <div class="gridBox">
-              <div>
-                <span>회사명</span>
-                <input type="text" name="j.name" placeholder="ex) 니나노컴퍼니" required>
-              </div>
-              <div>
-                <span>소속/지점</span>
-                <input type="text" name="j.branch" placeholder="ex) 용산동 지점" required>
-              </div>
-              <div>
-                <span>부서명</span>
-                <input type="text" name="j.workGroup" placeholder="ex) 총무부" required>
-              </div>
-              <div>
-                <span>직급WLR</span>
-                <input type="text" name="j.workRank" placeholder="ex) 과장" required>
-              </div>
-              <div>
-                <span>근무지</span>
-                <input type="text" name="j.position" placeholder="ex) 대구시 달서구" required>
-              </div>
-              <div>
-                <span>회사이메일</span>
-                <input type="email" name="j.email" placeholder="ex) aaaa@bbbb.com" required>
-              </div>
-            </div>
-            <div class="btnBox">
-              <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
-            </div>
-          </div> -->
           <div class="btnBox">
-            <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
+            <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
+            <button mat-button class="next bold" (click)='beforeNext2($event)'>다음</button>
           </div>
         </div>
       </div>
@@ -205,26 +174,26 @@
                 <mat-checkbox [(ngModel)]="i.completed" name="i.name">
                   {{i.value}}
                 </mat-checkbox>
-              </div>
           </div>
         </div>
       </div>
       <div class="btnBox">
         <!-- 서브밋 버튼이 되어야함 -->
-        <button mat-button class="next bold" (click)='nextBtn($event); reg();'>다음</button>
+        <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
+        <button mat-button class="next bold" (click)='beforeNext3($event)'>다음</button>
       </div>
-  </div>
-  <div class="finish tabContentBox hidden">
-    <div class="finishBox">
-      <div class="charactor"></div>
-      <p class="bold"><span>홍길동</span> 님 환영합니다!</p>
-      <p class="bold">마음도씨 회원가입이 완료 되었습니다.</p>
     </div>
-    <div class="btnBox">
-      <button mat-button [routerLink]="['']" class="next bold">확인</button>
+    <div class="finish tabContentBox hidden">
+      <div class="finishBox">
+        <div class="charactor"></div>
+        <p class="bold"><span>{{ info.name }}</span> 님 환영합니다!</p>
+        <p class="bold">마음도씨 회원가입이 완료 되었습니다.</p>
+        </div>
+        <div class="btnBox">
+        <button mat-button [routerLink]="['']" class="next bold">확인</button>
+        </div>
+      </div>
     </div>
+    </form>
   </div>
-  
-  </form>
-</div>
 </div>

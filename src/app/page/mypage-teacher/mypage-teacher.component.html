@@ -1,8 +1,8 @@
-<!-- <div class="wrap">
+<div class="wrap">
   <div class="innerWrap">
     <h2>마이페이지</h2>
     <ul class="tabBox">
-      <li class="bold pointer on" (click)="tabclick($event)">신청 강의 목록</li>
+      <li class="bold pointer on" (click)="tabclick($event)">진행 강의 목록</li>
       <li class="bold pointer " (click)="tabclick($event)">완료된 강의 목록</li>
       <li class="bold pointer " (click)="tabclick($event)">개인 정보 변경</li>
     </ul>
@@ -24,14 +24,14 @@
             <th>강의 제목</th>
             <th>회차</th>
             <th>수강인원</th>
-            <th>강의 시간</th>
+            <th>강의진행</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let l of lectList">
-            <td class="ft-22 c-pink">
+            <td class="ft-22 c-pink" style="padding-top:50px;">
               {{ l.applied }}
-              {{ l.applied | date: 'YYYY-MM-dd' }}
+              <!-- {{ l.applied | date: 'YYYY-MM-dd' }} -->
             </td>
             <td>
               <img src="assets/images/banner/{{ l.file[0].path }}" alt="">
@@ -44,7 +44,8 @@
                 </div>
                 <p class="ft-22 ft-bold">{{ l.number }}회차</p>
                 <p class="ft-22 ft-bold showStudent pointer">{{ l.student}}명</p>
-                <p class="ft-16">{{ c.datetime | date: 'YY년 MM월 dd일'}}<br>{{ c.datetime | date: 'HH시 mm분'}}</p>
+                <!-- <p class="ft-16">{{ l.datetime }}<br>{{ l.datetime }}</p> -->
+                <!-- <p class="ft-16">{{ c.datetime | date: 'YY년 MM월 dd일'}}<br>{{ c.datetime | date: 'HH시 mm분'}}</p> -->
                 <p> <span class="startClass block pointer">강의시작</span> </p>
               </div>
               <div class="studentList hidden">
@@ -102,25 +103,63 @@
             <th>강의 이미지</th>
             <th>강의 제목</th>
             <th>회차</th>
-            <th>강의 일정</th>
-            <th>강의 시간</th>
+            <th>수강인원</th>
+            <th>강의진행</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let l of lectList">
-            <td rowspan="l.curr.length" class="ft-22 c-pink">
+            <td class="ft-22 c-pink" style="padding-top:50px;">
               {{ l.applied }}
+              <!-- {{ l.applied | date: 'YYYY-MM-dd' }} -->
             </td>
-            <td rowspan="l.curr.length">
+            <td>
               <img src="assets/images/banner/{{ l.file[0].path }}" alt="">
             </td>
             <td colspan="4">
-              <p class="ft-bold ft-22" style="text-align: left; padding: 20px 20px;">{{ l.title }}</p>
-              <div class="tdgCtnr" *ngFor="let c of l.curr">
-                <p class="subtitle ft-16">{{ c.number }}. {{ c.title }}</p>
-                <p class="ft-22 ft-bold">{{ c.number }}회차</p>
-                <p class="ft-16">{{ c.datetime }}<br>{{ c.datetime }}</p>
-                <p class="ft-22 ft-bold">{{ c.runtime }}</p>
+              <div class="tdgCtnr">
+                <div>
+                  <p class="ft-bold ft-22" style="text-align: left;">{{ l.title }}</p>
+                  <p class="subtitle ft-16">{{ l.subtitle }}</p>
+                </div>
+                <p class="ft-22 ft-bold">{{ l.number }}회차</p>
+                <p class="ft-22 ft-bold showStudent pointer" (click)="showStudent($event)">{{ l.student}}명</p>
+                <!-- <p class="ft-16">{{ c.datetime | date: 'YY년 MM월 dd일'}}<br>{{ c.datetime | date: 'HH시 mm분'}}</p> -->
+                <p> <span class="startClass block pointer">강의시작</span> </p>
+              </div>
+              <div class="studentList hidden">
+                <table class="lecTb">
+                  <colgroup>
+                    <col width="150px">
+                    <col width="220px">
+                    <col width="130px">
+                    <col width="130px">
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>이름</th>
+                      <th>소속회사/지점</th>
+                      <th>연락처</th>
+                      <th>발송</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let ss of l.students">
+                      <td>
+                        <p class="ft-bold ft-22">{{ ss.name }}</p>
+                      </td>
+                      <td>
+                        <p class="ft-16">{{ ss.company }}</p>
+                      </td>
+                      <td>
+                        <p class="ft-16">{{ss.contact}}</p>
+                      </td>
+                      <td>
+                        <p><span class="inlineBlock pointer sendKit"></span></p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </td>
           </tr>
@@ -128,38 +167,14 @@
       </table>
     </div>
     <div class="personal tabContentBox hidden">
-      <div class="basic">
-        <div class="basicInfo">
-          <span class="bold infoTitle">기본 정보</span>
-          <div class="gridBox">
-            <div>
-              <span>이름</span>
-              <input type="text" name="b.name" required>
-            </div>
-            <div>
-              <span>연락처</span>
-              <input type="text" name="b.branch" required>
-            </div>
-            <div>
-              <span>생년월일</span>
-              <input type="text" name="j.workGroup" required>
-            </div>
-            <div>
-              <span>이메일</span>
-              <input type="email" name="j.workRank" required>
-            </div>
-            <div>
-              <span>성별</span>
-              <mat-radio-group>
-                <mat-radio-button value="1" name="sex" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
-                <mat-radio-button value="2" name="sex" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
-              </mat-radio-group>
-            </div>
-          </div>
-        </div>
-        <div class="addition">
-          <div class="additionInfo">
-            <span class="bold infoTitle">추가 정보</span>
+      <form action="/">
+        <div class="basic">
+          <div class="basicInfo">
+            <span class="bold infoTitle">기본 정보</span>
+            <div class="floatImg"></div>
+            <label class="changeBtn pointer">
+              <input type="file" name="teacher_profile" hidden (change)="showPicture($event)">
+            </label>
             <div class="gridBox">
               <div>
                 <span>결혼유무</span>
@@ -167,58 +182,233 @@
                   <mat-radio-button value="1" name="marriage" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
                   <mat-radio-button value="2" name="marriage" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
                 </mat-radio-group>
+                <span class="need">이름</span>
+                <input type="text" name="myt.name" required>
               </div>
               <div>
-                <span>자녀유무</span>
+                <span class="need">비밀번호</span>
+                <input type="password" name="myt.password" style="display:none;">
+                <button mat-button style="background-color:#eee;" (click)='changePassword($event)'>비밀번호변경하기</button>
+              </div>
+              <div>
+                <span class="need">이메일</span>
+                <input type="text" name="myt.email" required>
+              </div>
+              <div>
+                <span>홈페이지</span>
+                <input type="text" name="myt.homepage" required>
+              </div>
+              <div>
+                <span class="need">연락처</span>
+                <input type="text" name="myt.contact" required>
+              </div>
+              <div>
+                <span class="need">성별</span>
                 <mat-radio-group>
-                  <mat-radio-button value="1" name="child" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
-                  <mat-radio-button value="2" name="child" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
+                  <mat-radio-button value="1" name="sex" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
+                  <mat-radio-button value="2" name="sex" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
                 </mat-radio-group>
+              </div>
+              <div>
+                <span class="need">주소</span>
+                <input type="text" name="myt.address" required>
+              </div>
+              <div>
+                <span class="need">상세주소</span>
+                <input type="text" name="myt.addressDetail">
+              </div>
+            </div>
+          </div>
+          <div class="education">
+            <div class="educationInfo">
+              <span class="bold infoTitle">최종 학력<br><button mat-button style="margin-top: 10px;"
+                  (click)="addEdu($event)">추가</button></span>
+              <div>
+                <span>학사</span>
+                <mat-form-field>
+                  <mat-label>학교명</mat-label>
+                  <input matInput name="edu.BachelorUniv" placeholder="학교">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>학과명</mat-label>
+                  <input matInput name="edu.BachelorMajor" placeholder="학과">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>졸업일자</mat-label>
+                  <input matInput name="edu.BachelorGradu" type="date" placeholder="졸업일자">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>졸업유무</mat-label>
+                  <mat-select name="edu.BachelorState">
+                    <mat-option value="1">재학</mat-option>
+                    <mat-option value="2">졸업 예정</mat-option>
+                    <mat-option value="3">졸업</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="hidden">
+                <span>석사</span>
+                <mat-form-field>
+                  <mat-label>학교명</mat-label>
+                  <input matInput name="edu.MasterUniv" placeholder="학교">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>학과명</mat-label>
+                  <input matInput name="edu.MasterMajor" placeholder="학과">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>졸업일자</mat-label>
+                  <input matInput name="edu.MasterGradu" type="date" placeholder="졸업일자">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>졸업유무</mat-label>
+                  <mat-select name="edu.MasterState">
+                    <mat-option value="1">재학</mat-option>
+                    <mat-option value="2">졸업 예정</mat-option>
+                    <mat-option value="3">졸업</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button mat-button class="removeBtn" (click)="removeEdu($event)">삭제</button>
+              </div>
+              <div class="hidden">
+                <span>박사</span>
+                <mat-form-field>
+                  <mat-label>학교명</mat-label>
+                  <input matInput name="edu.DoctorUniv" placeholder="학교">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>학과명</mat-label>
+                  <input matInput name="edu.DoctorMajor" placeholder="학과">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>졸업일자</mat-label>
+                  <input matInput name="edu.DoctorGradu" type="date" placeholder="졸업일자">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>졸업유무</mat-label>
+                  <mat-select name="edu.DoctorState">
+                    <mat-option value="1">재학</mat-option>
+                    <mat-option value="2">졸업 예정</mat-option>
+                    <mat-option value="3">졸업</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button mat-button class="removeBtn" (click)="removeEdu($event)">삭제</button>
+
               </div>
             </div>
           </div>
         </div>
-      </div>
+        <div class="bill">
+          <div class="billInfo">
+            <span class="bold infoTitle">결 재</span>
+            <div class="billKinds">
+              <span class="need">계산서 유형</span>
+              <mat-radio-group>
+                <mat-radio-button value="1" name="bill" class="bold">&nbsp;&nbsp; 계산서(비과세) </mat-radio-button>
+                <mat-radio-button value="2" name="bill" class="bold">&nbsp;&nbsp; 사업소득 </mat-radio-button>
+                <mat-radio-button value="3" name="bill" class="bold">&nbsp;&nbsp; 세금계산서 </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div>
+              <span class="need">정산정보(은행/계좌번호)</span>
+              <mat-form-field>
+                <mat-label>은행선택</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let bank of bankList" [value]="bank.id">
+                    {{bank.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <input type="text" name="bill.masterWhere">
+            </div>
+            <div>
+              <span class="need">주민등록번호</span>
+              <input type="text" name="myt.masterWhere">
+            </div>
+          </div>
+        </div>
+        <div class="lecture">
+          <div class="lectureInfo">
+            <span class="bold infoTitle c-pink ft-20">강의 관련 정보</span>
+            <div>
+              <span>자격증<button mat-button (click)="addcer()">추가</button></span>
+              <div *ngFor="let c of certs">
+                <mat-form-field>
+                  <mat-label>발급기관</mat-label>
+                  <input matInput name="cer.where">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>자격명</mat-label>
+                  <input matInput name="cer.name">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>급수</mat-label>
+                  <input matInput name="cer.grade">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>자격번호</mat-label>
+                  <input matInput name="cer.number">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>발급일자</mat-label>
+                  <input matInput name="cer.date" type="date">
+                </mat-form-field>
+                <button mat-button class="removeBtn" (click)="removeCer(c)">삭제</button>
+              </div>
+            </div>
+            <div>
+              <span>경력<button mat-button (click)="addcar()">추가</button></span>
+              <div *ngFor="let c of careers">
+                <mat-form-field>
+                  <mat-label>시작일</mat-label>
+                  <input matInput name="ex.start" type="date">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>종료일</mat-label>
+                  <input matInput name="ex.start" type="date">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>강의명</mat-label>
+                  <input matInput name="ex.name">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>강의형태</mat-label>
+                  <input matInput name="ex.form">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>강의횟수</mat-label>
+                  <input matInput name="ex.many">
+                </mat-form-field>
+                <button mat-button class="removeBtn" (click)="removeCar(c)">삭제</button>
+              </div>
+            </div>
+            <div>
+              <span>교육주제(원인)</span>
+              <div class="gridBox">
+                <div *ngFor="let i of causes">
+                  <mat-checkbox [(ngModel)]="i.completed" name="i.name">
+                    {{i.value}}
+                  </mat-checkbox>
+                </div>
+              </div>
+            </div>
+            <div>
+                <span>교육주제(반응)</span>
+                <div class="gridBox">
+                  <div *ngFor="let i of result">
+                    <mat-checkbox [(ngModel)]="i.completed" name="i.name">
+                      {{i.value}}
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </div>
 
-      <div class="jobs">
-        <div class="jobsInfo">
-          <span class="bold infoTitle">회사 정보</span>
-          <div class="gridBox">
-            <div>
-              <span>직장명</span>
-              <input type="text" name="j.name" required>
-            </div>
-            <div>
-              <span>부서</span>
-              <input type="text" name="j.part" required>
-            </div>
-            <div>
-              <span>직급</span>
-              <input type="text" name="j.rank" required>
-            </div>
-            <div>
-              <span>회사 이메일</span>
-              <input type="email" name="j.mail" required>
-            </div>
-            <div>
-              <span>근무지역</span>
-              <input type="text" name="j.position" required>
-            </div>
           </div>
         </div>
-      </div>
-      <div class="interest">
-        <div class="interestInfo">
-          <span class="bold infoTitle">관심 영역</span>
-          <div class="gridBox">
-            <div *ngFor="let i of interests">
-              <mat-checkbox [(ngModel)]="i.completed" name="i.name">
-                {{i.value}}
-              </mat-checkbox>
-            </div>
-          </div>
+        <div class="btnBox">
+          <button mat-button>변경</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
-</div> -->
+</div>

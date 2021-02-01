@@ -39,6 +39,9 @@
     color: #3F3D56;
     text-align: center;
 }
+.gnb li:focus {
+    outline: none;
+}
 .gnb li h2 {
     font-size: 12px;
     color: #3F3D56;

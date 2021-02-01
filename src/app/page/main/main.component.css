@@ -221,16 +221,16 @@
     position: absolute;
     width:570px;
     height:90px;
-    background: url(../../../assets/images/icon/other.png) no-repeat center center / cover;
+    background: url(../../../assets/images/icon/other.png) no-repeat center center / contain;
     left:calc(50% - 285px);
     bottom:140px;
 }
 .closeSoon .tempDynamic {
     position: absolute;
-    width:503.74px;
-    height:25px;
-    left:51.64px;
-    top:32px;
+    width:450px;
+    height:22px;
+    left:76px;
+    top:29px;
     background-color: #DD5E5E;
     border-radius: 30px;
 }

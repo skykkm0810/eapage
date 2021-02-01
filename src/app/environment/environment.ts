@@ -1,6 +1,6 @@
 export const Environment = {
   production: false,
-  socket_channel: 'ws://localhost:4000',
+  socket_channel: 'ws://3.35.47.51:4000',
   http: 'http://',
   ws: 'ws://',
   app_version: 3.3,
