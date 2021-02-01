@@ -55,6 +55,7 @@ import { LoginComponent } from './layout/login/login.component';
 import { MaumdociComponent } from './page/maumdoci/maumdoci.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TodayLiveComponent } from './page/today-live/today-live.component';
+import { AddressComponent } from './modal/address/address.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { TodayLiveComponent } from './page/today-live/today-live.component';
     AllLiveComponent,
     LoginComponent,
     MaumdociComponent,
-    TodayLiveComponent
+    TodayLiveComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

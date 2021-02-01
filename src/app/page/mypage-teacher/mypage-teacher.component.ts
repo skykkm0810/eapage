@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialog } from '@angular/material/dialog';
+import { AddressComponent } from '../../modal/address/address.component';
 @Component({
   selector: 'app-mypage-teacher',
   templateUrl: './mypage-teacher.component.html',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MypageTeacherComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialog:MatDialog,
+
+  ) { }
 
   ngOnInit(): void {
     
@@ -96,9 +100,9 @@ export class MypageTeacherComponent implements OnInit {
       number: 1,
       student:30,
       students:[
-        {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222'},
-        {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222'},
-        {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222'},
+        {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222',address:'어딘가에 살겠지~'},
+        {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222',address:'어딘가에 살겠지~'},
+        {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222',address:'어딘가에 살겠지~'},
       ],
     },
     {
@@ -111,9 +115,9 @@ export class MypageTeacherComponent implements OnInit {
       number: 1,
       student:30,
       students:[
-        {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222'},
-        {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222'},
-        {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222'},
+        {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222',address:'어딘가에 살겠지~'},
+        {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222',address:'어딘가에 살겠지~'},
+        {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222',address:'어딘가에 살겠지~'},
       ],
     },
     {
@@ -126,13 +130,11 @@ export class MypageTeacherComponent implements OnInit {
       number: 1,
       student:30,
       students:[
-        {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222'},
-        {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222'},
-        {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222'},
+        {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222',address:'어딘가에 살겠지~'},
+        {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222',address:'어딘가에 살겠지~'},
+        {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222',address:'어딘가에 살겠지~'},
       ],
     },
-    
-    
   ]
 
   bankList = [
@@ -251,6 +253,8 @@ export class MypageTeacherComponent implements OnInit {
     const index: number = this.careers.indexOf(value);
     this.careers.splice(index, 1);
   }
-  
+  showadd(obj){
+    const dialogRef = this.dialog.open(AddressComponent);
+  }
   
 }
