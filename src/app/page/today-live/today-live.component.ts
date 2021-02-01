@@ -9,7 +9,7 @@ export class TodayLiveComponent implements AfterViewInit {
 
   constructor() { }
   date = new Date;
-  today = this.date.getFullYear() +"-"+( this.date.getMonth()+1) +"-"+ this.date.getDate();
+  today = this.date.getFullYear() +"-"+('00'+(this.date.getMonth()+1)).slice(-2) +"-"+ ('00'+this.date.getDate()).slice(-2)
   title = '오늘의 라이브'
   ngAfterViewInit() {
     var tempBar = document.getElementsByClassName('tempDynamic');

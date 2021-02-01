@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog} from '@angular/material/dialog';
 import { MaumdociComponent} from '../../page/maumdoci/maumdoci.component';
+import { LoginComponent} from '../login/login.component';
 
 @Component({
   selector: 'app-top',
@@ -13,6 +14,7 @@ export class TopComponent implements OnInit {
   constructor(
     private router: Router,
     public dialog:MatDialog,
+    public dialog2:MatDialog,
 
   ) { }
 
@@ -33,5 +35,8 @@ export class TopComponent implements OnInit {
   }
   modal(){
     const dialogRef = this.dialog.open(MaumdociComponent);
+  }
+  login(){
+    const dialogRef2 = this.dialog2.open(LoginComponent);
   }
 }

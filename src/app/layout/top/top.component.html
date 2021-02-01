@@ -3,10 +3,10 @@
     <h1 class="logo pointer"><a href="/" class="textHidden">마음도씨</a></h1>
     <div class="htop">
       <ul class="gnb">
-        <li class="pointer login"><h2>로그인</h2></li>
+        <li class="pointer login" (click)="login()"><h2>로그인</h2></li>
         <li class="pointer join" [routerLink]="['join']"><h2>회원가입</h2></li>
-        <li class="pointer howToUse">이용방법</li>
-        <li class="pointer enrollCompany"><h2>기업등록</h2></li>
+        <li class="pointer howToUse" (click)= "modal()">이용방법</li>
+        <!-- <li class="pointer enrollCompany"><h2>기업등록</h2></li> -->
       </ul>
     </div>
     <div class="ltop">
@@ -18,8 +18,8 @@
         <li class="pointer review" (click)= "active($event)">리뷰보기</li>
       </ul>
       <ul class="useful">
-        <li class="pointer menu textHidden">메뉴</li>
-        <li class="pointer search textHidden">검색하기</li>
+        <li class="pointer menu textHidden" (click)= "modal()">메뉴</li>
+        <li class="pointer search textHidden" (click)= "modal()">검색하기</li>
         <li class="pointer mypage textHidden" (click)="mypage()">마이페이지</li>
       </ul>
     </div>
