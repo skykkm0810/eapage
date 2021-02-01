@@ -2,10 +2,10 @@
   <div class="innerWrap">
     <h2>회원가입</h2>
     <ul class="tabBox">
-      <li class="bold pointer on" (click)="tabclick($event)">이용약관 동의</li>
-      <li class="bold pointer " (click)="tabclick($event)">본인 인증</li>
-      <li class="bold pointer " (click)="tabclick($event)">회원 정보 입력</li>
-      <li class="bold pointer " (click)="tabclick($event)">가입 완료</li>
+      <li class="bold on">이용약관 동의</li>
+      <li class="bold ">본인 인증</li>
+      <li class="bold ">회원 정보 입력</li>
+      <li class="bold ">가입 완료</li>
     </ul>
     <form action="/">
 
@@ -15,7 +15,7 @@
           <p class="allAgree bold">전체 동의<span class="agreeHole pointer" (click)='allchk($event)'></span></p>
           <div>
             <p class="agreeKinds"><span class="underline">이용약관</span> 및 <span class="underline">개인정보취급방침</span> (필수)</p>
-            <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_info_useage"
+            <label class="agreeHole pointer neccesary" (click)="onechk($event)"><input type="checkbox" name="a_info_useage"
                 class="hidden" required></label>
             <div class="agreeDetail">
               자세한 이야기는 어디에
@@ -23,7 +23,7 @@
           </div>
           <div>
             <p class="agreeKinds"><span class="underline">위치기반서비스</span> 이용약관 (필수)</p>
-            <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_position"
+            <label class="agreeHole pointer neccesary" (click)="onechk($event)"><input type="checkbox" name="a_position"
                 class="hidden" required></label>
             <div class="agreeDetail">
               자세한 이야기는 어디에
@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="btnBox">
-            <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
+            <button mat-button class="next bold" (click)='beforeNext1($event)'>다음</button>
           </div>
         </div>
       </div>
@@ -49,43 +49,43 @@
 
           <div class="mailAddress">
             <div>
-              <span>이메일 주소</span>
-              <input type="email" name="e.email">
+              <span class="need">이메일 주소</span>
+              <input type="email" name="e.email" >
             </div>
             <button mat-button>인증코드 전송</button>
           </div>
           <div class="mailCertifi">
             <div>
-              <span>인증코드</span>
-              <input type="text" name="e.code"  required>
+              <span class="need">인증코드</span>
+              <input type="text" name="e.code" class="neccesary" required>
             </div>
-            <button mat-button>인증코드 확인</button>
+            <button mat-button (click)="clear($event)">인증코드 확인</button>
           </div>
         </div>
         <div class="companyBox">
           <p class="companyTitle bold">회사 정보 인증<span class="designA"></span></p>
           <div class="companyCode">
             <div>
-              <span>회사코드입력</span>
-              <input type="text" name="c.code"  required>
+              <span class="need">회사코드입력</span>
+              <input type="text" name="c.code" class="neccesary" required>
             </div>
-            <button mat-button>회사 코드 확인</button>
+            <button mat-button (click)="clear($event)">회사 코드 확인</button>
           </div>
           <div class="companyName">
             <div>
-              <span>직장명</span>
+              <span class="need">직장명</span>
               <input type="text" name="c.name"  required>
             </div>
           </div>
           <div class="companyPart">
             <div>
-              <span>부서명</span>
+              <span class="need">부서명</span>
               <input type="text" name="c.part"  required>
             </div>
           </div>
           <div class="companyRank">
             <div>
-              <span>직급</span>
+              <span class="need">직급</span>
               <input type="text" name="c.rank"  required>
             </div>
           </div>
@@ -122,7 +122,8 @@
             </div>
           </div> -->
           <div class="btnBox">
-            <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
+            <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
+            <button mat-button class="next bold" (click)='beforeNext2($event)'>다음</button>
           </div>
         </div>
       </div>
@@ -132,33 +133,33 @@
             <span class="bold infoTitle">기본정보</span>
             <div class="gridBox">
               <div>
-                <span>이름</span>
+                <span class="need">이름</span>
                 <input type="text" name="b.name"  required>
               </div>
               <div>
-                <span>연락처</span>
+                <span class="need">연락처</span>
                 <input type="text" name="b.branch"   required>
               </div>
               <div>
-                <span>생년월일</span>
+                <span class="need">생년월일</span>
                 <input type="text" name="j.workGroup"  required>
               </div>
               <div>
-                <span>이메일</span>
+                <span class="need">이메일</span>
                 <input type="email" name="j.workRank"  required>
               </div>
               <div>
-                <span>성별</span>
+                <span class="need">성별</span>
                 <mat-radio-group>
-                  <mat-radio-button value="1" name="sex" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
-                  <mat-radio-button value="2" name="sex" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
+                  <mat-radio-button value="남" name="sex" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
+                  <mat-radio-button value="녀" name="sex" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
                 </mat-radio-group>
               </div>
               <div>
-                <span>자녀유무</span>
+                <span class="need">자녀유무</span>
                 <mat-radio-group>
-                  <mat-radio-button value="1" name="child" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
-                  <mat-radio-button value="2" name="child" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
+                  <mat-radio-button value="유" name="child" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
+                  <mat-radio-button value="무" name="child" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
                 </mat-radio-group>
                 <!-- <input type="radio" name="child" value='1'> 유
                 <input type="radio" name="child" value='2'> 무 -->
@@ -171,23 +172,23 @@
             <span class="bold infoTitle">회사정보</span>
             <div class="gridBox">
               <div>
-                <span>직장명</span>
+                <span class="need">직장명</span>
                 <input type="text" name="j.name"  required>
               </div>
               <div>
-                <span>부서</span>
+                <span class="need">부서</span>
                 <input type="text" name="j.part" required>
               </div>
               <div>
-                <span>직급</span>
+                <span class="need">직급</span>
                 <input type="text" name="j.rank"  required>
               </div>
               <div>
-                <span>회사 이메일</span>
+                <span class="need">회사 이메일</span>
                 <input type="email" name="j.mail"  required>
               </div>
               <div>
-                <span>근무지역</span>
+                <span class="need">근무지역</span>
                 <input type="text" name="j.position"  required>
               </div>
             </div>
@@ -198,32 +199,33 @@
             <span class="bold infoTitle">관심영역</span>
             <div class="gridBox">
               <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_interact" class="hidden"> 대인관계 (갈등)</label>
+                <label class="pointer" ><span></span><input type="checkbox" name="i_interact" class="hidden" (change)="interestChk($event)"> 대인관계 (갈등)</label>
               </div>
               <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_stress" class="hidden"> 직무스트레스 해소</label>
+                <label class="pointer" ><span></span><input type="checkbox" name="i_stress" class="hidden" (change)="interestChk($event)"> 직무스트레스 해소</label>
               </div>
               <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_couple" class="hidden">부부관계</label>
+                <label class="pointer" ><span></span><input type="checkbox" name="i_couple" class="hidden" (change)="interestChk($event)">부부관계</label>
               </div>
               <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_children" class="hidden"> 자녀양육</label>
+                <label class="pointer" ><span></span><input type="checkbox" name="i_children" class="hidden" (change)="interestChk($event)"> 자녀양육</label>
               </div>
               <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_yoga" class="hidden">  명상/요가</label>
+                <label class="pointer" ><span></span><input type="checkbox" name="i_yoga" class="hidden" (change)="interestChk($event)">  명상/요가</label>
               </div>
               <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_artCure" class="hidden"> 예술치유(그림, 아로마, 공예 등)</label>
+                <label class="pointer" ><span></span><input type="checkbox" name="i_artCure" class="hidden" (change)="interestChk($event)"> 예술치유(그림, 아로마, 공예 등)</label>
               </div>
               <div>
-                <label class="pointer" ><span (click)="interestChk($event)"></span><input type="checkbox" name="i_simri" class="hidden"> 심리특강</label>
+                <label class="pointer" ><span></span><input type="checkbox" name="i_simri" class="hidden" (change)="interestChk($event)"> 심리특강</label>
               </div>
           </div>
         </div>
       </div>
       <div class="btnBox">
         <!-- 서브밋 버튼이 되어야함 -->
-        <button mat-button class="next bold" (click)='nextBtn($event)'>다음</button>
+        <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
+        <button mat-button class="next bold" (click)='beforeNext3($event)'>다음</button>
       </div>
   </div>
   <div class="finish tabContentBox hidden">

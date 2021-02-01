@@ -292,7 +292,7 @@ h2 {
 .companyBox .btnBox .next {
     position: relative;
     display: inline-block;
-    width:300px;
+    width:220px;
     height:60px;
     border-radius: 0;
     background-color: #dd5e5e;
@@ -300,6 +300,7 @@ h2 {
     font-size:26px;
     text-align: center;
     line-height: 60px;
+    margin:0 20px;
 }
 
 /* 회원정보입력 */
@@ -520,7 +521,7 @@ h2 {
 .personal .btnBox .next {
     position: relative;
     display: inline-block;
-    width:300px;
+    width:220px;
     height:60px;
     border-radius: 0;
     background-color: #dd5e5e;
@@ -528,6 +529,7 @@ h2 {
     font-size:26px;
     text-align: center;
     line-height: 60px;
+    margin:0 20px;
 }
 
 /* 마지막 */

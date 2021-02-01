@@ -15,8 +15,15 @@ export class MainComponent implements OnInit {
     var dot = document.getElementsByClassName('dot');
     var dotWrap = document.getElementsByClassName('dotWrap')[0] as HTMLElement;
     var wrapWidth = dot.length*30;
-    console.log(wrapWidth)
     dotWrap.style.left = 'calc(50% - '+(wrapWidth/2)+'px)';
+    
+    var tempBar = document.getElementsByClassName('tempDynamic');
+    for(var i=0; i<tempBar.length; i++){
+      var degree = tempBar[i].textContent
+      if(degree !==''){
+        (tempBar[i] as HTMLElement).style.width = 4.5*Number(degree) + 'px';
+      }
+    }
   }
   autoSlide = setInterval(()=>{this.slideLeft()},5000)
   curIndex = 0;
@@ -57,5 +64,9 @@ export class MainComponent implements OnInit {
     this.slideLeft();
     this.autoSlide = setInterval(()=>{this.slideLeft()},5000)
   }
-  
+
+  tempChange(obj:any){
+    var degree = obj as HTMLElement;
+    console.log(degree.textContent);
+  }
 }

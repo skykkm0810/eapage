@@ -59,3 +59,8 @@ li {
 ::-webkit-scrollbar {
     display: none;
 }
+.need::after {
+    content: '*';
+    color: #DD5E5E;
+    vertical-align: super;
+}
