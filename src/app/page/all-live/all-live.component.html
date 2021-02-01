@@ -24,34 +24,33 @@
                     <option value="종료">종료</option>
                 </select> -->
             </h3>
-            <div class="liveListGrid">
-                <div class="live" *ngFor="let l of liveList">
-                    <div class="textHidden big">{{l.bigL}}</div>
-                    <div class="textHidden small">{{l.smallL}}</div>
+            <div class="liveListGrid" *ngIf="loaded">
+                <div class="live" *ngFor="let l of info">
+                    <!-- <div class="textHidden small"><span *ngFor="let e of l.interests">{{e.value}}</span></div> -->
                     <span class="inlineBlock process">{{l.process}}</span>
-                    <p class="inlineBlock cardTitle bold">{{l.title}}</p>
+                    <p class="inlineBlock cardTitle bold" style=" white-space: nowrap;">{{l.title}}</p>
                     <div class="bannerImg">
-                      <img src="{{l.img}}" alt="배너사진">
+                      <img src="{{filePath}}{{l.thumbnail[0].path}}" alt="배너사진">
                     </div>
                     <div class="temp">
                       <div class="tempDynamic textHidden">{{l.degree}}</div>
                     </div>
                     <div class="closeInfo">
                       <div class="timeRound">
-                        <span class="time bold">{{l.time}}분</span>
+                        <span class="time bold"><span *ngIf="l.currs.length > 0">{{l.currs[0].dur}}</span>분</span>
                         <p class="round">
                           <span class="during bold">1</span>
                           <span class="bold">2</span>
                           <span class="bold">3</span>
                         </p>
                       </div>
-                      <div class="degree bold"><span class="howMuch">{{l.degree}}</span>ºC 마음도씨</div>
+                      <div class="degree bold"><span class="howMuch">{{l.limit}}</span>ºC 마음도씨</div>
                     </div>
                     <div class="bannerTexts">
-                      {{l.text}}
+                      {{l.subtitle}}
                     </div>
-                    <div class="goArrow pointer"></div>
-                  </div>
+                    <div class="goArrow pointer" (click)="detail(l)"></div>
+                </div>
             </div>
         </div>
     </div>

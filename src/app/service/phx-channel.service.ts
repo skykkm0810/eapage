@@ -69,6 +69,7 @@ export class PhxChannelService {
 
     this.lectureChannel.on('lecture:list', payload => {
       // console.log('eap:inst from phx channel: ', payload);
+      console.log(payload);
       this.Lectures.emit(payload.body);
     })
     this.lectureChannel.on('lecture:detail', payload => {
