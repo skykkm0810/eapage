@@ -1,4 +1,5 @@
 import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Agreement, INTERESTS } from '../../interface/interface';
 import { PhxChannelService } from '../../service/phx-channel.service';
 
@@ -21,7 +22,7 @@ export class JoinComponent implements OnInit {
         alert('회사코드를 정확히 입력해주세요. 예시 000-00-00000');
       }
     })
-    phxChannel.Users.subscribe( () => {
+    this.subscription = phxChannel.Users.subscribe( () => {
       console.log('success');
     })
     phxChannel.Invalid.subscribe( data => {
@@ -30,10 +31,12 @@ export class JoinComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.subscription.unsubscribe();
   }
 
   agreement = Agreement;
+
+  subscription: Subscription;
 
   companyInfo: any = {
     reg: '',
@@ -173,7 +176,7 @@ export class JoinComponent implements OnInit {
       }
     }
     this.reg();
-    // this.nextBtn(a);
+    this.nextBtn(a);
   }
   nextBtn(b:Event){
     var mother = (b.target as HTMLElement).closest('.tabContentBox')
