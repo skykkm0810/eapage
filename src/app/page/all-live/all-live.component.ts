@@ -27,6 +27,7 @@ export class AllLiveComponent implements AfterViewInit {
           }
         }
         this.info.push(data);
+        console.log(data)
       })
       this.loaded = true;
     })
@@ -113,15 +114,28 @@ export class AllLiveComponent implements AfterViewInit {
       // lives[i].getElementsByClassName('small')[0];
     }
   }
+  filter(e:Event){
+    var subList = (e.target as HTMLElement);
+    var lives = document.querySelectorAll('.live');
+
+    for(var i=0; i<lives.length; i++){
+      (lives[i] as HTMLElement).style.display='none';
+      if(lives[i].getElementsByClassName('small')[0].textContent == subList.textContent){
+      (lives[i] as HTMLElement).style.display='block';
+      }
+      // lives[i].getElementsByClassName('small')[0];
+    }
+  }
   bold(e:Event){
     var list = (e.target as HTMLElement).closest('.subList').getElementsByTagName('li');
     for(var i=0; i<list.length; i++){
       (list[i] as HTMLElement).classList.remove('bold');
     }
     (e.target as HTMLElement).classList.add('bold');
+    this.filter(e)
   }
 
   detail( el ) {
-    this.router.navigate([''])
+    this.router.navigate(['detail/' + el.id])
   }
 }

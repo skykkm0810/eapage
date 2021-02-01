@@ -1,5 +1,6 @@
 export const TAGS : Record<string, string> = {
     MAIN: '',
+    LOGIN: 'login',
     JOIN: 'join',
     ENROLLCLASS: 'enrollClass',
     ENROLLLIST: 'enrollList',
@@ -7,6 +8,7 @@ export const TAGS : Record<string, string> = {
     MYPAGETEACHER: 'mypageTeacher',
     DETAIL: 'detail/:id',
     ALLLIVE: 'allLive',
+    TODAYLIVE: 'todayLive',
   } 
 
   export const INTERESTS = [
