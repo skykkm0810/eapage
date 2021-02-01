@@ -69,7 +69,7 @@ export class JoinComponent implements OnInit {
     for(var i=0; i<neccesary.length; i++){
       if(neccesary[i].getElementsByTagName('input')[0].checked == false){
         alert('필수 항목은 모두 체크 하셔야 이용 가능합니다.');
-        return false;
+        return;
       }
     }
     this.nextBtn(a);
@@ -103,16 +103,16 @@ export class JoinComponent implements OnInit {
     for(var i=0; i<inpputs.length; i++){
       if(!neccesary[0].classList.contains('clear')){
         alert('이메일 코드 인증 확인이 필요합니다.');
-        return false;
+        return;
       }
       else if (!neccesary[0].classList.contains('clear')){
         alert('회사 코드 인증 확인이 필요합니다.');
-        return false; 
+        return; 
       }
 
       if(inpputs[i].value == ""){
         alert('모든 필수항목이 채워져 있어야합니다.');
-        return false;
+        return;
       }
     }
     
@@ -124,8 +124,8 @@ export class JoinComponent implements OnInit {
     var neccesary = mother.getElementsByTagName('input');
     for(var i=0; i<neccesary.length; i++){
       if((neccesary[i] as HTMLInputElement).value == ''){
-        alert('모든 항목에 입력을 완료하셔야 이용 가능합니다.');
-        return false;
+        alert('모든 필수 항목을 채워주셔야 이용 가능합니다.');
+        return;
       }
     }
     this.nextBtn(a);

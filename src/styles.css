@@ -13,7 +13,7 @@
 html, body { height: 100%; }
 body { margin: 0;}
 body {
-    font-family: 'nanum' ,sans-serif;
+    font-family: 'nanum' ,sans-serif!important;
 }
 .nanum_pen {
     font-family: 'nanum_pen' , sans-serif;

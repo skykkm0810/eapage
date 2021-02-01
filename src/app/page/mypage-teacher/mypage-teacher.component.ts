@@ -10,6 +10,7 @@ export class MypageTeacherComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 
@@ -139,39 +140,27 @@ export class MypageTeacherComponent implements OnInit {
     {id:2, name:"하나은행", },
     {id:3, name:"국민은행", },
   ]
-
-  allchk(e:Event){
-    var thischk = e.target as HTMLElement;
-    var chkshow = document.querySelectorAll('.agreeBox div .agreeHole');
-    if(thischk.classList.contains('checked')){
-      thischk.classList.remove('checked')
-      for(var i=0; i<chkshow.length; i++){
-        chkshow[i].classList.remove('checked');
-        (chkshow[i].querySelector('input') as HTMLInputElement).checked = false;
-      }
-    }
-    else{
-      thischk.classList.add('checked')
-      for(var i=0; i<chkshow.length; i++){
-        chkshow[i].classList.remove('checked');
-        chkshow[i].classList.add('checked');
-        (chkshow[i].querySelector('input') as HTMLInputElement).checked = true;
-      }
+  changePassword(e:Event){
+    var button =(e.target as HTMLElement);
+    console.log(button)
+    var password = button.closest('div').getElementsByTagName('input')[0] as HTMLInputElement;
+    console.log(password)
+    if(confirm('비밀번호를 변경하시겠습니까?')){
+      password.style.display ='block';
+      button.style.display = 'none';
     }
   }
-  onechk(m:Event){
-    var thischk = m.currentTarget as HTMLElement;
-    m.preventDefault();
-    var allchk = document.querySelector('.agreeBox .allAgree .agreeHole') as HTMLInputElement;
-    allchk.classList.remove('checked')
-    if(thischk.classList.contains('checked')){
-      thischk.classList.remove('checked');
-      (thischk.querySelector('input') as HTMLInputElement).checked = false;
+  showPicture(event : Event){
+    console.log();
+    var reader = new FileReader();
+    var imgBox = document.getElementsByClassName('fakeUpload')[0] as HTMLElement;
+    var file = (event.target as HTMLInputElement).files[0];
+    imgBox.style.background = 'no-repeat center center / contain';
+    reader.onload = function(e){
+      imgBox.style.backgroundImage ='url('+reader.result+')';
+      imgBox.innerHTML = "";
     }
-    else{
-      thischk.classList.add('checked');
-      (thischk.querySelector('input') as HTMLInputElement).checked = true;
-    }
+    reader.readAsDataURL(file);
   }
   tabclick(a:Event){
     var thistab = a.target as HTMLElement;
@@ -262,5 +251,6 @@ export class MypageTeacherComponent implements OnInit {
     const index: number = this.careers.indexOf(value);
     this.careers.splice(index, 1);
   }
+  
   
 }

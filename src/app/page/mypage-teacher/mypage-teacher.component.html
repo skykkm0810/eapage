@@ -2,12 +2,12 @@
   <div class="innerWrap">
     <h2>마이페이지</h2>
     <ul class="tabBox">
-      <li class="bold pointer on" (click)="tabclick($event)">신청 강의 목록</li>
+      <li class="bold pointer on" (click)="tabclick($event)">진행 강의 목록</li>
       <li class="bold pointer " (click)="tabclick($event)">완료된 강의 목록</li>
       <li class="bold pointer " (click)="tabclick($event)">개인 정보 변경</li>
     </ul>
 
-    <div class="agreement tabContentBox hidden">
+    <div class="agreement tabContentBox">
       <table class="lecTb">
         <colgroup>
           <col width="180px">
@@ -165,14 +165,14 @@
         </tbody>
       </table>
     </div>
-    <div class="personal tabContentBox">
+    <div class="personal tabContentBox hidden">
       <form action="/">
         <div class="basic">
           <div class="basicInfo">
             <span class="bold infoTitle">기본 정보</span>
             <div class="floatImg"></div>
             <label class="changeBtn pointer">
-              <input type="file" name="teacher_profile" hidden>
+              <input type="file" name="teacher_profile" hidden (change)="showPicture($event)">
             </label>
             <div class="gridBox">
               <div>
@@ -181,7 +181,8 @@
               </div>
               <div>
                 <span class="need">비밀번호</span>
-                <input type="password" name="myt.password" required (click)="changePassword">
+                <input type="password" name="myt.password" style="display:none;">
+                <button mat-button style="background-color:#eee;" (click)='changePassword($event)'>비밀번호변경하기</button>
               </div>
               <div>
                 <span class="need">이메일</span>
@@ -380,7 +381,7 @@
               <div class="gridBox">
                 <div *ngFor="let i of causes">
                   <mat-checkbox [(ngModel)]="i.completed" name="i.name">
-                    {{i.value}
+                    {{i.value}}
                   </mat-checkbox>
                 </div>
               </div>

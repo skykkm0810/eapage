@@ -1,0 +1,58 @@
+<div class="wrap">
+    <div class="innerWrap">
+        <div class="Categories">
+            <ul class="bigList">
+                <li *ngFor ='let c of category'
+                [class.selected]="c === selectedC"
+                (click)='onselect(c,$event)'
+                class="pointer">
+                    <span class="inlineBlock img">
+                        <img src="{{c.image}}" alt="{{c.title}} 아이콘">
+                    </span>
+                    <span class="inlineBlock bold bigC">{{c.title}}</span>
+                </li>
+            </ul>
+            <div class="subList" *ngIf="selectedC">
+                <li *ngFor ='let sc of selectedC.subtitle' class="pointer" (click)='bold($event)'>{{sc.subname}}</li>
+            </div>
+        </div>
+        <div class="showLives">
+            <h3 class="show_title bold">{{title}}
+                <!-- <select class="form-select">
+                    <option selected>전체</option>
+                    <option value="진행">진행</option>
+                    <option value="종료">종료</option>
+                </select> -->
+            </h3>
+            <div class="liveListGrid">
+                <div class="live" *ngFor="let l of liveList">
+                    <div class="textHidden big">{{l.bigL}}</div>
+                    <div class="textHidden small">{{l.smallL}}</div>
+                    <span class="inlineBlock process">{{l.process}}</span>
+                    <p class="inlineBlock cardTitle bold">{{l.title}}</p>
+                    <div class="bannerImg">
+                      <img src="{{l.img}}" alt="배너사진">
+                    </div>
+                    <div class="temp">
+                      <div class="tempDynamic textHidden">{{l.degree}}</div>
+                    </div>
+                    <div class="closeInfo">
+                      <div class="timeRound">
+                        <span class="time bold">{{l.time}}분</span>
+                        <p class="round">
+                          <span class="during bold">1</span>
+                          <span class="bold">2</span>
+                          <span class="bold">3</span>
+                        </p>
+                      </div>
+                      <div class="degree bold"><span class="howMuch">{{l.degree}}</span>ºC 마음도씨</div>
+                    </div>
+                    <div class="bannerTexts">
+                      {{l.text}}
+                    </div>
+                    <div class="goArrow pointer"></div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
