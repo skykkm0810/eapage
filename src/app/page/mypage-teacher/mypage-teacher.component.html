@@ -43,7 +43,8 @@
                   <p class="subtitle ft-16">{{ l.subtitle }}</p>
                 </div>
                 <p class="ft-22 ft-bold">{{ l.number }}회차</p>
-                <p class="ft-22 ft-bold showStudent pointer" (click)="showStudent($event)">{{ l.student}}명</p>
+                <p class="ft-22 ft-bold showStudent pointer">{{ l.student}}명</p>
+                <!-- <p class="ft-16">{{ l.datetime }}<br>{{ l.datetime }}</p> -->
                 <!-- <p class="ft-16">{{ c.datetime | date: 'YY년 MM월 dd일'}}<br>{{ c.datetime | date: 'HH시 mm분'}}</p> -->
                 <p> <span class="startClass block pointer">강의시작</span> </p>
               </div>
@@ -176,6 +177,11 @@
             </label>
             <div class="gridBox">
               <div>
+                <span>결혼유무</span>
+                <mat-radio-group>
+                  <mat-radio-button value="1" name="marriage" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
+                  <mat-radio-button value="2" name="marriage" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
+                </mat-radio-group>
                 <span class="need">이름</span>
                 <input type="text" name="myt.name" required>
               </div>

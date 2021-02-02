@@ -1,4 +1,7 @@
 import { Component, OnInit,AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Environment } from 'src/app/environment/environment';
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
 
 @Component({
   selector: 'app-all-live',
@@ -7,9 +10,32 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 })
 export class AllLiveComponent implements AfterViewInit {
 
-  constructor() { }
-  title = '전체보기'
+  constructor(
+    private phxChannel: PhxChannelService,
+    private router: Router
+  ) {
+    phxChannel.Lectures.subscribe( data => {
+      this.info = [];
+      data.forEach( data => {
+        let time = new Date().getTime();
+        if( data.currs.length > 0 ) {
+          let datatime = new Date(data.currs[0].date).getTime();
+          if( datatime > time ){
+            data.process = '예정';
+          } else {
+            data.process = '종료';
+          }
+        }
+        this.info.push(data);
+        console.log(data)
+      })
+      this.loaded = true;
+    })
+  }
+
   ngAfterViewInit() {
+    this.phxChannel.gets('lecture', '');
+
     var tempBar = document.getElementsByClassName('tempDynamic');
     for(var i=0; i<tempBar.length; i++){
       var degree = tempBar[i].textContent
@@ -17,7 +43,7 @@ export class AllLiveComponent implements AfterViewInit {
         (tempBar[i] as HTMLElement).style.width = 3*Number(degree) + 'px';
       }
     }
-
+    
     var process = document.getElementsByClassName('process');
     for(var i=0; i<process.length; i++){
       if(process[i].textContent == '종료'){
@@ -26,6 +52,8 @@ export class AllLiveComponent implements AfterViewInit {
       }
     }
   }
+
+  title = '전체보기';
   selectedC : any;
   
   category = [
@@ -64,49 +92,9 @@ export class AllLiveComponent implements AfterViewInit {
         ]
     },
   ]
-
-  liveList = [
-    {
-      process:'예정',
-      title:'바쁠수록 차분하게, 마음챙김 영상',
-      img: '../../../assets/images/banner/yoga1.png',
-      degree : 50,
-      time: 60,
-      text:'각종 요가자세를 이용한 힐링 프로그램',
-      bigL:'힐링',
-      smallL:'명상ㆍ요가'
-    },
-    {
-      process:'예정',
-      title:'자기를 스스로 파악하기',
-      img: '../../../assets/images/banner/open.png',
-      degree : 70,
-      time: 90,
-      text:'남이보는 나, 내가 보는 나',
-      bigL:'심리',
-      smallL:'자기이해'
-    },
-    {
-      process:'종료',
-      title:'최적이 될수 있는 남은 인생',
-      img: '../../../assets/images/banner/week3.png',
-      degree : 97,
-      time: 90,
-      text:'남은 인생 화려하지 못해도 웃음지며 살 수 있게',
-      bigL:'인생여정',
-      smallL:'연애ㆍ결혼'
-    },
-    {
-      process:'예정',
-      title:'사람과의 관계에서 우뚝 서기',
-      img: '../../../assets/images/banner/list2.png',
-      degree : 85,
-      time: 60,
-      text:'남과 나를 동시에 존중하며 살아가는 방법',
-      bigL:'사회생활',
-      smallL:'대인관계'
-    },
-  ]
+  filePath = Environment.filePath;
+  loaded = false;
+  info = [{ currs: [{date: null, dur: null, stage: null}], subtitle: '', interests: [{value: ''}], thumbnail: [{path: ''}], limit: null, degree: null, title: '', process: ''}];
   
   onselect(c:any,e:Event){
     this.selectedC = c;
@@ -145,5 +133,9 @@ export class AllLiveComponent implements AfterViewInit {
     }
     (e.target as HTMLElement).classList.add('bold');
     this.filter(e)
+  }
+
+  detail( el ) {
+    this.router.navigate(['detail/' + el.id])
   }
 }

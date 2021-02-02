@@ -55,34 +55,34 @@
             <div class="col-6">
                 <div class="row">
                     <div class="title title-header">힐링</div>
-                    <div class="col title title-main">바쁠수록 차분하게, 마음챙김 명상</div>
+                    <div class="col title title-main">{{ info.title }}</div>
                 </div>
                 <div class="row">
                     <div class="subtitle-rect"></div>
                     <div class="subtitle">
                         <div class="desc">
-                            바쁘고 복잡한 세상 속에서도 마음은 고요하게,<br>
-                            머리를 맑게
+                            {{ info.subtitle }}
                         </div>
                     </div>
                 </div>
-                <div class="row hashtag">#스트레칭  #명상  #릴렉스  #심리안정</div>
+                <div class="row hashtag"> </div>
+                <!-- <div class="row hashtag">#스트레칭  #명상  #릴렉스  #심리안정</div> -->
                 <div class="row">
                     <div class="col-4 class-info-grid">
                         <div class="title">클래스 구성</div>
-                        <div class="content">270 분</div>
+                        <div class="content">{{ sum }}분</div>
                     </div>
                     <div class="col-4 class-info-grid">
-                        <div class="title">클래스 일정</div>
-                        <div class="content">90분/3회</div>
+                        <div class="title">클래스 횟수</div>
+                        <div class="content">{{stgs}}회</div>
                     </div>
                     <div class="col-4 class-info-grid">
                         <div class="title">Point</div>
-                        <div class="content">120,000</div>
+                        <div class="content">{{ info.point}}</div>
                     </div>
                 </div>
                 <div class="row progress-container">
-                    <div class="col left">12일 남음</div>
+                    <div class="col left">{{ dday }}</div>
                     <div class="col right">83%</div>
                 </div>
                 <div class="row progress">
@@ -96,7 +96,7 @@
                 <div class="row submit-grid">
                     <div class="col-3 class-info-grid">
                         <div class="title">수강인원</div>
-                        <div class="content">10명~</div>
+                        <div class="content">~{{ info.limit }}명</div>
                     </div>
                     <div class="col-3 class-info-grid">
                         <div class="title">선물하기</div>
@@ -160,27 +160,23 @@
                     <tr>
                         <th scope="col">회기</th>
                         <th scope="col">날짜</th>
-                        <th scope="col">시간</th>
                         <th scope="col">주제명</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1회차</td>
-                        <td>2월 18일 목요일</td>
-                        <td>20:00~21:30</td>
-                        <td class="pink-strong">슬기롭게 마음먹기</td>
+                    <tr *ngFor="let e of info.currs">
+                        <td>{{ e.stage }}회차</td>
+                        <td>{{ e.date | date: 'M월 d일 H시 m분'}}&nbsp;({{ e.dur }}분)</td>
+                        <td class="pink-strong">{{ e.title }}</td>
                     </tr>
                     <tr>
                         <td>2회차</td>
                         <td>2월 25일 목요일</td>
-                        <td>20:00~21:30</td>
                         <td class="pink-strong">슬기롭게 놀아주기</td>
                     </tr>
                     <tr>
                         <td>3회차</td>
                         <td>3월 4일 목요일</td>
-                        <td>20:00~21:30</td>
                         <td class="pink-strong">슬기롭게 극복하기</td>
                     </tr>
                 </tbody>
@@ -209,17 +205,9 @@
             <img src="../../../assets/images/img/yoga.png">
         </div>
         <div class="row" style="padding-top: 80px;">
-            <div class="col-4 class-point">
-                <div class="title">POINT 1</div>
-                <div class="content">비활동적인 사람 앉아서 일하는 직장인</div>
-            </div>
-            <div class="col-4 class-point">
-                <div class="title">POINT 2</div>
-                <div class="content">몸의 긴장도가 높은 사람</div>
-            </div>
-            <div class="col-4 class-point">
-                <div class="title">POINT 3</div>
-                <div class="content">건강한 습관을 만들고 싶은 사람</div>
+            <div class="col-4 class-point" *ngFor="let e of info.targets">
+                <div class="title">POINT {{ e.point }}</div>
+                <div class="content">{{ e.desc }}</div>
             </div>
         </div>
     </section>
