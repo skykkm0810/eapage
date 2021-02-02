@@ -96,10 +96,13 @@ h2 {
     padding:1rem;
     overflow-y: scroll;
 }
+.agreeBox > div label {
+    margin-top: 20px;
+}
 .agreeBox > div .agreeHole {
-    position: absolute;
-    right:0;
-    top:30px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 10px;
 }
 .agreeBox .btnBox {
     padding-top: 45px;

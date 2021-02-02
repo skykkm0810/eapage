@@ -17,6 +17,9 @@ footer .tfoot{
     display: inline-block;
     margin-right: 50px;
 }
+.tfoot ul li:hover {
+    text-decoration: underline;
+}
 footer .bfoot{
     height:80px;
     background-color:#FFEEEE ;

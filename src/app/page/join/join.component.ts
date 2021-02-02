@@ -70,7 +70,7 @@ export class JoinComponent implements OnInit {
       thischk.classList.remove('checked')
       for(var i=0; i<chkshow.length; i++){
         chkshow[i].classList.remove('checked');
-        (chkshow[i].querySelector('input') as HTMLInputElement).checked = false;
+        (chkshow[i].closest('label').querySelector('input') as HTMLInputElement).checked = false;
       }
     }
     else{
@@ -78,7 +78,7 @@ export class JoinComponent implements OnInit {
       for(var i=0; i<chkshow.length; i++){
         chkshow[i].classList.remove('checked');
         chkshow[i].classList.add('checked');
-        (chkshow[i].querySelector('input') as HTMLInputElement).checked = true;
+        (chkshow[i].closest('label').querySelector('input') as HTMLInputElement).checked = true;
       }
     }
   }
@@ -89,7 +89,7 @@ export class JoinComponent implements OnInit {
     allchk.classList.remove('checked')
     if(thischk.classList.contains('checked')){
       thischk.classList.remove('checked');
-      (thischk.querySelector('input') as HTMLInputElement).checked = false;
+      (thischk.closest('label').querySelector('input') as HTMLInputElement).checked = false;
     }
     else{
       thischk.classList.add('checked');
