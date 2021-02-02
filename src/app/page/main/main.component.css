@@ -386,19 +386,19 @@
     border-radius: 11px 11px 0 0 ;
     height:66px;
     box-sizing: border-box;
-    padding-top:7px;
+    padding-top:15px;
 }
 .today .content .calendarIcon .unfill .day {
     font-size: 40px;
     font-weight: 500;
     color:#fff;
-
+    margin:0;
 }
 .today .content .calendarIcon .unfill .month{
     font-size:12px;
     color:#fff;
-    position: relative;
-    top:-5px
+    margin:0;
+    padding-top: 10px;
 }
 .today .content .calendarIcon .fill {
     background-color: #fff;

@@ -10,6 +10,8 @@ export class DetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    var number = (document.querySelector('.progress-container .right').textContent)
+    
   }
 
 }

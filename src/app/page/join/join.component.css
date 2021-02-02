@@ -139,7 +139,6 @@ h2 {
 .emailBox > div {
     position: relative;
     width:540px;
-    height:70px;
     margin:0 auto;
 }
 .emailBox .mailAddress {
@@ -230,7 +229,6 @@ h2 {
 .companyBox > div {
     position: relative;
     width:540px;
-    height:70px;
     margin:0 auto;
     padding-top: 40px;
 }

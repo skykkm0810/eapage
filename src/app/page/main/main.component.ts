@@ -24,7 +24,27 @@ export class MainComponent implements OnInit {
         (tempBar[i] as HTMLElement).style.width = 4.5*Number(degree) + 'px';
       }
     }
+
+    setInterval(()=>{
+      var calTime = new Date((this.liveTime1 - new Date().getTime()/1000)*1000);
+      if (Number(calTime) >= 0) {
+        let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((Number(calTime) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let mins = Math.floor((Number(calTime) % (1000 * 60 * 60)) / (1000 * 60));
+        let secs = Math.floor((Number(calTime) % (1000 * 60)) / 1000);
+
+        this.remainDays = days;
+        this.remainTime = ('00'+hours).slice(-2)+":"+ 
+        ('00'+mins).slice(-2)+":" +
+        ('00'+secs).slice(-2);
+      }
+    },1000)
   }
+  callTime :any;
+  remainDays : any;
+  remainTime :any;
+  liveTime1 = new Date(Date.parse('2021-02-02 16:00')).getTime()/1000;
+  liveTime2 = new Date(Date.parse('2021-02-02 16:00')).getTime()/1000;
   autoSlide = setInterval(()=>{this.slideLeft()},5000)
   curIndex = 0;
 

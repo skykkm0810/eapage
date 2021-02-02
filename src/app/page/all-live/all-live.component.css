@@ -63,6 +63,12 @@
     position: relative;
     background-color: #fff;
 }
+.liveListGrid .live .big,
+.liveListGrid .live .small {
+    position: absolute;
+    left: -9999px;
+}
+
 .liveListGrid .process {
     width:38px;
     height:33px;
@@ -96,7 +102,7 @@
     height:60px;
     background: url(../../../assets/images/icon/other.png) no-repeat center center / contain;
     left:0;
-    top:260px;
+    top:220px;
 }
 .liveListGrid .tempDynamic {
     position: absolute;
@@ -112,7 +118,7 @@
     left:0;
     padding-left: 35px;
     width:100%;
-    top:320px;
+    top:280px;
     box-sizing: border-box;
     vertical-align: middle;
 }
