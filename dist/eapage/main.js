@@ -1870,7 +1870,7 @@ class TodayLiveComponent {
         this.title = '오늘의 라이브';
         this.category = [
             { title: '인생여정',
-                image: '../../../assets/images/icon/pink/category1.png',
+                image: 'assets/images/icon/pink/category1.png',
                 subtitle: [
                     { subname: '연애ㆍ결혼' },
                     { subname: '자녀양육' },
@@ -1879,7 +1879,7 @@ class TodayLiveComponent {
                 ]
             },
             { title: '사회생활',
-                image: '../../../assets/images/icon/pink/category2.png',
+                image: 'assets/images/icon/pink/category2.png',
                 subtitle: [
                     { subname: '대인관계' },
                     { subname: '커뮤니케이션' },
@@ -1888,7 +1888,7 @@ class TodayLiveComponent {
                 ]
             },
             { title: '힐링',
-                image: '../../../assets/images/icon/pink/category3.png',
+                image: 'assets/images/icon/pink/category3.png',
                 subtitle: [
                     { subname: '명상ㆍ요가' },
                     { subname: '몸마음건강' },
@@ -1897,7 +1897,7 @@ class TodayLiveComponent {
                 ]
             },
             { title: '심리',
-                image: '../../../assets/images/icon/pink/category4.png',
+                image: 'assets/images/icon/pink/category4.png',
                 subtitle: [
                     { subname: '자기이해' },
                     { subname: '심리특강' },
@@ -1908,7 +1908,7 @@ class TodayLiveComponent {
             {
                 process: '예정',
                 title: '바쁠수록 차분하게, 마음챙김 영상',
-                img: '../../../assets/images/banner/yoga1.png',
+                img: 'assets/images/banner/yoga1.png',
                 degree: 50,
                 time: 60,
                 text: '각종 요가자세를 이용한 힐링 프로그램',
@@ -1918,7 +1918,7 @@ class TodayLiveComponent {
             {
                 process: '예정',
                 title: '자기를 스스로 파악하기',
-                img: '../../../assets/images/banner/open.png',
+                img: 'assets/images/banner/open.png',
                 degree: 70,
                 time: 90,
                 text: '남이보는 나, 내가 보는 나',
@@ -1928,7 +1928,7 @@ class TodayLiveComponent {
             {
                 process: '종료',
                 title: '최적이 될수 있는 남은 인생',
-                img: '../../../assets/images/banner/week3.png',
+                img: 'assets/images/banner/week3.png',
                 degree: 97,
                 time: 90,
                 text: '남은 인생 화려하지 못해도 웃음지며 살 수 있게',
@@ -1938,7 +1938,7 @@ class TodayLiveComponent {
             {
                 process: '예정',
                 title: '사람과의 관계에서 우뚝 서기',
-                img: '../../../assets/images/banner/list2.png',
+                img: 'assets/images/banner/list2.png',
                 degree: 85,
                 time: 60,
                 text: '남과 나를 동시에 존중하며 살아가는 방법',
@@ -2192,7 +2192,7 @@ class AllLiveComponent {
         this.title = '전체보기';
         this.category = [
             { title: '인생여정',
-                image: '../../../assets/images/icon/pink/category1.png',
+                image: 'assets/images/icon/pink/category1.png',
                 subtitle: [
                     { subname: '연애ㆍ결혼' },
                     { subname: '자녀양육' },
@@ -2201,7 +2201,7 @@ class AllLiveComponent {
                 ]
             },
             { title: '사회생활',
-                image: '../../../assets/images/icon/pink/category2.png',
+                image: 'assets/images/icon/pink/category2.png',
                 subtitle: [
                     { subname: '대인관계' },
                     { subname: '커뮤니케이션' },
@@ -2210,7 +2210,7 @@ class AllLiveComponent {
                 ]
             },
             { title: '힐링',
-                image: '../../../assets/images/icon/pink/category3.png',
+                image: 'assets/images/icon/pink/category3.png',
                 subtitle: [
                     { subname: '명상ㆍ요가' },
                     { subname: '몸마음건강' },
@@ -2219,7 +2219,7 @@ class AllLiveComponent {
                 ]
             },
             { title: '심리',
-                image: '../../../assets/images/icon/pink/category4.png',
+                image: 'assets/images/icon/pink/category4.png',
                 subtitle: [
                     { subname: '자기이해' },
                     { subname: '심리특강' },
@@ -3422,7 +3422,7 @@ class DetailComponent {
     }
 }
 DetailComponent.ɵfac = function DetailComponent_Factory(t) { return new (t || DetailComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_service_phx_channel_service__WEBPACK_IMPORTED_MODULE_2__["PhxChannelService"])); };
-DetailComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DetailComponent, selectors: [["app-detail"]], decls: 241, vars: 9, consts: [[1, "wrap"], [1, "category", "container"], [1, "row"], [1, "col-3", "content"], ["src", "../../../assets/images/icon2/life.png", 2, "padding-right", "20px"], ["src", "../../../assets/images/icon2/social.png", 2, "padding-right", "20px"], ["src", "../../../assets/images/icon2/healing.png", 2, "padding-right", "20px"], ["src", "../../../assets/images/icon2/mental.png", 2, "padding-right", "20px"], ["src", "../../../assets/images/icon2/sm-arrow.png", 2, "padding-left", "150px"], [1, "row", "box"], [1, "col", "item", "selected"], [1, "col", "item"], [1, "abstract", "container"], [1, "col-6"], [1, "row", "mainpic"], ["src", "../../../assets/images/img/yjkim_lec_main_01.jpg"], [1, "row", "thumbnail"], [1, "col-3", "item"], ["src", "../../../assets/images/img/yjkim_lec_thumb_01.jpg"], ["src", "../../../assets/images/img/yjkim_lec_thumb_02.jpg"], ["src", "../../../assets/images/img/yjkim_lec_thumb_03.jpg"], ["src", "../../../assets/images/img/yjkim_lec_thumb_04.jpg"], [1, "title", "title-header"], [1, "col", "title", "title-main"], [1, "subtitle-rect"], [1, "subtitle"], [1, "desc"], [1, "row", "hashtag"], [1, "col-4", "class-info-grid"], [1, "title"], [1, "content"], [1, "row", "progress-container"], [1, "col", "left"], [1, "col", "right"], [1, "row", "progress"], ["role", "progressbar", "aria-valuenow", "83", "aria-valuemin", "0", "aria-valuemax", "100", 1, "progress-bar", 2, "width", "83%"], [1, "row", "submit-grid"], [1, "col-3", "class-info-grid"], ["src", "../../../assets/images/icon2/present.png"], ["src", "../../../assets/images/icon2/heart.png"], [1, "col-3", "class-apply"], [1, "submenu", "container"], [1, "col", "title"], [1, "class-inst", "container"], ["src", "../../../assets/images/img/class_how_to.jpg"], [1, "curriculum", "container"], [1, "row", "section-title"], [1, "row", "dot-sm"], [1, "row", "dot-xsm"], [1, "row", 2, "padding-top", "50px", "height", "120px"], [1, "col-4"], [1, "col-4", "sect-subtitle"], [1, "row", 2, "padding-top", "80px"], [1, "table", "table-entry"], ["scope", "col"], [4, "ngFor", "ngForOf"], [1, "pink-strong"], [1, "intro", "container"], [1, "col-2"], [1, "col-8", "sect-subtitle"], [1, "row", "img-center"], ["src", "../../../assets/images/img/yoga.png"], ["class", "col-4 class-point", 4, "ngFor", "ngForOf"], [1, "instructor", "container"], [1, "col-3"], [1, "col-6", "sect-topborder"], [1, "row", "instructor-box"], [1, "col-4", "instructor-picture"], ["src", "../../../assets/images/img/yjkim_portrait.jpg"], [1, "col-8", "instructor-desc"], [1, "row", "instructor-picli"], [1, "instructor-picli"], ["src", "../../../assets/images/img/yjkim_1.jpg"], ["src", "../../../assets/images/img/yjkim_2.jpg"], ["src", "../../../assets/images/img/yjkim_3.jpg"], [1, "testimonial", "container"], [1, "row", "testimonial-li"], [1, "col-4", "entry"], [1, "row", "testi-star-wrap"], ["src", "../../../assets/images/icon2/star-full.png", 1, "testi-star"], [1, "row", "testi-text"], ["src", "../../../assets/images/icon2/star-half.png", 1, "testi-star"], [1, "refund", "container"], ["src", "../../../assets/images/img/refund.jpg"], [1, "rel-items"], [1, "col-4", "class-point"]], template: function DetailComponent_Template(rf, ctx) { if (rf & 1) {
+DetailComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DetailComponent, selectors: [["app-detail"]], decls: 241, vars: 9, consts: [[1, "wrap"], [1, "category", "container"], [1, "row"], [1, "col-3", "content"], ["src", "assets/images/icon2/life.png", 2, "padding-right", "20px"], ["src", "assets/images/icon2/social.png", 2, "padding-right", "20px"], ["src", "assets/images/icon2/healing.png", 2, "padding-right", "20px"], ["src", "assets/images/icon2/mental.png", 2, "padding-right", "20px"], ["src", "assets/images/icon2/sm-arrow.png", 2, "padding-left", "150px"], [1, "row", "box"], [1, "col", "item", "selected"], [1, "col", "item"], [1, "abstract", "container"], [1, "col-6"], [1, "row", "mainpic"], ["src", "assets/images/img/yjkim_lec_main_01.jpg"], [1, "row", "thumbnail"], [1, "col-3", "item"], ["src", "assets/images/img/yjkim_lec_thumb_01.jpg"], ["src", "assets/images/img/yjkim_lec_thumb_02.jpg"], ["src", "assets/images/img/yjkim_lec_thumb_03.jpg"], ["src", "assets/images/img/yjkim_lec_thumb_04.jpg"], [1, "title", "title-header"], [1, "col", "title", "title-main"], [1, "subtitle-rect"], [1, "subtitle"], [1, "desc"], [1, "row", "hashtag"], [1, "col-4", "class-info-grid"], [1, "title"], [1, "content"], [1, "row", "progress-container"], [1, "col", "left"], [1, "col", "right"], [1, "row", "progress"], ["role", "progressbar", "aria-valuenow", "83", "aria-valuemin", "0", "aria-valuemax", "100", 1, "progress-bar", 2, "width", "83%"], [1, "row", "submit-grid"], [1, "col-3", "class-info-grid"], ["src", "assets/images/icon2/present.png"], ["src", "assets/images/icon2/heart.png"], [1, "col-3", "class-apply"], [1, "submenu", "container"], [1, "col", "title"], [1, "class-inst", "container"], ["src", "assets/images/img/class_how_to.jpg"], [1, "curriculum", "container"], [1, "row", "section-title"], [1, "row", "dot-sm"], [1, "row", "dot-xsm"], [1, "row", 2, "padding-top", "50px", "height", "120px"], [1, "col-4"], [1, "col-4", "sect-subtitle"], [1, "row", 2, "padding-top", "80px"], [1, "table", "table-entry"], ["scope", "col"], [4, "ngFor", "ngForOf"], [1, "pink-strong"], [1, "intro", "container"], [1, "col-2"], [1, "col-8", "sect-subtitle"], [1, "row", "img-center"], ["src", "assets/images/img/yoga.png"], ["class", "col-4 class-point", 4, "ngFor", "ngForOf"], [1, "instructor", "container"], [1, "col-3"], [1, "col-6", "sect-topborder"], [1, "row", "instructor-box"], [1, "col-4", "instructor-picture"], ["src", "assets/images/img/yjkim_portrait.jpg"], [1, "col-8", "instructor-desc"], [1, "row", "instructor-picli"], [1, "instructor-picli"], ["src", "assets/images/img/yjkim_1.jpg"], ["src", "assets/images/img/yjkim_2.jpg"], ["src", "assets/images/img/yjkim_3.jpg"], [1, "testimonial", "container"], [1, "row", "testimonial-li"], [1, "col-4", "entry"], [1, "row", "testi-star-wrap"], ["src", "assets/images/icon2/star-full.png", 1, "testi-star"], [1, "row", "testi-text"], ["src", "assets/images/icon2/star-half.png", 1, "testi-star"], [1, "refund", "container"], ["src", "assets/images/img/refund.jpg"], [1, "rel-items"], [1, "col-4", "class-point"]], template: function DetailComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "section", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -3987,7 +3987,7 @@ class MainComponent {
     }
 }
 MainComponent.ɵfac = function MainComponent_Factory(t) { return new (t || MainComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };
-MainComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MainComponent, selectors: [["app-main"]], decls: 297, vars: 22, consts: [[1, "wrap"], [1, "slideWrap"], [1, "slideBody"], [1, "text", "nanum_pen"], [1, "text"], [1, "dotWrap"], [1, "dot", "pointer", "show", 3, "click"], [1, "dot", "pointer", 3, "click"], [1, "preopen"], [1, "innerWrap"], [1, "banner"], [1, "pre", "open1"], [1, "openTime", "uppercase", "bold"], [1, "cardTitle", "bold"], [1, "bannerImg"], ["src", "../../../assets/images/banner/open.png", "alt", "\uBC30\uB108\uC0AC\uC9C4"], [1, "temp"], [1, "tempDynamic"], [1, "bannerTexts"], [1, "goArrow", "pointer", 3, "routerLink"], [1, "pre", "open2"], ["src", "../../../assets/images/banner/flower.png", "alt", "\uBC30\uB108\uC0AC\uC9C4"], [1, "closeSoon"], [1, "back"], [1, "soon1"], ["src", "../../../assets/images/banner/yoga1.png", "alt", "\uBC30\uB108\uC0AC\uC9C4"], [1, "tempDynamic", "textHidden"], [1, "closeInfo"], [1, "timeRound"], [1, "time", "bold"], [1, "round"], [1, "during", "bold"], [1, "bold"], [1, "degree", "bold"], [1, "howMuch"], [1, "soon2"], [1, "today"], [1, "content", "first"], [1, "img"], [1, "subject", "textHidden"], [1, "backImg"], [1, "todayClassInfo"], [1, "teacher"], [1, "name"], [1, "title", "bold"], [1, "description"], [1, "remainTime", "bold"], [1, "day"], [1, "time"], [1, "calendarIcon"], [1, "unfill"], [1, "uppercase", "month"], [1, "fill"], [1, "year", "bold"], [1, "content", "second"], [1, "thisWeek"], [1, "bannerWrap"], [1, "week", "content1"], [1, "conTitle", "bold"], [1, "conImg"], [1, "conBottom"], [1, "week", "content2"], [1, "week", "content3"], [1, "month"], [1, "contentBox"], [1, "leftList"], [1, "pointer"], [1, "no"], [1, "big"], [1, "small"], [1, "rightList"]], template: function MainComponent_Template(rf, ctx) { if (rf & 1) {
+MainComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MainComponent, selectors: [["app-main"]], decls: 297, vars: 22, consts: [[1, "wrap"], [1, "slideWrap"], [1, "slideBody"], [1, "text", "nanum_pen"], [1, "text"], [1, "dotWrap"], [1, "dot", "pointer", "show", 3, "click"], [1, "dot", "pointer", 3, "click"], [1, "preopen"], [1, "innerWrap"], [1, "banner"], [1, "pre", "open1"], [1, "openTime", "uppercase", "bold"], [1, "cardTitle", "bold"], [1, "bannerImg"], ["src", "assets/images/banner/open.png", "alt", "\uBC30\uB108\uC0AC\uC9C4"], [1, "temp"], [1, "tempDynamic"], [1, "bannerTexts"], [1, "goArrow", "pointer", 3, "routerLink"], [1, "pre", "open2"], ["src", "assets/images/banner/flower.png", "alt", "\uBC30\uB108\uC0AC\uC9C4"], [1, "closeSoon"], [1, "back"], [1, "soon1"], ["src", "assets/images/banner/yoga1.png", "alt", "\uBC30\uB108\uC0AC\uC9C4"], [1, "tempDynamic", "textHidden"], [1, "closeInfo"], [1, "timeRound"], [1, "time", "bold"], [1, "round"], [1, "during", "bold"], [1, "bold"], [1, "degree", "bold"], [1, "howMuch"], [1, "soon2"], [1, "today"], [1, "content", "first"], [1, "img"], [1, "subject", "textHidden"], [1, "backImg"], [1, "todayClassInfo"], [1, "teacher"], [1, "name"], [1, "title", "bold"], [1, "description"], [1, "remainTime", "bold"], [1, "day"], [1, "time"], [1, "calendarIcon"], [1, "unfill"], [1, "uppercase", "month"], [1, "fill"], [1, "year", "bold"], [1, "content", "second"], [1, "thisWeek"], [1, "bannerWrap"], [1, "week", "content1"], [1, "conTitle", "bold"], [1, "conImg"], [1, "conBottom"], [1, "week", "content2"], [1, "week", "content3"], [1, "month"], [1, "contentBox"], [1, "leftList"], [1, "pointer"], [1, "no"], [1, "big"], [1, "small"], [1, "rightList"]], template: function MainComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "ul", 2);
