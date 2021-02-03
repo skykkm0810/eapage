@@ -27,7 +27,6 @@ export class AllLiveComponent implements AfterViewInit {
           }
         }
         this.info.push(data);
-        console.log(data)
       })
       this.loaded = true;
     })

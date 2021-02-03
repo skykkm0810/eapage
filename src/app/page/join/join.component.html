@@ -15,27 +15,27 @@
           <p class="allAgree bold">전체 동의<span class="agreeHole pointer" (click)='allchk($event)'></span></p>
           <div>
             <p class="agreeKinds"><span class="underline">이용약관</span> (필수)</p>
-            <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_info_useage"
-                class="hidden" required></label>
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.userRule }}
             </div>
+            <label class="pointer"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
+                name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div>
             <p class="agreeKinds"><span class="underline">개인정보취급방침</span> 이용약관 (필수)</p>
-            <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_position"
-                class="hidden" required></label>
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.privRule }}
             </div>
+            <label class="pointer"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
+                name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div>
             <p class="agreeKinds"><span class="underline">마케팅 활용 동의</span> (선택)</p>
-            <label class="agreeHole pointer" (click)="onechk($event)"><input type="checkbox" name="a_marketing"
-                class="hidden"></label>
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.marketing }}
             </div>
+            <label class="pointer"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
+                name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div class="btnBox">
             <button mat-button class="next bold" (click)='beforeNext1($event)'>다음</button>
@@ -67,7 +67,7 @@
           <div class="companyCode">
             <div>
               <span>회사코드입력</span>
-              <input type="text" name="c.code" [(ngModel)]="companyInfo.reg"  required>
+              <input type="text" name="c.code" [(ngModel)]="companyInfo.reg" required>
             </div>
             <button mat-button (click)="confirm()">회사 코드 확인</button>
           </div>
@@ -106,7 +106,7 @@
               </div>
               <div>
                 <span>Password</span>
-                <input type="password" name="b.pwd" [(ngModel)]="info.pwd" required>
+                <input type="password" name="b.pwd" [(ngModel)]="info.pwd" required >
               </div>
               <div>
                 <span>이름</span>
@@ -114,7 +114,7 @@
               </div>
               <div>
                 <span>연락처</span>
-                <input type="text" name="b.branch"  [(ngModel)]="info.contact" required>
+                <input type="text" name="b.branch" [(ngModel)]="info.contact" required>
               </div>
               <div>
                 <span>생년월일</span>
@@ -174,26 +174,26 @@
                 <mat-checkbox [(ngModel)]="i.completed" name="i.name">
                   {{i.value}}
                 </mat-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class="btnBox">
+            <!-- 서브밋 버튼이 되어야함 -->
+            <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
+            <button mat-button class="next bold" (click)='beforeNext3($event)'>다음</button>
           </div>
         </div>
+        <div class="finish tabContentBox hidden">
+          <div class="finishBox">
+            <div class="charactor"></div>
+            <p class="bold"><span>{{ info.name }}</span> 님 환영합니다!</p>
+            <p class="bold">마음도씨 회원가입이 완료 되었습니다.</p>
+          </div>
+          <div class="btnBox">
+            <button mat-button [routerLink]="['']" class="next bold">확인</button>
+          </div>
+        </div>-
       </div>
-      <div class="btnBox">
-        <!-- 서브밋 버튼이 되어야함 -->
-        <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
-        <button mat-button class="next bold" (click)='beforeNext3($event)'>다음</button>
-      </div>
-    </div>
-    <div class="finish tabContentBox hidden">
-      <div class="finishBox">
-        <div class="charactor"></div>
-        <p class="bold"><span>{{ info.name }}</span> 님 환영합니다!</p>
-        <p class="bold">마음도씨 회원가입이 완료 되었습니다.</p>
-        </div>
-        <div class="btnBox">
-        <button mat-button [routerLink]="['']" class="next bold">확인</button>
-        </div>
-      </div>
-    </div>
     </form>
   </div>
 </div>
