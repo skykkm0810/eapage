@@ -5110,7 +5110,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Environment", function() { return Environment; });
 const Environment = {
     production: false,
-    socket_channel: 'ws://localhost:4000',
+    socket_channel: 'ws://3.35.47.51:4000',
     http: 'http://',
     ws: 'ws://',
     app_version: 3.3,
