@@ -24,6 +24,7 @@ export class PhxChannelService {
   @Output() Companies: EventEmitter<any> = new EventEmitter();
   @Output() Company: EventEmitter<any> = new EventEmitter();
   @Output() Invalid: EventEmitter<any> = new EventEmitter();
+  @Output() Access: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     this.init_channel();
@@ -44,15 +45,13 @@ export class PhxChannelService {
         console.log('Joined successfully', resp);
       })
       .receive('error', resp => {
-        // console.log('Unable to join', resp);
+        console.log('Unable to join', resp);
       });
 
     this.instChannel.on('inst:list', payload => {
-      // console.log('eap:inst from phx channel: ', payload);
       this.Insts.emit(payload.body);
     })
     this.instChannel.on('inst:detail', payload => {
-      // console.log('eap:inst from phx channel: ', payload);
       this.Inst.emit(payload);
     })
 
@@ -64,16 +63,13 @@ export class PhxChannelService {
         console.log('Joined successfully', resp);
       })
       .receive('error', resp => {
-        // console.log('Unable to join', resp);
+        console.log('Unable to join', resp);
       });
 
     this.lectureChannel.on('lecture:list', payload => {
-      // console.log('eap:inst from phx channel: ', payload);
-      console.log(payload);
       this.Lectures.emit(payload.body);
     })
     this.lectureChannel.on('lecture:detail', payload => {
-      // console.log('eap:inst from phx channel: ', payload);
       this.Lecture.emit(payload);
     })
     
@@ -85,17 +81,19 @@ export class PhxChannelService {
         console.log('Joined successfully', resp);
       })
       .receive('error', resp => {
-        // console.log('Unable to join', resp);
+        console.log('Unable to join', resp);
       });
 
     this.userChannel.on('user:list', payload => {
-      // console.log('eap:inst from phx channel: ', payload);
       this.Users.emit(payload.body);
     })
     this.userChannel.on('user:invalid', payload => {
       this.Invalid.emit(payload.body);
     })
-
+    this.userChannel.on('user:access', payload => {
+      console.log(payload);
+      this.Access.emit(payload.body);
+    })
 
     this.companyChannel = this.socket.channel('eap:company', {});
     this.companyChannel
@@ -104,21 +102,18 @@ export class PhxChannelService {
         console.log('Joined successfully', resp);
       })
       .receive('error', resp => {
-        // console.log('Unable to join', resp);
+        console.log('Unable to join', resp);
       });
 
     this.companyChannel.on('company:list', payload => {
-      // console.log('eap:company from phx channel: ', payload);
       this.Companies.emit(payload.body);
     })
     this.companyChannel.on('company:detail', payload => {
-      // console.log('eap:company from phx channel: ', payload);
       this.Company.emit(payload);
     })
     this.companyChannel.on('company:confirm', payload => {
       this.Company.emit(payload);
     })
-        // this.send('device', 'req:device', { status: 'device' } )
   }
 
   send(channel, message) {
@@ -179,6 +174,9 @@ export class PhxChannelService {
         break;
       case 'company':
         this.companyChannel.push("company:detail:req", {body: message});
+        break;
+      case 'access':
+        this.userChannel.push("user:access:req", {body: message});
         break;
             
       default:

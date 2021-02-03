@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-6">
                 <div class="row mainpic">
-                    <img src="../../../assets/images/img/yjkim_lec_main_01.jpg">
+                    <img width="585px" height="384px" src="{{filePath}}{{info.thumbnail}}">
                 </div>
                 <div class="row thumbnail">
                     <div class="col-3 item">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-4 class-info-grid">
                         <div class="title">클래스 횟수</div>
-                        <div class="content">{{stgs}}회</div>
+                        <div class="content">{{ stgs }}회</div>
                     </div>
                     <div class="col-4 class-info-grid">
                         <div class="title">Point</div>
@@ -99,7 +99,7 @@
                         <div class="content">~{{ info.limit }}명</div>
                     </div>
                     <div class="col-3 class-info-grid">
-                        <div class="title">선물하기</div>
+                        <div class="title">교구 유무</div>
                         <div class="content">
                             <img src="../../../assets/images/icon2/present.png">
                         </div>
@@ -169,16 +169,6 @@
                         <td>{{ e.date | date: 'M월 d일 H시 m분'}}&nbsp;({{ e.dur }}분)</td>
                         <td class="pink-strong">{{ e.title }}</td>
                     </tr>
-                    <tr>
-                        <td>2회차</td>
-                        <td>2월 25일 목요일</td>
-                        <td class="pink-strong">슬기롭게 놀아주기</td>
-                    </tr>
-                    <tr>
-                        <td>3회차</td>
-                        <td>3월 4일 목요일</td>
-                        <td class="pink-strong">슬기롭게 극복하기</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -226,12 +216,12 @@
         <div class="row dot-xsm"></div>
         <div class="row" style="padding-top:50px; height:120px;">
             <div class="col-3"></div>
-            <div class="col-6 sect-topborder">김연정</div>
+            <div class="col-6 sect-topborder">{{ this.instInfo.name }}</div>
             <div class="col-3"></div>
         </div>
         <div class="row instructor-box">
             <div class="col-4 instructor-picture">
-                <img src="../../../assets/images/img/yjkim_portrait.jpg">
+                <img width="300px" height="300px" src="{{filePath}}{{this.instInfo.inst.file}}">
             </div>
             <div class="col-8 instructor-desc">
                 <p>

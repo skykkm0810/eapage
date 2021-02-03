@@ -1,4 +1,5 @@
 import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Agreement, INTERESTS } from '../../interface/interface';
 import { PhxChannelService } from '../../service/phx-channel.service';
@@ -12,7 +13,8 @@ import { PhxChannelService } from '../../service/phx-channel.service';
 export class JoinComponent implements OnInit {
 
   constructor(
-    private phxChannel: PhxChannelService
+    private phxChannel: PhxChannelService,
+    private router: Router,
   ) {
     phxChannel.Company.subscribe( data => {
       if( data.body.length > 0 ) {
@@ -57,6 +59,7 @@ export class JoinComponent implements OnInit {
     child: null,
     birth: '',
     interests: null,
+    type: false,
   }
 
   interests = INTERESTS;
@@ -177,6 +180,7 @@ export class JoinComponent implements OnInit {
     }
     this.reg();
     this.nextBtn(a);
+    this.router.navigate(['']);
   }
   nextBtn(b:Event){
     var mother = (b.target as HTMLElement).closest('.tabContentBox')
@@ -230,6 +234,7 @@ export class JoinComponent implements OnInit {
   reg() {
     const inter = this.interests.filter( data => data.completed == true );
     this.info.interests = inter;
+    console.log(this.info);
     this.phxChannel.send('user', this.info);
   }
 }

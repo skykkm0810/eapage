@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Environment } from 'src/app/environment/environment';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 
 @Component({
@@ -14,8 +15,8 @@ export class DetailComponent implements OnInit {
     private phxChannel: PhxChannelService
   ) {
     phxChannel.Inst.subscribe( data => {
-      console.log(data)
       this.instInfo = data;
+      console.log(this.instInfo);
     })
     phxChannel.Lecture.subscribe( data => {
       this.info = data;
@@ -33,9 +34,8 @@ export class DetailComponent implements OnInit {
           this.dday = time + '일 남음';
         }
       }
-      console.log(this.dday);
-      console.log(data)
-      phxChannel.get('inst', this.info.inst[0])
+      phxChannel.get('inst', this.info.inst)
+      console.log(this.info);
     })
   }
   
@@ -48,9 +48,25 @@ export class DetailComponent implements OnInit {
   }
   number;
   injected;
-  info;
+  info = {
+    currs: [{ date: null, dur: null, id: null, lectureId: null, stage: null, title: ''}],
+    desc: "",
+    id: null,
+    inquire: "",
+    inst: [{ id: null, name: '' }],
+    interests: [{ completed: true, lectureId: null, name: '', value: '' }],
+    limit: null,
+    mainImg: '',
+    point: null,
+    subtitle: "",
+    targets: [{ desc: '', id: null, lectureId: null, point: null }],
+    thumbnail: '',
+    title: "",
+  };
   instInfo;
   sum = 0;
   stgs = 0;
   dday = '';
+
+  filePath = Environment.filePath;
 }
