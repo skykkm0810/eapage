@@ -52,7 +52,7 @@
               <span class="need">이메일 주소</span>
               <input type="email" name="e.email" [(ngModel)]="info.email">
             </div>
-            <button mat-button>인증코드 전송</button>
+            <button mat-button (click)="send()">인증코드 전송</button>
           </div>
           <div class="mailCertifi">
             <div>

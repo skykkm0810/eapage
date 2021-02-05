@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 // import { LoginService } from 'src/app/service/login.service';
-// import { PhxChannelService } from 'src/app/service/phx-channel.service';
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { TopComponent } from '../top/top.component';
 
 @Component({
   selector: 'app-login',
@@ -11,35 +14,32 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(
+    public dialogRef: MatDialogRef<TopComponent>,
     public router : Router,
-    // private phxChannel: PhxChannelService,
-    // private login: LoginService
+    private phxChannel: PhxChannelService,
   ) {
-    // phxChannel.Access.subscribe( data => {
-    //   if ( data.body.length > 0 ) {
-    //     login.setLogin(data.body);
-    //   }
-    // })
-    // login.Log.subscribe( () => {
-    //   router.navigate(['/']);
-    // })
+    phxChannel.Access.subscribe( () => {
+      this.close();
+    })
+    phxChannel.Invalid.subscribe( () => {
+      alert( '계정정보가 틀렸습니다.' );
+      this.info.pwd = '';
+    })
   }
 
   ngOnInit(): void {
+    this.info = {
+      uname: null,
+      pwd: null,
+    }
   }
 
-  info = {
-    uname: null,
-    pwd: null,
-  }
+  info;
 
-  // access() {
-  //   this.phxChannel.get('access', this.info);
-  // }
-  // join(){
-    // this.router.navigate(['/join/']);
-  // }
-  // findAccount(){
-    // this.router.navigate(['/findAccount/']);
-  // }
+  access() {
+    this.phxChannel.get('access', this.info);
+  }
+  close() {
+    this.dialogRef.close();
+  }
 }

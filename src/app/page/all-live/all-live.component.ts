@@ -27,7 +27,6 @@ export class AllLiveComponent implements AfterViewInit {
           }
         }
         this.info.push(data);
-        console.log(data)
       })
       this.loaded = true;
     })
@@ -47,7 +46,6 @@ export class AllLiveComponent implements AfterViewInit {
     var process = document.getElementsByClassName('process');
     for(var i=0; i<process.length; i++){
       if(process[i].textContent == '종료'){
-        alert('종료있음');
         (process[i] as HTMLElement).style.color = '#2d6c6e';
         (process[i] as HTMLElement).style.borderColor = '#2d6c6e';
       }
@@ -95,7 +93,7 @@ export class AllLiveComponent implements AfterViewInit {
   ]
   filePath = Environment.filePath;
   loaded = false;
-  info = [{ currs: [{date: null, dur: null, stage: null}], subtitle: '', interests: [{value: ''}], thumbnail: [{path: ''}], limit: null, degree: null, title: '', process: ''}];
+  info = [{ currs: [{date: null, dur: null, stage: null}], subtitle: '', interests: [{value: ''}], thumbnail: '', limit: null, degree: null, title: '', process: ''}];
   
   onselect(c:any,e:Event){
     this.selectedC = c;
