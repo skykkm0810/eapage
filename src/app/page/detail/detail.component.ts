@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Environment } from 'src/app/environment/environment';
+import { AuthService } from 'src/app/service/auth.service';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 
 @Component({
@@ -12,14 +13,16 @@ export class DetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private phxChannel: PhxChannelService
+    private router: Router,
+    private phxChannel: PhxChannelService,
+    private auth: AuthService
   ) {
     phxChannel.Inst.subscribe( data => {
       this.instInfo = data;
-      console.log(this.instInfo);
     })
     phxChannel.Lecture.subscribe( data => {
       this.info = data;
+      console.log(this.info);
       this.stgs = this.info.currs.length;
       for( var i = 0; i < this.stgs; i++ ) {
         this.sum += this.info.currs[i].dur;
@@ -28,10 +31,12 @@ export class DetailComponent implements OnInit {
         let d1 = new Date(this.info.currs[0].date).getTime();
         let d2 = new Date().getTime();
         if ( d1 < d2 ) {
+          this.dday_c = false;
           this.dday = '종료';
         } else {
           let time = Math.ceil((d2 - d1) / 1000 / 60 / 60 / 24);
-          this.dday = time + '일 남음';
+          this.dday_c = true;
+          this.dday = 'D' + time;
         }
       }
       phxChannel.get('inst', this.info.inst)
@@ -46,6 +51,7 @@ export class DetailComponent implements OnInit {
     console.log(this.injected);
     this.phxChannel.get('lecture', this.injected);
   }
+  
   number;
   injected;
   info = {
@@ -53,7 +59,7 @@ export class DetailComponent implements OnInit {
     desc: "",
     id: null,
     inquire: "",
-    inst: [{ id: null, name: '' }],
+    inst: [{ id: null }],
     interests: [{ completed: true, lectureId: null, name: '', value: '' }],
     limit: null,
     mainImg: '',
@@ -63,10 +69,23 @@ export class DetailComponent implements OnInit {
     thumbnail: '',
     title: "",
   };
-  instInfo;
+  instInfo = { name: '', inst: { file: '' } };
   sum = 0;
   stgs = 0;
   dday = '';
+  dday_c = false;
 
   filePath = Environment.filePath;
+
+  apply() {
+    if ( this.auth.isAuthenticated() ) {
+      if( this.dday_c ) {
+        this.router.navigate(['enrollClass/'+this.injected.id])
+      } else {
+        alert('이미 신청 마감된 강의입니다.')
+      }
+    } else {
+      alert('먼저 로그인을 해주세요.')
+    }
+  }
 }

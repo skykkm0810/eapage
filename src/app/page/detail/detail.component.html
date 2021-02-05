@@ -110,7 +110,7 @@
                             <img src="../../../assets/images/icon2/heart.png">
                         </div>
                     </div>
-                    <div class="col-3 class-apply">
+                    <div class="col-3 class-apply" (click)="apply();">
                         수강신청
                     </div>
                 </div>
@@ -216,12 +216,12 @@
         <div class="row dot-xsm"></div>
         <div class="row" style="padding-top:50px; height:120px;">
             <div class="col-3"></div>
-            <div class="col-6 sect-topborder">{{ this.instInfo.name }}</div>
+            <div class="col-6 sect-topborder">{{ instInfo.name }}</div>
             <div class="col-3"></div>
         </div>
         <div class="row instructor-box">
             <div class="col-4 instructor-picture">
-                <img width="300px" height="300px" src="{{filePath}}{{this.instInfo.inst.file}}">
+                <img width="300px" height="300px" src="{{filePath}}{{instInfo.inst.file}}">
             </div>
             <div class="col-8 instructor-desc">
                 <p>

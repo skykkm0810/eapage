@@ -8,31 +8,31 @@
           <div class="classinfoBox">
             <div>
               <span class="block labeling">강의 이미지</span>
-              <div class="cic img"></div>
+              <div class="cic"><img class="img" src="{{filePath}}{{info.thumbnail}}" alt=""></div>
             </div>
             <div>
               <span class="block labeling">강의 제목</span>
-              <div class="cic subject bold">바쁠수록 차분하게, 마음챙김 명상</div>
+              <div class="cic subject bold">{{ info.title }}</div>
             </div>
             <div>
               <span class="block labeling">강사명</span>
-              <div class="cic teacherName">강사이름</div>
+              <div class="cic teacherName">{{ info.inst.name }}</div>
             </div>
             <div>
               <span class="block labeling">회차</span>
-              <div class="cic classRound bold">1회</div>
+              <div class="cic classRound bold">{{ info.currs.length }}회</div>
             </div>
             <div>
               <span class="block labeling">강의일정</span>
-              <div class="cic classTime">2021년 1월 25일</div>
+              <div class="cic classTime"><span *ngIf="info.currs.length > 0">{{ info.currs[0].date | date: 'Y. M. d. H시 m분' }}</span></div>
             </div>
             <div>
               <span class="block labeling">강의시간</span>
-              <div class="cic classDuration bold">90분</div>
+              <div class="cic classDuration bold">{{ info.currs[0].dur }} 분</div>
             </div>
           </div>
         </div>
-        <div class="deliveryInfo">
+        <div class="deliveryInfo" *ngIf="info.kit">
           <div class="headTag"><span class="bold inlineBlock">배송지 정보</span></div>
           <div class="deliveryInfoBox">
             <div class="destination">
@@ -82,21 +82,21 @@
           <div class="paymentBox">
             <div class="inlineBlock">
               <span>나의 보유 포인트</span>
-              <input type="text" name="pay.before" readonly>
+              <input type="text" name="pay.before" [value]="point.all" readonly>
             </div>
             <div class="inlineBlock">
               <span>차감 예정 포인트</span>
-              <input type="text" name="pay.use" style="color:red;" readonly>
+              <input type="text" name="pay.use" [value]="point.pay" style="color:red;" readonly>
             </div>
             <div class="inlineBlock">
               <span>결재 후 포인트</span>
-              <input type="text" name="pay.after" readonly>
+              <input type="text" name="pay.after"[value]="point.all - point.pay" readonly>
             </div>
           </div>
         </div>
       </div>
       <div class="btnBox">
-          <button mat-button class="bold">수강 포인트 결재</button>
+          <button mat-button class="bold" (click)="apply()">수강 포인트 결제</button>
       </div>
     </form>
   </div>
