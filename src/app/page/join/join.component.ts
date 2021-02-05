@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Agreement, INTERESTS } from '../../interface/interface';
 import { PhxChannelService } from '../../service/phx-channel.service';
+import { SocketioService } from '../../service/socketio.service';
 
 @Component({
   selector: 'app-join',
@@ -15,6 +16,7 @@ export class JoinComponent implements OnInit {
   constructor(
     private phxChannel: PhxChannelService,
     private router: Router,
+    private mailer: SocketioService,
   ) {
     phxChannel.Company.subscribe( data => {
       if( data.body.length > 0 ) {
@@ -236,5 +238,13 @@ export class JoinComponent implements OnInit {
     this.info.interests = inter;
     console.log(this.info);
     this.phxChannel.send('user', this.info);
+  }
+
+  send() {
+    const code = Math.round(Math.random()*899999) + 100000;
+    const msg = { to: this.info.email, code: code }
+    this.emailCode = code;
+    console.log(msg);
+    this.mailer.mailSend(msg);
   }
 }
