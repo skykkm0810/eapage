@@ -28,6 +28,9 @@ export class EnrollClassComponent implements OnInit {
       this.point.all = this.user.company[0].personal;
       console.log(this.point);
     })
+    phxChannel.Receipt.subscribe( () => {
+      router.navigate(['enrollList/'+this.injected])
+    })
   }
 
   ngOnInit(): void {
