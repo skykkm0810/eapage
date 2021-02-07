@@ -1,3 +1,4 @@
+<script src="./assets/js/address.js"></script>
 <div class="wrap">
   <div class="innerWrap">
     <h2>회원가입</h2>
@@ -67,7 +68,7 @@
           <div class="companyCode">
             <div>
               <span>회사코드입력</span>
-              <input type="text" name="c.code" [(ngModel)]="companyInfo.reg" required>
+              <input type="text" name="c.code" [(ngModel)]="companyInfo.code" required>
             </div>
             <button mat-button (click)="confirm()">회사 코드 확인</button>
           </div>
@@ -79,8 +80,14 @@
           </div>
           <div class="companyPart">
             <div>
+              <span>소속 / 지점</span>
+              <input type="text" name="c.spot" [(ngModel)]="info.spot">
+            </div>
+          </div>
+          <div class="companyPart">
+            <div>
               <span>부서명</span>
-              <input type="text" name="c.part" [(ngModel)]="companyInfo.part" disabled>
+              <input type="text" name="c.part" [(ngModel)]="info.part">
             </div>
           </div>
           <div class="companyRank">
@@ -117,6 +124,14 @@
                 <input type="text" name="b.branch" [(ngModel)]="info.contact" required>
               </div>
               <div>
+                <span>주소<button (click)="addr()">주소검색</button></span>
+                <input type="text" name="b.addr" [(ngModel)]="info.addr" disabled>
+              </div>
+              <div>
+                <span>상세주소</span>
+                <input type="text" name="b.subaddr" [(ngModel)]="info.subaddr" required>
+              </div>
+              <div>
                 <span>생년월일</span>
                 <input type="date" name="j.workGroup" [(ngModel)]="info.birth" required>
               </div>
@@ -129,9 +144,23 @@
                   <mat-radio-button value="여성" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
                 </mat-radio-group>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="basic">
+          <div class="basicInfo">
+            <span class="bold infoTitle">선택정보</span>
+            <div class="gridBox">
               <div>
                 <span (click)="no()">자녀유무</span>
                 <mat-radio-group [(ngModel)]="info.child" [ngModelOptions]="{standalone: true}">
+                  <mat-radio-button value="유" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
+                  <mat-radio-button value="무" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div>
+                <span (click)="no()">결혼유무</span>
+                <mat-radio-group [(ngModel)]="info.merry" [ngModelOptions]="{standalone: true}">
                   <mat-radio-button value="유" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
                   <mat-radio-button value="무" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
                 </mat-radio-group>
@@ -148,8 +177,12 @@
                 <input type="text" name="j.name" [(ngModel)]="companyInfo.name" disabled>
               </div>
               <div>
+                <span>소속 / 지점</span>
+                <input type="text" name="j.spot" [(ngModel)]="info.spot" disabled>
+              </div>
+              <div>
                 <span>부서</span>
-                <input type="text" name="j.part" [(ngModel)]="companyInfo.part" disabled>
+                <input type="text" name="j.part" [(ngModel)]="info.part" disabled>
               </div>
               <div>
                 <span>직급</span>
@@ -158,10 +191,6 @@
               <div>
                 <span>회사 이메일</span>
                 <input type="email" name="j.mail" [(ngModel)]="info.email" disabled>
-              </div>
-              <div>
-                <span>근무지역</span>
-                <input type="text" name="j.position" [(ngModel)]="info.region" required>
               </div>
             </div>
           </div>
@@ -196,4 +225,7 @@
       </div>
     </form>
   </div>
+</div>
+
+<div #daum_popup style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 </div>

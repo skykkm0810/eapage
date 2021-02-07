@@ -1,9 +1,11 @@
-import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, ɵɵresolveBody } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/service/auth.service';
 import { Agreement, INTERESTS } from '../../interface/interface';
 import { PhxChannelService } from '../../service/phx-channel.service';
 import { SocketioService } from '../../service/socketio.service';
+import { postcode } from 'src/assets/js/postcode.js';
 
 @Component({
   selector: 'app-join',
@@ -17,18 +19,23 @@ export class JoinComponent implements OnInit {
     private phxChannel: PhxChannelService,
     private router: Router,
     private mailer: SocketioService,
+    private auth: AuthService,
+    private renderer: Renderer2
   ) {
-    phxChannel.Company.subscribe( data => {
+    phxChannel.Confirm.subscribe( data => {
+      console.log(data);
       if( data.body.length > 0 ) {
         this.companyInfo = data.body[0];
         this.info.companyId = this.companyInfo.id;
       } else {
-        alert('회사코드를 정확히 입력해주세요. 예시 000-00-00000');
+        alert('회사코드를 정확히 입력해주세요.');
       }
     })
-    phxChannel.Signup.subscribe( () => {
-      console.log('success');
-      this.nextBtn(this.event3);
+    phxChannel.Signup.subscribe( data => {
+      console.log(data.body);
+      auth.setToken(data.body);
+      window.location.href = '/';
+      // this.nextBtn(this.event3);
     })
     phxChannel.Invalid.subscribe( data => {
       alert('아이디가 이미 존재합니다.')
@@ -39,23 +46,25 @@ export class JoinComponent implements OnInit {
   }
 
   agreement = Agreement;
-
+  
   subscription: Subscription;
-
+  
   companyInfo: any = {
     reg: '',
+    code: '',
     name: '',
     part: '',
   };
-
+  
   info: any = {
     name: '',
     companyId: null,
     email: '',
     gender: null,
+    addr: '',
+    subaddr: '',
     rank: '',
     region: '',
-    age: null,
     contact: '',
     pwd: '',
     child: null,
@@ -63,11 +72,14 @@ export class JoinComponent implements OnInit {
     interests: null,
     type: false,
   }
-
+  
   interests = INTERESTS;
   emailCode : any = '초기값';
   companyCode : any = '초기값';
 
+  @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
+  
+  
   allchk(e:Event){
     var thischk = e.target as HTMLElement;
     var chkshow = document.querySelectorAll('.agreeBox div .agreeHole');
@@ -253,4 +265,44 @@ export class JoinComponent implements OnInit {
   no() {
     this.info.child = '';
   }
+
+  addr() {
+    postcode( this.renderer, this.popup.nativeElement, data => {
+      console.log(data);
+      this.info.addr = `(${data.zonecode}) ${data.roadAddress}`;
+      console.log(this.info);
+    })
+    // new daum.Postcode({
+    //   oncomplete: function(data) {
+    //     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+    //     // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+    //     // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+    //     var roadAddr = data.roadAddress; // 도로명 주소 변수
+    //     var extraRoadAddr = ''; // 참고 항목 변수
+
+    //     // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+    //     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+    //     if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+    //         extraRoadAddr += data.bname;
+    //     }
+    //     // 건물명이 있고, 공동주택일 경우 추가한다.
+    //     if(data.buildingName !== '' && data.apartment === 'Y'){
+    //         extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+    //     }
+    //     // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+    //     if(extraRoadAddr !== ''){
+    //         extraRoadAddr = ' (' + extraRoadAddr + ')';
+    //     }
+    //     // console.log(roadAddr)
+    //     let el = document.getElementById("addr") as HTMLInputElement;
+    //     el.value = `(${data.zonecode}) ${data.roadAddress}`;
+    //     // this.info.addr = `(${data.zonecode}) ${data.roadAddress}`;
+    //   }
+    // }).open();
+  }
+  close() {
+    this.renderer.setStyle(this.popup.nativeElement, 'display', 'none');
+  }
 }
+

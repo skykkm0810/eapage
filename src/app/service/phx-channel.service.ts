@@ -24,6 +24,7 @@ export class PhxChannelService {
   @Output() User: EventEmitter<any> = new EventEmitter();
   @Output() Companies: EventEmitter<any> = new EventEmitter();
   @Output() Company: EventEmitter<any> = new EventEmitter();
+  @Output() Confirm: EventEmitter<any> = new EventEmitter();
   @Output() Invalid: EventEmitter<any> = new EventEmitter();
   @Output() Access: EventEmitter<any> = new EventEmitter();
   @Output() Signup: EventEmitter<any> = new EventEmitter();
@@ -123,7 +124,7 @@ export class PhxChannelService {
       this.Company.emit(payload);
     })
     this.companyChannel.on('company:confirm', payload => {
-      this.Company.emit(payload);
+      this.Confirm.emit(payload);
     })
   }
 
@@ -243,15 +244,6 @@ export class PhxChannelService {
 
   confirm(channel, message) {
     switch (channel) {
-      case 'inst':
-        this.instChannel.push("inst:del:req", {body: message});
-        break;
-      case 'lecture':
-        this.lectureChannel.push("lecture:del:req", {body: message});
-        break;
-      case 'user':
-        this.userChannel.push("user:del:req", {body: message});
-        break;
       case 'company':
         this.companyChannel.push("company:confirm:req", {body: message});
         break;
