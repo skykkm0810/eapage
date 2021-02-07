@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Environment } from 'src/app/environment/environment';
 import { AuthService } from 'src/app/service/auth.service';
@@ -9,7 +9,7 @@ import { PhxChannelService } from 'src/app/service/phx-channel.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent {
 
   constructor(
     private route: ActivatedRoute,
@@ -45,13 +45,20 @@ export class DetailComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    var number = (document.querySelector('.progress-container .right').textContent)
-    this.number = number;
-    this.injected = this.route.snapshot.params;
-    console.log(this.injected);
+    // var number = (document.querySelector('.progress-container .right').textContent)
+    // this.number = number;
+    // this.injected = this.route.snapshot.params;
+    // console.log(this.injected);
     this.phxChannel.get('lecture', this.injected);
+
+    this.categoryArrow();
   }
   
+  detail = {
+    progress:'예정', title:'바쁠수록 차분하게, 마음챙김 영상 입니다만 글자를 길게하기위해서', text:'바쁘고 복잡한 새상 속에서도 마음은 고요하게, 머리를 맑게하고싶어요 엉엉 릴렉스',
+    degree:100, classDate:'2020-02-20', hashTag1:'#스트레칭',hashTag2:'#명상',hashTag3:'#릴렉스',hashTag4:'#심리안정' , classTime:90, classRound:3,
+  }
+
   number;
   injected;
   info = {
@@ -77,6 +84,10 @@ export class DetailComponent implements OnInit {
 
   filePath = Environment.filePath;
 
+  progress(){
+
+  }
+
   apply() {
     if ( this.auth.isAuthenticated() ) {
       if( this.dday_c ) {
@@ -88,4 +99,35 @@ export class DetailComponent implements OnInit {
       alert('먼저 로그인을 해주세요.')
     }
   }
+  
+  categoryArrow(){
+    var categoryTag = document.getElementsByClassName('title-header')[0] as HTMLElement;
+    var arrow = document.querySelector('.arrow img') as HTMLElement;
+    var categoryText:any = categoryTag.textContent;
+    switch(categoryText){
+      case '인생여정': 
+        arrow.style.paddingLeft = '150px'
+        break;
+      case '사회생활': 
+        arrow.style.paddingLeft = 150+ 285 + 'px'
+        break;
+      case '힐링': 
+        arrow.style.paddingLeft = 150+ 285 + 285 +'px'
+        break;
+      case '심리': 
+        arrow.style.paddingLeft = 150+ 285 + 285 + 'px'
+        break;
+      default: 
+        break;
+    }
+
+  }
+
+  thumbnail(e:Event){
+    var image = e.target as HTMLElement;
+    var url = image.getAttribute('src');
+    var mainImg = document.querySelector('.mainpic img') as HTMLElement;
+    mainImg.setAttribute('src',url);
+  }
+  
 }

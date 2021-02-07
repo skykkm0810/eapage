@@ -42,7 +42,7 @@ img {
     color: #3F3D56;
 }
 
-.box .item .selected {
+.box .selected {
     font-weight: bold;
 }
 
@@ -54,12 +54,14 @@ img {
 
 .mainpic {
     padding-right: 10px;
-    margin-left: auto;
-    margin-right: auto;
+    margin:0 auto;
 }
-
+.mainpic img {
+    border: 0;
+}
 .thumbnail {
     padding-right: 10px;
+    padding-top: 30px ;
 }
 
 .thumbnail .item {
@@ -68,29 +70,39 @@ img {
 }
 
 .title {
-    font-family: Roboto;
+    font-family: 'nanum';
     font-style: normal;
     font-weight: bold;
 }
-
+.title-header .progress-rect {
+    display: inline-block;
+    box-sizing: border-box;
+    width:60px;
+    height:60px;
+    border:1px solid #57bead;
+    border-radius: 5px;
+    font-size: 22px;
+    line-height: 60px;
+    color:#57bead;
+}
 .title-header {
-    background-image: url("../../../assets/images/img/title-header.png");
+    /* background-image: url("../../../assets/images/img/title-header.png"); */
+    display: inline-block;
     background-size: 100px;
-    width:100px;
-    height:100px;
-
-    font-size: 24px;
+    height:85px;
+    box-sizing: border-box;
+    padding-bottom: 15px;
+    font-size: 30px;
     line-height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-
-    color: #FFFFFF;
+    border-bottom: 1px solid #c4c4c4;
 }
 
 .title-main {
-    font-size: 28px;
+    font-size: 30px;
     line-height: 35px;
     display: flex;
     justify-content: center;
@@ -102,25 +114,20 @@ img {
 
 .subtitle {
     position: relative;
-    height: 100px;
-
-    background: #66CCCC;
     border-radius: 50px; 
 }
 
 .subtitle .desc {
     width: 570px;
-    padding-left: 55px;
-    padding-top: 20px;
-    padding-right: 35px;
+    padding: 20px 35px 20px 55px;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    color: #FFFFFF;
+    border-bottom: 1px solid #c4c4c4;
+    color: #3F3D56;
 }
 
 .subtitle-rect {
@@ -130,24 +137,85 @@ img {
 
     position: absolute;
 }
-
+.dah {
+    position: relative;
+    padding-top: 20px;
+}
+.remain {
+    position: absolute;
+    left:0;
+    display: inline-block;
+    font-size: 30px;
+    font-weight: 800;
+    height:50px;
+    line-height: 50px;
+}
 .hashtag {
     padding-top: 10px;   
     padding-bottom: 10px;   
     padding-left: 45px;
-
-    font-family: Roboto;
+    width:100%;
+    font-family: 'nanum';
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 28px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    text-align: right;
 
     color: #DD5E5E;
 }
+.temper {
+    height:60px; 
+    position: relative;
+}
+.thermo {
+    position: relative;
+    display: inline-block;
+    width:365px;
+    height:60px;
+    background: url('../../../assets/images/icon/0c.png') no-repeat center center / contain;
+}
+.thermo .thermoBar {
+    position: absolute;
+    top:19px;
+    right:22px;
+    display: block;
+    width:300px;
+    height:15px;
+    background-color:#DD5E5E;
+    border-radius: 7.5px;
+}
+.temperature {
+    position: absolute;
+    right:0;
+    top:0;
+    height:60px;
+    font-size:24px ;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#DD5E5E;
+}
+.temperature .tempNum {
+    font-size: 30px;
+}
 
+.classInfoBox {
+    padding-top: 20px;
+}
+.classTitle { 
+    display: inline-block;
+    width:140px;
+    height:30px;
+    border-radius: 5px;
+    background-color: #F2A6A3;
+    color:#fff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+ }
 .class-info-grid {
     border: 1px solid #C4C4C4;
     text-align: center;

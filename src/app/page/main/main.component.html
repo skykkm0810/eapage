@@ -5,277 +5,105 @@
       <li>
         <p class="text nanum_pen">"마음치유 쉼터, 재미활력 충전소"</p>
       </li>
-      <li>
-        <p class="text"></p>
-      </li>
     </ul>
     <ul class="dotWrap">
-      <!-- <li class="dot pointer show" (click)='dotClick($event)'></li> -->
+      <li class="dot pointer show" (click)='dotClick($event)'></li>
     </ul>
   </div>
-  <section class="preopen">
-    <div class="innerWrap">
-      <h2>오픈예정 라이브 컨텐츠</h2>
-      <div class="banner">
-        <div class="pre open1">
-          <div class="openTime uppercase bold">1월 5일 PM 17:00 open</div>
-          <p class="cardTitle bold">바쁠수록 차분하게, 마음챙김 영상</p>
-          <div class="bannerImg">
-            <img src="../../../assets/images/banner/open.png" alt="배너사진" >
-          </div>
-          <div class="temp">
-            <div class="tempDynamic"></div>
-          </div>
-          <div class="bannerTexts">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-          </div>
-          <div class="goArrow pointer" [routerLink]="['detail/2']"></div>
-        </div>
-        <div class="pre open2">
-          <div class="openTime uppercase bold">1월 5일 PM 17:00 open</div>
-          <p class="cardTitle bold">바쁠수록 차분하게, 마음챙김 영상</p>
-          <div class="bannerImg">
-            <img src="../../../assets/images/banner/flower.png" alt="배너사진">
-          </div>
-          <div class="temp">
-            <div class="tempDynamic"></div>
-          </div>
-          <div class="bannerTexts">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-          </div>
-          <div class="goArrow pointer" [routerLink]="['detail/3']"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="closeSoon">
-    <h2>마감임박! 라이브 컨텐츠</h2>
-    <div class="back"></div>
+  <section class="nowlive">
+    <h2>마음도씨 라이브</h2>
+    <!-- <div class="back"></div> -->
     <div class="innerWrap">
       <div class="banner">
-        <div class="soon1">
-          <div class="openTime uppercase bold">1월 5일 THU - PM 8시 30분 (90분)</div>
-          <p class="cardTitle bold">바쁠수록 차분하게, 마음챙김 영상</p>
+        <div *ngFor ='let d of dcs'>
+          <div class="openTime uppercase bold">{{d.time}} ({{d.during}})</div>
+          <p class="cardTitle bold">{{d.title}}</p>
           <div class="bannerImg">
-            <img src="../../../assets/images/banner/yoga1.png" alt="배너사진">
+            <img src="{{d.img}}" alt="배너사진">
           </div>
           <div class="temp">
             <!-- tempDynamic 안의 "텍스트 숫자" 가 온도계 길이가 됨  -->
-            <div class="tempDynamic textHidden">80</div>
+            <div class="tempDynamic textHidden">{{d.degree}}</div>
           </div>
-          <div class="closeInfo">
-            <div class="timeRound">
-              <span class="time bold">90분</span>
-              <p class="round">
-                <span class="during bold">1</span>
-                <span class="bold">2</span>
-                <span class="bold">3</span>
-              </p>
-            </div>
+          <div class="openInfo">
+            <span class="textHidden classdate">{{d.time2}}</span>
+            <span class="remainDays"></span>
+            일 남음
             <!-- 위 tempDynamic 텍스트 숫자와 같은 값을 넣어 줄 것 -->
-            <div class="degree bold"><span class="howMuch">80</span>ºC 마음도씨</div>
+            <div class="degree bold"><span class="howMuch">{{d.degree}}</span>ºC 마음도씨</div>
           </div>
           <div class="bannerTexts">
             각종 요가자세를 이용한 힐링 프로그램
           </div>
           <div class="goArrow pointer" [routerLink]="['detail/1']"></div>
         </div>
-        <div class="soon2">
-          <div class="openTime uppercase bold">1월 5일 THU - PM 8시 30분 (90분)</div>
-          <p class="cardTitle bold">바쁠수록 차분하게, 마음챙김 영상</p>
-          <div class="bannerImg">
-            <img src="../../../assets/images/banner/yoga1.png" alt="배너사진">
-          </div>
-          <div class="temp">
-            <div class="tempDynamic textHidden">50</div>
-          </div>
-          <div class="closeInfo">
-            <div class="timeRound">
-              <span class="time bold">90분</span>
-              <p class="round">
-                <span class="during bold">1</span>
-                <span class="bold">2</span>
-                <span class="bold">3</span>
-              </p>
-            </div>
-            <div class="degree bold"><span class="howMuch">50</span>ºC 마음도씨</div>
-          </div>
-          <div class="bannerTexts">
-            각종 요가자세를 이용한 힐링 프로그램
-          </div>
-          <div class="goArrow pointer" [routerLink]="['detail/3']"></div>
-        </div>
+       
       </div>
     </div>
   </section>
+  <section class="preopen">
+    <div class="innerWrap">
+      <h2>오픈예정 라이브 컨텐츠</h2>
+      <div class="banner">
+        <div class="pre" *ngFor="let p of pre">
+          <div class="openTime uppercase bold">{{p.time}}</div>
+          <p class="cardTitle bold">{{p.title}}</p>
+          <div class="bannerImg">
+            <img src="{{p.img}}" alt="배너사진" >
+          </div>
+          
+          <div class="bannerTexts">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+          </div>
+          <div class="goArrow pointer" [routerLink]="['detail/2']"></div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
   <section class="today">
     <h2>오늘의 라이브</h2>
     <div class="innerWrap">
-      <div class="content first">
+      <div class="content" *ngFor='let t of todayLive'>
         <div class="img">
-          <div class="subject textHidden">힐링</div>
-          <div class="backImg"></div>
+          <div class="subject textHidden"><img src="{{t.tagimg}}" alt="/"></div>
+          <div class="backImg"><img src="{{t.img}}" alt="/"></div>
         </div>
-        <div class="todayClassInfo">
-          <p class="teacher">강사 <span class="name">황신혜</span></p>
-          <p class="title bold">바쁠수록 차분하게, 마음챙김 명상</p>
-          <p class="description">바쁘고 복잡한 세상 속에서도 마음은 고요하게, 머리를 맑게</p>
-          <p class="remainTime bold"><span class="day">{{remainDays}}</span>일 <span class="time">{{remainTime}}</span> 남음</p>
+        <div class="todayClassInfo" [style.background] = 't.color'>
+          <p class="teacher">강사 <span class="name">{{t.teacher}}</span></p>
+          <p class="title bold">{{t.title}}</p>
+          <p class="description">{{t.text}}</p>
+          <p class="remainTime bold">시작까지 <span class="time"></span> 남음</p>
           <div class="calendarIcon">
             <div class="unfill">
-              <p class="day">25</p>
-              <p class="uppercase month">february</p>
+              <p class="day"></p>
+              <p class="uppercase month">{{t.monthName}}</p>
             </div>
             <div class="fill">
-              <p class="year bold">2021</p>
+              <p class="year bold"></p>
             </div>
           </div>
           <div class="goArrow pointer" [routerLink]="['detail/3']"></div>
         </div>
       </div>
-      <div class="content second">
-        <div class="img">
-          <div class="subject textHidden">힐링</div>
-          <div class="backImg"></div>
-        </div>
-        <div class="todayClassInfo">
-          <p class="teacher">강사 <span class="name">황신혜</span></p>
-          <p class="title bold">바쁠수록 차분하게, 마음챙김 명상</p>
-          <p class="description">바쁘고 복잡한 세상 속에서도 마음은 고요하게, 머리를 맑게</p>
-          <p class="remainTime bold"><span class="day">{{remainDays}}</span>일 <span class="time">{{remainTime}}</span> 남음</p>
-          <div class="calendarIcon">
-            <div class="unfill">
-              <p class="day">25</p>
-              <p class="uppercase month">february</p>
-            </div>
-            <div class="fill">
-              <p class="year bold">2021</p>
-            </div>
-          </div>
-          <div class="goArrow pointer" [routerLink]="['detail/3']"></div>
-        </div>
-      </div>
+      
     </div>
   </section>
-  <section class="thisWeek">
-    <h2>마음도씨 이번주 라이브</h2>
-    <div class="back"></div>
-    <div class="innerWrap">
-      <div class="bannerWrap">
-        <div class="week content1">
-          <div class="conTitle bold">플라워 디퓨저</div>
-          <div class="conImg"></div>
-          <div class="conBottom"><span class="text">각종 가공 플라워를 이용한 힐링 프로그램</span></div>
-          <div class="goArrow pointer" [routerLink]="['detail/3']"></div>
-        </div>
-        <div class="week content2">
-          <div class="conTitle bold">플라워 디퓨저</div>
-          <div class="conImg"></div>
-          <div class="conBottom"><span class="text">각종 가공 플라워를 이용한 힐링 프로그램</span></div>
-          <div class="goArrow pointer" [routerLink]="['detail/3']"></div>
-        </div>
-        <div class="week content3">
-          <div class="conTitle bold">플라워 디퓨저</div>
-          <div class="conImg"></div>
-          <div class="conBottom"><span class="text">각종 가공 플라워를 이용한 힐링 프로그램</span></div>
-          <div class="goArrow pointer" [routerLink]="['detail/3']"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--  -->
+  
   <section class='month'>
     <div class="innerWrap">
       <h2>이달의 TOP 라이브</h2>
       <div class="contentBox">
-        <div class="leftList">
-          <ul>
-            <li class="pointer">
-              <span class="no">1</span>
-              <span class="img"></span>
+            <div class="pointer" *ngFor = 'let m of monthLive'>
+              <span class="no">{{m.number}}</span>
+              <img src="{{m.img}}" alt="/">
               <div>
-                <p class="big">꿀잠 프로젝트-솔솔</p>
-                <p class="small">생각 스위치 끄고, 쉼으로 충전하기</p>
+                <p class="big">{{m.title}}</p>
+                <p class="small">{{m.text}}</p>
               </div>
-            </li>
-            <li class="pointer">
-              <span class="no">2</span>
-              <span class="img"></span>
-              <div>
-                <p class="big">상자를 설득하는 말하기 스킬</p>
-                <p class="small">까칠한 상사를 내편으로 만드는 말습관</p>
-              </div>
-            </li>
-            <li class="pointer">
-              <span class="no">3</span>
-              <span class="img"></span>
-              <div>
-                <p class="big">이움 홈트</p>
-                <p class="small">몸과 마음의 이완과 움직임을 통한 건강관리 홈 트레이닝</p>
-              </div>
-            </li>
-            <li class="pointer">
-              <span class="no">4</span>
-              <span class="img"></span>
-              <div>
-                <p class="big">플라워 디퓨저</p>
-                <p class="small">각종 가공 플라워를 이용한 힐링 프로그램</p>
-              </div>
-            </li>
-            <li class="pointer">
-              <span class="no">5</span>
-              <span class="img"></span>
-              <div>
-                <p class="big">컬러테라피</p>
-                <p class="small">컬러로 알아보는 나의 마음여행</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="rightList">
-          <ul>
-            <li class="pointer">
-              <span class="no">1</span>
-              <span class="img"></span>
-              <div>
-                <p class="big">꿀잠 프로젝트-솔솔</p>
-                <p class="small">생각 스위치 끄고, 쉼으로 충전하기</p>
-              </div>
-            </li>
-            <li class="pointer">
-              <span class="no">2</span>
-              <span class="img"></span>
-              <div>
-                <p class="big">상자를 설득하는 말하기 스킬</p>
-                <p class="small">까칠한 상사를 내편으로 만드는 말습관</p>
-              </div>
-            </li>
-            <li class="pointer">
-              <span class="no">3</span>
-              <span class="img"></span>
-              <div>
-                <p class="big">이움 홈트</p>
-                <p class="small">몸과 마음의 이완과 움직임을 통한 건강관리 홈 트레이닝</p>
-              </div>
-            </li>
-            <li class="pointer">
-              <span class="no">4</span>
-              <span class="img"></span>
-              <div>
-                <p class="big">플라워 디퓨저</p>
-                <p class="small">각종 가공 플라워를 이용한 힐링 프로그램</p>
-              </div>
-            </li>
-            <li class="pointer">
-              <span class="no">5</span>
-              <span class="img"></span>
-              <div>
-                <p class="big">컬러테라피</p>
-                <p class="small">컬러로 알아보는 나의 마음여행</p>
-              </div>
-            </li>
-          </ul>
-        </div>
+            </div>
+            
       </div>
     </div>
   </section>

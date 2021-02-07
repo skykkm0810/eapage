@@ -32,7 +32,9 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/address.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -9,12 +9,13 @@ export const TAGS : Record<string, string> = {
     DETAIL: 'detail/:id',
     ALLLIVE: 'allLive',
     TODAYLIVE: 'todayLive',
+    MAUM: 'maum',
   } 
 
   export const INTERESTS = [
-    { name: 'merr', value: '연애결혼', completed: false },
+    { name: 'merr', value: '연애/결혼', completed: false },
     { name: 'chil', value: '자녀양육', completed: false },
-    { name: 'coup', value: '부부관계', completed: false },
+    { name: 'coup', value: '부부/가족', completed: false },
     { name: 'life', value: '인생 2막', completed: false },
     { name: 'rela', value: '대인관계', completed: false },
     { name: 'comm', value: '커뮤니케이션', completed: false },
@@ -27,6 +28,8 @@ export const TAGS : Record<string, string> = {
     { name: 'unde', value: '자기 이해', completed: false },
     { name: 'tria', value: '심리 특강', completed: false },
   ]
+
+ 
 
   export const Agreement = {
     userRule : `

@@ -152,21 +152,21 @@ export class JoinComponent implements OnInit {
     var mother = (a.target as HTMLElement).closest('.tabContentBox') as HTMLElement;
     var neccesary = mother.getElementsByClassName('neccesary');
     var inpputs = mother.getElementsByTagName('input');
-    for(var i=0; i<inpputs.length; i++){
-      if(!neccesary[0].classList.contains('clear')){
-        alert('이메일 코드 인증 확인이 필요합니다.');
-        return;
-      }
-      else if (!neccesary[0].classList.contains('clear')){
-        alert('회사 코드 인증 확인이 필요합니다.');
-        return; 
-      }
+    // for(var i=0; i<inpputs.length; i++){
+    //   if(!neccesary[0].classList.contains('clear')){
+    //     alert('이메일 코드 인증 확인이 필요합니다.');
+    //     return;
+    //   }
+    //   else if (!neccesary[0].classList.contains('clear')){
+    //     alert('회사 코드 인증 확인이 필요합니다.');
+    //     return; 
+    //   }
 
-      if(inpputs[i].value == ""){
-        alert('모든 필수항목이 채워져 있어야합니다.');
-        return;
-      }
-    }
+    //   if(inpputs[i].value == ""){
+    //     alert('모든 필수항목이 채워져 있어야합니다.');
+    //     return;
+    //   }
+    // }
     
     this.nextBtn(a);
   }
