@@ -204,7 +204,7 @@ img {
 .classInfoBox {
     padding-top: 20px;
 }
-.classTitle { 
+.classInfoBox .classTitle { 
     display: inline-block;
     width:140px;
     height:30px;
@@ -216,8 +216,37 @@ img {
     text-align: center;
     line-height: 30px;
  }
+ .classInfoBox .round {
+     color:#DD5E5E;
+     font-size: 22px;
+     padding-left: 20px;
+     line-height: 30px;
+     font-weight: bold;
+ }
+ .classTable {
+     width:100%;
+ }
+ .classTable .tableRow {
+    display: grid;
+    grid-template-columns: 70px 240px 235px;
+    column-gap: 20px;
+ }
+ .classTable .tableRow span {
+    text-align: center;
+    height:50px;
+    box-sizing: border-box;
+    padding-top: 10px;
+    font-size: 22px;
+    line-height: 40px;
+    border-bottom: 1px solid #c4c4c4;
+ }
+ .classTable .tableHeader span {
+     border-color:#F2A6A3;
+     font-weight: bold;
+ }
 .class-info-grid {
     border: 1px solid #C4C4C4;
+    border-top: 1px solid #F2A6A3;
     text-align: center;
 }
 
@@ -276,6 +305,17 @@ img {
 
     color: #DD5E5E;
 }
+.class-button {
+    padding-top: 20px;
+}
+.class-button button {
+    width:285px;
+    height:60px;
+    font-size: 26px;
+    color:#fff;
+    font-weight: bold;
+    border-radius: 0;
+}
 
 .progress-bar {
     background-color: #DD5E5E;
@@ -308,16 +348,16 @@ img {
 }
 
 .submenu .title {
-    font-family: Roboto;
+    font-family: 'nanum';
     font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
+    font-weight: bold;
+    font-size: 22x;
+    line-height: 60px;
     text-align: center;
-
+    height:60px;
     border-bottom: 1px solid #C4C4C4;
 
-    color: #606060;
+    color: #555555;
 }
 
 /* Class instruction */
@@ -368,7 +408,7 @@ img {
     border-top: 1px solid #DD5E5E;
     border-bottom: 1px solid #DD5E5E;
 
-    font-family: Roboto;
+    font-family: 'nanum';
     font-weight: bold;
     font-size: 36px;
     display: flex;
@@ -378,6 +418,19 @@ img {
     align-items: center;
 
     color: #000000;
+}
+.readyFor {
+    padding-top: 40px;
+}
+.readyFor div {
+    height: 168px;
+    box-sizing: border-box;
+    padding:60px 26px 0 26px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 30px;
+    border-right:1px solid #DD5E5E ;
 }
 
 .curriculum {
@@ -400,8 +453,8 @@ img {
     padding-right:20px;
 }
 
-/* Class introduction */
-.intro {
+/* Class foryou */
+.foryou {
     padding-top: 100px;
 }
 
@@ -507,7 +560,7 @@ img {
 }
 
 .testimonial-li {
-    padding-top: 50px;
+    padding-top: 100px;
 }
 
 .testimonial-li .entry {
@@ -551,5 +604,55 @@ img {
 }
 
 .rel-items{
+    padding-top: 100px;
+}
+/* Class introduction */
+.intro {
+    padding-top: 100px;
+}
+.introductionImg {
+    display: block;
+    box-sizing: initial;
+    padding-top: 55px;
+    width:800px;
+    height:540px;
+    margin:0 auto;
+}
+.introductionImg img {
+    width:100%;
+    height:100%;
+}
+.classpoint {
+    display: block;
+    width:1000px;
+    margin:0 auto;
+    border-bottom: 1px solid #c4c4c4;
+}
+
+.classpoint .title {
+    display: block;
+    box-sizing: initial;
+    padding-top: 18px;
+    height: 30px;
+    font-family: 'nanum';
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    color:#DD5E5E;
+}
+
+.classpoint .content {
+    display: block;
+    height: 80px;
+    line-height: 80px;
+    font-family: 'nanum';
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+
+    color: #3F3D56;
+}
+/* present */
+.presents {
     padding-top: 100px;
 }

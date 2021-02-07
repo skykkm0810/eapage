@@ -55,8 +55,27 @@ export class DetailComponent {
   }
   
   detail = {
-    progress:'예정', title:'바쁠수록 차분하게, 마음챙김 영상 입니다만 글자를 길게하기위해서', text:'바쁘고 복잡한 새상 속에서도 마음은 고요하게, 머리를 맑게하고싶어요 엉엉 릴렉스',
-    degree:100, classDate:'2020-02-20', hashTag1:'#스트레칭',hashTag2:'#명상',hashTag3:'#릴렉스',hashTag4:'#심리안정' , classTime:90, classRound:3,
+    progress:'예정', 
+    title:'바쁠수록 차분하게, 마음챙김 영상 입니다만 글자를 길게하기위해서', 
+    text:'바쁘고 복잡한 새상 속에서도 마음은 고요하게, 머리를 맑게하고싶어요 엉엉 릴렉스',
+    degree:100, 
+    hashTag1:'#스트레칭',
+    hashTag2:'#명상',
+    hashTag3:'#릴렉스',
+    hashTag4:'#심리안정' , 
+    classRound:{
+      totalR:3,
+      classTime:90,
+      classDate: [
+        {numRo:'1 회기',date:'2월 22일 수요일', time:'20:00 ~ 21:30'},
+        {numRo:'2 회기',date:'2월 23일 목요일', time:'20:00 ~ 21:30'},
+        {numRo:'3 회기',date:'2월 24일 금요일', time:'20:00 ~ 21:30'},
+      ]
+    },
+    minStudent:10,
+    maxStudent:30,
+    point:120000,
+    
   }
 
   number;
