@@ -21,10 +21,13 @@ export class PhxChannelService {
   @Output() Lectures: EventEmitter<any> = new EventEmitter();
   @Output() Lecture: EventEmitter<any> = new EventEmitter();
   @Output() Users: EventEmitter<any> = new EventEmitter();
+  @Output() User: EventEmitter<any> = new EventEmitter();
   @Output() Companies: EventEmitter<any> = new EventEmitter();
   @Output() Company: EventEmitter<any> = new EventEmitter();
   @Output() Invalid: EventEmitter<any> = new EventEmitter();
   @Output() Access: EventEmitter<any> = new EventEmitter();
+  @Output() Signup: EventEmitter<any> = new EventEmitter();
+  @Output() Receipt: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     this.init_channel();
@@ -91,8 +94,16 @@ export class PhxChannelService {
       this.Invalid.emit(payload.body);
     })
     this.userChannel.on('user:access', payload => {
-      console.log(payload);
       this.Access.emit(payload.body);
+    })
+    this.userChannel.on('user:signup', payload => {
+      this.Signup.emit(payload);
+    })
+    this.userChannel.on('user:detail', payload => {
+      this.User.emit(payload);
+    })
+    this.userChannel.on('receipt:add', payload => {
+      this.Receipt.emit(payload);
     })
 
     this.companyChannel = this.socket.channel('eap:company', {});
@@ -129,6 +140,9 @@ export class PhxChannelService {
         break;
       case 'company':
         this.companyChannel.push("company:add:req", {body: message});
+        break;
+      case 'apply':
+        this.userChannel.push('receipt:add:req', {body: message});
         break;
             
       default:

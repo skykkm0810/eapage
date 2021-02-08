@@ -61,7 +61,7 @@ export class AllLiveComponent implements AfterViewInit {
       subtitle: [
         {subname:'연애ㆍ결혼'},
         {subname:'자녀양육'},
-        {subname:'부부관계'},
+        {subname:'부부 / 가족관계'},
         {subname:'인생 2막'},
         ]
     },

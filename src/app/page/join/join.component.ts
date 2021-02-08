@@ -26,8 +26,9 @@ export class JoinComponent implements OnInit {
         alert('회사코드를 정확히 입력해주세요. 예시 000-00-00000');
       }
     })
-    this.subscription = phxChannel.Users.subscribe( () => {
+    phxChannel.Signup.subscribe( () => {
       console.log('success');
+      this.nextBtn(this.event3);
     })
     phxChannel.Invalid.subscribe( data => {
       alert('아이디가 이미 존재합니다.')
@@ -35,7 +36,6 @@ export class JoinComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription.unsubscribe();
   }
 
   agreement = Agreement;
@@ -65,8 +65,8 @@ export class JoinComponent implements OnInit {
   }
 
   interests = INTERESTS;
-  emailCode : any = 123456;
-  companyCode : any = 123456;
+  emailCode : any = '초기값';
+  companyCode : any = '초기값';
 
   allchk(e:Event){
     var thischk = e.target as HTMLElement;
@@ -152,26 +152,28 @@ export class JoinComponent implements OnInit {
     var mother = (a.target as HTMLElement).closest('.tabContentBox') as HTMLElement;
     var neccesary = mother.getElementsByClassName('neccesary');
     var inpputs = mother.getElementsByTagName('input');
-    for(var i=0; i<inpputs.length; i++){
-      if(!neccesary[0].classList.contains('clear')){
-        alert('이메일 코드 인증 확인이 필요합니다.');
-        return;
-      }
-      else if (!neccesary[0].classList.contains('clear')){
-        alert('회사 코드 인증 확인이 필요합니다.');
-        return; 
-      }
+    // for(var i=0; i<inpputs.length; i++){
+    //   if(!neccesary[0].classList.contains('clear')){
+    //     alert('이메일 코드 인증 확인이 필요합니다.');
+    //     return;
+    //   }
+    //   else if (!neccesary[0].classList.contains('clear')){
+    //     alert('회사 코드 인증 확인이 필요합니다.');
+    //     return; 
+    //   }
 
-      if(inpputs[i].value == ""){
-        alert('모든 필수항목이 채워져 있어야합니다.');
-        return;
-      }
-    }
+    //   if(inpputs[i].value == ""){
+    //     alert('모든 필수항목이 채워져 있어야합니다.');
+    //     return;
+    //   }
+    // }
     
     this.nextBtn(a);
   }
 
+  event3: any;
   beforeNext3(a:Event){
+    this.event3 = a;
     var mother = (a.target as HTMLElement).closest('.tabContentBox') as HTMLElement;
     var neccesary = mother.getElementsByTagName('input');
     for(var i=0; i<neccesary.length; i++){
@@ -182,7 +184,6 @@ export class JoinComponent implements OnInit {
     }
     this.reg();
     this.nextBtn(a);
-    this.router.navigate(['']);
   }
   nextBtn(b:Event){
     var mother = (b.target as HTMLElement).closest('.tabContentBox')
@@ -246,5 +247,10 @@ export class JoinComponent implements OnInit {
     this.emailCode = code;
     console.log(msg);
     this.mailer.mailSend(msg);
+    alert('메일을 확인해주세요');
+  }
+
+  no() {
+    this.info.child = '';
   }
 }

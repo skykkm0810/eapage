@@ -15,10 +15,15 @@
     position: relative;
 }
 .bigList li.clicked::after {
-    content: "▲";
+    content:'';
+    display: block;
+    width:25px;
+    height:20px;
+    background: url(../../../assets/images/icon/arrow_category.png) no-repeat center center / contain;
     position: absolute;
-    bottom:-25px;
+    bottom:-23px;
     left:45px;
+    color:#DD5E5E;
 }
 .bigList li .img {
     vertical-align: middle;

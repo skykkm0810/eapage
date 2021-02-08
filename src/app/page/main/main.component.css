@@ -39,17 +39,178 @@
 .dotWrap .dot {
     display: inline-block;
     margin:0 10px;
-    width:10px;
-    height:10px;
+    width:15px;
+    height:15px;
     border-radius: 100%;
     background-color: rgba(150,150,150,0.5);
 }
 .dotWrap .show {
-    background-color: #dd5e5e;
+    background-color: #F2A6A3;
 }
-/* preopen */
+
+/* 마음도씨 라이브 */
+.nowlive {
+    width:100%;
+    position: relative;
+    overflow: hidden;
+}
+.nowlive h2 {
+    font-size: 30px;
+    text-align: center;
+    width:350px;
+    line-height: 100px;
+    height:100px;
+}
+
+.nowlive h2 {
+    font-size: 30px;
+    text-align: center;
+    width:350px;
+    height:100px;
+    line-height: 100px;
+    margin:0 auto;
+    color:#3F3D56;
+    font-weight: bold;
+    font-family: 'nanum';
+}
+
+.nowlive .banner {
+    width:400%;
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    column-gap: 30px;
+    padding: 54px 0 37px;
+}
+.nowlive .banner > div {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    position: relative;
+    padding:23px 43px 27px 42px;
+    background-color: #fff;
+}
+.nowlive .banner .openTime {
+    font-size: 26px;
+    width:450px;
+    height:60px;
+    line-height: 60px;
+    color:#fff;
+    background-color: #3F3D56;
+    text-align: center;
+    border-radius: 30px;
+    position: absolute;
+    top:-28px;
+    left:calc(50% - 225px);
+}
+.nowlive .banner .cardTitle {
+    margin:0!important;
+    width:100%;
+    height:100px;
+    box-sizing: border-box;
+    padding-top: 25px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 30px;
+}
+.nowlive .banner .bannerImg {
+    width:100%;
+    height:375px;
+}
+.nowlive .banner .bannerImg img {
+    width:100%;
+    height:100%;
+}
+.nowlive .banner .temp {
+    position: absolute;
+    width:570px;
+    height:90px;
+    background: url(../../../assets/images/icon/other.png) no-repeat center center / contain;
+    left:calc(50% - 285px);
+    top:450px;
+}
+.nowlive .tempDynamic {
+    position: absolute;
+    width:450px;
+    height:22px;
+    left:76px;
+    top:29px;
+    background-color: #DD5E5E;
+    border-radius: 30px;
+}
+.nowlive .openInfo {
+    position: absolute;
+    left:0;
+    padding-left: 88px;
+    padding-right:30px;
+    width:100%;
+    top:540px;
+    font-size: 35px;
+    font-weight: bold;
+    color:#DD5E5E;
+    box-sizing: border-box;
+}
+.nowlive .openInfo .classdate {
+    display: inline-block;
+}
+.nowlive .openInfo .timeRound { display: inline-block;}
+.nowlive .openInfo .time {
+    display: inline-block;
+    text-align: center;
+    font-size: 22px;
+    line-height:35px;
+    width:80px;
+    height:35px;
+    border-radius: 20px;
+    background-color: #DD5E5E;
+    color:#fff;
+    margin-right:30px;
+    vertical-align: middle;
+
+}
+.nowlive .openInfo .round {display: inline-block;}
+.nowlive .openInfo .round span { 
+    display: inline-block;
+    border-radius: 100%;
+    width:35px;
+    height:35px;
+    color:#fff;
+    font-size:22px ;
+    background-color: #ffdddd;
+    margin-right: 10px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 35px;
+}
+.nowlive .openInfo .round .during{
+    background-color: #DD5E5E;
+}
+.nowlive .openInfo .degree {
+    float:right;
+    font-size: 24px;
+    color:#dd5e5e;
+    padding-right: 4px;
+}
+.nowlive .openInfo .degree .howMuch{
+    font-size: 35px;
+}
+.nowlive .banner .bannerTexts {
+    width: 420px;
+    height:200px;
+    box-sizing: border-box;
+    padding-top: 110px;
+    font-size: 22px;
+}
+.nowlive .banner .goArrow {
+    position: absolute;
+    right:0;
+    bottom:0;
+    width:100px;
+    height:100px;
+    background: url(../../../assets/images/button/arrowBtn.png);   
+}
+/* 오픈예정 */
 .preopen {
     width:100%;
+    overflow: hidden;
 }
 
 .preopen h2 {
@@ -59,13 +220,17 @@
     height:100px;
     line-height: 100px;
     margin:0 auto;
+    color: #3F3D56;
+    font-weight: bold;
+    font-family: 'nanum';
 }
 
 .preopen .banner {
+    width:400%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(8,1fr);
     column-gap: 30px;
-    padding: 54px 0 26px;
+    padding: 54px 0 37px;
 }
 .preopen .banner > div {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -87,9 +252,12 @@
     left:calc(50% - 225px);
 }
 .preopen .banner .cardTitle {
+    margin:0!important;
     width:100%;
-    height:80px;
-    line-height: 80px;
+    height:100px;
+    box-sizing: border-box;
+    padding-top: 25px;
+    line-height: 30px;
     text-align: center;
     font-size: 30px;
 }
@@ -120,8 +288,10 @@
 }
 .preopen .banner .bannerTexts {
     width: 420px;
-    height:90px;
-    margin-top: 50px;
+    height:120px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    font-size: 22px;
 }
 .preopen .banner .goArrow {
     position: absolute;
@@ -131,187 +301,20 @@
     height:100px;
     background: url(../../../assets/images/button/arrowBtn.png);   
 }
-/*  마감임박 */
-.closeSoon {
-    width:100%;
-    position: relative;
-}
-.closeSoon h2 {
-    font-size: 30px;
-    text-align: center;
-    width:350px;
-    line-height: 100px;
-    height:100px;
-}
-.closeSoon .back { 
-    width:100%;
-    height:436px;
-    position: absolute;
-    background-color: #ffeeee;
-    top:283px;
-}
-/* .closeSoon .center {
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    top:-5px;
-    z-index: 1;
-    width:30px;
-    height:10px;
-    background-color: #DD5E5E;
-} */
-.closeSoon .bannerWrap {
-    padding-top: 48px;
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 30px;
-}
-.closeSoon h2 {
-    font-size: 30px;
-    text-align: center;
-    width:350px;
-    height:100px;
-    line-height: 100px;
-    margin:0 auto;
-}
-
-.closeSoon .banner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 30px;
-    padding: 54px 0 37px;
-}
-.closeSoon .banner > div {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 50px;
-    position: relative;
-    padding:23px 43px 27px 42px;
-    background-color: #fff;
-}
-.closeSoon .banner .openTime {
-    font-size: 26px;
-    width:450px;
-    height:60px;
-    line-height: 60px;
-    color:#fff;
-    background-color: #3F3D56;
-    text-align: center;
-    border-radius: 30px;
-    position: absolute;
-    top:-28px;
-    left:calc(50% - 225px);
-}
-.closeSoon .banner .cardTitle {
-    width:100%;
-    height:80px;
-    line-height: 80px;
-    text-align: center;
-    font-size: 30px;
-}
-.closeSoon .banner .bannerImg {
-    width:100%;
-    height:375px;
-}
-.closeSoon .banner .bannerImg img {
-    width:100%;
-    height:100%;
-}
-.closeSoon .banner .temp {
-    position: absolute;
-    width:570px;
-    height:90px;
-    background: url(../../../assets/images/icon/other.png) no-repeat center center / contain;
-    left:calc(50% - 285px);
-    top:450px;
-}
-.closeSoon .tempDynamic {
-    position: absolute;
-    width:450px;
-    height:22px;
-    left:76px;
-    top:29px;
-    background-color: #DD5E5E;
-    border-radius: 30px;
-}
-.closeSoon .closeInfo {
-    position: absolute;
-    left:0;
-    padding-left: 88px;
-    padding-right:30px;
-    width:100%;
-    top:540px;
-    box-sizing: border-box;
-}
-.closeSoon .closeInfo > div {
-    display: inline-block;
-}
-.closeSoon .closeInfo .timeRound { display: inline-block;}
-.closeSoon .closeInfo .time {
-    display: inline-block;
-    text-align: center;
-    font-size: 22px;
-    line-height:35px;
-    width:80px;
-    height:35px;
-    border-radius: 20px;
-    background-color: #DD5E5E;
-    color:#fff;
-    margin-right:30px;
-    vertical-align: middle;
-
-}
-.closeSoon .closeInfo .round {display: inline-block;}
-.closeSoon .closeInfo .round span { 
-    display: inline-block;
-    border-radius: 100%;
-    width:35px;
-    height:35px;
-    color:#fff;
-    font-size:22px ;
-    background-color: #ffdddd;
-    margin-right: 10px;
-    vertical-align: middle;
-    text-align: center;
-    line-height: 35px;
-}
-.closeSoon .closeInfo .round .during{
-    background-color: #DD5E5E;
-}
-.closeSoon .closeInfo .degree {
-    float:right;
-    font-size: 24px;
-    color:#dd5e5e;
-    padding-right: 4px;
-}
-.closeSoon .closeInfo .degree .howMuch{
-    font-size: 35px;
-}
-.closeSoon .banner .bannerTexts {
-    width: 420px;
-    height:50px;
-    margin-top: 150px;
-}
-.closeSoon .banner .goArrow {
-    position: absolute;
-    right:0;
-    bottom:0;
-    width:100px;
-    height:100px;
-    background: url(../../../assets/images/button/arrowBtn.png);   
-}
-
 /* 오늘의 컨텐츠 */
 .today {
     position: relative;
 }
 .today h2 {
-    width:350px;
-    height:100px;
-    margin:0 auto;
     font-size: 30px;
     text-align: center;
+    width:350px;
+    height:100px;
     line-height: 100px;
+    margin:0 auto;
+    color: #3F3D56;
+    font-weight: bold;
+    font-family: 'nanum';
 }
 .today .innerWrap {
     padding-top:14px;
@@ -320,9 +323,7 @@
     height:300px;
     display: grid;
     grid-template-columns: 450px 750px;
-}
-.today .second {
-    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .today .content .img{
     position: relative;
@@ -336,17 +337,15 @@
     top:0;
 }
 
-.today .first .img .subject {
-    background-image: url(../../../assets/images/icon/subject1.png);
-}
-.today .second .img .subject {
-    background-image: url(../../../assets/images/icon/subject2.png);
-}
-
 .today .content .img .backImg {
     width:100%;
     height:100%;
     background: no-repeat center center / cover;
+}
+.today .content .img .backImg img {
+    display: inline-block;
+    width:100%;
+    height:300px;
 }
 .today .first .img .backImg {
     background-image: url(../../../assets/images/banner/list1.png);
@@ -357,7 +356,7 @@
 
 .today .content .todayClassInfo {
     box-sizing: border-box;
-    padding:31.97px 0 31.97px 50px;
+    padding:30px 0 30px 50px;
     position: relative;
 }
 .today .first .todayClassInfo {
@@ -366,7 +365,7 @@
 .today .second .todayClassInfo {
     background-color: #B08FCC;
 }
-.today .content .todayClassInfo > p { width:450px; padding-bottom: 25px;}
+.today .content .todayClassInfo > p { width:450px; padding-bottom: 30px; margin:0!important;}
 .today .content .todayClassInfo .teacher {font-size: 20px; color:#fff; }
 .today .content .todayClassInfo .title {font-size: 30px; color:#3f3d56;}
 .today .content .todayClassInfo .description {font-size: 25px; color:#fff; line-height: 25px;}
@@ -425,80 +424,7 @@
     bottom:0;
     right:0;
 }
-/* this week */
-.thisWeek {
-    position: relative;
-}
-.thisWeek h2 {
-    margin:0 auto;
-    font-size: 30px;
-    text-align: center;
-    width:350px;
-    height:100px;
-    text-align: center;
-    line-height: 100px;
-}
-.thisWeek .back { 
-    width:100%;
-    height:250px;
-    position: absolute;
-    top:170px;
-    background-color: #ffeeee;
-    z-index: -1;
-}
-.thisWeek .bannerWrap {
-    padding-top:54px;
-    padding-bottom: 15px;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    column-gap: 75px;
-}
-.thisWeek .bannerWrap .week {
-    height:320px;
-    position: relative;
-}
-.thisWeek .bannerWrap .week .conTitle { 
-    height:60px;
-    background-color:#DD5E5E; 
-    font-size:26px;
-    color:#fff; 
-    border-radius: 30px 30px 0 0; 
-    text-align: center;
-    line-height: 60px;
-}
-.thisWeek .bannerWrap .week .conBottom { 
-    width:100%;
-    height:60px;
-    background-color:#DD5E5E; 
-    font-size:18px;
-    color:#fff; 
-    border-radius:0 0 30px 30px; 
-    box-sizing: border-box;
-    padding-top: 10px;
-    padding-left: 35px;
-}
-.thisWeek .bannerWrap .week .conBottom .text {
-    display: inline-block;
-    line-height: 20px;
-    width:250px;
-}
-.thisWeek .bannerWrap .week .conImg {
-    width:100%;
-    height:200px;
-    background: no-repeat center center / cover;
-}
-.thisWeek .bannerWrap .content1 .conImg { background-image: url(../../../assets/images/banner/week1.png); }
-.thisWeek .bannerWrap .content2 .conImg { background-image: url(../../../assets/images/banner/week2.png); }
-.thisWeek .bannerWrap .content3 .conImg { background-image: url(../../../assets/images/banner/week3.png); }
 
-.thisWeek .bannerWrap .week .goArrow { 
-    width:60px;
-    height:60px;
-    background: url(../../../assets/images/button/arrowBtn60.png) no-repeat center center / cover;
-    position: absolute;
-    bottom:0;
-    right:0;
-}
 
 /* 이달의 컨텐츠 */
 .month {
@@ -513,64 +439,53 @@
     text-align: center;
 }
 .month .contentBox {
-    padding-top: 20px;
-    height:650px;
+    height:640px;
     display: grid;
     border: 1px solid #DD5E5E;
-    grid-template-columns: 1fr 1fr;
-    padding:20px;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(5,1fr);
+    column-gap: 30px;
+    row-gap: 20px;
+    padding:30px 35px;
     box-sizing: border-box;
 }
-.month ul {
-    height:100%;
+.month .contentBox > div  {
+    width:100%;
+    display: grid;
+    grid-template-columns: 65px 150px 350px;
 }
-.month li {
-    height:100px;
-    padding:10px 0;
-}
-.month li .no {
+
+.month .contentBox div .no {
     display: inline-block;
-    vertical-align: middle;
     width:65px;
-    height:100%;
     font-size: 24px;
     color:#DD5E5E;
     text-align: center;
-    line-height: 107px;
+    line-height: 100px;
 }
-.month li .img {
+.month .contentBox div p {
+    margin:0!important;
+}
+.month .contentBox div img {
     display: inline-block;
-    vertical-align: middle;
-    width:152px;
-    height:100%;
+    vertical-align: top;
+    width:150px;
+    height:100px;
 } 
-.month li div{
-    display: inline-block;
-    text-indent: 30px;
+.month .contentBox div > div{
     height:100%;
+    display: inline-block;
+    box-sizing: border-box;
+    padding-left:30px ;
 }
-.month li .big {
+.month .contentBox div .big {
     color:#DD5E5E;
     font-weight: bold;
     font-size: 18px;
     height:40%;
 }
-.month li .small{
+.month .contentBox div .small{
+    font-size: 18px;
+    box-sizing: border-box;
     height:60%;
-    font-size: 12px;
-}
-.month ul li:nth-child(1) .img {
-    background: url(../../../assets/images/banner/list1.png) no-repeat center center / cover;
-}
-.month ul li:nth-child(2) .img {
-    background: url(../../../assets/images/banner/list2.png) no-repeat center center / cover;
-}
-.month ul li:nth-child(3) .img {
-    background: url(../../../assets/images/banner/list3.png) no-repeat center center / cover;
-}
-.month ul li:nth-child(4) .img {
-    background: url(../../../assets/images/banner/list4.png) no-repeat center center / cover;
-}
-.month ul li:nth-child(5) .img {
-    background: url(../../../assets/images/banner/list5.png) no-repeat center center / cover;
 }

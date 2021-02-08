@@ -25,6 +25,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^9.0.2",
     "bootstrap": "^4.6.0",
+    "ng2-daum-address": "^1.1.4",
     "phoenix": "^1.5.7",
     "rxjs": "~6.6.0",
     "socket.io": "^3.1.1",
