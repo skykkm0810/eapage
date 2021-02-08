@@ -3,7 +3,7 @@ export const TAGS : Record<string, string> = {
     LOGIN: 'login',
     JOIN: 'join',
     ENROLLCLASS: 'enrollClass/:id',
-    ENROLLLIST: 'enrollList',
+    ENROLLLIST: 'enrollList/:id',
     MYPAGE: 'mypage/:id',
     MYPAGETEACHER: 'mypageTeacher/:id',
     DETAIL: 'detail/:id',

@@ -22,13 +22,18 @@ export class PhxChannelService {
   @Output() Lecture: EventEmitter<any> = new EventEmitter();
   @Output() Users: EventEmitter<any> = new EventEmitter();
   @Output() User: EventEmitter<any> = new EventEmitter();
+  @Output() UserUp: EventEmitter<any> = new EventEmitter();
   @Output() Companies: EventEmitter<any> = new EventEmitter();
   @Output() Company: EventEmitter<any> = new EventEmitter();
   @Output() Confirm: EventEmitter<any> = new EventEmitter();
   @Output() Invalid: EventEmitter<any> = new EventEmitter();
   @Output() Access: EventEmitter<any> = new EventEmitter();
   @Output() Signup: EventEmitter<any> = new EventEmitter();
+  @Output() Receipts: EventEmitter<any> = new EventEmitter();
   @Output() Receipt: EventEmitter<any> = new EventEmitter();
+  @Output() ReceiptD: EventEmitter<any> = new EventEmitter();
+  @Output() ReceiptI: EventEmitter<any> = new EventEmitter();
+  @Output() UserReceipt: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     this.init_channel();
@@ -103,8 +108,23 @@ export class PhxChannelService {
     this.userChannel.on('user:detail', payload => {
       this.User.emit(payload);
     })
+    this.userChannel.on('user:up', payload => {
+      this.UserUp.emit(payload);
+    })
     this.userChannel.on('receipt:add', payload => {
       this.Receipt.emit(payload);
+    })
+    this.userChannel.on('receipt:invalid', payload => {
+      this.ReceiptI.emit(payload);
+    })
+    this.userChannel.on('receipt:list', payload => {
+      this.Receipts.emit(payload);
+    })
+    this.userChannel.on('receipt:detail', payload => {
+      this.ReceiptD.emit(payload);
+    })
+    this.userChannel.on('user:receipt:list', payload => {
+      this.UserReceipt.emit(payload);
     })
 
     this.companyChannel = this.socket.channel('eap:company', {});
@@ -166,6 +186,12 @@ export class PhxChannelService {
       case 'user':
         this.userChannel.push("user:list:req", {body: message});
         break;
+      case 'receipt':
+        this.userChannel.push("receipt:list:req", {body: message});
+        break;
+      case 'receipts':
+        this.userChannel.push("user:receipt:list:req", {body: message});
+        break;
       case 'company':
         this.companyChannel.push("company:list:req", {body: message});
         break;
@@ -186,6 +212,9 @@ export class PhxChannelService {
         break;
       case 'user':
         this.userChannel.push("user:detail:req", {body: message});
+        break;
+      case 'receipt':
+        this.userChannel.push("receipt:detail:req", {body: message});
         break;
       case 'company':
         this.companyChannel.push("company:detail:req", {body: message});

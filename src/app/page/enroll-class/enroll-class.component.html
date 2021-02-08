@@ -8,7 +8,7 @@
           <div class="classinfoBox">
             <div>
               <span class="block labeling">강의 이미지</span>
-              <div class="cic"><img class="img" src="{{filePath}}{{info.thumbnail}}" alt=""></div>
+              <div class="cic"><img class="img" src="{{filePath}}{{info.thumbnail1}}" alt=""></div>
             </div>
             <div>
               <span class="block labeling">강의 제목</span>
@@ -37,42 +37,42 @@
           <div class="deliveryInfoBox">
             <div class="destination">
               <span class="inlineBlock">배송지선택</span>
-              <mat-radio-group class="inlineBlock">
-                <mat-radio-button value="1">기본 배송지</mat-radio-button>
-                <mat-radio-button value="2">신규 배송지</mat-radio-button>
+              <mat-radio-group class="inlineBlock" name="delivery" [(ngModel)]="delivery">
+                <mat-radio-button value="1" (click)="deli(1)">기본 배송지</mat-radio-button>
+                <mat-radio-button value="2" (click)="deli(2)">신규 배송지</mat-radio-button>
               </mat-radio-group>
             </div>
             <div class="destinationInfo">
               <div class="inlineBlock" style="width:380px; margin-right:30px;">
                 <span class="need">수령인</span>
-                <input type="text" name="di.name" required>
+                <input type="text" name="di.name" [(ngModel)]="receipt.name" required>
               </div>
               <div class="inlineBlock" style="width:380px; margin-right:30px;">
                 <span class="need">연락처</span>
-                <input type="text" name="di.contact" required>
+                <input type="text" name="di.contact" [(ngModel)]="receipt.contact" required>
               </div>
               <div class="inlineBlock" style="width:380px;">
                 <span>추가연락처</span>
-                <input type="text" name="di.contactAdd">
+                <input type="text" name="di.contactAdd" [(ngModel)]="receipt.subcontact">
               </div>
               <div class="inlineBlock" style="width:585px; margin-right:30px;">
                 <span class="need">주소</span>
-                <input type="text" name="di.address" required>
+                <input type="text" name="di.address" [(ngModel)]="receipt.addr" required>
               </div>
               <div class="inlineBlock" style="width:585px;">
                 <span class="need">상세주소</span>
-                <input type="text" name="di.addressDetail">
+                <input type="text" name="di.addressDetail" [(ngModel)]="receipt.subaddr">
               </div>
               <div class="inlineBlock" style="width:585px; margin-right:30px;">
                 <span>요청사항</span>
-                <select name="di_request" (change)="fakeoption($event)">
-                  <option value="0" selected>요청 사항을 직접 입력합니다.</option>
-                  <option value="1">배송 전 미리 연락바랍니다.</option>
-                  <option value="2">부재시 경비실에 맡겨 주세요.</option>
-                  <option value="3">부재시 전화 주시거나 문자 남겨주세요.</option>
-                  <option value="4">문 앞에 두고 가주세요.</option>
+                <select name="di_request" (click)="fakeoption()" [(ngModel)]="msg">
+                  <option value="" selected>요청 사항을 직접 입력합니다.</option>
+                  <option value="배송 전 미리 연락바랍니다.">배송 전 미리 연락바랍니다.</option>
+                  <option value="부재시 경비실에 맡겨 주세요.">부재시 경비실에 맡겨 주세요.</option>
+                  <option value="부재시 전화 주시거나 문자 남겨주세요.">부재시 전화 주시거나 문자 남겨주세요.</option>
+                  <option value="문 앞에 두고 가주세요.">문 앞에 두고 가주세요.</option>
                 </select>
-                <input type="text" name="di_request0" class="fakeoption" placeholder="요청 사항을 직접 입력합니다.">
+                <input *ngIf="msg == ''" type="text" name="di_request0" class="fakeoption" placeholder="요청 사항을 직접 입력합니다." [(ngModel)]="receipt.note">
               </div>
             </div>
           </div>

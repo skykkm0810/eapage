@@ -28,6 +28,7 @@ export class AllLiveComponent implements AfterViewInit {
         }
         this.info.push(data);
       })
+      console.log(this.info);
       this.loaded = true;
     })
   }
@@ -93,7 +94,7 @@ export class AllLiveComponent implements AfterViewInit {
   ]
   filePath = Environment.filePath;
   loaded = false;
-  info = [{ currs: [{date: null, dur: null, stage: null}], subtitle: '', interests: [{value: ''}], thumbnail: '', limit: null, degree: null, title: '', process: ''}];
+  info = [{ currs: [{date: null, dur: null, stage: null}], subtitle: '', interests: [{value: ''}], thumbnail1: '', limit: null, degree: null, title: '', process: ''}];
   
   onselect(c:any,e:Event){
     this.selectedC = c;
