@@ -13,6 +13,8 @@ import {DetailComponent} from './page/detail/detail.component';
 import {AllLiveComponent} from './page/all-live/all-live.component';
 import {TodayLiveComponent} from './page/today-live/today-live.component';
 import {MaumdociComponent} from './page/maumdoci/maumdoci.component';
+import {PreopenComponent} from './page/preopen/preopen.component';
+import {JoinTeacherComponent} from './page/join-teacher/join-teacher.component';
 const routes: Routes = [
   { path: TAGS.LOGIN, component: LoginComponent },
   { path: TAGS.MAIN, component: MainComponent },
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: TAGS.ALLLIVE, component: AllLiveComponent },
   { path: TAGS.TODAYLIVE, component: TodayLiveComponent },
   { path: TAGS.MAUM, component: MaumdociComponent },
+  { path: TAGS.PREOPEN, component: PreopenComponent },
+  { path: TAGS.JOINTEACHER, component: JoinTeacherComponent },
 ];
 
 @NgModule({

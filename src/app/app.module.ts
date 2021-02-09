@@ -58,6 +58,8 @@ import { TodayLiveComponent } from './page/today-live/today-live.component';
 import { AddressComponent } from './modal/address/address.component';
 import { PersonalInformationComponent } from './modal/personal-information/personal-information.component';
 import { UsageRuleComponent } from './modal/usage-rule/usage-rule.component';
+import { PreopenComponent } from './page/preopen/preopen.component';
+import { JoinTeacherComponent } from './page/join-teacher/join-teacher.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { UsageRuleComponent } from './modal/usage-rule/usage-rule.component';
     TodayLiveComponent,
     AddressComponent,
     PersonalInformationComponent,
-    UsageRuleComponent
+    UsageRuleComponent,
+    PreopenComponent,
+    JoinTeacherComponent
   ],
   imports: [
     BrowserModule,

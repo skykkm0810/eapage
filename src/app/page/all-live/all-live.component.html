@@ -25,32 +25,28 @@
                 </select> -->
             </h3>
             <div class="liveListGrid">
-                <div class="live" *ngFor="let l of info">
-                    <!-- <div class="textHidden small"><span *ngFor="let e of l.interests">{{e.value}}</span></div> -->
-                    <span class="inlineBlock process">{{l.process}}</span>
-                    <p class="inlineBlock cardTitle bold" style=" white-space: nowrap;">{{l.title}}</p>
-                    <div class="bannerImg">
-                      <img src="{{filePath}}{{l.thumbnail1}}" alt="배너사진">
-                    </div>
-                    <div class="temp">
-                      <div class="tempDynamic textHidden">{{l.degree}}</div>
-                    </div>
-                    <div class="closeInfo">
-                      <div class="timeRound">
-                        <span class="time bold"><span *ngIf="l.currs.length > 0">{{l.currs[0].dur}}</span>분</span>
-                        <p class="round">
-                          <span class="during bold">1</span>
-                          <span class="bold">2</span>
-                          <span class="bold">3</span>
-                        </p>
-                      </div>
-                      <div class="degree bold"><span class="howMuch">{{l.limit}}</span>ºC 마음도씨</div>
-                    </div>
-                    <div class="bannerTexts">
-                      {{l.subtitle}}
-                    </div>
-                    <div class="goArrow pointer" (click)="detail(l)"></div>
+              <div *ngFor='let r of info' class="designedBox">
+                <div class="process">{{r.process}}</div>
+                <!-- 프로세스 'OPEN 예정' 필요  -->
+                <div class="classcategory hidden" [style.background]='color'><span class="inlineBlock textHidden maincategory">인생여정</span><span class="subcategory">인생 2막</span></div>
+                <div class="company" *ngIf='r.company'>{{r.company}}</div>
+                <!-- 서브 카테고리 마다 색이 들어가야함  메인 카테고리 , 서브 카테고리 필요-->
+                <div class="itemHeader">{{r.title}}</div>
+                <div class="itemImg"><img src="../../../assets/images/banner/flower.png" alt="/"></div>
+                <!-- 섬네일을 못불러와서 임의로 넣음  -->
+                <div class='degreeBox'>
+                  <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}"
+                      class="thermoBar textHidden">{{r.degree}}</span></span>
+                      <!-- 온도 더미 -->
+                  <span class="remainDate">{{r.remain}}일 남음</span>
+                  <!-- 남는 날짜 계산을 우짜지.. -->
+                  <span class="degrees">{{r.degree}} ºC 마음도씨</span>
                 </div>
+                <div class="smallText">
+                  <span>{{r.subtitle}}</span>
+                </div>
+                <span class="goDetail inlineBlock pointer"></span>
+              </div>
             </div>
         </div>
     </div>
