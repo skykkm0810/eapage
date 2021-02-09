@@ -176,12 +176,8 @@
               <input type="file" name="teacher_profile" hidden (change)="showPicture($event)">
             </label>
             <div class="gridBox">
+              
               <div>
-                <span>결혼유무</span>
-                <mat-radio-group>
-                  <mat-radio-button value="1" name="marriage" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
-                  <mat-radio-button value="2" name="marriage" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
-                </mat-radio-group>
                 <span class="need">이름</span>
                 <input type="text" name="myt.name" required>
               </div>
@@ -202,11 +198,19 @@
                 <span class="need">연락처</span>
                 <input type="text" name="myt.contact" required>
               </div>
+              <div></div>
               <div>
                 <span class="need">성별</span>
                 <mat-radio-group>
                   <mat-radio-button value="1" name="sex" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
                   <mat-radio-button value="2" name="sex" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div>
+                <span>결혼유무</span>
+                <mat-radio-group>
+                  <mat-radio-button value="1" name="marriage" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
+                  <mat-radio-button value="2" name="marriage" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
                 </mat-radio-group>
               </div>
               <div>
@@ -302,7 +306,7 @@
           <div class="billInfo">
             <span class="bold infoTitle">결 재</span>
             <div class="billKinds">
-              <span class="need">계산서 유형</span>
+              <span class="need" style="height:60px;">계산서 유형</span>
               <mat-radio-group>
                 <mat-radio-button value="1" name="bill" class="bold">&nbsp;&nbsp; 계산서(비과세) </mat-radio-button>
                 <mat-radio-button value="2" name="bill" class="bold">&nbsp;&nbsp; 사업소득 </mat-radio-button>

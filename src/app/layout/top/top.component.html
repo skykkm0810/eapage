@@ -77,7 +77,13 @@
             </div>
           </div>
         </li>
-        <li class="pointer search textHidden" (click)= "modal()">검색하기</li>
+        <li class="pointer search textHidden">검색하기
+          <div class="searchBox hidden">
+            <span class="closeBtn"></span>
+            <input type="text" name='mainSearch' class="searchInput" placeholder="검색어를 입력하세요">
+            <span class="searchBtn"></span>
+          </div>
+        </li>
         <li class="pointer mypage textHidden" *ngIf="sign" (click)="mypage()">마이페이지</li>
       </ul>
     </div>

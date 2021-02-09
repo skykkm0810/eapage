@@ -28,7 +28,7 @@
               <div *ngFor='let r of info' class="designedBox">
                 <div class="process">{{r.process}}</div>
                 <!-- 프로세스 'OPEN 예정' 필요  -->
-                <div class="classcategory hidden" [style.background]='color'><span class="inlineBlock textHidden maincategory">인생여정</span><span class="subcategory">인생 2막</span></div>
+                <div class="classcategory hidden" [style.background]='color'><span class="subcategory">{{r.interests}}</span></div>
                 <div class="company" *ngIf='r.company'>{{r.company}}</div>
                 <!-- 서브 카테고리 마다 색이 들어가야함  메인 카테고리 , 서브 카테고리 필요-->
                 <div class="itemHeader">{{r.title}}</div>

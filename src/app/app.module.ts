@@ -60,6 +60,7 @@ import { PersonalInformationComponent } from './modal/personal-information/perso
 import { UsageRuleComponent } from './modal/usage-rule/usage-rule.component';
 import { PreopenComponent } from './page/preopen/preopen.component';
 import { JoinTeacherComponent } from './page/join-teacher/join-teacher.component';
+import { ReadyComponent } from './page/ready/ready.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { JoinTeacherComponent } from './page/join-teacher/join-teacher.component
     PersonalInformationComponent,
     UsageRuleComponent,
     PreopenComponent,
-    JoinTeacherComponent
+    JoinTeacherComponent,
+    ReadyComponent
   ],
   imports: [
     BrowserModule,
