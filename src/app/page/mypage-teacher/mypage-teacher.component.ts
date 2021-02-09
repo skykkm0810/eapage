@@ -256,5 +256,10 @@ export class MypageTeacherComponent implements OnInit {
   showadd(obj){
     const dialogRef = this.dialog.open(AddressComponent);
   }
-  
+  // nochild() {
+  //   this.info.child = '';
+  // }
+  // nomerry(){
+  //   this.info.merry = '';
+  // }
 }

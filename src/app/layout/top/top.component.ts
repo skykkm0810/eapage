@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog} from '@angular/material/dialog';
+import { ReadyComponent} from '../../page/ready/ready.component';
 import { MaumdociComponent} from '../../page/maumdoci/maumdoci.component';
 import { LoginComponent} from '../login/login.component';
 import { AuthService } from '../../service/auth.service';
@@ -54,7 +55,7 @@ export class TopComponent implements OnInit {
     this.router.navigate(['mypage/' + this.info.id]);
   }
   modal(){
-    const dialogRef = this.dialog.open(MaumdociComponent);
+    const dialogRef = this.dialog.open(ReadyComponent);
   }
   signin(){
     const dialogRef2 = this.sign_in.open(LoginComponent);

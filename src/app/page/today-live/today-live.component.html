@@ -18,7 +18,7 @@
         </div>
         <div class="showLives">
             <h3 class="show_title bold">{{title}} 
-                <span class="inlineBlock bold">&nbsp; {{today}}</span>
+                <span class="inlineBlock bold">&nbsp; {{today| date:'yyyy-MM-dd'}}</span>
                 <!-- <select class="form-select">
                     <option selected>전체</option>
                     <option value="진행">진행</option>
@@ -29,9 +29,8 @@
               <div *ngFor='let r of info' class="designedBox">
                 <div class="process">{{r.process}}</div>
                 <!-- 프로세스 'OPEN 예정' 필요  -->
-                <div class="classcategory hidden" [style.background]='color'><span class="inlineBlock textHidden maincategory">인생여정</span><span class="subcategory">인생 2막</span></div>
+                <div class="classcategory hidden" [style.background]='color'><span class="subcategory">{{r.interests}}</span></div>
                 <div class="company" *ngIf='r.company'>{{r.company}}</div>
-                <!-- 서브 카테고리 마다 색이 들어가야함  메인 카테고리 , 서브 카테고리 필요-->
                 <div class="itemHeader">{{r.title}}</div>
                 <div class="itemImg"><img src="../../../assets/images/banner/flower.png" alt="/"></div>
                 <!-- 섬네일을 못불러와서 임의로 넣음  -->

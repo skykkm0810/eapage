@@ -107,24 +107,15 @@ export class AllLiveComponent implements AfterViewInit {
      remain:'',
      company:'',
     }];
-  onselect(c:any,e:Event){
-    this.selectedC = c;
-    var thisList = (e.target as HTMLElement).closest('li');
-    var bigList = document.querySelectorAll('.bigList li');
-    var lives = document.querySelectorAll('.designedBox');
-    for(var i=0; i<bigList.length; i++){
-      bigList[i].classList.remove('clicked')
-    }
-    thisList.classList.add('clicked')
-    this.title = thisList.textContent
-    for(var i=0; i<lives.length; i++){
-      (lives[i] as HTMLElement).style.display='none';
-      if(lives[i].getElementsByClassName('maincategory')[0].textContent == thisList.textContent){
-      (lives[i] as HTMLElement).style.display='block';
+    onselect(c:any,e:Event){
+      this.selectedC = c;
+      var thisList = (e.target as HTMLElement).closest('li');
+      var bigList = document.querySelectorAll('.bigList li');
+      for(var i=0; i<bigList.length; i++){
+        bigList[i].classList.remove('clicked')
       }
-      // lives[i].getElementsByClassName('small')[0];
+      thisList.classList.add('clicked')
     }
-  }
   filter(e:Event){
     var subList = (e.target as HTMLElement);
     var lives = document.querySelectorAll('.designedBox');

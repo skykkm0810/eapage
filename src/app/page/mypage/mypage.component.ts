@@ -203,4 +203,10 @@ export class MypageComponent implements OnInit {
     el.completed = !el.completed;
     console.log(el);
   }
+  nochild() {
+    this.info.child = '';
+  }
+  nomerry(){
+    this.info.merry = '';
+  }
 }

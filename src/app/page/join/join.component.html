@@ -154,14 +154,14 @@
             <span class="bold infoTitle">선택정보</span>
             <div class="gridBox">
               <div>
-                <span (click)="no()">자녀유무</span>
+                <span class="checkFalse" (click)="nochild()">자녀유무</span>
                 <mat-radio-group [(ngModel)]="info.child" [ngModelOptions]="{standalone: true}">
                   <mat-radio-button value="유" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
                   <mat-radio-button value="무" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
                 </mat-radio-group>
               </div>
               <div>
-                <span (click)="no()">결혼유무</span>
+                <span class="checkFalse" (click)="nomerry()">결혼유무</span>
                 <mat-radio-group [(ngModel)]="info.merry" [ngModelOptions]="{standalone: true}">
                   <mat-radio-button value="유" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
                   <mat-radio-button value="무" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
