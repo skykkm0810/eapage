@@ -77,15 +77,26 @@
             </div>
           </div>
         </li>
-        <li class="pointer search textHidden">검색하기
-          <div class="searchBox hidden">
-            <span class="closeBtn"></span>
-            <input type="text" name='mainSearch' class="searchInput" placeholder="검색어를 입력하세요">
-            <span class="searchBtn"></span>
-          </div>
-        </li>
+        <li class="pointer search textHidden" (click)="searchBox()">검색하기</li>
         <li class="pointer mypage textHidden" *ngIf="sign" (click)="mypage()">마이페이지</li>
       </ul>
     </div>
+  </div>
+</div>
+<div class="searchBox hidden">
+  <span class="closeBtn pointer" (click)='closeBox()'></span>
+  <div class="inputBox">
+    <input type="text" name='mainSearch' class="searchInput" placeholder="검색어를 입력하세요">
+    <span class="searchButton pointer"></span>
+  </div>
+</div>
+<div class="menuBox">
+  <div class="boxHeader">
+    <span class="closeBtn pointer" (click)='closeBox()'></span>
+    <ul class="headerList">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
   </div>
 </div>

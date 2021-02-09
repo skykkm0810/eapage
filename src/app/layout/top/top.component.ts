@@ -32,7 +32,7 @@ export class TopComponent implements OnInit {
 
   sign = false;
   info;
-
+  display = 'none';
   sign_check() {
     if (!this.auth.isAuthenticated()) {
       this.sign = false;
@@ -62,5 +62,13 @@ export class TopComponent implements OnInit {
   }
   signout() {
     this.auth.signout();
+  }
+  searchBox(){
+    var box = document.getElementsByClassName('searchBox')[0] as HTMLElement;
+    box.style.display = 'block';
+  }
+  closeBox(){
+    var box = document.getElementsByClassName('searchBox')[0] as HTMLElement;
+    box.style.display = 'none';
   }
 }
