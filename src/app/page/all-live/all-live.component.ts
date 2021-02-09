@@ -60,9 +60,9 @@ export class AllLiveComponent implements AfterViewInit {
     { title:'인생여정',
       image: '../../../assets/images/icon/pink/category1.png',
       subtitle: [
-        {subname:'연애ㆍ결혼'},
+        {subname:'연애결혼'},
         {subname:'자녀양육'},
-        {subname:'부부 / 가족관계'},
+        {subname:'부부/가족관계'},
         {subname:'인생 2막'},
         ]
     },
@@ -78,17 +78,17 @@ export class AllLiveComponent implements AfterViewInit {
     { title:'힐링',
       image: '../../../assets/images/icon/pink/category3.png',
       subtitle: [
-        {subname:'명상ㆍ요가'},
+        {subname:'명상요가'},
         {subname:'몸마음건강'},
-        {subname:'예술치유'},
-        {subname:'힐링DIY'},
+        {subname:'예술 치유'},
+        {subname:'힐링 DIY'},
         ]
     },
     { title:'심리',
       image: '../../../assets/images/icon/pink/category4.png',
       subtitle: [
-        {subname:'자기이해'},
-        {subname:'심리특강'},
+        {subname:'자기 이해'},
+        {subname:'심리 특강'},
         ]
     },
   ]

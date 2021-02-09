@@ -27,6 +27,7 @@ export class EnrollClassComponent implements OnInit {
     })
     phxChannel.User.subscribe( data => {
       this.user = data;
+      this.receipt.companyId = this.user.company.id;
       this.point.all = this.user.company.personal;
       console.log(this.user);
     })
@@ -54,7 +55,7 @@ export class EnrollClassComponent implements OnInit {
   filePath = Environment.filePath;
   injected;
   user = {
-    company: { personal: 0 },
+    company: { personal: 0, id: 0 },
     addr: '',
     subaddr: '',
     name: '',
@@ -88,6 +89,7 @@ export class EnrollClassComponent implements OnInit {
     subcontact: '',
     note: '',
     payment: 0,
+    companyId: 0,
   }
   msg = '';
 

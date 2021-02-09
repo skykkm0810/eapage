@@ -19,6 +19,7 @@ export class PhxChannelService {
   @Output() Insts: EventEmitter<any> = new EventEmitter();
   @Output() Inst: EventEmitter<any> = new EventEmitter();
   @Output() Lectures: EventEmitter<any> = new EventEmitter();
+  @Output() LecturesToday: EventEmitter<any> = new EventEmitter();
   @Output() Lecture: EventEmitter<any> = new EventEmitter();
   @Output() Users: EventEmitter<any> = new EventEmitter();
   @Output() User: EventEmitter<any> = new EventEmitter();
@@ -79,6 +80,9 @@ export class PhxChannelService {
 
     this.lectureChannel.on('lecture:list', payload => {
       this.Lectures.emit(payload.body);
+    })
+    this.lectureChannel.on('lecture:today:list', payload => {
+      this.LecturesToday.emit(payload);
     })
     this.lectureChannel.on('lecture:detail', payload => {
       this.Lecture.emit(payload);
@@ -191,6 +195,9 @@ export class PhxChannelService {
       case 'lecture':
         this.lectureChannel.push("lecture:list:req", {body: message});
         break;
+      case 'lecture:today':
+        this.lectureChannel.push("lecture:today:list:req", {body: message});
+        break;
       // case 'review':
       //   this.lectureChannel.push("review:list:req", {body: message});
       //   break;
@@ -200,7 +207,7 @@ export class PhxChannelService {
       case 'receipt':
         this.userChannel.push("receipt:list:req", {body: message});
         break;
-      case 'receipts':
+      case 'user:receipt':
         this.userChannel.push("user:receipt:list:req", {body: message});
         break;
       case 'company':

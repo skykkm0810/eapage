@@ -14,32 +14,33 @@ export class TodayLiveComponent implements AfterViewInit {
     private phxChannel: PhxChannelService,
     private router: Router
   ) {
-    phxChannel.Lectures.subscribe( data => {
+    phxChannel.LecturesToday.subscribe( data => {
       this.info = [];
-      data.forEach( data => {
+      console.log(data.body);
+      data.body.forEach( el => {
         let time = new Date().getTime();
-        if( data.currs.length > 0 ) {
-          let datatime = new Date(data.currs[0].date).getTime();
+        if( el.currs.length > 0 ) {
+          let datatime = new Date(el.currs[0].date).getTime();
           if( datatime > time ){
-            data.process = '예정';
+            el.process = '예정';
           } else {
-            data.process = '종료';
+            el.process = '종료';
           }
         }
         // 온도
-        data.degree = Math.floor(data.receipts.length/data.least * 100);
+        el.degree = Math.floor(el.receipts.length/el.least * 100);
         // 남은 날짜
-        var liveTime = new Date(Date.parse(data.created)).getTime()/1000;
+        var liveTime = new Date(Date.parse(el.created)).getTime()/1000;
         var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
         if (Number(calTime) >= 0) {
           let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
-          data.remain = days
+          el.remain = days
         }
         else{
-          data.remain = '0'
+          el.remain = '0'
         }
         
-        this.info.push(data);
+        this.info.push(el);
       })
       console.log(this.info);
       this.loaded = true;
@@ -47,10 +48,7 @@ export class TodayLiveComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.phxChannel.gets('lecture', '');
-
-
-    
+    this.phxChannel.gets('lecture:today', '');
   }
   color:'#000'
   title = '전체보기';

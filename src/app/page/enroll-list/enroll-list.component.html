@@ -26,22 +26,21 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let l of lectList">
-                <td rowspan="l.curr.length" class="ft-22 c-pink">
-                  {{ l.applied }}
-                  <!-- {{ l.applied | date: 'YYYY-MM-dd' }} -->
+              <tr>
+                <td class="ft-22 c-pink">
+                  {{ info.date | date: 'Y-M-d' }}<br>
+                  {{ info.date | date: 'HH:mm'}}
                 </td>
-                <td rowspan="l.curr.length">
-                  <img src="assets/images/banner/{{ l.file[0].path }}" alt="">
+                <td>
+                  <img src="{{filePath}}{{info.lecture.thumbnail1}}" alt="">
                 </td>
                 <td colspan="4">
-                  <p class="ft-bold ft-22" style="text-align: left; padding: 20px 20px;">{{ l.title }}</p>
-                  <div class="tdgCtnr" *ngFor="let c of l.curr">
-                    <p class="subtitle ft-16">{{ c.number }}. {{ c.title }}</p>
-                    <p class="ft-22 ft-bold">{{ c.number }}회차</p>
-                    <p class="ft-16">{{ c.datetime }}<br>{{ c.datetime }}</p>
-                    <!-- <p class="ft-16">{{ c.datetime | date: 'YY년 MM월 dd일'}}<br>{{ c.datetime | date: 'HH시 mm분'}}</p> -->
-                    <p class="ft-22 ft-bold">{{ c.runtime }}</p>
+                  <p class="ft-bold ft-22" style="text-align: left; padding: 20px 20px;">{{ info.lecture.title }}</p>
+                  <div class="tdgCtnr" *ngFor="let c of info.lecture.currs">
+                    <p class="subtitle ft-16">{{ c.stage }}. {{ c.title }}</p>
+                    <p class="ft-22 ft-bold">{{ c.stage }}회차</p>
+                    <p class="ft-16"><span *ngIf="c.date != null">{{ c.date | date: 'M월 d일' }}<br>{{ c.date | date: 'HH:mm' }}</span></p>
+                    <p class="ft-22 ft-bold">{{ c.dur }}분</p>
                   </div>
                 </td>
               </tr>
@@ -55,17 +54,17 @@
         <div class="paymentBox">
           <div class="inlineBlock">
             <span>차감 포인트</span>
-            <input type="text" name="pay.use" style="color:red;" readonly value="500">
+            <input type="text" name="pay.use" style="color:red;" [(ngModel)]="point.pay" readonly>
           </div>
           <div class="inlineBlock">
             <span>나의 보유 포인트</span>
-            <input type="text" name="pay.after" readonly value="500">
+            <input type="text" name="pay.after" readonly [(ngModel)]="point.res">
           </div>
         </div>
       </div>
     </div>
     <div class="btnBox">
-      <button mat-button class="bold">수강 확인</button>
+      <button mat-button class="bold" (click)="go()">수강 확인</button>
     </div>
   </div>
 </div>
