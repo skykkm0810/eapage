@@ -1,5 +1,6 @@
 import { Component, OnInit , AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
 
 @Component({
   selector: 'app-main',
@@ -9,8 +10,17 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnDestroy, AfterViewInit {
 
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private phxChannel: PhxChannelService,
+  ) {
+    phxChannel.LecturesToday.subscribe( data => {
+      console.log(data.body);
+    })
+    phxChannel.Lectures.subscribe( data => {
+      console.log(data);
+    })
+
+  }
   ngAfterViewInit(): void {
     var dot = document.getElementsByClassName('dot');
     var dotWrap = document.getElementsByClassName('dotWrap')[0] as HTMLElement;
@@ -36,6 +46,10 @@ export class MainComponent implements OnDestroy, AfterViewInit {
 
     this.remainDate();
     this.autoSlide = setInterval(()=>{this.slideLeft()},5000)
+
+    this.phxChannel.gets('lecture:today', '');
+    this.phxChannel.gets('lecture', '');
+
   }
 
   ngOnDestroy(): void {

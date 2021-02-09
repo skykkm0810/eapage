@@ -22,24 +22,24 @@ export class JoinComponent implements OnInit {
     private auth: AuthService,
     private renderer: Renderer2
   ) {
-    // phxChannel.Confirm.subscribe( data => {
-    //   console.log(data);
-    //   if( data.body.length > 0 ) {
-    //     this.companyInfo = data.body[0];
-    //     this.info.companyId = this.companyInfo.id;
-    //   } else {
-    //     alert('회사코드를 정확히 입력해주세요.');
-    //   }
-    // })
-    // phxChannel.Signup.subscribe( data => {
-    //   console.log(data.body);
-    //   auth.setToken(data.body);
-    //   window.location.href = '/';
-    //   // this.nextBtn(this.event3);
-    // })
-    // phxChannel.Invalid.subscribe( data => {
-    //   alert('아이디가 이미 존재합니다.')
-    // })
+    phxChannel.Confirm.subscribe( data => {
+      console.log(data);
+      if( data.body.length > 0 ) {
+        this.companyInfo = data.body[0];
+        this.info.companyId = this.companyInfo.id;
+      } else {
+        alert('회사코드를 정확히 입력해주세요.');
+      }
+    })
+    phxChannel.Signup.subscribe( data => {
+      console.log(data.body);
+      auth.setToken(data.body);
+      window.location.href = '/';
+      // this.nextBtn(this.event3);
+    })
+    phxChannel.Invalid.subscribe( data => {
+      alert('아이디가 이미 존재합니다.')
+    })
   }
 
   ngOnInit(): void {

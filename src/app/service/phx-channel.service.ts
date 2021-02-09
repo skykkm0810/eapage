@@ -198,9 +198,6 @@ export class PhxChannelService {
       case 'lecture:today':
         this.lectureChannel.push("lecture:today:list:req", {body: message});
         break;
-      // case 'review':
-      //   this.lectureChannel.push("review:list:req", {body: message});
-      //   break;
       case 'user':
         this.userChannel.push("user:list:req", {body: message});
         break;
