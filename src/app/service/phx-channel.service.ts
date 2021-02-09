@@ -200,7 +200,7 @@ export class PhxChannelService {
       case 'receipt':
         this.userChannel.push("receipt:list:req", {body: message});
         break;
-      case 'receipts':
+      case 'user:receipt':
         this.userChannel.push("user:receipt:list:req", {body: message});
         break;
       case 'company':
