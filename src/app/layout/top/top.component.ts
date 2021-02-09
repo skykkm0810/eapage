@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog} from '@angular/material/dialog';
 import { ReadyComponent} from '../../page/ready/ready.component';
@@ -14,7 +14,7 @@ import { AuthGuard } from '../../service/auth.guard';
   templateUrl: './top.component.html',
   styleUrls: ['./top.component.css']
 })
-export class TopComponent implements OnInit {
+export class TopComponent implements AfterViewInit{
 
   constructor(
     private router: Router,
@@ -32,7 +32,9 @@ export class TopComponent implements OnInit {
   ngOnInit(): void {
     this.sign_check();
   }
-
+  ngAfterViewInit():void{
+    this.boxPosition();
+  }
   sign = false;
   info;
   display = 'none';
@@ -83,5 +85,28 @@ export class TopComponent implements OnInit {
     var box2 = document.getElementsByClassName('menuBox')[0] as HTMLElement;
     box1.style.display = 'none';
     box2.style.display = 'block';
+  }
+  allFind(e:Event){
+    var tag = e.target as HTMLElement;
+    if(tag.classList.contains('searchButton')){
+      var value = (document.getElementsByClassName('searchInput')[0] as HTMLInputElement).value;
+      document.location.href = 'allLive/search/'+value;
+    }
+    else {
+      var value = tag.textContent;
+      document.location.href = 'allLive';
+
+    }
+  }
+  boxPosition(){
+    var menu = document.getElementsByClassName('menu')[0] as HTMLElement;
+    var menuBox = document.getElementsByClassName('menuBox')[0] as HTMLElement;
+    var menuPos = menu.getBoundingClientRect().x;
+    var search = document.getElementsByClassName('search')[0] as HTMLElement;
+    var searchBox = document.getElementsByClassName('searchBox')[0] as HTMLElement;
+    var searchPos = search.getBoundingClientRect().x;
+
+    menuBox.style.left = menuPos - 940 + 60 +'px';
+    searchBox.style.left = searchPos - 790 + 60 +'px';
   }
 }

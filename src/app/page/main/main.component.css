@@ -18,9 +18,11 @@
 /* common */
 .slideWrap {
     width:100%;
+    margin:0 auto;
     height:400px;
     overflow: hidden;
     position: relative;
+    max-width: 1920px;
 }
 .slideWrap .slideBody {
     width:400%;
@@ -33,10 +35,13 @@
     position: relative;
 }
 .slideWrap .slideBody li:nth-child(1){
-    background: url(../../../assets/images/banner/slider1.png) no-repeat center center / cover;
+    background: url(../../../assets/images/banner/BANNER_slide1.png) no-repeat center center / cover;
 }
 .slideWrap .slideBody li:nth-child(2){
-    background: url(../../../assets/images/banner/slider2.png) no-repeat center center / cover;
+    background: url(../../../assets/images/banner/BANNER_slide2.png) no-repeat center center / cover;
+}
+.slideWrap .slideBody li:nth-child(3){
+    background: url(../../../assets/images/banner/BANNER_slide3.png) no-repeat center center / cover;
 }
 .slideWrap .slideBody li .text {
     display: inline-block;
@@ -52,7 +57,8 @@
     position:absolute;
     width:auto;
     height:auto;
-    bottom:10px;
+    bottom:5px;
+    margin: 0!important;
 }
 .dotWrap .dot {
     display: inline-block;
@@ -153,6 +159,7 @@
     top:29px;
     background-color: #DD5E5E;
     border-radius: 30px;
+    max-width: 450px;
 }
 .nowlive .openInfo {
     position: absolute;

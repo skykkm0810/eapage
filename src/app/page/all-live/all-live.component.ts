@@ -2,7 +2,7 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Environment } from 'src/app/environment/environment';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
-
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-all-live',
   templateUrl: './all-live.component.html',
@@ -12,11 +12,19 @@ export class AllLiveComponent implements AfterViewInit {
 
   constructor(
     private phxChannel: PhxChannelService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     phxChannel.Lectures.subscribe( data => {
       this.info = [];
-      data.forEach( data => {
+      let filtered;
+      if( this.search.text ) {
+        filtered = data.filter( data => data.title.includes(this.search.text))
+      } else {
+        filtered = data;
+      }
+      console.log(filtered);
+      filtered.forEach( data => {
         let time = new Date().getTime();
         if( data.currs.length > 0 ) {
           let datatime = new Date(data.currs[0].date).getTime();
@@ -48,10 +56,12 @@ export class AllLiveComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.phxChannel.gets('lecture', '');
-
+    this.search = this.route.snapshot.params;
+    console.log(this.search)
 
     
   }
+  search;
   color:'#000'
   title = '전체보기';
   selectedC : any;

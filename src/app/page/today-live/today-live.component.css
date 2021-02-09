@@ -264,6 +264,9 @@
     position: absolute;
     top:19px;
     left:52px;
+    background-color: #DD5E5E;
+    border-radius: 10px;
+    max-width: 300px;
 }
 .designedBox .remainDate {
     position: absolute;

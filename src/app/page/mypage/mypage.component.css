@@ -21,6 +21,17 @@
   top:5.5px;
   background: url(../../../assets/images/icon/white/chk.png) no-repeat center center / cover;
 }
+.checkFalse::after {
+  content: '체크해제';
+  cursor:pointer;
+  font-size: 12px;
+  margin-left: 10px;
+  color:#ccc;
+}   
+.checkFalse:hover::after {
+  text-decoration: underline;
+  color:#666;
+}
 /* --------------------------------------------------- */
 .wrap { padding-bottom: 50px;}
 .innerWrap {

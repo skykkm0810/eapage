@@ -8,6 +8,7 @@ export const TAGS : Record<string, string> = {
     MYPAGETEACHER: 'mypageTeacher/:id',
     DETAIL: 'detail/:id',
     ALLLIVE: 'allLive',
+    ALLLIVE2: 'allLive/search/:text',
     TODAYLIVE: 'todayLive',
     MAUM: 'maum',
     PREOPEN: 'preopen',
