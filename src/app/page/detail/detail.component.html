@@ -69,16 +69,29 @@
         <div class="row dah">
           <div class="remain"><span class="remainDate"></span>일 남음</div>
           <div class="hashtag">
-            {{detail.hashTag1}}&nbsp;&nbsp;{{detail.hashTag2}}&nbsp;&nbsp;{{detail.hashTag3}}&nbsp;&nbsp;{{detail.hashTag4}}
+            <span *ngFor='let h of detail.hashTag'>&nbsp;&nbsp;{{h.tag}}</span>
           </div>
         </div>
         <div class="row temper">
-          <div class="thermo"><span class="thermoBar"></span></div>
+          <div class="thermo"><span class="thermoBar textHidden" [ngStyle]="{'width.px': detail.degree*3}">{{detail.degree}}</span></div>
           <div class="temperature"><span class="tempNum">{{detail.degree}} </span> ºC 마음도씨</div>
         </div>
         <div class="row classInfoBox">
-            <div class="classTitle">클래스일정</div>
-            <div class="round"><span class="rtime">{{detail.classTime}}</span>분&nbsp;<span class="rnum">{{detail.classRound}}</span>회기</div>
+          <div class="classTitle">클래스일정</div>
+          <div class="round"><span class="rtime">{{detail.classRound.classTime}}</span>분&nbsp;<span
+              class="rnum">{{detail.classRound.totalR}}</span>회기</div>
+          <div class="classTable">
+            <div class="tableHeader tableRow">
+              <span class="inlineBlock">회기</span>
+              <span class="inlineBlock">날짜</span>
+              <span class="inlineBlock">시간</span>
+            </div>
+            <div class="tableData tableRow" *ngFor='let c of detail.classRound.classDate'>
+              <span class="inlineBlock">{{c.numRo}}</span>
+              <span class="inlineBlock">{{c.date}}</span>
+              <span class="inlineBlock">{{c.time}}</span>
+            </div>
+          </div>
         </div>
         <!-- <div class="row hashtag">#스트레칭  #명상  #릴렉스  #심리안정</div> -->
         <!-- <div class="row">
@@ -103,26 +116,30 @@
           <div class="progress-bar" role="progressbar" style="width: 83%" aria-valuenow="83" aria-valuemin="0"
             aria-valuemax="100"></div>
         </div> -->
+
         <div class="row submit-grid">
           <div class="col-3 class-info-grid">
-            <div class="title">수강인원</div>
-            <div class="content">~{{ info.limit }}명</div>
-          </div>
-          <div class="col-3 class-info-grid">
-            <div class="title">교구 유무</div>
-            <div class="content">
+            <div class="title">교구</div>
+            <div class="content pointer">
               <img src="../../../assets/images/icon2/present.png">
             </div>
           </div>
           <div class="col-3 class-info-grid">
-            <div class="title">찜하기</div>
-            <div class="content pointer like">
-              <img src="../../../assets/images/icon2/heart.png">
-            </div>
+            <div class="title">최소인원</div>
+            <div class="content">{{ detail.minStudent }}명</div>
           </div>
-          <div class="col-3 class-apply" (click)="apply();">
-            수강신청
+          <div class="col-3 class-info-grid">
+            <div class="title">최대인원</div>
+            <div class="content">{{ detail.maxStudent }}명</div>
           </div>
+          <div class="col-3 class-info-grid">
+            <div class="title">Point</div>
+            <div class="content">{{detail.pointMoney}}</div>
+          </div>
+        </div>
+        <div class="row class-button">
+          <button mat-button style="background-color: #c4c4c4;">찜하기</button>
+          <button mat-button style="background-color: #3F3D56;" (click)="apply()">수강하기</button>
         </div>
       </div>
     </div>
@@ -139,60 +156,21 @@
     </div>
 
   </div>
-
-  <!-- Class instruction -->
+  <!-- class how -->
   <section class="class-inst container">
     <div class="row">
       <img src="../../../assets/images/img/class_how_to.jpg">
     </div>
   </section>
-
-  <!-- Curriculum -->
-  <section class="curriculum container">
-    <!--
-        <div class="row">
-            <img src="../../../assets/images/img/curriculum.jpg">
-        </div>
-        -->
-    <div class="row section-title">
-      curriculum
-    </div>
-    <div class="row dot-sm"></div>
-    <div class="row dot-xsm"></div>
-    <div class="row" style="padding-top:50px; height:120px;">
-      <div class="col-4"></div>
-      <div class="col-4 sect-subtitle">커리큘럼</div>
-      <div class="col-4"></div>
-    </div>
-    <div class="row" style="padding-top:80px;">
-      <table class="table table-entry">
-        <thead>
-          <tr>
-            <th scope="col">회기</th>
-            <th scope="col">날짜</th>
-            <th scope="col">주제명</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let e of info.currs">
-            <td>{{ e.stage }}회차</td>
-            <td>{{ e.date | date: 'M월 d일 H시 m분'}}&nbsp;({{ e.dur }}분)</td>
-            <td class="pink-strong">{{ e.title }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
   <!-- Lecture introduction -->
-  <section class="intro container">
+  <section class="foryou container">
     <!--
-        <div class="row">
-            <img src="../../../assets/images/img/class_introduction.jpg">
-        </div>
-        -->
+            <div class="row">
+                <img src="../../../assets/images/img/class_introduction.jpg">
+            </div>
+            -->
     <div class="row section-title">
-      Class<br>introduction
+      Class<br>For You
     </div>
     <div class="row dot-sm"></div>
     <div class="row dot-xsm"></div>
@@ -201,63 +179,8 @@
       <div class="col-8 sect-subtitle">"이런 분들을 위해 준비했습니다"</div>
       <div class="col-2"></div>
     </div>
-    <div class="row img-center">
-      <img src="../../../assets/images/img/yoga.png">
-    </div>
-    <div class="row" style="padding-top: 80px;">
-      <div class="col-4 class-point" *ngFor="let e of info.targets">
-        <div class="title">POINT {{ e.point }}</div>
-        <div class="content">{{ e.desc }}</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Instructor introduction -->
-  <section class="instructor container">
-    <!--
-        <div class="row">
-            <img src="../../../assets/images/img/instructor_introduction.jpg">
-        </div>
-        -->
-    <div class="row section-title">
-      Expert<br>introduction
-    </div>
-    <div class="row dot-sm"></div>
-    <div class="row dot-xsm"></div>
-    <div class="row" style="padding-top:50px; height:120px;">
-      <div class="col-3"></div>
-      <div class="col-6 sect-topborder">{{ instInfo.name }}</div>
-      <div class="col-3"></div>
-    </div>
-    <div class="row instructor-box">
-      <div class="col-4 instructor-picture">
-        <img width="300px" height="300px" src="{{filePath}}{{instInfo.inst.file}}">
-      </div>
-      <div class="col-8 instructor-desc">
-        <p>
-          이움(이완과 움직임) 대표<br>
-          단국대학교 체육학 박사<br>
-          숨;터 Director<br>
-          명상 수행 안내자<br>
-          - GX program / Yoga / Pilates Master Trainer<br>
-          - NLP Trainer (Certified by Q.A.S)<br>
-          - MBSR (Mindfulness Based Stress Reduction program)<br>
-          - MBCT (Mindfulness-based cognitive therapy)<br>
-        </p>
-      </div>
-    </div>
-    <div class="row instructor-picli">
-      <ul>
-        <li class="instructor-picli">
-          <img src="../../../assets/images/img/yjkim_1.jpg">
-        </li>
-        <li>
-          <img src="../../../assets/images/img/yjkim_2.jpg">
-        </li>
-        <li>
-          <img src="../../../assets/images/img/yjkim_3.jpg">
-        </li>
-      </ul>
+    <div class="row readyFor">
+      <div *ngFor='let r of detail.readyFor'>{{r.who}}</div>
     </div>
   </section>
 
@@ -324,14 +247,267 @@
       </div>
     </div>
   </section>
+  <section class="intro container">
+    <!--
+            <div class="row">
+                <img src="../../../assets/images/img/class_introduction.jpg">
+            </div>
+            -->
+    <div class="row section-title">
+      Class<br>Introduction
+    </div>
+    <div class="row dot-sm"></div>
+    <div class="row dot-xsm"></div>
+    <div class="row" style="padding-top:50px; height:120px;">
+      <div class="col-2"></div>
+      <div class="col-8 sect-subtitle" style="color:#dd5e5e">클래스에는 이런내용이 담겨있어요</div>
+      <div class="col-2"></div>
+    </div>
+    <div class="row">
+      <div class="introductionImg"><img src="../../../assets/images/noImg.png" alt="/"></div>
+      <div class="classpoint" *ngFor='let p of detail.classPoint'>
+        <span class="uppercase title">{{p.title}}</span>
+        <span class="content">{{p.text}}</span>
+      </div>
+      <!-- <div class="col-4">집중하지 못하고 효율이 안나오는 사람</div>
+      <div class="col-4">체력부족을 절실히 느끼는 사람</div>
+      <div class="col-6" style="border-left: 1px solid #dd5e5e; margin-top: 30px;">계획했던 일이 잘 풀리지 않는 사람</div>
+      <div class="col-6" style="margin-top: 30px;">매일 피곤하고 지병이 생길 것 같은 사람</div> -->
+    </div>
+  </section>
+  <section class="presents container">
+    <!--
+            <div class="row">
+                <img src="../../../assets/images/img/class_introduction.jpg">
+            </div>
+            -->
+    <div class="row section-title">
+      Class<br>Presents
+    </div>
+    <div class="row dot-sm"></div>
+    <div class="row dot-xsm"></div>
+    <div class="row" style="padding-top:50px; height:120px;">
+      <div class="col-2"></div>
+      <div class="col-8 sect-subtitle">클래스 특징</div>
+      <div class="col-2"></div>
+    </div>
+    <div class="goodness">
+      <div class="inlineBlock expect">
+        <div class="title">기대 효과</div>
+        <div class="contents" *ngFor='let e of detail.expect'>{{e.text}}</div>
+      </div>
+      <div class="inlineBlock particular">
+        <div class="title">진행 특징</div>
+        <div class="contents" *ngFor='let p of detail.particular'>{{p.text}}</div>
+      </div>
+    </div>
+  </section>
+  <!-- Class instruction -->
+
+
+  <!-- Curriculum -->
+  <section class="curriculum container">
+
+    <div class="row section-title">
+      curriculum
+    </div>
+    <div class="row dot-sm"></div>
+    <div class="row dot-xsm"></div>
+    <div class="row" style="padding-top:50px; height:120px;">
+      <div class="col-4"></div>
+      <div class="col-4 sect-subtitle">커리큘럼</div>
+      <div class="col-4"></div>
+    </div>
+    <div class="row" style="padding-top:80px;">
+      <table class="table table-entry">
+        <colgroup>
+          <col width="80px">
+          <col width="180px">
+          <col width="240px">
+          <col width="90px">
+          <col width="120px">
+          <col width="390px">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">회기</th>
+            <th scope="col">일정</th>
+            <th scope="col">주제명</th>
+            <th scope="col">시간</th>
+            <th scope="col">구성</th>
+            <th scope="col">내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let c of detail.classRound.classDate'>
+            <td>{{c.numRo}}</td>
+            <td>{{c.date}}<br>{{c.time}}</td>
+            <td>{{c.subtitle}}</td>
+            <td class="dividedCell" colspan="3">
+              <table class='innerTable'>
+                <colgroup>
+                  <col width='90px'>
+                  <col width='120px'>
+                  <col width='390px'>
+                </colgroup>
+                <tr *ngFor='let cur of c.curr'>
+                  <td>{{cur.pieceTime}}</td>
+                  <td>{{cur.kinds}}</td>
+                  <td class="whitewrap">{{cur.contents}}</td>
+                </tr>
+              </table>
+              <!-- <div *ngFor='let cur of c.curr'>
+                <span>{{cur.pieceTime}}</span>
+                <span>{{cur.kinds}}</span>
+                <span class="nowrap">{{cur.contents}}</span>
+              </div> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <!-- kit -->
+  <section class="classKit container" *ngIf='detail.kit'>
+    <div class="row section-title">
+      Class<br>Kit & Material
+    </div>
+    <div class="row dot-sm"></div>
+    <div class="row dot-xsm"></div>
+    <div class="row" style="padding-top:50px; height:120px;">
+      <div class="col-4"></div>
+      <div class="col-4 sect-subtitle uppercase">kit</div>
+      <div class="col-4"></div>
+    </div>
+    <div class="kitImg">
+      <img src="{{detail.kit}}" alt="키트사진">
+    </div>
+    <div class="row" style="padding-top:50px; height:120px;">
+      <div class="col-4"></div>
+      <div class="col-4 sect-subtitle uppercase">준비물</div>
+      <div class="col-4"></div>
+    </div>
+    <div class="materialImg">
+      <img src="{{detail.material}}" alt="준비물사진">
+    </div>
+  </section>
+
+  <!-- Instructor introduction -->
+  <section class="instructor container">
+    <!--
+        <div class="row">
+            <img src="../../../assets/images/img/instructor_introduction.jpg">
+        </div>
+        -->
+    <div class="row section-title">
+      Expert<br>introduction
+    </div>
+    <div class="row dot-sm"></div>
+    <div class="row dot-xsm"></div>
+    <div class="row" style="padding-top:50px; height:120px;">
+      <div class="col-3"></div>
+      <div class="col-6 sect-topborder">{{ detail.teacher }}</div>
+      <div class="col-3"></div>
+    </div>
+    <div class="row instructor-box">
+      <div class="col-4 instructor-picture">
+        <img width="300px" height="300px" src="{{teacherImg}}">
+      </div>
+      <div class="col-8 instructor-desc">
+        <p class="whitewrap">
+          {{detail.teacherSpec}}
+        </p>
+      </div>
+    </div>
+    <div class="row instructor-picli">
+      <ul>
+        <li class="instructor-picli" *ngFor='let i of detail.classImg'>
+          <img src="{{i.img}}">
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="review container">
+    <!--
+        <div class="row">
+            <img src="../../../assets/images/img/instructor_introduction.jpg">
+        </div>
+        -->
+    <div class="row section-title">
+      Class<br>Review
+    </div>
+    <div class="row dot-sm"></div>
+    <div class="row dot-xsm"></div>
+    <div class="row" style="padding-top:50px; height:120px;">
+      <div class="col-3"></div>
+      <div class="col-6 sect-topborder">리뷰 작성하기</div>
+      <div class="col-3"></div>
+    </div>
+    <div class="reviewedBox">
+      <p *ngFor='let r of detail.review'>
+        <span class="inlineBlock img"><img src="{{r.star}}"></span>
+        <span class="inlineBlock name">{{r.reviewer}}</span>
+        <span class="inlineBlock mention whitewrap">{{r.text}}</span>
+      </p>
+    </div>
+    <div class="writeBox">
+      <div class="giveStar">
+        <p>별점주기</p>
+        <button mat-button [matMenuTriggerFor]="menu">별점 주기</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor='let s of detail.starimg' (click)='giveStar(s.star , s.text)'><img
+              src="{{s.star}}">{{s.text}}</button>
+        </mat-menu>
+      </div>
+      <div class="giveComment">
+        <p>리뷰쓰기</p>
+        <div class="mentionBox" (focus)="bcc($event)">
+          <p>{{detail.im}} 님</p>
+          <textarea name='reviewText' placeholder="주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다."></textarea>
+        </div>
+      </div>
+      <button mat-button class="submit">등록</button>
+    </div>
+  </section>
 
   <!-- Refund -->
   <section class="refund container">
     <div class="row">
-      <img src="../../../assets/images/img/refund.jpg">
+      <img src="../../../assets/images/img/cancel-exchange.png">
     </div>
   </section>
-
-  <!-- Related items -->
-  <section class="rel-items"></section>
 </div>
+<!-- 추천 -->
+<section class="recommamd">
+  <div class="title">마음도씨 추천 라이브
+    <div class="littleSqure"></div>
+  </div>
+  <div class="recommandBox">
+    <div class="innerWrap">
+      <ul>
+        <li *ngFor='let r of detail.recommand'>
+          <div class="process">{{r.process}}</div>
+          <div class="classcategory" [style.background]='r.color'>{{r.category}}</div>
+          <div class="itemHeader">{{r.title}}</div>
+          <div class="itemImg"><img src="{{r.img}}" alt="/"></div>
+          <div class='degreeBox' *ngIf='r.degree'>
+            <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}" class="thermoBar textHidden">{{r.degree}}</span></span>
+            <span class="remainDate">일 남음</span>
+            <span class="degrees">{{r.degree}}ºC 마음도씨</span>
+          </div>
+          <div class='hashTag' *ngIf='r.hashTag'>
+            <span *ngFor='let h of r.hashTag'>&nbsp;{{h.tag}}&nbsp;</span>
+          </div>
+          <div class="smallText" *ngIf='r.degree'>
+            <span>{{r.text}}</span>
+          </div>
+          <div class="bigText" *ngIf='r.hashTag'>
+            <span>{{r.text}}</span>
+          </div>
+          <span class="goDetail inlineBlock pointer" *ngIf='r.degree'></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

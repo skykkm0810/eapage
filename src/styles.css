@@ -56,9 +56,7 @@ li {
 .text-left {
     text-align: left;
 }
-::-webkit-scrollbar {
-    display: none;
-}
+
 .need::after {
     content: '*';
     color: #DD5E5E;

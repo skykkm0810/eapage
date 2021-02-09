@@ -20,7 +20,62 @@
         <li class="pointer review" (click)= "modal()">리뷰보기</li>
       </ul>
       <ul class="useful">
-        <li class="pointer menu textHidden" (click)= "modal()">메뉴</li>
+        <li class="pointer menu textHidden" (click)= "modal()">메뉴
+          <div class="menuBox">
+            <div class="menuHeader">
+              <span class="cancelBtn"></span>
+              <div class="thBox">
+                <span class="menuTH">마음도씨</span>
+                <span class="menuTH">라이브</span>
+                <span class="menuTH"></span>
+                <span class="menuTH">리뷰</span>
+                <span class="menuTH">이용안내</span>
+              </div>
+            </div>
+            <div class="menuBody">
+              <div class="tdColumn">
+                <div class="tdBox">
+                  <p class="mainTd">마음도씨란?</p>
+                </div>
+                <div class="tdBox">
+                  <p class="mainTd">한국EAP협회 소개</p>
+                </div>
+              </div>
+              <div class="tdColumn">
+                <div class="tdBox">
+                  <p class="mainTd">모든라이브</p>
+                  <p class="subTd">인생여정</p>
+                  <p class="subTd">사회생활</p>
+                  <p class="subTd">힐링</p>
+                  <p class="subTd">심리</p>
+                </div>
+                <div class="tdBox">
+                  <p class="mainTd"></p>
+                  <p class="subTd">인생여정</p>
+                  <p class="subTd">사회생활</p>
+                  <p class="subTd">힐링</p>
+                  <p class="subTd">심리</p>
+                </div>
+              </div>
+              <div class="tdColumn">
+                <div class="tdBox">
+                  <p class="mainTd">오늘의 라이브</p>
+                </div>
+              </div>
+              <div class="tdColumn">
+                <div class="tdBox">
+                  <p class="mainTd"></p>
+                </div>
+
+              </div>
+              <div class="tdColumn">
+                <p class="mainTd uppercase">class 신청</p>
+                <p class="subTd">개인형 클래스신청</p>
+                <p class="subTd">맞춤형 클래스신청</p>
+              </div>
+            </div>
+          </div>
+        </li>
         <li class="pointer search textHidden" (click)= "modal()">검색하기</li>
         <li class="pointer mypage textHidden" *ngIf="sign" (click)="mypage()">마이페이지</li>
       </ul>

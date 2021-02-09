@@ -103,3 +103,11 @@
 .useful li:nth-child(1) { background-image: url(../../../assets/images/icon/pink/menu.png); }
 .useful li:nth-child(2) { background-image: url(../../../assets/images/icon/pink/search.png); }
 .useful li:nth-child(3) { background-image: url(../../../assets/images/icon/pink/mypage.png); }
+
+/*  메뉴 박스 */
+.menu {
+    position: relative;
+}
+.menuBox {
+    position: absolute;
+}

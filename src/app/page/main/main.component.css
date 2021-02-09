@@ -1,3 +1,21 @@
+.left {
+    position: absolute;
+    top:50%;
+    left:72px;
+    width:28px;
+    height:48px;
+    background: url(../../../assets/images/icon/pink/arrow-left.png) no-repeat center center / cover;
+}
+.right {
+    position: absolute;
+    top:50%;
+    right:72px;
+    width:28px;
+    height:48px;
+    background: url(../../../assets/images/icon/pink/arrow-right.png) no-repeat center center / cover;
+}
+
+/* common */
 .slideWrap {
     width:100%;
     height:400px;
@@ -211,8 +229,16 @@
 .preopen {
     width:100%;
     overflow: hidden;
+    position: relative;
 }
-
+.preopen .back {
+    width:wh;
+    height:450px;
+    position: absolute;
+    top:200px;
+    left:0;
+    background-color: #FFEEEE ;
+}
 .preopen h2 {
     font-size: 30px;
     text-align: center;
@@ -237,6 +263,7 @@
     border-radius: 50px;
     position: relative;
     padding:23px 43px 27px 42px;
+    background-color:#fff;
 }
 .preopen .banner .openTime {
     font-size: 26px;

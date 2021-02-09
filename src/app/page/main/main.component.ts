@@ -54,7 +54,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
    // 오픈예정  fake data 
    pre = [
     {time:'OPEN 예정 ',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/open.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
-    {time:'2월 15일 THU - 15:00 OPEN',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/flower.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+    {time:'OPEN 예정',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/flower.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
   ]
 
   // 오늘의 라이브 fake data
