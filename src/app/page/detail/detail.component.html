@@ -368,26 +368,26 @@
     </div>
   </section>
   <!-- kit -->
-  <section class="classKit container" *ngIf='info.kit'>
+  <section class="classKit container" *ngIf='info.kit || info.mat'>
     <div class="row section-title">
       Class<br>Kit & Material
     </div>
     <div class="row dot-sm"></div>
     <div class="row dot-xsm"></div>
-    <div class="row" style="padding-top:50px; height:120px;">
+    <div class="row" style="padding-top:50px; height:120px;" *ngIf="info.kit">
       <div class="col-4"></div>
       <div class="col-4 sect-subtitle uppercase">kit</div>
       <div class="col-4"></div>
     </div>
-    <div class="kitImg">
+    <div class="kitImg" *ngIf="info.kit">
       <img src="{{filePath}}{{info.kitImg}}" alt="키트사진">
     </div>
-    <div class="row" style="padding-top:50px; height:120px;">
+    <div class="row" style="padding-top:50px; height:120px;" *ngIf="info.mat">
       <div class="col-4"></div>
       <div class="col-4 sect-subtitle uppercase">준비물</div>
       <div class="col-4"></div>
     </div>
-    <div class="materialImg">
+    <div class="materialImg" *ngIf="info.mat">
       <img src="{{filePath}}{{info.matImg}}" alt="준비물사진">
     </div>
   </section>
