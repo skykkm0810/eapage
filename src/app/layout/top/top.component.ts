@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog} from '@angular/material/dialog';
 import { ReadyComponent} from '../../page/ready/ready.component';
+import { TodayLiveComponent} from '../../page/today-live/today-live.component';
+import { AllLiveComponent} from '../../page/all-live/all-live.component';
 import { MaumdociComponent} from '../../page/maumdoci/maumdoci.component';
 import { LoginComponent} from '../login/login.component';
 import { AuthService } from '../../service/auth.service';
@@ -19,6 +21,7 @@ export class TopComponent implements OnInit {
     private auth: AuthService,
     public dialog:MatDialog,
     public sign_in:MatDialog,
+    public golink:MatDialog,
     private guard: AuthGuard,
   ) {
     auth.Log.subscribe( () => {
@@ -64,11 +67,21 @@ export class TopComponent implements OnInit {
     this.auth.signout();
   }
   searchBox(){
-    var box = document.getElementsByClassName('searchBox')[0] as HTMLElement;
-    box.style.display = 'block';
+    var box1 = document.getElementsByClassName('searchBox')[0] as HTMLElement;
+    var box2 = document.getElementsByClassName('menuBox')[0] as HTMLElement;
+    box1.style.display = 'block';
+    box2.style.display = 'none';
   }
   closeBox(){
-    var box = document.getElementsByClassName('searchBox')[0] as HTMLElement;
-    box.style.display = 'none';
+    var box1 = document.getElementsByClassName('searchBox')[0] as HTMLElement;
+    var box2 = document.getElementsByClassName('menuBox')[0] as HTMLElement;
+    box1.style.display = 'none';
+    box2.style.display = 'none';
+  }
+  menuBox(){
+    var box1 = document.getElementsByClassName('searchBox')[0] as HTMLElement;
+    var box2 = document.getElementsByClassName('menuBox')[0] as HTMLElement;
+    box1.style.display = 'none';
+    box2.style.display = 'block';
   }
 }
