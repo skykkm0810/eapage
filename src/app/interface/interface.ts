@@ -10,6 +10,8 @@ export const TAGS : Record<string, string> = {
     ALLLIVE: 'allLive',
     TODAYLIVE: 'todayLive',
     MAUM: 'maum',
+    PREOPEN: 'preopen',
+    JOINTEACHER: 'joinTeacher',
   } 
 
   export const INTERESTS = [

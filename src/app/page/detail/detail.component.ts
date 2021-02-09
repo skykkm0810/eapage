@@ -54,8 +54,6 @@ export class DetailComponent {
 
     this.categoryArrow();
     this.remainDate();
-    this.degree();
-    
   }
   
   detail = {
@@ -80,7 +78,7 @@ export class DetailComponent {
     ],
     title:'바쁠수록 차분하게, 마음챙김 영상 입니다만 글자를 길게하기위해서', 
     text:'바쁘고 복잡한 새상 속에서도 마음은 고요하게, 머리를 맑게하고싶어요 엉엉 릴렉스',
-    degree:'100',
+    degree:100,
     hashTag: [
       {tag:'#스트레칭'},
       {tag:'#명상'},
@@ -178,14 +176,14 @@ export class DetailComponent {
     // 로그인 된 사람 정보
     im:'갱갱미',
 
-    // 추천 강의
-    recommand :[
-      {process:'진행중',degree:100 ,color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
-      {process:'진행중',degree:80 ,color:"#00C6C6",category:'부부·가족',title:'글자를 늘려보려고 길게 적어보았습니다.' , img:'assets/images/banner/week2.png', text:'각종 가공의 그것들을 이용한 어쩃든 무엇을 하는 프로그램'},
-      {process:'진행중',degree:50 ,color:"#954FD0",category:'인생 2막',title:'두줄 까지는 안전한가요? 세줄은 좀 힘들어 보이는데' , img:'assets/images/banner/week3.png', text:'글자길이'},
-      {process:'OPEN 예정',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
-      {process:'OPEN 예정',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#00C6C6",category:'부부·가족',title:'글자를 늘려보려고 길게 적어보았습니다.' , img:'assets/images/banner/week2.png', text:'각종 가공의 그것들을 이용한 어쩃든 무엇을 하는 프로그램'},
-      {process:'OPEN 예정',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#954FD0",category:'인생 2막',title:'두줄 까지는 안전한가요? 세줄은 좀 힘들어 보이는데' , img:'assets/images/banner/week3.png', text:'글자길이'},
+    // 강의
+    recommand:[
+      {process:'진행중',remain:'',openDay:'2021-02-22',degree:100 ,color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
+      {process:'진행중',remain:'',openDay:'2021-02-22',degree:80 ,color:"#00C6C6",category:'부부·가족',title:'글자를 늘려보려고 길게 적어보았습니다.' , img:'assets/images/banner/week2.png', text:'각종 가공의 그것들을 이용한 어쩃든 무엇을 하는 프로그램'},
+      // {process:'진행중',degree:50 ,color:"#954FD0",category:'인생 2막',title:'두줄 까지는 안전한가요? 세줄은 좀 힘들어 보이는데' , img:'assets/images/banner/week3.png', text:'글자길이'},
+      // {process:'OPEN 예정',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
+      // {process:'OPEN 예정',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#00C6C6",category:'부부·가족',title:'글자를 늘려보려고 길게 적어보았습니다.' , img:'assets/images/banner/week2.png', text:'각종 가공의 그것들을 이용한 어쩃든 무엇을 하는 프로그램'},
+      {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#954FD0",category:'인생 2막',title:'두줄 까지는 안전한가요? 세줄은 좀 힘들어 보이는데' , img:'assets/images/banner/week3.png', text:'글자길이'},
     ]
   }
 
@@ -283,31 +281,6 @@ export class DetailComponent {
     }
   }
   
-  remainDate2(time,tag){
-    var classdate = time;
-    var remainTag = document.getElementsByClassName('remainDate')[0] as HTMLElement;
-    var liveTime = new Date(Date.parse(classdate)).getTime()/1000;
-    var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
-    if (Number(calTime) >= 0) {
-      let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
-      remainTag.textContent = days+"";
-    }
-  }
-  degree() {
-    // var bar = document.getElementsByClassName('thermoBar');
-    // console.log(bar)
-    // console.log(bar.length)
-    // for(var i=0; i<bar.length; i++){
-    //   var tag = bar[i] as HTMLElement;
-    //   console.log(tag)
-    //   var text = Number(tag.textContent) 
-    //   console.log(text)
-    //   tag.style.width = 3 * text +'px';
-    //   if(3*text >= 100){ 
-    //     tag.style.width = 300 +'px';
-    //   }
-    // }
-    
-  }
+  
   
 }

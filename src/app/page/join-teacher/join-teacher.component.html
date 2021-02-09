@@ -6,11 +6,10 @@
       <li class="bold on">이용약관 동의</li>
       <li class="bold ">본인 인증</li>
       <li class="bold ">회원 정보 입력</li>
-      <!-- <li class="bold ">가입 완료</li> -->
     </ul>
     <form action="/">
 
-      <div class="agreement tabContentBox">
+      <div class="agreement tabContentBox hidden">
         <p class="bold">서비스 이용을 위해 이용약관 동의가 필요합니다.</p>
         <div class="agreeBox">
           <p class="allAgree bold">전체 동의<span class="agreeHole pointer" (click)='allchk($event)'></span></p>
@@ -62,8 +61,12 @@
             </div>
             <button mat-button (click)="clear($event)">인증코드 확인</button>
           </div>
+          <div class="btnBox">
+            <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
+            <button mat-button class="next bold" (click)='beforeNext2($event)'>다음</button>
+          </div>
         </div>
-        <div class="companyBox">
+        <!-- <div class="companyBox">
           <p class="companyTitle bold">회사 정보 인증<span class="designA"></span></p>
           <div class="companyCode">
             <div>
@@ -96,38 +99,35 @@
               <input type="text" name="c.rank" [(ngModel)]="info.rank" required>
             </div>
           </div>
-          <div class="btnBox">
-            <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
-            <button mat-button class="next bold" (click)='beforeNext2($event)'>다음</button>
-          </div>
-        </div>
+          
+        </div> -->
+        
       </div>
-      <div class="personal tabContentBox hidden">
+      
+      <div class="personal tabContentBox">
         <div class="basic">
           <div class="basicInfo">
             <span class="bold infoTitle">기본정보</span>
             <div class="gridBox">
               <div>
-                <span>ID</span>
+                <span class="need">ID</span>
                 <input type="text" name="b.uname" [(ngModel)]="info.uname" required>
               </div>
               <div>
-                <span>Password</span>
+                <span class="need">Password</span>
                 <input type="password" name="b.pwd" [(ngModel)]="info.pwd" required >
               </div>
               <div>
-                <span>이름</span>
+                <span class="need">이름</span>
                 <input type="text" name="b.name" [(ngModel)]="info.name" required>
               </div>
               <div>
-                <span>연락처</span>
+                <span class="need">연락처</span>
                 <input type="text" name="b.branch" [(ngModel)]="info.contact" required>
               </div>
               <div (click)="addr()">
-                <span>주소
-                  <!-- <button (click)="addr()">주소검색</button> -->
-                </span>
-                <input type="text" name="b.addrs" [(ngModel)]="info.addr" disabled >
+                <span>주소</span>
+                <input type="text" name="b.addrs" [(ngModel)]="info.addr" disabled>
               </div>
               <div>
                 <span>상세주소</span>
@@ -142,8 +142,8 @@
               <div>
                 <span>성별</span>
                 <mat-radio-group [(ngModel)]="info.gender" [ngModelOptions]="{standalone: true}">
-                  <mat-radio-button value="남성" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
-                  <mat-radio-button value="여성" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
+                  <mat-radio-button value="남성" class="bold" >&nbsp;&nbsp; 남 </mat-radio-button>
+                  <mat-radio-button value="여성" class="bold" >&nbsp;&nbsp; 녀 </mat-radio-button>
                 </mat-radio-group>
               </div>
             </div>
@@ -154,14 +154,14 @@
             <span class="bold infoTitle">선택정보</span>
             <div class="gridBox">
               <div>
-                <span (click)="no()">자녀유무</span>
+                <span class="checkFalse" (click)='nochild()'>자녀유무</span>
                 <mat-radio-group [(ngModel)]="info.child" [ngModelOptions]="{standalone: true}">
                   <mat-radio-button value="유" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
                   <mat-radio-button value="무" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
                 </mat-radio-group>
               </div>
               <div>
-                <span (click)="no()">결혼유무</span>
+                <span class="checkFalse" (click)='nomerry()'>결혼유무</span>
                 <mat-radio-group [(ngModel)]="info.merry" [ngModelOptions]="{standalone: true}">
                   <mat-radio-button value="유" class="bold">&nbsp;&nbsp; 유 </mat-radio-button>
                   <mat-radio-button value="무" class="bold">&nbsp;&nbsp; 무 </mat-radio-button>
@@ -223,7 +223,7 @@
           <div class="btnBox">
             <button mat-button [routerLink]="['']" class="next bold">확인</button>
           </div>
-        </div> -->
+        </div>- -->
       </div>
     </form>
   </div>

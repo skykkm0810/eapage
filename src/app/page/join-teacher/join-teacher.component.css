@@ -21,6 +21,17 @@
     top:5.5px;
     background: url(../../../assets/images/icon/white/chk.png) no-repeat center center / cover;
 }
+.checkFalse::after {
+    content: '체크해제';
+    cursor:pointer;
+    font-size: 12px;
+    margin-left: 10px;
+    color:#ccc;
+}   
+.checkFalse:hover::after {
+    text-decoration: underline;
+    color:#666;
+}
 /* --------------------------------------------------- */
 .wrap { padding-bottom: 50px;}
 .innerWrap {
@@ -193,14 +204,14 @@ h2 {
     right:0;
     bottom:0;
 }
-.emailBox > div.btnBox {
-    padding-top: 300px;
+.emailBox .btnBox {
+    padding-top: 100px;
     text-align: center;
 } 
 .emailBox .btnBox .next {
     position: relative;
     display: inline-block;
-    width:300px;
+    width:220px;
     height:60px;
     border-radius: 0;
     background-color: #dd5e5e;
@@ -208,6 +219,7 @@ h2 {
     font-size:26px;
     text-align: center;
     line-height: 60px;
+    margin:0 20px;
 }
 .companyBox {
     padding-top: 100px;
@@ -286,23 +298,7 @@ h2 {
     position: relative;
 }
 
-.companyBox .btnBox {
-    padding-top: 50px;
-    text-align: center;
-} 
-.companyBox .btnBox .next {
-    position: relative;
-    display: inline-block;
-    width:220px;
-    height:60px;
-    border-radius: 0;
-    background-color: #dd5e5e;
-    color:#fff;
-    font-size:26px;
-    text-align: center;
-    line-height: 60px;
-    margin:0 20px;
-}
+
 
 /* 회원정보입력 */
 /* 기본정보 */

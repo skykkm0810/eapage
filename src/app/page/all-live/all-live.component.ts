@@ -26,6 +26,19 @@ export class AllLiveComponent implements AfterViewInit {
             data.process = '종료';
           }
         }
+        // 온도
+        data.degree = Math.floor(data.receipts.length/data.least * 100);
+        // 남은 날짜
+        var liveTime = new Date(Date.parse(data.created)).getTime()/1000;
+        var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
+        if (Number(calTime) >= 0) {
+          let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
+          data.remain = days
+        }
+        else{
+          data.remain = '0'
+        }
+        
         this.info.push(data);
       })
       console.log(this.info);
@@ -36,23 +49,10 @@ export class AllLiveComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.phxChannel.gets('lecture', '');
 
-    var tempBar = document.getElementsByClassName('tempDynamic');
-    for(var i=0; i<tempBar.length; i++){
-      var degree = tempBar[i].textContent
-      if(degree !==''){
-        (tempBar[i] as HTMLElement).style.width = 3*Number(degree) + 'px';
-      }
-    }
-    
-    var process = document.getElementsByClassName('process');
-    for(var i=0; i<process.length; i++){
-      if(process[i].textContent == '종료'){
-        (process[i] as HTMLElement).style.color = '#2d6c6e';
-        (process[i] as HTMLElement).style.borderColor = '#2d6c6e';
-      }
-    }
-  }
 
+    
+  }
+  color:'#000'
   title = '전체보기';
   selectedC : any;
   
@@ -94,13 +94,24 @@ export class AllLiveComponent implements AfterViewInit {
   ]
   filePath = Environment.filePath;
   loaded = false;
-  info = [{ currs: [{date: null, dur: null, stage: null}], subtitle: '', interests: [{value: ''}], thumbnail1: '', limit: null, degree: null, title: '', process: ''}];
-  
+  info = [
+    { currs: [{date: null, dur: null, stage: null}],
+     subtitle: '', 
+     interests: [{value: ''}], 
+     thumbnail1: '', 
+     limit: null, 
+     degree: null,
+     title: '', 
+     process: '',
+     categorycolor:'',
+     remain:'',
+     company:'',
+    }];
   onselect(c:any,e:Event){
     this.selectedC = c;
     var thisList = (e.target as HTMLElement).closest('li');
     var bigList = document.querySelectorAll('.bigList li');
-    var lives = document.querySelectorAll('.live');
+    var lives = document.querySelectorAll('.designedBox');
     for(var i=0; i<bigList.length; i++){
       bigList[i].classList.remove('clicked')
     }
@@ -108,7 +119,7 @@ export class AllLiveComponent implements AfterViewInit {
     this.title = thisList.textContent
     for(var i=0; i<lives.length; i++){
       (lives[i] as HTMLElement).style.display='none';
-      if(lives[i].getElementsByClassName('big')[0].textContent == thisList.textContent){
+      if(lives[i].getElementsByClassName('maincategory')[0].textContent == thisList.textContent){
       (lives[i] as HTMLElement).style.display='block';
       }
       // lives[i].getElementsByClassName('small')[0];
@@ -116,11 +127,11 @@ export class AllLiveComponent implements AfterViewInit {
   }
   filter(e:Event){
     var subList = (e.target as HTMLElement);
-    var lives = document.querySelectorAll('.live');
+    var lives = document.querySelectorAll('.designedBox');
 
     for(var i=0; i<lives.length; i++){
       (lives[i] as HTMLElement).style.display='none';
-      if(lives[i].getElementsByClassName('small')[0].textContent == subList.textContent){
+      if(lives[i].getElementsByClassName('subcategory')[0].textContent == subList.textContent){
       (lives[i] as HTMLElement).style.display='block';
       }
       // lives[i].getElementsByClassName('small')[0];

@@ -15,15 +15,10 @@
     position: relative;
 }
 .bigList li.clicked::after {
-    content:'';
-    display: block;
-    width:25px;
-    height:20px;
-    background: url(../../../assets/images/icon/arrow_category.png) no-repeat center center / contain;
+    content: "▲";
     position: absolute;
-    bottom:-23px;
+    bottom:-25px;
     left:45px;
-    color:#DD5E5E;
 }
 .bigList li .img {
     vertical-align: middle;
@@ -46,15 +41,15 @@
     line-height: 80px;
 }
 /* 라이브 리스트 */
+
+/* 이전 디자인 */
+
 .show_title {
     margin:0;
     font-size:30px;
     line-height: 33px;
     padding-bottom: 10px;
     border-bottom: 1px solid #3f3d56;
-}
-.show_title span {
-    font-size: 22px;
 }
 .liveListGrid {
     width:100%;
@@ -74,7 +69,7 @@
 .liveListGrid .live .big,
 .liveListGrid .live .small {
     position: absolute;
-    left:-9999px;
+    left: -9999px;
 }
 
 .liveListGrid .process {
@@ -194,6 +189,7 @@
     background: url(../../../assets/images/button/arrowBtn.png) no-repeat center center / cover;   
 } */
 
+/* 카드 */
 .designedBox {
     display: inline-block;
     width:380px;
@@ -222,12 +218,10 @@
     line-height: 35px;
     font-weight: bold;
 }
-.designedBox .company {
+.designedBox .classcategory {
     width:150px;
     height:35px;
-    background-color:#fff;
-    color:#3f3d56;
-    border:1px solid #3f3d56;
+    color:#fff;
     border-radius: 30px;
     position: absolute;
     right:30px;
@@ -257,8 +251,6 @@
     position:absolute;
     top:260px;
     left:0;
-    height:60px;
-    background: url(../../../assets/images/icon/0c.png) no-repeat center center / contain;
 }
 .designedBox .thermo .thermoBar {
     position: absolute;

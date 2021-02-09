@@ -858,7 +858,7 @@ img {
     bottom:-5px;
 }
 .recommandBox {
-    padding-top: 35px;
+    padding: 35px 0 ;
     width:100%;
     background-color:#F7F8FC;
 }
