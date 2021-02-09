@@ -37,59 +37,59 @@
     <div class="row">
       <div class="col-6">
         <div class="row mainpic">
-          <img width="530px" height="384px" src="{{filePath}}{{info.thumbnail}}">
+          <img width="530px" height="384px" src="{{filePath}}{{info.thumbnail1}}">
         </div>
         <div class="row thumbnail">
-          <div class="col-3 item">
-            <img src="../../../assets/images/img/yjkim_lec_thumb_01.jpg" (mouseover)='thumbnail($event)'>
+          <div class="col-3 item" *ngIf="info.thumbnail1 != null">
+            <img src="{{filePath}}{{info.thumbnail1}}" (mouseover)='thumbnail($event)'>
           </div>
-          <div class="col-3 item">
-            <img src="../../../assets/images/img/yjkim_lec_thumb_02.jpg" (mouseover)='thumbnail($event)'>
+          <div class="col-3 item" *ngIf="info.thumbnail2 != null">
+            <img src="{{filePath}}{{info.thumbnail2}}" (mouseover)='thumbnail($event)'>
           </div>
-          <div class="col-3 item">
-            <img src="../../../assets/images/img/yjkim_lec_thumb_03.jpg" (mouseover)='thumbnail($event)'>
+          <div class="col-3 item" *ngIf="info.thumbnail3 != null">
+            <img src="{{filePath}}{{info.thumbnail3}}" (mouseover)='thumbnail($event)'>
           </div>
-          <div class="col-3 item">
-            <img src="../../../assets/images/img/yjkim_lec_thumb_04.jpg" (mouseover)='thumbnail($event)'>
+          <div class="col-3 item" *ngIf="info.thumbnail4 != null">
+            <img src="{{filePath}}{{info.thumbnail4}}" (mouseover)='thumbnail($event)'>
           </div>
         </div>
       </div>
       <div class="col-6">
         <div class="title-header">
-          <div class="title progress-rect">{{detail.progress}}</div>
-          <div class="col title title-main">{{ detail.title }}</div>
+          <!-- <div class="title progress-rect">{{detail.progress}}</div> -->
+          <div class="col title title-main">{{ info.title }}</div>
         </div>
         <div>
           <div class="subtitle">
             <div class="desc">
-              {{ detail.text }}
+              {{ info.subtitle }}
             </div>
           </div>
         </div>
         <div class="row dah">
-          <div class="remain"><span class="remainDate"></span>일 남음</div>
+          <div class="remain"><span class="remainDate"><span *ngIf="dday_c == true">D-</span>{{dday}}</span></div>
           <div class="hashtag">
-            <span *ngFor='let h of detail.hashTag'>&nbsp;&nbsp;{{h.tag}}</span>
+            <span>&nbsp;&nbsp;</span>
           </div>
         </div>
         <div class="row temper">
-          <div class="thermo"><span class="thermoBar textHidden" [ngStyle]="{'width.px': detail.degree*3}">{{detail.degree}}</span></div>
-          <div class="temperature"><span class="tempNum">{{detail.degree}} </span> ºC 마음도씨</div>
+          <div class="thermo"><span class="thermoBar textHidden" [ngStyle]="{'width.px': info.degree*3}"></span></div>
+          <div class="temperature"><span class="tempNum">{{info.degree}} </span> ºC 마음도씨</div>
         </div>
         <div class="row classInfoBox">
           <div class="classTitle">클래스일정</div>
-          <div class="round"><span class="rtime">{{detail.classRound.classTime}}</span>분&nbsp;<span
-              class="rnum">{{detail.classRound.totalR}}</span>회기</div>
+          <div class="round"><span class="rtime">{{sum}}</span>분&nbsp;<span
+              class="rnum">{{stgs}}</span>회기</div>
           <div class="classTable">
             <div class="tableHeader tableRow">
               <span class="inlineBlock">회기</span>
-              <span class="inlineBlock">날짜</span>
-              <span class="inlineBlock">시간</span>
+              <span class="inlineBlock">일시</span>
+              <span class="inlineBlock">강의 시간</span>
             </div>
-            <div class="tableData tableRow" *ngFor='let c of detail.classRound.classDate'>
-              <span class="inlineBlock">{{c.numRo}}</span>
-              <span class="inlineBlock">{{c.date}}</span>
-              <span class="inlineBlock">{{c.time}}</span>
+            <div class="tableData tableRow" *ngFor='let c of info.currs'>
+              <span class="inlineBlock">{{c.stage}}회기</span>
+              <span class="inlineBlock">{{c.date | date: 'Y년 M월 d일 HH:mm'}}</span>
+              <span class="inlineBlock">{{c.dur}}분</span>
             </div>
           </div>
         </div>
@@ -126,15 +126,15 @@
           </div>
           <div class="col-3 class-info-grid">
             <div class="title">최소인원</div>
-            <div class="content">{{ detail.minStudent }}명</div>
+            <div class="content">{{ info.least }}명</div>
           </div>
           <div class="col-3 class-info-grid">
             <div class="title">최대인원</div>
-            <div class="content">{{ detail.maxStudent }}명</div>
+            <div class="content">{{ info.limit }}명</div>
           </div>
           <div class="col-3 class-info-grid">
             <div class="title">Point</div>
-            <div class="content">{{detail.pointMoney}}</div>
+            <div class="content">{{info.point}}</div>
           </div>
         </div>
         <div class="row class-button">
@@ -180,7 +180,7 @@
       <div class="col-2"></div>
     </div>
     <div class="row readyFor">
-      <div *ngFor='let r of detail.readyFor'>{{r.who}}</div>
+      <div *ngFor='let r of info.targets'>{{r.desc}}</div>
     </div>
   </section>
 
@@ -265,9 +265,9 @@
     </div>
     <div class="row">
       <div class="introductionImg"><img src="../../../assets/images/noImg.png" alt="/"></div>
-      <div class="classpoint" *ngFor='let p of detail.classPoint'>
-        <span class="uppercase title">{{p.title}}</span>
-        <span class="content">{{p.text}}</span>
+      <div class="classpoint" *ngFor='let p of info.sums'>
+        <span class="uppercase title">POINT {{p.point}}</span>
+        <span class="content">{{p.desc}}</span>
       </div>
       <!-- <div class="col-4">집중하지 못하고 효율이 안나오는 사람</div>
       <div class="col-4">체력부족을 절실히 느끼는 사람</div>
@@ -294,11 +294,11 @@
     <div class="goodness">
       <div class="inlineBlock expect">
         <div class="title">기대 효과</div>
-        <div class="contents" *ngFor='let e of detail.expect'>{{e.text}}</div>
+        <div class="contents" *ngFor='let e of info.exps'>{{e.desc}}</div>
       </div>
       <div class="inlineBlock particular">
         <div class="title">진행 특징</div>
-        <div class="contents" *ngFor='let p of detail.particular'>{{p.text}}</div>
+        <div class="contents" *ngFor='let e of info.feats'>{{e.desc}}</div>
       </div>
     </div>
   </section>
@@ -333,16 +333,16 @@
             <th scope="col">회기</th>
             <th scope="col">일정</th>
             <th scope="col">주제명</th>
+            <th scope="col">교시</th>
             <th scope="col">시간</th>
-            <th scope="col">구성</th>
             <th scope="col">내용</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let c of detail.classRound.classDate'>
-            <td>{{c.numRo}}</td>
-            <td>{{c.date}}<br>{{c.time}}</td>
-            <td>{{c.subtitle}}</td>
+          <tr *ngFor='let c of info.currs'>
+            <td>{{c.stage}} 차</td>
+            <td>{{c.date | date: 'M월 d일 E'}}<br>{{c.date | date: 'HH:mm'}}({{c.dur}}분)</td>
+            <td>{{c.title}}</td>
             <td class="dividedCell" colspan="3">
               <table class='innerTable'>
                 <colgroup>
@@ -350,10 +350,10 @@
                   <col width='120px'>
                   <col width='390px'>
                 </colgroup>
-                <tr *ngFor='let cur of c.curr'>
-                  <td>{{cur.pieceTime}}</td>
-                  <td>{{cur.kinds}}</td>
-                  <td class="whitewrap">{{cur.contents}}</td>
+                <tr *ngFor='let cur of c.timetable'>
+                  <td>{{cur.stage}}</td>
+                  <td>{{cur.dur}}분</td>
+                  <td class="whitewrap">{{cur.desc}}</td>
                 </tr>
               </table>
               <!-- <div *ngFor='let cur of c.curr'>
@@ -368,7 +368,7 @@
     </div>
   </section>
   <!-- kit -->
-  <section class="classKit container" *ngIf='detail.kit'>
+  <section class="classKit container" *ngIf='info.kit'>
     <div class="row section-title">
       Class<br>Kit & Material
     </div>
@@ -380,7 +380,7 @@
       <div class="col-4"></div>
     </div>
     <div class="kitImg">
-      <img src="{{detail.kit}}" alt="키트사진">
+      <img src="{{filePath}}{{info.kitImg}}" alt="키트사진">
     </div>
     <div class="row" style="padding-top:50px; height:120px;">
       <div class="col-4"></div>
@@ -388,7 +388,7 @@
       <div class="col-4"></div>
     </div>
     <div class="materialImg">
-      <img src="{{detail.material}}" alt="준비물사진">
+      <img src="{{filePath}}{{info.matImg}}" alt="준비물사진">
     </div>
   </section>
 
@@ -406,25 +406,21 @@
     <div class="row dot-xsm"></div>
     <div class="row" style="padding-top:50px; height:120px;">
       <div class="col-3"></div>
-      <div class="col-6 sect-topborder">{{ detail.teacher }}</div>
+      <div class="col-6 sect-topborder">{{ instInfo.name }}</div>
       <div class="col-3"></div>
     </div>
     <div class="row instructor-box">
       <div class="col-4 instructor-picture">
-        <img width="300px" height="300px" src="{{teacherImg}}">
+        <img width="300px" height="300px" src="{{filePath}}{{instInfo.inst.file}}">
       </div>
       <div class="col-8 instructor-desc">
         <p class="whitewrap">
-          {{detail.teacherSpec}}
+          {{instInfo.inst.career}}
         </p>
       </div>
     </div>
     <div class="row instructor-picli">
-      <ul>
-        <li class="instructor-picli" *ngFor='let i of detail.classImg'>
-          <img src="{{i.img}}">
-        </li>
-      </ul>
+      <img src="{{filePath}}{{info.mainImg}}">
     </div>
   </section>
 
@@ -445,10 +441,10 @@
       <div class="col-3"></div>
     </div>
     <div class="reviewedBox">
-      <p *ngFor='let r of detail.review'>
-        <span class="inlineBlock img"><img src="{{r.star}}"></span>
-        <span class="inlineBlock name">{{r.reviewer}}</span>
-        <span class="inlineBlock mention whitewrap">{{r.text}}</span>
+      <p *ngFor='let r of reviews'>
+        <span class="inlineBlock img"><img src="{{r.img}}"></span>
+        <span class="inlineBlock name">{{r.name}}</span>
+        <span class="inlineBlock mention whitewrap">{{r.desc}}</span>
       </p>
     </div>
     <div class="writeBox">
@@ -456,18 +452,18 @@
         <p>별점주기</p>
         <button mat-button [matMenuTriggerFor]="menu">별점 주기</button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item *ngFor='let s of detail.starimg' (click)='giveStar(s.star , s.text)'><img
-              src="{{s.star}}">{{s.text}}</button>
+          <button mat-menu-item *ngFor='let s of detail.starimg' (click)='giveStar(s)'><img
+              src="{{s.img}}">{{s.text}}</button>
         </mat-menu>
       </div>
       <div class="giveComment">
         <p>리뷰쓰기</p>
         <div class="mentionBox" (focus)="bcc($event)">
-          <p>{{detail.im}} 님</p>
-          <textarea name='reviewText' placeholder="주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다."></textarea>
+          <p *ngIf="login">{{user.name}} 님</p>
+          <textarea name='reviewText' placeholder="{{reviewText}}" [(ngModel)]="review_desc"></textarea>
         </div>
       </div>
-      <button mat-button class="submit">등록</button>
+      <button mat-button class="submit" (click)="review_add()">등록</button>
     </div>
   </section>
 

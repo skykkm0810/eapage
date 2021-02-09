@@ -34,6 +34,8 @@ export class PhxChannelService {
   @Output() ReceiptD: EventEmitter<any> = new EventEmitter();
   @Output() ReceiptI: EventEmitter<any> = new EventEmitter();
   @Output() UserReceipt: EventEmitter<any> = new EventEmitter();
+  @Output() ReviewAdd: EventEmitter<any> = new EventEmitter();
+  @Output() Reviews: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     this.init_channel();
@@ -80,6 +82,9 @@ export class PhxChannelService {
     })
     this.lectureChannel.on('lecture:detail', payload => {
       this.Lecture.emit(payload);
+    })
+    this.lectureChannel.on('review:add', payload => {
+      this.ReviewAdd.emit(payload);
     })
     
 
@@ -165,7 +170,10 @@ export class PhxChannelService {
       case 'apply':
         this.userChannel.push('receipt:add:req', {body: message});
         break;
-            
+      case 'review':
+        this.lectureChannel.push('review:add:req', {body: message});
+        break;
+              
       default:
         // this.instChannel.push(event, {body: message});
         break;
@@ -183,6 +191,9 @@ export class PhxChannelService {
       case 'lecture':
         this.lectureChannel.push("lecture:list:req", {body: message});
         break;
+      // case 'review':
+      //   this.lectureChannel.push("review:list:req", {body: message});
+      //   break;
       case 'user':
         this.userChannel.push("user:list:req", {body: message});
         break;
