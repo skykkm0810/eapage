@@ -1,9 +1,11 @@
-import { Component, OnInit, ɵɵresolveBody } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, ɵɵresolveBody } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/service/auth.service';
 import { Agreement, INTERESTS } from '../../interface/interface';
 import { PhxChannelService } from '../../service/phx-channel.service';
 import { SocketioService } from '../../service/socketio.service';
+import { postcode } from 'src/assets/js/postcode.js';
 
 @Component({
   selector: 'app-join',
@@ -17,18 +19,23 @@ export class JoinComponent implements OnInit {
     private phxChannel: PhxChannelService,
     private router: Router,
     private mailer: SocketioService,
+    private auth: AuthService,
+    private renderer: Renderer2
   ) {
-    phxChannel.Company.subscribe( data => {
+    phxChannel.Confirm.subscribe( data => {
+      console.log(data);
       if( data.body.length > 0 ) {
         this.companyInfo = data.body[0];
         this.info.companyId = this.companyInfo.id;
       } else {
-        alert('회사코드를 정확히 입력해주세요. 예시 000-00-00000');
+        alert('회사코드를 정확히 입력해주세요.');
       }
     })
-    phxChannel.Signup.subscribe( () => {
-      console.log('success');
-      this.nextBtn(this.event3);
+    phxChannel.Signup.subscribe( data => {
+      console.log(data.body);
+      auth.setToken(data.body);
+      window.location.href = '/';
+      // this.nextBtn(this.event3);
     })
     phxChannel.Invalid.subscribe( data => {
       alert('아이디가 이미 존재합니다.')
@@ -39,23 +46,25 @@ export class JoinComponent implements OnInit {
   }
 
   agreement = Agreement;
-
+  
   subscription: Subscription;
-
+  
   companyInfo: any = {
     reg: '',
+    code: '',
     name: '',
     part: '',
   };
-
+  
   info: any = {
     name: '',
     companyId: null,
     email: '',
     gender: null,
+    addr: '',
+    subaddr: '',
     rank: '',
     region: '',
-    age: null,
     contact: '',
     pwd: '',
     child: null,
@@ -63,11 +72,14 @@ export class JoinComponent implements OnInit {
     interests: null,
     type: false,
   }
-
+  
   interests = INTERESTS;
   emailCode : any = '초기값';
   companyCode : any = '초기값';
 
+  @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
+  
+  
   allchk(e:Event){
     var thischk = e.target as HTMLElement;
     var chkshow = document.querySelectorAll('.agreeBox div .agreeHole');
@@ -152,21 +164,21 @@ export class JoinComponent implements OnInit {
     var mother = (a.target as HTMLElement).closest('.tabContentBox') as HTMLElement;
     var neccesary = mother.getElementsByClassName('neccesary');
     var inpputs = mother.getElementsByTagName('input');
-    // for(var i=0; i<inpputs.length; i++){
-    //   if(!neccesary[0].classList.contains('clear')){
-    //     alert('이메일 코드 인증 확인이 필요합니다.');
-    //     return;
-    //   }
-    //   else if (!neccesary[0].classList.contains('clear')){
-    //     alert('회사 코드 인증 확인이 필요합니다.');
-    //     return; 
-    //   }
+    for(var i=0; i<inpputs.length; i++){
+      if(!neccesary[0].classList.contains('clear')){
+        alert('이메일 코드 인증 확인이 필요합니다.');
+        return;
+      }
+      else if (!neccesary[0].classList.contains('clear')){
+        alert('회사 코드 인증 확인이 필요합니다.');
+        return; 
+      }
 
-    //   if(inpputs[i].value == ""){
-    //     alert('모든 필수항목이 채워져 있어야합니다.');
-    //     return;
-    //   }
-    // }
+      if(inpputs[i].value == ""){
+        alert('모든 필수항목이 채워져 있어야합니다.');
+        return;
+      }
+    }
     
     this.nextBtn(a);
   }
@@ -253,4 +265,16 @@ export class JoinComponent implements OnInit {
   no() {
     this.info.child = '';
   }
+
+  addr() {
+    postcode( this.renderer, this.popup.nativeElement, data => {
+      console.log(data);
+      this.info.addr = `(${data.zonecode}) ${data.roadAddress}`;
+      console.log(this.info);
+    })
+  }
+  close() {
+    this.renderer.setStyle(this.popup.nativeElement, 'display', 'none');
+  }
 }
+

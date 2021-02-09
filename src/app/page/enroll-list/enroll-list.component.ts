@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
 
 @Component({
   selector: 'app-enroll-list',
@@ -7,10 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EnrollListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private phxChannel: PhxChannelService,
+    private route: ActivatedRoute,
+  ) {
+    phxChannel.ReceiptD.subscribe( data => {
+      console.log(data.body);
+    })
+    phxChannel.UserReceipt.subscribe( data => {
+      console.log(data);
+    })
+  }
 
   ngOnInit(): void {
+    this.params = this.route.snapshot.params;
+    this.phxChannel.get('receipt', this.params);
+    this.phxChannel.gets('receipts', this.params);
   }
+
+  params;
+
   lectList = [
     {
       applied: '2021-01-27T16:00:00',

@@ -4,6 +4,7 @@ export const Environment = {
   http: 'http://',
   ws: 'ws://',
   app_version: 3.3,
+  // node_socket: '211.105.152.212:4001',
   node_socket: '121.159.43.37:4001',
   // mailer: '121.159.43.37:4001',
   fileUpload: '3.35.47.51:4002',

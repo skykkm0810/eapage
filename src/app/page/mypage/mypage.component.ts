@@ -1,6 +1,10 @@
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Environment } from 'src/app/environment/environment';
 import { INTERESTS } from 'src/app/interface/interface';
+import { AuthService } from 'src/app/service/auth.service';
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
 
 @Component({
   selector: 'app-mypage',
@@ -9,53 +13,107 @@ import { INTERESTS } from 'src/app/interface/interface';
 })
 export class MypageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private phxChannel: PhxChannelService,
+    private auth: AuthService,
+    private route: ActivatedRoute,
+  ) {
+    phxChannel.User.subscribe( data => {
+      this.user = data;
+      this.user.companyId = this.user.company.id;
+      console.log(this.user);
+      let ints = this.interests;
+      for ( let j = 0; j < data.interests.length; j++ ) {
+        for ( let i = 0; i < this.interests.length; i++ ) {
+          if (this.interests[i].name == data.interests[j].name) {
+            this.interests[i] = data.interests[j];
+          }
+        }
+      }
+    })
+    phxChannel.Receipts.subscribe( data => {
+      let today = new Date();
+      this.receipt_end = [];
+      this.receipt_yet = [];
+      data.body.forEach( el => {
+        let idx = el.lecture.currs.length - 1;
+        if( el.lecture.currs[idx].date == null ) {
+          this.receipt_yet.push(el);
+        } else {
+          let day = new Date(el.lecture.currs[idx].date).getTime()
+          if( day > today.getTime() ) {
+            this.receipt_yet.push(el);
+          } else {
+            this.receipt_end.push(el);
+          }
+        }
+      })
+    })
+    phxChannel.UserUp.subscribe( () => {
+      window.location.reload();
+    })
 
-  ngOnInit(): void {
   }
 
-  interests = INTERESTS;
-
-  lectList = [
-    {
-      applied: '2021-01-27T16:00:00',
-      file: [{
-        path: 'thumbnail.png'
-      }],
-      title: '바쁠수록 차분하게, 마음챙김 명상',
-      curr: [
-        {
-          title: '커리큘럼 1회차 제목',
-          number: 1,
-          datetime: '2021-01-27T16:00:00',
-          runtime: '90분'
-        },
-        {
-          title: '커리큘럼 2회차 제목',
-          number: 2,
-          datetime: '2021-01-27T16:00:00',
-          runtime: '90분'
-        },
-      ]
-    },
-    {
-      applied: '2021-01-27T16:00:00',
-      file: [{
-        path: 'thumbnail.png'
-      }],
-      title: '바쁠수록 마음챙김, 차분하게 명상',
-      curr: [{
-        title: '커리큘럼 1회차 제목',
-        number: 1,
-        datetime: '2021-01-27T16:00:00:00',
-        runtime: '90분'
-      }]
+  ngOnInit(): void {
+    this.cred = this.route.snapshot.params;
+    this.interests = INTERESTS;
+    this.user = {
+      id: 0,
+      pwd: '',
+      name: '',
+      contact: '',
+      addr: '',
+      subaddr: '',
+      birth: '',
+      gender: '',
+      child: '',
+      merry: '',
+      companyId: 0,
+      company: { name: '', id: 0 },
+      part: '',
+      rank: '',
+      spot: '',
+      email: '',
+      interests: [],
+    };
+    this.user.id = JSON.parse(this.auth.getUserData()).id;
+    if ( this.user.id != this.cred.id ) {
+      alert('잘못된 접근경로입니다.');
+      window.location.href="/";
+    } else {
+      this.phxChannel.get('user', this.user);
+      this.phxChannel.gets('receipt', this.user);
     }
-  ]
+  }
 
+  cred;
+  user;
+  info;
 
+  receipt_end = [
+    {
+      date: null,
+      lecture: {
+        currs: [{ date: null, dur: 0, stage: 1, title: ''}],
+        title: '',
+        thumbnail1: '',
+      }
+    }
+  ];
+  receipt_yet = [
+    {
+      date: null,
+      lecture: {
+        currs: [{ date: null, dur: 0, stage: 1, title: ''}],
+        title: '',
+        thumbnail1: '',
+      }
+    }
+  ];
 
-
+  interests;
+  filePath = Environment.filePath;
 
   allchk(e:Event){
     var thischk = e.target as HTMLElement;
@@ -133,6 +191,16 @@ export class MypageComponent implements OnInit {
     }
   }
   click() {
-    console.log(this.interests);
+    if ( this.user.pwd == '' ) {
+      delete this.user.pwd;
+    }
+    const inter = this.interests.filter( data => data.completed == true );
+    this.user.interests = inter;
+    this.phxChannel.up('user', this.user);
+  }
+
+  check( el ) {
+    el.completed = !el.completed;
+    console.log(el);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit , AfterViewInit } from '@angular/core';
+import { Component, OnInit , AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent {
+export class MainComponent implements OnDestroy, AfterViewInit {
 
   constructor(
     private router: Router
@@ -30,12 +30,21 @@ export class MainComponent {
       }
     }
 
-    setInterval(()=>{
+    this.int_remainTime = setInterval(()=>{
       this.remainTime();
     },1000)
 
     this.remainDate();
+    this.autoSlide = setInterval(()=>{this.slideLeft()},5000)
   }
+
+  ngOnDestroy(): void {
+    clearInterval(this.int_remainTime);
+    clearInterval(this.autoSlide);
+  }
+
+  int_remainTime;
+
   
   // 마음도씨  fake data 
   dcs = [
@@ -88,7 +97,8 @@ export class MainComponent {
   // 타이머 기준 시간 
   liveTime1 = new Date(Date.parse('2021-02-15 16:00')).getTime()/1000;
   liveTime2 = new Date(Date.parse('2021-02-20 16:00')).getTime()/1000;
-  autoSlide = setInterval(()=>{this.slideLeft()},5000)
+  autoSlide;
+  
   curIndex = 0;
 
   slideLeft(){
@@ -136,11 +146,9 @@ export class MainComponent {
     var classdate = document.getElementsByClassName('classdate');
     var remainDays = document.getElementsByClassName('remainDays');
     var remain;
-    console.log(classdate.length);
 
     for(var i =0; i<classdate.length; i++){
       var time = (classdate[i] as HTMLElement).textContent;
-      console.log(time)
       var liveTime = new Date(Date.parse(time)).getTime()/1000;
       var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
       if (Number(calTime) >= 0) {

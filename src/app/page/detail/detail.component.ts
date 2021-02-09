@@ -19,10 +19,10 @@ export class DetailComponent {
   ) {
     phxChannel.Inst.subscribe( data => {
       this.instInfo = data;
+      console.log(this.instInfo);
     })
     phxChannel.Lecture.subscribe( data => {
       this.info = data;
-      console.log(this.info);
       this.stgs = this.info.currs.length;
       for( var i = 0; i < this.stgs; i++ ) {
         this.sum += this.info.currs[i].dur;
@@ -48,7 +48,7 @@ export class DetailComponent {
   ngOnInit() {
     // var number = (document.querySelector('.progress-container .right').textContent)
     // this.number = number;
-    // this.injected = this.route.snapshot.params;
+    this.injected = this.route.snapshot.params;
     // console.log(this.injected);
     this.phxChannel.get('lecture', this.injected);
 

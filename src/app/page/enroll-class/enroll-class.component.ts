@@ -22,14 +22,19 @@ export class EnrollClassComponent implements OnInit {
       this.info = data;
       this.point.pay = this.info.point;
       console.log(this.point);
+      this.receipt.payment = this.point.pay;
+      this.receipt.lectureId = this.info.id;
     })
     phxChannel.User.subscribe( data => {
       this.user = data;
-      this.point.all = this.user.company[0].personal;
-      console.log(this.point);
+      this.point.all = this.user.company.personal;
+      console.log(this.user);
     })
-    phxChannel.Receipt.subscribe( () => {
-      router.navigate(['enrollList/'+this.injected])
+    phxChannel.Receipt.subscribe( data => {
+      router.navigate(['enrollList/'+data.body.id])
+    })
+    phxChannel.ReceiptI.subscribe( () => {
+      alert("이미 구매한 강의입니다.");
     })
   }
 
@@ -37,6 +42,7 @@ export class EnrollClassComponent implements OnInit {
     this.injected = this.route.snapshot.params;
     this.user = JSON.parse(this.auth.getUserData());
     console.log(this.user);
+    this.receipt.userId = this.user.id;
     this.phxChannel.get('lecture', this.injected);
     this.phxChannel.get('user', this.user);
   }
@@ -48,7 +54,11 @@ export class EnrollClassComponent implements OnInit {
   filePath = Environment.filePath;
   injected;
   user = {
-    company: [{ personal: 0 }],
+    company: { personal: 0 },
+    addr: '',
+    subaddr: '',
+    name: '',
+    contact: '',
     id: 0
   };
   info = {
@@ -63,27 +73,45 @@ export class EnrollClassComponent implements OnInit {
     point: null,
     subtitle: "",
     targets: [{ desc: '', id: null, lectureId: null, point: null }],
-    thumbnail: '',
+    thumbnail1: '',
     title: "",
     kit: false,
   };
+  delivery;
+  receipt = {
+    lectureId: 0,
+    userId: 0,
+    addr: '',
+    subaddr: '',
+    name: '',
+    contact: '',
+    subcontact: '',
+    note: '',
+    payment: 0,
+  }
+  msg = '';
 
 
 
-  fakeoption(e:Event){
-    var tag = e.target as HTMLInputElement
-    var f_option = document.getElementsByClassName('fakeoption')[0] as HTMLInputElement;
-    if(tag.value == '0'){
-      f_option.style.display='block';
-    }
-    else {
-      f_option.style.display='none';
-    }
+  fakeoption(){
+    this.receipt.note = this.msg;
   }
 
   apply() {
-    const form = { point: this.point.pay, lectureId: this.injected.id*1, userId: this.user.id };
-    console.log(form);
-    this.phxChannel.send('apply', form);
+    this.phxChannel.send('apply', this.receipt);
+  }
+
+  deli( el ) {
+    if( el == 1 ) {
+      this.receipt.addr = this.user.addr;
+      this.receipt.subaddr = this.user.subaddr;
+      this.receipt.name = this.user.name;
+      this.receipt.contact = this.user.contact;
+    } else {
+      this.receipt.addr = '';
+      this.receipt.subaddr = '';
+      this.receipt.name = '';
+      this.receipt.contact = '';
+    }
   }
 }
