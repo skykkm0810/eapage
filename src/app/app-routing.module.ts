@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: TAGS.MYPAGE, component: MypageComponent },
   { path: TAGS.MYPAGETEACHER, component: MypageTeacherComponent },
   { path: TAGS.ALLLIVE, component: AllLiveComponent },
+  { path: TAGS.ALLLIVE2, component: AllLiveComponent },
   { path: TAGS.TODAYLIVE, component: TodayLiveComponent },
   { path: TAGS.MAUM, component: MaumdociComponent },
   { path: TAGS.PREOPEN, component: PreopenComponent },

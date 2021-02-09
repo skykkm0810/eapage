@@ -19,27 +19,32 @@ export class TodayLiveComponent implements AfterViewInit {
       console.log(data.body);
       data.body.forEach( el => {
         let time = new Date().getTime();
-        if( el.currs.length > 0 ) {
-          let datatime = new Date(el.currs[0].date).getTime();
+        if( el.lecture.currs.length > 0 ) {
+          let datatime = new Date(el.lecture.currs[0].date).getTime();
           if( datatime > time ){
             el.process = '예정';
           } else {
             el.process = '종료';
           }
         }
+        console.log(el)
         // 온도
-        el.degree = Math.floor(el.receipts.length/el.least * 100);
+        el.degree = Math.floor(el.lecture.receipts.length/el.lecture.least * 100);
         // 남은 날짜
-        var liveTime = new Date(Date.parse(el.created)).getTime()/1000;
+        var liveTime = new Date(Date.parse(el.date)).getTime()/1000;
         var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
         if (Number(calTime) >= 0) {
-          let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
-          el.remain = days
+          let hours = Math.floor((Number(calTime) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          let mins = Math.floor((Number(calTime) % (1000 * 60 * 60)) / (1000 * 60));
+  
+          el.remain = hours+"시간 "+mins+'분 뒤 시작';
         }
         else{
-          el.remain = '0'
+          el.remain = '마감'
         }
-        
+        // 시작 시간
+        var start = new Date(el.date)
+        el.process = start;
         this.info.push(el);
       })
       console.log(this.info);
@@ -92,19 +97,23 @@ export class TodayLiveComponent implements AfterViewInit {
   ]
   filePath = Environment.filePath;
   loaded = false;
-  info = [
-    { currs: [{date: null, dur: null, stage: null}],
-     subtitle: '', 
-     interests: [{value: ''}], 
-     thumbnail1: '', 
-     limit: null, 
-     degree: null,
-     title: '', 
-     process: '',
-     categorycolor:'',
-     remain:'',
-     company:'',
-    }];
+  info = [{
+    lecture: {
+      currs: [{date: null, dur: null, stage: null}],
+      lecture:'',
+      subtitle: '', 
+      interests: [{value: ''}], 
+      thumbnail1: '', 
+      limit: null, 
+      title: '', 
+    },
+    process: '',
+    categorycolor:'',
+    company:'',
+    remain:'',
+    id: null,
+    degree: null,
+  }];
   onselect(c:any,e:Event){
     this.selectedC = c;
     var thisList = (e.target as HTMLElement).closest('li');
