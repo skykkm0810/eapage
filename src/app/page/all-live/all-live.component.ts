@@ -52,10 +52,12 @@ export class AllLiveComponent implements AfterViewInit {
       console.log(this.info);
       this.loaded = true;
     })
+    
   }
 
   ngAfterViewInit() {
     this.phxChannel.gets('lecture', '');
+    
     this.search = this.route.snapshot.params;
     console.log(this.search)
 

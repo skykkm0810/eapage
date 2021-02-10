@@ -19,6 +19,9 @@ export class MainComponent implements OnDestroy, AfterViewInit {
     phxChannel.Lectures.subscribe( data => {
       console.log(data);
     })
+    phxChannel.LectureControled.subscribe( data => {
+      console.log(data.body);
+    })
 
   }
   ngAfterViewInit(): void {
@@ -49,6 +52,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
 
     this.phxChannel.gets('lecture:today', '');
     this.phxChannel.gets('lecture', '');
+    this.phxChannel.gets('lecture:controled', '');
 
   }
 

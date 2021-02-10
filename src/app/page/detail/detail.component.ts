@@ -40,7 +40,7 @@ export class DetailComponent {
         } else {
           let time = Math.ceil((d2 - d1) / 1000 / 60 / 60 / 24);
           this.dday_c = true;
-          this.dday = 'D' + time;
+          this.dday = time+"";
         }
         console.log(this.dday_c);
       } else {
