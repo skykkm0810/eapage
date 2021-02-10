@@ -47,11 +47,32 @@ export class DetailComponent {
         this.dday_c = false;
         this.dday = '오픈 예정';
       }
+
+
+      if ( data.reviews.length > 0 ) {
+        data.reviews.forEach( el => {
+          if ( el.userId == this.user.id*1 ) {
+            this.reviewed = true;
+            console.log('hello');
+          }
+        })
+      }
+
+
       phxChannel.get('inst', this.info.inst)
       console.log(this.info);
     })
+    phxChannel.UserReceipt.subscribe( data => {
+      console.log(data);
+      data.body.forEach( d => {
+        if (d.lectureId == this.injected.id*1) {
+          this.reviewable = true;
+        }
+      })
+    })
     phxChannel.ReviewAdd.subscribe( data => {
       this.reviews = data.body;
+      this.reviewed = true;
     })
   }
   
@@ -60,7 +81,9 @@ export class DetailComponent {
     // this.number = number;
     this.injected = this.route.snapshot.params;
     // console.log(this.injected);
+    this.user = JSON.parse(this.auth.getUserData());
     this.phxChannel.get('lecture', this.injected);
+    this.phxChannel.gets('user:receipt', { uid: this.user.id*1 });
 
     this.categoryArrow();
     this.login = this.auth.isAuthenticated();
@@ -68,7 +91,6 @@ export class DetailComponent {
     if ( this.login == true ) {
       this.reviewText = "주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다.";
     }
-    this.user = JSON.parse(this.auth.getUserData());
     console.log(this.user);
   }
   
@@ -99,8 +121,10 @@ export class DetailComponent {
       {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#954FD0",category:'인생 2막',title:'두줄 까지는 안전한가요? 세줄은 좀 힘들어 보이는데' , img:'assets/images/banner/week3.png', text:'글자길이'},
     ]
   }
-  
+
+  reviewable = false;
   reviews = this.detail.review;
+  reviewed = false;
   star = { img: '', value: 0 };
   review_desc;
   login = false;
@@ -154,9 +178,13 @@ export class DetailComponent {
   apply() {
     if ( this.auth.isAuthenticated() ) {
       if( this.dday_c ) {
-        this.router.navigate(['enrollClass/'+this.injected.id])
+        if( this.reviewable ) {
+          alert('이미 신청한 강의입니다.');
+        } else {
+          this.router.navigate(['enrollClass/'+this.injected.id])
+        }
       } else {
-        alert('이미 신청 마감된 강의입니다.');
+        alert('이 강의는 신청할 수 없는 상태입니다.');
       }
     } else {
       alert('먼저 로그인을 해주세요.');
@@ -208,6 +236,19 @@ export class DetailComponent {
   }
   
   review_add() {
+    if ( !this.login ) {
+      alert('리뷰를 쓰시려면 로그인을 하셔야합니다.');
+      return;
+    } 
+    if ( !this.reviewable ) {
+      alert('수강을 하셔야 리뷰를 쓸 수 있습니다.');
+      return;
+    }
+    if ( this.reviewed ) {
+      alert('이미 리뷰를 쓰셨습니다.');
+      return;
+    }
+
     const form = {
       userId: this.user.id,
       author: this.user.name,

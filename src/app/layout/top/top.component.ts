@@ -43,6 +43,7 @@ export class TopComponent implements AfterViewInit{
       this.sign = false;
     } else {
       this.sign = true;
+      // console.log(this.auth.getUserData());
       this.info = JSON.parse(this.auth.getUserData());
     }
   }
@@ -57,7 +58,11 @@ export class TopComponent implements AfterViewInit{
 
 
   mypage() {
-    this.router.navigate(['mypage/' + this.info.id]);
+    if ( this.info.type == false ) {
+      this.router.navigate(['mypage/' + this.info.id]);
+    } else {
+      this.router.navigate(['mypageTeacher/' + this.info.id]);
+    }
   }
   modal(){
     const dialogRef = this.dialog.open(ReadyComponent);

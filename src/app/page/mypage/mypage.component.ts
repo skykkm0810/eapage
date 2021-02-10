@@ -32,15 +32,16 @@ export class MypageComponent implements OnInit {
       }
     })
     phxChannel.Receipts.subscribe( data => {
+      console.log(data.body);
       let today = new Date();
       this.receipt_end = [];
       this.receipt_yet = [];
       data.body.forEach( el => {
-        let idx = el.lecture.currs.length - 1;
-        if( el.lecture.currs[idx].date == null ) {
+        let idx = el.lecture[0].currs.length - 1;
+        if( el.lecture[0].currs[idx].date == null ) {
           this.receipt_yet.push(el);
         } else {
-          let day = new Date(el.lecture.currs[idx].date).getTime()
+          let day = new Date(el.lecture[0].currs[idx].date).getTime()
           if( day > today.getTime() ) {
             this.receipt_yet.push(el);
           } else {
@@ -94,21 +95,21 @@ export class MypageComponent implements OnInit {
   receipt_end = [
     {
       date: null,
-      lecture: {
+      lecture: [{
         currs: [{ date: null, dur: 0, stage: 1, title: ''}],
         title: '',
         thumbnail1: '',
-      }
+      }]
     }
   ];
   receipt_yet = [
     {
       date: null,
-      lecture: {
+      lecture: [{
         currs: [{ date: null, dur: 0, stage: 1, title: ''}],
         title: '',
         thumbnail1: '',
-      }
+      }]
     }
   ];
 
@@ -204,9 +205,9 @@ export class MypageComponent implements OnInit {
     console.log(el);
   }
   nochild() {
-    this.info.child = '';
+    this.user.child = '';
   }
   nomerry(){
-    this.info.merry = '';
+    this.user.merry = '';
   }
 }

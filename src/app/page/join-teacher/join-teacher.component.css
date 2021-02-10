@@ -398,6 +398,12 @@ h2 {
     padding-top: 15px;
     width:100%;
   }
+  .basicInfo .gridBox div .mat-form-field {
+    display: inline-block;
+    height:40px;
+    padding-top: 15px;
+    width:100%;
+  }
   .basicInfo .gridBox div .mat-radio-group .mat-radio-button {
     width:50%;
     font-size: 16px;

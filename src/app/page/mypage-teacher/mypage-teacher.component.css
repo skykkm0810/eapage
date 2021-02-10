@@ -393,6 +393,12 @@
   
     background-color: #3F3D56;
   }
+  .basicInfo .gridBox div .mat-form-field {
+    display: inline-block;
+    height:40px;
+    padding-top: 15px;
+    width:100%;
+  }
   .basicInfo .gridBox div .mat-radio-group {
     display: inline-block;
     height:40px;

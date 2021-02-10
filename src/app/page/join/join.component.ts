@@ -243,6 +243,7 @@ export class JoinComponent implements OnInit {
   }
 
   confirm() {
+    console.log(this.companyInfo);
     this.phxChannel.confirm( 'company', this.companyInfo );
   }
 
@@ -271,9 +272,7 @@ export class JoinComponent implements OnInit {
 
   addr() {
     postcode( this.renderer, this.popup.nativeElement, data => {
-      console.log(data);
       this.info.addr = `(${data.zonecode}) ${data.roadAddress}`;
-      console.log(this.info);
     })
   }
   close() {

@@ -18,9 +18,11 @@ export class PhxChannelService {
 
   @Output() Insts: EventEmitter<any> = new EventEmitter();
   @Output() Inst: EventEmitter<any> = new EventEmitter();
+  @Output() InstUp: EventEmitter<any> = new EventEmitter();
   @Output() Lectures: EventEmitter<any> = new EventEmitter();
   @Output() LecturesToday: EventEmitter<any> = new EventEmitter();
   @Output() Lecture: EventEmitter<any> = new EventEmitter();
+  @Output() LectureControled: EventEmitter<any> = new EventEmitter();
   @Output() Users: EventEmitter<any> = new EventEmitter();
   @Output() User: EventEmitter<any> = new EventEmitter();
   @Output() UserUp: EventEmitter<any> = new EventEmitter();
@@ -65,6 +67,18 @@ export class PhxChannelService {
     })
     this.instChannel.on('inst:detail', payload => {
       this.Inst.emit(payload);
+    })
+    this.instChannel.on('inst:invalid', payload => {
+      // console.log('eap:inst from phx channel: ', payload);
+      this.Invalid.emit(payload);
+    })
+    this.instChannel.on('inst:add', payload => {
+      // console.log('eap:inst from phx channel: ', payload);
+      this.InstUp.emit(payload);
+    })
+    this.instChannel.on('inst:up', payload => {
+      // console.log('eap:inst from phx channel: ', payload);
+      this.InstUp.emit(payload);
     })
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit , AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
 
 @Component({
   selector: 'app-main',
@@ -9,8 +10,13 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnDestroy, AfterViewInit {
 
   constructor(
+    private phxChannel: PhxChannelService,
     private router: Router
-  ) { }
+  ) {
+    phxChannel.LectureControled.subscribe( data => {
+      console.log(data);
+    })
+  }
   ngAfterViewInit(): void {
     var dot = document.getElementsByClassName('dot');
     var dotWrap = document.getElementsByClassName('dotWrap')[0] as HTMLElement;

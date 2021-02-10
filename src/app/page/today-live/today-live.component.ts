@@ -19,17 +19,17 @@ export class TodayLiveComponent implements AfterViewInit {
       console.log(data.body);
       data.body.forEach( el => {
         let time = new Date().getTime();
-        if( el.lecture.currs.length > 0 ) {
-          let datatime = new Date(el.lecture.currs[0].date).getTime();
+        if( el.lecture[0].currs.length > 0 ) {
+          let datatime = new Date(el.lecture[0].currs[0].date).getTime();
           if( datatime > time ){
             el.process = '예정';
           } else {
-            el.process = '종료';
+            el.process = '진행';
           }
         }
         console.log(el)
         // 온도
-        el.degree = Math.floor(el.lecture.receipts.length/el.lecture.least * 100);
+        el.degree = Math.floor(el.lecture[0].receipts.length/el.lecture[0].least * 100);
         // 남은 날짜
         var liveTime = new Date(Date.parse(el.date)).getTime()/1000;
         var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
@@ -98,7 +98,7 @@ export class TodayLiveComponent implements AfterViewInit {
   filePath = Environment.filePath;
   loaded = false;
   info = [{
-    lecture: {
+    lecture: [{
       currs: [{date: null, dur: null, stage: null}],
       lecture:'',
       subtitle: '', 
@@ -106,7 +106,7 @@ export class TodayLiveComponent implements AfterViewInit {
       thumbnail1: '', 
       limit: null, 
       title: '', 
-    },
+    }],
     process: '',
     categorycolor:'',
     company:'',
