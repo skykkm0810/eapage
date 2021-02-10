@@ -192,8 +192,13 @@ export class MypageComponent implements OnInit {
     }
   }
   click() {
-    if ( this.user.pwd == '' ) {
+    if ( this.user.pwd == undefined || this.user.pwd == '' ) {
       delete this.user.pwd;
+    } else {
+      if(this.user.pwd.length > 20 || this.user.pwd.length< 8 ){
+        alert('비밀번호는 8자리 이상, 20자리 이하로 만들어야 합니다.');
+        return;
+      }
     }
     const inter = this.interests.filter( data => data.completed == true );
     this.user.interests = inter;

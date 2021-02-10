@@ -23,6 +23,13 @@ export class DetailComponent {
     })
     phxChannel.Lecture.subscribe( data => {
       this.info = data;
+      if(this.info.kit){
+        this.kit = '../../../assets/images/icon/pink/kit.png'
+      }
+      else{
+        this.kit = '../../../assets/images/icon/white/kit.png'
+
+      }
       this.sum = 0;
       this.stgs = this.info.currs.length;
       this.reviews = data.reviews;
@@ -92,7 +99,6 @@ export class DetailComponent {
     if ( this.login == true ) {
       this.reviewText = "주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다.";
     }
-    console.log(this.user);
   }
   
   detail = {
@@ -122,7 +128,7 @@ export class DetailComponent {
       {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#가족관계'},{tag:'#공감하기'},{tag:'#행복'}],color:"#954FD0",category:'인생 2막',title:'함께하는 가족관계 형성하기' , img:'assets/images/banner/week3.png', text:'일도 중요하지만 가정은 더욱 소중하기에, 나의 가정을 행복하게 가꾸기 위한 프로그램'},
     ]
   }
-
+  kit = ''
   reviewable = false;
   reviews = this.detail.review;
   reviewed = false;
@@ -263,5 +269,21 @@ export class DetailComponent {
 
     this.phxChannel.send('review', form);
     console.log(form);
+  }
+  moveScroll(e:Event) {
+    var text = (e.target as HTMLElement).textContent;
+    if(text == '상세정보'){
+      window.scrollTo(0,1133);
+    }
+    else if (text == '커리큘럼'){
+      window.scrollTo(0,6033);
+    }
+    else if (text == '리뷰쓰기'){
+      window.scrollTo(0,9133);
+    }
+    else if (text == '취소/환불'){
+      window.scrollTo(0,9833);
+    }
+
   }
 }

@@ -12,6 +12,9 @@
     font-family: 'nanum_pen';
 }
 html, body { height: 100%; }
+html {
+    scroll-behavior: smooth;
+  }
 body { margin: 0;}
 body {
     font-family: 'nanum' ,sans-serif!important;

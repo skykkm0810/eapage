@@ -226,6 +226,7 @@
     box-sizing: border-box;
     padding-top: 110px;
     font-size: 22px;
+    line-height: 24px;
 }
 .nowlive .banner .goArrow {
     position: absolute;
@@ -329,6 +330,7 @@
     box-sizing: border-box;
     padding-top: 20px;
     font-size: 22px;
+    line-height: 23px;
 }
 .preopen .banner .goArrow {
     position: absolute;
@@ -402,9 +404,9 @@
 .today .second .todayClassInfo {
     background-color: #B08FCC;
 }
-.today .content .todayClassInfo > p { width:450px; padding-bottom: 30px; margin:0!important;}
+.today .content .todayClassInfo > p { width:450px; padding-bottom: 20px; margin:0!important;}
 .today .content .todayClassInfo .teacher {font-size: 20px; color:#fff; }
-.today .content .todayClassInfo .title {font-size: 30px; color:#3f3d56;}
+.today .content .todayClassInfo .title {font-size: 30px; color:#3f3d56; line-height: 31px;}
 .today .content .todayClassInfo .description {font-size: 25px; color:#fff; line-height: 25px;}
 .today .content .todayClassInfo .remainTime {font-size: 35px;color:#fff; padding:0;}
 

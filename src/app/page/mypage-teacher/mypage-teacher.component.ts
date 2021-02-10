@@ -284,8 +284,13 @@ export class MypageTeacherComponent implements OnInit {
     const dialogRef = this.dialog.open(AddressComponent);
   }
   click() {
-    if ( this.info.pwd == '' ) {
+    if ( this.info.pwd == undefined || this.info.pwd == '' ) {
       delete this.info.pwd;
+    } else {
+      if(this.info.pwd.length > 20 || this.info.pwd.length< 8 ){
+        alert('비밀번호는 8자리 이상, 20자리 이하로 만들어야 합니다.');
+        return;
+      }
     }
     if ( !this.info.name || !this.info.gender || !this.info.contact ) {
       alert('필수 항목을 입력해주세요');
