@@ -100,7 +100,7 @@ export class JoinComponent implements OnInit {
     }
   }
   onechk(m:Event){
-    var thischk = m.currentTarget as HTMLElement;
+    var thischk = m.target as HTMLElement;
     m.preventDefault();
     var allchk = document.querySelector('.agreeBox .allAgree .agreeHole') as HTMLInputElement;
     allchk.classList.remove('checked')
@@ -110,7 +110,7 @@ export class JoinComponent implements OnInit {
     }
     else{
       thischk.classList.add('checked');
-      (thischk.querySelector('input') as HTMLInputElement).checked = true;
+      (thischk.closest('label').querySelector('input') as HTMLInputElement).checked = true;
     }
   }
   tabclick(a:Event){
@@ -195,7 +195,6 @@ export class JoinComponent implements OnInit {
       }
     }
     this.reg();
-    this.nextBtn(a);
   }
   nextBtn(b:Event){
     var mother = (b.target as HTMLElement).closest('.tabContentBox')
@@ -247,6 +246,10 @@ export class JoinComponent implements OnInit {
   }
 
   reg() {
+    if(this.info.pwd.length > 20 || this.info.pwd.length< 8){
+      alert('비밀번호는 8자리 이상, 20자리 이하로 만들어야 합니다.');
+      return;
+    }
     const inter = this.interests.filter( data => data.completed == true );
     this.info.interests = inter;
     console.log(this.info);
