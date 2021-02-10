@@ -95,8 +95,8 @@ export class TopComponent implements AfterViewInit{
     else {
       var value = tag.textContent;
       document.location.href = 'allLive';
-
     }
+    this.closeBox();
   }
   boxPosition(){
     var menu = document.getElementsByClassName('menu')[0] as HTMLElement;
@@ -109,4 +109,7 @@ export class TopComponent implements AfterViewInit{
     menuBox.style.left = menuPos - 940 + 60 +'px';
     searchBox.style.left = searchPos - 790 + 60 +'px';
   }
+  enterkey() {
+  }
+
 }
