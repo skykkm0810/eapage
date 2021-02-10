@@ -18,27 +18,26 @@
     <span class="right pointer" (click)='bannerSliderRight()'></span>
     <div class="innerWrap">
       <div class="banner">
-        <div *ngFor ='let d of dcs' class="clive">
-          <div class="openTime uppercase bold">{{d.time}} ({{d.during}})</div>
-          <p class="cardTitle bold">{{d.title}}</p>
+        <div *ngFor ='let d of mainClass' class="clive">
+          <div class="openTime uppercase bold">{{d[0].dday|date:'MM월 dd일 - hh시 mm분'}} ({{d[0].currs[0].dur}}분)</div>
+          <p class="cardTitle bold">{{d[0].title}}</p>
           <div class="bannerImg">
-            <img src="{{d.img}}" alt="배너사진">
+            <img src="{{filePath}}{{d[0].thumbnail1}}" alt="배너사진">
           </div>
           <div class="temp">
             <!-- tempDynamic 안의 "텍스트 숫자" 가 온도계 길이가 됨  -->
-            <div class="tempDynamic textHidden">{{d.degree}}</div>
+            <div class="tempDynamic textHidden" [ngStyle]="{'width.px': d[1].deg*4.5}">{{d[1].deg}}</div>
           </div>
           <div class="openInfo">
-            <span class="textHidden classdate">{{d.time2}}</span>
-            <span class="remainDays"></span>
-            일 남음
+            <span class="textHidden classdate"></span>
+            <span class="remainDays">{{d[2].remain}}</span>
             <!-- 위 tempDynamic 텍스트 숫자와 같은 값을 넣어 줄 것 -->
-            <div class="degree bold"><span class="howMuch">{{d.degree}}</span>ºC 마음도씨</div>
+            <div class="degree bold"><span class="howMuch">{{d[1].deg}}</span>ºC 마음도씨</div>
           </div>
           <div class="bannerTexts">
-            각종 요가자세를 이용한 힐링 프로그램
+            {{d[0].subtitle}}
           </div>
-          <div class="goArrow pointer" [routerLink]="['detail/1']"></div>
+          <div class="goArrow pointer" routerLink='/detail/{{d[0].id}}'></div>
         </div>
       </div>
     </div>
@@ -50,17 +49,17 @@
     <div class="innerWrap">
       <h2>오픈예정 라이브 컨텐츠</h2>
       <div class="banner">
-        <div class="pre" *ngFor="let p of pre">
-          <div class="openTime uppercase bold">{{p.time}}</div>
-          <p class="cardTitle bold">{{p.title}}</p>
+        <div class="pre" *ngFor="let p of preopenClass">
+          <div class="openTime uppercase bold">OPEN 예정</div>
+          <p class="cardTitle bold">{{p[0].title}}</p>
           <div class="bannerImg">
-            <img src="{{p.img}}" alt="배너사진" >
+            <img src="{{filePath}}{{p[0].thumbnail1}}" alt="배너사진" >
           </div>
           
           <div class="bannerTexts">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            {{p[0].subtitle}}
           </div>
-          <div class="goArrow pointer" [routerLink]="['detail/2']"></div>
+          <div class="goArrow pointer" routerLink='/detail/{{p[0].id}}'></div>
         </div>
         
       </div>
@@ -70,23 +69,25 @@
   <section class="today">
     <h2>오늘의 라이브</h2>
     <div class="innerWrap">
-      <div class="content" *ngFor='let t of todayLive'>
+      <div class="content" *ngFor='let t of todayClass'>
         <div class="img">
-          <div class="subject textHidden"><img src="{{t.tagimg}}" alt="/"></div>
-          <div class="backImg"><img src="{{t.img}}" alt="/"></div>
+          <div class="subject textHidden">
+            <!-- <img src="{{t.tagimg}}" alt="/"> -->
+          </div>
+          <div class="backImg"><img src="{{filePath}}{{t.lecture[0].thumbnail1}}" alt="/"></div>
         </div>
         <div class="todayClassInfo" [style.background] = 't.color'>
-          <p class="teacher">강사 <span class="name">{{t.teacher}}</span></p>
-          <p class="title bold">{{t.title}}</p>
-          <p class="description">{{t.text}}</p>
-          <p class="remainTime bold">시작까지 <span class="time"></span> 남음</p>
+          <p class="teacher">강사 <span class="name">{{t.lecture[0].inst.name}}</span></p>
+          <p class="title bold">{{t.lecture[0].title}}</p>
+          <p class="description">{{t.lecture[0].subtitle}}</p>
+          <p class="remainTime bold">시작까지 <span class="time">{{t.remains}}</span></p>
           <div class="calendarIcon">
             <div class="unfill">
-              <p class="day"></p>
-              <p class="uppercase month">{{t.monthName}}</p>
+              <p class="day">{{t.date | date: 'd'}}</p>
+              <p class="uppercase month">{{t.date | date: 'MMMM'}}</p>
             </div>
             <div class="fill">
-              <p class="year bold"></p>
+              <p class="year bold">{{t.date | date: 'Y'}}</p>
             </div>
           </div>
           <div class="goArrow pointer" [routerLink]="['detail/3']"></div>
@@ -100,12 +101,12 @@
     <div class="innerWrap">
       <h2>이달의 TOP 라이브</h2>
       <div class="contentBox">
-            <div class="pointer" *ngFor = 'let m of monthLive'>
-              <span class="no">{{m.number}}</span>
-              <img src="{{m.img}}" alt="/">
+            <div class="pointer" *ngFor = 'let m of topClass'>
+              <span class="no">{{m.idn}}</span>
+              <img src="{{filePath}}{{m.data.thumbnail1}}" alt="/">
               <div>
-                <p class="big">{{m.title}}</p>
-                <p class="small">{{m.text}}</p>
+                <p class="big">{{m.data.title}}</p>
+                <p class="small">{{m.data.subtitle}}</p>
               </div>
             </div>
             

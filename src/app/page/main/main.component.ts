@@ -2,6 +2,7 @@ import { Component, OnInit , AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { MatCarouselSlide, MatCarouselSlideComponent } from '@ngmodule/material-carousel';
+import { Environment } from 'src/app/environment/environment';
 
 @Component({
   selector: 'app-main',
@@ -15,13 +16,74 @@ export class MainComponent implements OnDestroy, AfterViewInit {
     private phxChannel: PhxChannelService,
   ) {
     phxChannel.LecturesToday.subscribe( data => {
-      console.log(data.body);
+      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      console.log(data.body)
+      this.todayClass = data.body
+      setInterval(()=>{
+        for(var i=0; i<this.todayClass.length; i++){
+        
+          // 날짜 계산
+          var liveTime = new Date(Date.parse(data.body[i].date)).getTime()/1000;
+          var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
+          
+          let hours = Math.floor((Number(calTime) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          let mins = Math.floor((Number(calTime) % (1000 * 60 * 60)) / (1000 * 60));
+          let secs = Math.floor((Number(calTime) % (1000 * 60)) / 1000);
+          var remain = hours+':'+mins+":"+secs;
+          this.todayClass[i].remains = remain;
+        }
+      },1000)
+      
+      for(var i=0; i<this.todayClass.length; i++){
+        this.todayClass[i].color = '#66cccc';
+      }
+      
     })
     phxChannel.Lectures.subscribe( data => {
-      console.log(data);
+      // console.log(data);
+
     })
+
     phxChannel.LectureControled.subscribe( data => {
       console.log(data.body);
+      // 메인
+      this.mainClass.push(data.body.main1);
+      this.mainClass.push(data.body.main2);
+      var mainLength = this.mainClass.length;
+      for(var i=0; i<mainLength; i++){
+        // 온도추가
+        var degree = this.mainClass[i][0].receipts.length/this.mainClass[i][0].least *100;
+        this.mainClass[i].push({deg:degree})
+        // 남은날짜
+        var liveTime = new Date(Date.parse(this.mainClass[i][0].dday)).getTime()/1000;
+        var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
+        let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
+        if(days >= 0){
+          var remaindays = days+"일 남음";
+        }
+        else{
+          var remaindays = '종료됨';
+        }
+        this.mainClass[i].push({remain:remaindays});
+        
+
+      }
+      // 오픈 예정
+      this.preopenClass.push(data.body.open1);
+      this.preopenClass.push(data.body.open2);
+      // top 라이브
+      this.topClass.push({data:data.body.top1[0],idn:1})
+      this.topClass.push({data:data.body.top2[0],idn:2})
+      this.topClass.push({data:data.body.top3[0],idn:3})
+      this.topClass.push({data:data.body.top4[0],idn:4})
+      this.topClass.push({data:data.body.top5[0],idn:5})
+      this.topClass.push({data:data.body.top6[0],idn:6})
+      this.topClass.push({data:data.body.top7[0],idn:7})
+      this.topClass.push({data:data.body.top8[0],idn:8})
+      this.topClass.push({data:data.body.top9[0],idn:9})
+      this.topClass.push({data:data.body.top10[0],idn:10})
+      
+      console.log(this.topClass)
     })
 
   }
@@ -45,7 +107,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
     }
 
     this.int_remainTime = setInterval(()=>{
-      this.remainTime();
+      // this.remainTime();
     },1000)
 
     this.remainDate();
@@ -61,7 +123,11 @@ export class MainComponent implements OnDestroy, AfterViewInit {
     clearInterval(this.int_remainTime);
     clearInterval(this.autoSlide);
   }
-
+  filePath = Environment.filePath;
+  mainClass=[];
+  preopenClass=[];
+  topClass=[];
+  todayClass=[{ remains: null, lecture: [{name: '', inst: { name: '' }, thumbnail1: '', title: '', subtitle: ''}], date: null, color: '' }];
   int_remainTime;
 
   
@@ -222,10 +288,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
     this.autoSlide = setInterval(()=>{this.slideLeft()},5000)
   }
 
-  tempChange(obj:any){
-    var degree = obj as HTMLElement;
-    console.log(degree.textContent);
-  }
+  
   remainDate(){
     var classdate = document.getElementsByClassName('classdate');
     var remainDays = document.getElementsByClassName('remainDays');
@@ -244,26 +307,26 @@ export class MainComponent implements OnDestroy, AfterViewInit {
       }
     }
   }
-  remainTime(){
-    var tlength = this.todayLive.length;
-    for(var i =0; i<tlength; i++){
-      var time = this.todayLive[i].time2;
-      var remainTime = document.getElementsByClassName('time');
-      var classYear = document.getElementsByClassName('year');
-      var classDay = document.getElementsByClassName('day');
-      classYear[i].textContent = new Date(this.todayLive[i].time2).getFullYear().toString();
-      classDay[i].textContent = ('00'+new Date(this.todayLive[i].time2).getDate()).slice(-2);
-      var liveTime = new Date(Date.parse(time)).getTime()/1000;
-      var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
-      if (Number(calTime) >= 0) {
-        let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((Number(calTime) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let mins = Math.floor((Number(calTime) % (1000 * 60 * 60)) / (1000 * 60));
-        let secs = Math.floor((Number(calTime) % (1000 * 60)) / 1000);
-        remainTime[i].textContent = (days*24)+Number(('00'+hours).slice(-2))+":"+ 
-        ('00'+mins).slice(-2)+":" +
-        ('00'+secs).slice(-2);
-      }
-    }
-  }
+  // remainTime(){
+  //   var tlength = this.todayLive.length;
+  //   for(var i =0; i<tlength; i++){
+  //     var time = this.todayLive[i].time2;
+  //     var remainTime = document.getElementsByClassName('time');
+  //     var classYear = document.getElementsByClassName('year');
+  //     var classDay = document.getElementsByClassName('day');
+  //     classYear[i].textContent = new Date(this.todayLive[i].time2).getFullYear().toString();
+  //     classDay[i].textContent = ('00'+new Date(this.todayLive[i].time2).getDate()).slice(-2);
+  //     var liveTime = new Date(Date.parse(time)).getTime()/1000;
+  //     var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
+  //     if (Number(calTime) >= 0) {
+  //       let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
+  //       let hours = Math.floor((Number(calTime) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  //       let mins = Math.floor((Number(calTime) % (1000 * 60 * 60)) / (1000 * 60));
+  //       let secs = Math.floor((Number(calTime) % (1000 * 60)) / 1000);
+  //       remainTime[i].textContent = (days*24)+Number(('00'+hours).slice(-2))+":"+ 
+  //       ('00'+mins).slice(-2)+":" +
+  //       ('00'+secs).slice(-2);
+  //     }
+  //   }
+  // }
 }
