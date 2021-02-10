@@ -2,6 +2,7 @@ import { Component, OnInit , AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { MatCarouselSlide, MatCarouselSlideComponent } from '@ngmodule/material-carousel';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
