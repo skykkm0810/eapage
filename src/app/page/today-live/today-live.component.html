@@ -28,18 +28,14 @@
             <div class="liveListGrid">
               <div *ngFor='let r of info' class="designedBox">
                 <div class="process">{{r.process|date:'hh시 mm분'}} OPEN</div>
-                <!-- 프로세스 'OPEN 예정' 필요  -->
                 <div class="classcategory hidden"><span class="subcategory">{{r.lecture.interests}}</span></div>
                 <div class="company" *ngIf='r.company'>{{r.company}}</div>
                 <div class="itemHeader">{{r.lecture.title}}</div>
                 <div class="itemImg"><img src="{{filePath}}{{r.lecture.thumbnail1}}" alt="/"></div>
-                <!-- 섬네일을 못불러와서 임의로 넣음  -->
                 <div class='degreeBox'>
                   <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}"
                       class="thermoBar textHidden">{{r.degree}}</span></span>
-                      <!-- 온도 더미 -->
                   <span class="remainDate">{{r.remain}}</span>
-                  <!-- 남는 날짜 계산을 우짜지.. -->
                   <span class="degrees">{{r.degree}} ºC 마음도씨</span>
                 </div>
                 <div class="smallText">

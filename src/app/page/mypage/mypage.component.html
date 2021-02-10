@@ -34,11 +34,11 @@
                 <span>{{ l.date | date: 'Y-M-d' }}</span>
               </td>
               <td>
-                <img src="{{ filePath }}{{ l.lecture.thumbnail1 }}" alt="">
+                <img src="{{ filePath }}{{ l.lecture[0].thumbnail1 }}" alt="">
               </td>
               <td colspan="4">
-                <p class="ft-bold ft-22" style="text-align: left; padding: 20px 40px;">{{ l.lecture.title }}</p>
-                <div class="tdgCtnr" *ngFor="let c of l.lecture.currs">
+                <p class="ft-bold ft-22" style="text-align: left; padding: 20px 40px;">{{ l.lecture[0].title }}</p>
+                <div class="tdgCtnr" *ngFor="let c of l.lecture[0].currs">
                   <p class="subtitle ft-16">{{ c.stage }}. {{ c.title }}</p>
                   <p class="ft-22 ft-bold">{{ c.stage }}회차</p>
                   <p class="ft-16"><span *ngIf="c.date != null">{{ c.date | date: 'Y-M-d' }}<br>{{ c.date | date: 'HH:mm' }}</span></p>
@@ -75,11 +75,11 @@
                 <span>{{ l.date | date: 'Y-M-d' }}</span>
               </td>
               <td>
-                <img src="{{ filePath }}{{ l.lecture.thumbnail1 }}" alt="">
+                <img src="{{ filePath }}{{ l.lecture[0].thumbnail1 }}" alt="">
               </td>
               <td colspan="4">
-                <p class="ft-bold ft-22" style="text-align: left; padding: 20px 40px;">{{ l.lecture.title }}</p>
-                <div class="tdgCtnr" *ngFor="let c of l.lecture.currs">
+                <p class="ft-bold ft-22" style="text-align: left; padding: 20px 40px;">{{ l.lecture[0].title }}</p>
+                <div class="tdgCtnr" *ngFor="let c of l.lecture[0].currs">
                   <p class="subtitle ft-16">{{ c.stage }}. {{ c.title }}</p>
                   <p class="ft-22 ft-bold">{{ c.stage }}회차</p>
                   <p class="ft-16"><span *ngIf="c.date != null">{{ c.date | date: 'Y-M-d' }}<br>{{ c.date | date: 'HH:mm' }}</span></p>

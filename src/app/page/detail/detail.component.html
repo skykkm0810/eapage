@@ -484,24 +484,24 @@
       <ul>
         <li *ngFor='let r of detail.recommand'>
           <div class="process">{{r.process}}</div>
-          <div class="classcategory" [style.background]='r.color'>{{r.category}}</div>
+          <div class="classcategory hidden" [style.background]='r.color'>{{r.category}}</div>
           <div class="itemHeader">{{r.title}}</div>
           <div class="itemImg"><img src="{{r.img}}" alt="/"></div>
-          <div class='degreeBox' *ngIf='r.degree'>
-            <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}" class="thermoBar textHidden">{{r.degree}}</span></span>
-            <span class="remainDate">일 남음</span>
-            <span class="degrees">{{r.degree}}ºC 마음도씨</span>
-          </div>
+          <!-- <div class='degreeBox' *ngIf='r.degree'> -->
+            <!-- <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}" class="thermoBar textHidden">{{r.degree}}</span></span> -->
+            <!-- <span class="remainDate">일 남음</span> -->
+            <!-- <span class="degrees">{{r.degree}}ºC 마음도씨</span> -->
+          <!-- </div> -->
           <div class='hashTag' *ngIf='r.hashTag'>
             <span *ngFor='let h of r.hashTag'>&nbsp;{{h.tag}}&nbsp;</span>
           </div>
-          <div class="smallText" *ngIf='r.degree'>
-            <span>{{r.text}}</span>
-          </div>
+          <!-- <div class="smallText" *ngIf='r.degree'> -->
+            <!-- <span>{{r.text}}</span> -->
+          <!-- </div> -->
           <div class="bigText" *ngIf='r.hashTag'>
             <span>{{r.text}}</span>
           </div>
-          <span class="goDetail inlineBlock pointer" *ngIf='r.degree'></span>
+          <!-- <span class="goDetail inlineBlock pointer" *ngIf='r.degree'></span> -->
         </li>
       </ul>
     </div>

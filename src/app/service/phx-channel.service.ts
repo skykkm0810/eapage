@@ -21,6 +21,7 @@ export class PhxChannelService {
   @Output() Lectures: EventEmitter<any> = new EventEmitter();
   @Output() LecturesToday: EventEmitter<any> = new EventEmitter();
   @Output() Lecture: EventEmitter<any> = new EventEmitter();
+  @Output() LectureControled: EventEmitter<any> = new EventEmitter();
   @Output() Users: EventEmitter<any> = new EventEmitter();
   @Output() User: EventEmitter<any> = new EventEmitter();
   @Output() UserUp: EventEmitter<any> = new EventEmitter();
@@ -90,6 +91,10 @@ export class PhxChannelService {
     this.lectureChannel.on('review:add', payload => {
       this.ReviewAdd.emit(payload);
     })
+    this.lectureChannel.on('lecture:controled:list', payload => {
+      this.LectureControled.emit(payload);
+    })
+    
     
 
     this.userChannel = this.socket.channel('eap:user', {});
@@ -198,9 +203,9 @@ export class PhxChannelService {
       case 'lecture:today':
         this.lectureChannel.push("lecture:today:list:req", {body: message});
         break;
-      // case 'review':
-      //   this.lectureChannel.push("review:list:req", {body: message});
-      //   break;
+      case 'lecture:controled':
+        this.lectureChannel.push("lecture:controled:list:req", {body: message});
+        break;
       case 'user':
         this.userChannel.push("user:list:req", {body: message});
         break;

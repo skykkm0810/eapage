@@ -1,5 +1,6 @@
 import { Component, OnInit , AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { MatCarouselSlide, MatCarouselSlideComponent } from '@ngmodule/material-carousel';
 @Component({
   selector: 'app-main',
@@ -9,8 +10,20 @@ import { MatCarouselSlide, MatCarouselSlideComponent } from '@ngmodule/material-
 export class MainComponent implements OnDestroy, AfterViewInit {
 
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private phxChannel: PhxChannelService,
+  ) {
+    phxChannel.LecturesToday.subscribe( data => {
+      console.log(data.body);
+    })
+    phxChannel.Lectures.subscribe( data => {
+      console.log(data);
+    })
+    phxChannel.LectureControled.subscribe( data => {
+      console.log(data.body);
+    })
+
+  }
   ngAfterViewInit(): void {
     var dot = document.getElementsByClassName('dot');
     var dotWrap = document.getElementsByClassName('dotWrap')[0] as HTMLElement;
@@ -36,6 +49,11 @@ export class MainComponent implements OnDestroy, AfterViewInit {
 
     this.remainDate();
     this.autoSlide = setInterval(()=>{this.slideLeft()},5000)
+
+    this.phxChannel.gets('lecture:today', '');
+    this.phxChannel.gets('lecture', '');
+    this.phxChannel.gets('lecture:controled', '');
+
   }
 
   ngOnDestroy(): void {
@@ -58,6 +76,9 @@ export class MainComponent implements OnDestroy, AfterViewInit {
    pre = [
     {time:'OPEN 예정 ',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/open.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
     {time:'OPEN 예정',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/flower.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+    {time:'OPEN 예정 ',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/open.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+    {time:'OPEN 예정',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/flower.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+
   ]
 
   // 오늘의 라이브 fake data
