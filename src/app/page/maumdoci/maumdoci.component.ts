@@ -36,4 +36,7 @@ export class MaumdociComponent implements OnInit {
   //   // 여기로 주소값이 반환
   //   console.log(data);
   // }
+  fun(){
+    console.log(document.getElementsByTagName('input')[0].value) 
+  }
 }

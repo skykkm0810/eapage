@@ -24,6 +24,7 @@
     "@angular/router": "~11.0.4",
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^9.0.2",
+    "@ngmodule/material-carousel": "^0.6.0",
     "bootstrap": "^4.6.0",
     "ng2-daum-address": "^1.1.4",
     "phoenix": "^1.5.7",

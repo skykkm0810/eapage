@@ -1,6 +1,7 @@
 import { Component, OnInit , AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
+import { MatCarouselSlide, MatCarouselSlideComponent } from '@ngmodule/material-carousel';
 
 @Component({
   selector: 'app-main',
@@ -10,12 +11,19 @@ import { PhxChannelService } from 'src/app/service/phx-channel.service';
 export class MainComponent implements OnDestroy, AfterViewInit {
 
   constructor(
+    private router: Router,
     private phxChannel: PhxChannelService,
-    private router: Router
   ) {
-    phxChannel.LectureControled.subscribe( data => {
+    phxChannel.LecturesToday.subscribe( data => {
+      console.log(data.body);
+    })
+    phxChannel.Lectures.subscribe( data => {
       console.log(data);
     })
+    phxChannel.LectureControled.subscribe( data => {
+      console.log(data.body);
+    })
+
   }
   ngAfterViewInit(): void {
     var dot = document.getElementsByClassName('dot');
@@ -42,6 +50,11 @@ export class MainComponent implements OnDestroy, AfterViewInit {
 
     this.remainDate();
     this.autoSlide = setInterval(()=>{this.slideLeft()},5000)
+
+    this.phxChannel.gets('lecture:today', '');
+    this.phxChannel.gets('lecture', '');
+    this.phxChannel.gets('lecture:controled', '');
+
   }
 
   ngOnDestroy(): void {
@@ -56,11 +69,17 @@ export class MainComponent implements OnDestroy, AfterViewInit {
   dcs = [
     {time:'2월 12일 FRI - PM 3시 30분',time2:'2021-02-12 15:30', during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/yoga1.png", allRound:3, nowRound:1, degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
     {time:'2월 15일 MON - PM 3시 30분',time2:'2021-02-15 15:30', during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/yoga1.png", allRound:0, nowRound:0, degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+    {time:'2월 12일 FRI - PM 3시 30분',time2:'2021-02-12 15:30', during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/yoga1.png", allRound:3, nowRound:1, degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+    {time:'2월 15일 MON - PM 3시 30분',time2:'2021-02-15 15:30', during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/yoga1.png", allRound:0, nowRound:0, degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+
   ]
    // 오픈예정  fake data 
    pre = [
     {time:'OPEN 예정 ',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/open.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
     {time:'OPEN 예정',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/flower.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+    {time:'OPEN 예정 ',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/open.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+    {time:'OPEN 예정',during: '90분',title : '바쁠수록 차분하게, 마음챙김 영상',img:"../../../assets/images/banner/flower.png", degree : 80, text : '각종 가공 플라워를 이용한 힐링 프로그램'},
+
   ]
 
   // 오늘의 라이브 fake data
@@ -106,6 +125,8 @@ export class MainComponent implements OnDestroy, AfterViewInit {
   autoSlide;
   
   curIndex = 0;
+  bannerCount = 0;
+  bannerCount2 = 0;
 
   slideLeft(){
     this.curIndex ++;
@@ -128,6 +149,63 @@ export class MainComponent implements OnDestroy, AfterViewInit {
       }
       dot[this.curIndex].classList.add('show')
     }
+  }
+  // 배너 슬라이드
+  bannerSliderRight(){
+    this.bannerCount ++;
+    var bannerBody = document.querySelector('.nowlive .innerWrap .banner') as HTMLElement;
+    var bannerList = bannerBody.getElementsByClassName('clive');
+    if(this.bannerCount == bannerList.length){
+      this.bannerCount = 0;
+      bannerBody.style.marginLeft = '0';
+    }
+    else{
+      bannerBody.style.transition = 'left , 0.5s';
+      bannerBody.style.marginLeft = -50*this.bannerCount + '%';
+    }
+  }
+  bannerSliderLeft(){
+    
+    var bannerBody = document.querySelector('.nowlive .innerWrap .banner') as HTMLElement;
+    var bannerList = bannerBody.getElementsByClassName('clive');
+    if(this.bannerCount == 0){
+      this.bannerCount = bannerList.length -1;
+      bannerBody.style.marginLeft = -50*this.bannerCount + '%';
+      this.bannerCount2 = bannerList.length;
+    }
+    else{
+      bannerBody.style.transition = 'left , 0.5s';
+      bannerBody.style.marginLeft = -50*this.bannerCount + 50 + "%";
+    }
+    this.bannerCount --;
+  }
+  bannerSliderRight2(){
+    this.bannerCount2 ++;
+    var bannerBody = document.querySelector('.preopen .innerWrap .banner') as HTMLElement;
+    var bannerList = bannerBody.getElementsByClassName('pre');
+    if(this.bannerCount2 == bannerList.length){
+      this.bannerCount2 = 0;
+      bannerBody.style.marginLeft = '0';
+    }
+    else{
+      bannerBody.style.transition = 'left , 0.5s';
+      bannerBody.style.marginLeft = -50*this.bannerCount2 + '%';
+    }
+  }
+  bannerSliderLeft2(){
+    
+    var bannerBody = document.querySelector('.preopen .innerWrap .banner') as HTMLElement;
+    var bannerList = bannerBody.getElementsByClassName('pre');
+    if(this.bannerCount2 == 0){
+      this.bannerCount2 = bannerList.length -1;
+      bannerBody.style.marginLeft = -50*this.bannerCount2 + '%';
+      this.bannerCount2 = bannerList.length;
+    }
+    else{
+      bannerBody.style.transition = 'left , 0.5s';
+      bannerBody.style.marginLeft = -50*this.bannerCount2 + 50 + "%";
+    }
+    this.bannerCount2 --;
   }
   dotClick(e:Event){
     var thisDot = e.target as HTMLElement;

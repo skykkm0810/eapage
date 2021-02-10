@@ -14,11 +14,11 @@
   <section class="nowlive">
     <h2>마음도씨 라이브</h2>
     <!-- <div class="back"></div> -->
-    <span class="left pointer"></span>
-    <span class="right pointer"></span>
+    <span class="left pointer" (click)='bannerSliderLeft()'></span>
+    <span class="right pointer" (click)='bannerSliderRight()'></span>
     <div class="innerWrap">
       <div class="banner">
-        <div *ngFor ='let d of dcs'>
+        <div *ngFor ='let d of dcs' class="clive">
           <div class="openTime uppercase bold">{{d.time}} ({{d.during}})</div>
           <p class="cardTitle bold">{{d.title}}</p>
           <div class="bannerImg">
@@ -40,14 +40,13 @@
           </div>
           <div class="goArrow pointer" [routerLink]="['detail/1']"></div>
         </div>
-       
       </div>
     </div>
   </section>
   <section class="preopen">
     <div class="back"></div>
-    <span class="left pointer"></span>
-    <span class="right pointer"></span>
+    <span class="left pointer" (click)='bannerSliderLeft2()'></span>
+    <span class="right pointer" (click)='bannerSliderRight2()'></span>
     <div class="innerWrap">
       <h2>오픈예정 라이브 컨텐츠</h2>
       <div class="banner">

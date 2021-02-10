@@ -40,7 +40,7 @@ export class DetailComponent {
         } else {
           let time = Math.ceil((d2 - d1) / 1000 / 60 / 60 / 24);
           this.dday_c = true;
-          this.dday = 'D' + time;
+          this.dday = time+"";
         }
         console.log(this.dday_c);
       } else {
@@ -113,12 +113,12 @@ export class DetailComponent {
 
     // 강의
     recommand:[
-      {process:'진행중',remain:'',openDay:'2021-02-22',degree:100 ,color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
-      {process:'진행중',remain:'',openDay:'2021-02-22',degree:80 ,color:"#00C6C6",category:'부부·가족',title:'글자를 늘려보려고 길게 적어보았습니다.' , img:'assets/images/banner/week2.png', text:'각종 가공의 그것들을 이용한 어쩃든 무엇을 하는 프로그램'},
+      {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#스트레스'},{tag:'#심리안정'},{tag:'#릴렉스'}] ,color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
+      {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#스트레칭'},{tag:'#운동'},{tag:'#릴렉스'}],color:"#00C6C6",category:'부부·가족',title:'요가로 이용한 스트레스 풀기' , img:'assets/images/banner/week2.png', text:'요가를 이용해 심신을 수양하는 프로그램'},
       // {process:'진행중',degree:50 ,color:"#954FD0",category:'인생 2막',title:'두줄 까지는 안전한가요? 세줄은 좀 힘들어 보이는데' , img:'assets/images/banner/week3.png', text:'글자길이'},
       // {process:'OPEN 예정',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
       // {process:'OPEN 예정',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#00C6C6",category:'부부·가족',title:'글자를 늘려보려고 길게 적어보았습니다.' , img:'assets/images/banner/week2.png', text:'각종 가공의 그것들을 이용한 어쩃든 무엇을 하는 프로그램'},
-      {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#954FD0",category:'인생 2막',title:'두줄 까지는 안전한가요? 세줄은 좀 힘들어 보이는데' , img:'assets/images/banner/week3.png', text:'글자길이'},
+      {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#가족관계'},{tag:'#공감하기'},{tag:'#행복'}],color:"#954FD0",category:'인생 2막',title:'함께하는 가족관계 형성하기' , img:'assets/images/banner/week3.png', text:'일도 중요하지만 가정은 더욱 소중하기에, 나의 가정을 행복하게 가꾸기 위한 프로그램'},
     ]
   }
 

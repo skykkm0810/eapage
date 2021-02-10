@@ -19,7 +19,7 @@
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.userRule }}
             </div>
-            <label class="pointer"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
+            <label class="pointer need"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
                 name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div>
@@ -27,7 +27,7 @@
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.privRule }}
             </div>
-            <label class="pointer"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
+            <label class="pointer need"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
                 name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div>
@@ -35,7 +35,7 @@
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.marketing }}
             </div>
-            <label class="pointer"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
+            <label class="pointer "><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
                 name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div class="btnBox">
@@ -67,32 +67,32 @@
           <p class="companyTitle bold">회사 정보 인증<span class="designA"></span></p>
           <div class="companyCode">
             <div>
-              <span>회사코드입력</span>
+              <span class="need">회사코드입력</span>
               <input type="text" name="c.code" [(ngModel)]="companyInfo.code" required>
             </div>
             <button mat-button (click)="confirm()">회사 코드 확인</button>
           </div>
           <div class="companyName">
             <div>
-              <span>직장명</span>
+              <span class="need">직장명</span>
               <input type="text" name="c.name" [(ngModel)]="companyInfo.name" disabled>
             </div>
           </div>
           <div class="companyPart">
             <div>
-              <span>소속 / 지점</span>
+              <span class="need">소속 / 지점</span>
               <input type="text" name="c.spot" [(ngModel)]="info.spot">
             </div>
           </div>
           <div class="companyPart">
             <div>
-              <span>부서명</span>
+              <span class="need">부서명</span>
               <input type="text" name="c.part" [(ngModel)]="info.part">
             </div>
           </div>
           <div class="companyRank">
             <div>
-              <span>직급</span>
+              <span class="need">직급</span>
               <input type="text" name="c.rank" [(ngModel)]="info.rank" required>
             </div>
           </div>
@@ -108,39 +108,39 @@
             <span class="bold infoTitle">기본정보</span>
             <div class="gridBox">
               <div>
-                <span>ID</span>
+                <span class="need">ID</span>
                 <input type="text" name="b.uname" [(ngModel)]="info.uname" required>
               </div>
               <div>
-                <span>Password</span>
+                <span class="need">Password</span>
                 <input type="password" name="b.pwd" [(ngModel)]="info.pwd" required >
               </div>
               <div>
-                <span>이름</span>
+                <span class="need">이름</span>
                 <input type="text" name="b.name" [(ngModel)]="info.name" required>
               </div>
               <div>
-                <span>연락처</span>
+                <span class="need">연락처</span>
                 <input type="text" name="b.branch" [(ngModel)]="info.contact" required>
               </div>
               <div (click)="addr()">
-                <span>주소
+                <span class="need">주소
                   <!-- <button (click)="addr()">주소검색</button> -->
                 </span>
                 <input type="text" name="b.addrs" [(ngModel)]="info.addr" disabled >
               </div>
               <div>
-                <span>상세주소</span>
+                <span class="need">상세주소</span>
                 <input type="text" name="b.subaddr" [(ngModel)]="info.subaddr" required>
               </div>
               <div>
-                <span>생년월일</span>
+                <span class="need">생년월일</span>
                 <input type="date" name="j.workGroup" [(ngModel)]="info.birth" required>
               </div>
               <div>
               </div>
               <div>
-                <span>성별</span>
+                <span class="need">성별</span>
                 <mat-radio-group [(ngModel)]="info.gender" [ngModelOptions]="{standalone: true}">
                   <mat-radio-button value="남성" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
                   <mat-radio-button value="여성" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
@@ -175,23 +175,23 @@
             <span class="bold infoTitle">회사정보</span>
             <div class="gridBox">
               <div>
-                <span>직장명</span>
+                <span class="need">직장명</span>
                 <input type="text" name="j.name" [(ngModel)]="companyInfo.name" disabled>
               </div>
               <div>
-                <span>소속 / 지점</span>
+                <span class="need">소속 / 지점</span>
                 <input type="text" name="j.spot" [(ngModel)]="info.spot" disabled>
               </div>
               <div>
-                <span>부서</span>
+                <span class="need">부서</span>
                 <input type="text" name="j.part" [(ngModel)]="info.part" disabled>
               </div>
               <div>
-                <span>직급</span>
+                <span class="need">직급</span>
                 <input type="text" name="j.rank" [(ngModel)]="info.rank" disabled>
               </div>
               <div>
-                <span>회사 이메일</span>
+                <span class="need">회사 이메일</span>
                 <input type="email" name="j.mail" [(ngModel)]="info.email" disabled>
               </div>
             </div>
