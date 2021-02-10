@@ -1,3 +1,6 @@
+.innerWrap {
+    overflow-x: hidden;
+}
 .left {
     position: absolute;
     top:50%;

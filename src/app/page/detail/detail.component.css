@@ -438,6 +438,25 @@ img {
     border-right:1px solid #DD5E5E ;
 }
 
+.curriculum {
+    padding-top: 100px;
+}
+
+.table-entry {
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 24px;
+    text-align: center;
+}
+
+.table-entry .pink-strong {
+    color: #DD5E5E;
+
+    text-align: left;
+
+    padding-left:20px;
+    padding-right:20px;
+}
 
 /* Class foryou */
 .foryou {
@@ -982,3 +1001,6 @@ img {
     font-size: 18px;
 
 }
+
+
+
