@@ -81,12 +81,13 @@ export class DetailComponent {
     // this.number = number;
     this.injected = this.route.snapshot.params;
     // console.log(this.injected);
-    this.user = JSON.parse(this.auth.getUserData());
     this.phxChannel.get('lecture', this.injected);
-    this.phxChannel.gets('user:receipt', { uid: this.user.id*1 });
+    if (this.login = this.auth.isAuthenticated()) {
+      this.user = JSON.parse(this.auth.getUserData());
+      this.phxChannel.gets('user:receipt', { uid: this.user.id*1 });
+    };
 
     this.categoryArrow();
-    this.login = this.auth.isAuthenticated();
     console.log(this.login);
     if ( this.login == true ) {
       this.reviewText = "주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다.";

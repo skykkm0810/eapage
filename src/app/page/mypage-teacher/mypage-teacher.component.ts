@@ -5,6 +5,7 @@ import { Agreement, INTERESTS, react, cause, Banks, selAccountType, selCollStat,
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { Environment } from 'src/app/environment/environment';
+import { FileUploadService } from 'src/app/service/file-upload.service';
 
 @Component({
   selector: 'app-mypage-teacher',
@@ -17,7 +18,12 @@ export class MypageTeacherComponent implements OnInit {
     public dialog:MatDialog,
     private phxChannel: PhxChannelService,
     private auth: AuthService,
+    private uploader: FileUploadService,
   ) {
+    uploader.Resp.subscribe( data => {
+      console.log(data);
+      this.info.file = data;
+    })
     phxChannel.Inst.subscribe( data => {
       console.log(data);
       this.info = {
@@ -79,6 +85,7 @@ export class MypageTeacherComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.uploader.listen( document.getElementById('file') );
     this.info = JSON.parse(this.auth.getUserData());
     console.log(this.info);
     this.phxChannel.get('inst', this.info);
