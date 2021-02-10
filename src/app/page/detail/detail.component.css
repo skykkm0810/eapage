@@ -620,13 +620,12 @@ img {
     box-sizing: initial;
     padding-top: 55px;
     width:800px;
-    height:540px;
     margin:0 auto;
 }
-.introductionImg img {
+/* .introductionImg img {
     width:100%;
     height:100%;
-}
+} */
 .classpoint {
     display: block;
     width:1000px;
@@ -697,12 +696,20 @@ img {
     padding-top: 100px;
 }
 
-.table-entry,
-.innerTable {
+.table-entry
+ {
     font-family: 'nanum';
     font-weight: normal;
     font-size: 22px;
     text-align: center;
+    border-collapse: separate;
+    border-spacing: 20px 0;
+}
+.innerTable{
+    font-family: 'nanum';
+    font-weight: normal;
+    font-size: 22px;
+    text-align: left;
     border-collapse: separate;
     border-spacing: 20px 0;
 }
