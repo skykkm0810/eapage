@@ -19,12 +19,8 @@
         <div class="showLives">
             <h3 class="show_title bold">{{title}} 
                 <span class="inlineBlock bold">&nbsp; {{today| date:'yyyy-MM-dd'}}</span>
-                <!-- <select class="form-select">
-                    <option selected>전체</option>
-                    <option value="진행">진행</option>
-                    <option value="종료">종료</option>
-                </select> -->
             </h3>
+            <p class="bold" style="padding: 50px; font-size: 22px; text-align: center;" *ngIf="info.length == 0"> 오늘의 라이브 강의가 없습니다.</p>
             <div class="liveListGrid">
               <div *ngFor='let r of info' class="designedBox">
                 <div class="process">{{r.process|date:'hh시 mm분'}} OPEN</div>

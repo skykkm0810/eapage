@@ -53,7 +53,7 @@ export class TodayLiveComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.phxChannel.gets('lecture', '');
+    this.phxChannel.gets('lecture:today', '');
   }
   color:'#000'
   title = '전체보기';

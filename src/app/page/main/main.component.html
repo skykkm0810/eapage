@@ -69,6 +69,7 @@
   <section class="today">
     <h2>오늘의 라이브</h2>
     <div class="innerWrap">
+      <p class="bold" style="padding: 50px; font-size: 22px; text-align: center;" *ngIf="todayClass.length == 0"> 오늘의 라이브 강의가 없습니다.</p>
       <div class="content" *ngFor='let t of todayClass'>
         <div class="img">
           <div class="subject textHidden">
