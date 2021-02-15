@@ -15,6 +15,7 @@ import {TodayLiveComponent} from './page/today-live/today-live.component';
 import {MaumdociComponent} from './page/maumdoci/maumdoci.component';
 import {PreopenComponent} from './page/preopen/preopen.component';
 import {JoinTeacherComponent} from './page/join-teacher/join-teacher.component';
+import {TestPageComponent} from './page/test-page/test-page.component';
 const routes: Routes = [
   { path: TAGS.LOGIN, component: LoginComponent },
   { path: TAGS.MAIN, component: MainComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: TAGS.MAUM, component: MaumdociComponent },
   { path: TAGS.PREOPEN, component: PreopenComponent },
   { path: TAGS.JOINTEACHER, component: JoinTeacherComponent },
+  { path: TAGS.TESTPAGE, component: TestPageComponent },
 ];
 
 @NgModule({

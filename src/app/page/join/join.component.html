@@ -1,5 +1,5 @@
 <script src="./assets/js/address.js"></script>
-<div class="wrap">
+<div class="wrap" (click)='popupRemove($event)'>
   <div class="innerWrap">
     <h2>회원가입</h2>
     <ul class="tabBox">
@@ -19,16 +19,16 @@
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.userRule }}
             </div>
-            <label class="pointer need"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
-                name="a_info_useage" class="hidden" required> 동의 </label>
+            <label class="pointer need neccesary"><span class="agreeHole" (click)="onechk($event)"></span><input
+                type="checkbox" name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div>
             <p class="agreeKinds"><span class="underline">개인정보취급방침</span> 이용약관 (필수)</p>
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.privRule }}
             </div>
-            <label class="pointer need"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
-                name="a_info_useage" class="hidden" required> 동의 </label>
+            <label class="pointer need neccesary"><span class="agreeHole" (click)="onechk($event)"></span><input
+                type="checkbox" name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div>
             <p class="agreeKinds"><span class="underline">마케팅 활용 동의</span> (선택)</p>
@@ -109,36 +109,57 @@
             <div class="gridBox">
               <div>
                 <span class="need">ID</span>
-                <input type="text" name="b.uname" [(ngModel)]="info.uname" required>
+                <mat-form-field>
+                  <input matInput type="text" name="b.uname" [(ngModel)]="info.uname" required>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">Password</span>
-                <input type="password" name="b.pwd" [(ngModel)]="info.pwd" required >
+                <span class="chkPsw" [ngStyle]='{"color":pwdRule.color}'>{{pwdRule.word}}</span>
+                <mat-form-field>
+                  <input matInput type="password" name="b.pwd" [(ngModel)]="info.pwd" required minlength="8" maxlength="20" (change)='pwdLength($event)'>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">이름</span>
-                <input type="text" name="b.name" [(ngModel)]="info.name" required>
+                <mat-form-field>
+                  <input matInput type="text" name="b.name" [(ngModel)]="info.name" required>
+                </mat-form-field>
+              </div>
+              <div>
+                <span class="need">Password 확인</span>
+                <span class="chkPsw" [ngStyle]='{"color":pwdChk.color}'>{{pwdChk.word}}</span>
+                <mat-form-field>
+                  <input matInput type="password" name="b.pwd2" required [(ngModel)]="pwdChk.correct" (keyup)='passChk()'>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">연락처</span>
-                <input type="text" name="b.branch" [(ngModel)]="info.contact" required>
-              </div>
-              <div (click)="addr()">
-                <span class="need">주소
-                  <!-- <button (click)="addr()">주소검색</button> -->
-                </span>
-                <input type="text" name="b.addrs" [(ngModel)]="info.addr" disabled >
-              </div>
-              <div>
-                <span class="need">상세주소</span>
-                <input type="text" name="b.subaddr" [(ngModel)]="info.subaddr" required>
+                <mat-form-field>
+                  <input matInput type="text" name="b.branch" [(ngModel)]="info.contact" required>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">생년월일</span>
-                <input type="date" name="j.workGroup" [(ngModel)]="info.birth" required>
+                <mat-form-field>
+                  <input matInput type="date" name="j.workGroup" [(ngModel)]="info.birth" required>
+                </mat-form-field>
+              </div>
+              <div class="addrDiv">
+                <span class="need">주소
+                  <!-- <button (click)="addr()">주소검색</button> -->
+                </span>
+                <mat-form-field (click)="addr()">
+                  <input matInput type="text" name="b.addrs" [(ngModel)]="info.addr" disabled>
+                </mat-form-field>
               </div>
               <div>
+                <span class="need">상세주소</span>
+                <mat-form-field>
+                  <input matInput type="text" name="b.subaddr" [(ngModel)]="info.subaddr" required>
+                </mat-form-field>
               </div>
+              
               <div>
                 <span class="need">성별</span>
                 <mat-radio-group [(ngModel)]="info.gender" [ngModelOptions]="{standalone: true}">
@@ -176,23 +197,33 @@
             <div class="gridBox">
               <div>
                 <span class="need">직장명</span>
-                <input type="text" name="j.name" [(ngModel)]="companyInfo.name" disabled>
+                <mat-form-field>
+                  <input matInput type="text" name="j.name" [(ngModel)]="companyInfo.name" disabled>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">소속 / 지점</span>
-                <input type="text" name="j.spot" [(ngModel)]="info.spot" disabled>
+                <mat-form-field>
+                  <input matInput type="text" name="j.spot" [(ngModel)]="info.spot" disabled>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">부서</span>
-                <input type="text" name="j.part" [(ngModel)]="info.part" disabled>
+                <mat-form-field>
+                  <input matInput type="text" name="j.part" [(ngModel)]="info.part" disabled>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">직급</span>
-                <input type="text" name="j.rank" [(ngModel)]="info.rank" disabled>
+                <mat-form-field>
+                  <input matInput type="text" name="j.rank" [(ngModel)]="info.rank" disabled>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">회사 이메일</span>
-                <input type="email" name="j.mail" [(ngModel)]="info.email" disabled>
+                <mat-form-field>
+                  <input matInput type="email" name="j.mail" [(ngModel)]="info.email" disabled>
+                </mat-form-field>
               </div>
             </div>
           </div>
@@ -229,5 +260,5 @@
   </div>
 </div>
 
-<div #daum_popup style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+<div #daum_popup class="daum" style="display:none;position:fixed;overflow:hidden;z-index:1;">
 </div>
