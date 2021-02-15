@@ -1313,7 +1313,7 @@ class JoinComponent {
         phxChannel.Signup.subscribe(data => {
             console.log(data.body);
             auth.setToken(data.body);
-            window.location.href = '/';
+            window.location.href = './';
             // this.nextBtn(this.event3);
         });
         phxChannel.Invalid.subscribe(data => {
@@ -3598,7 +3598,7 @@ class EnrollListComponent {
         this.phxChannel.get('user', this.cred);
     }
     go() {
-        window.location.href = "/";
+        window.location.href = "./";
     }
 }
 EnrollListComponent.ɵfac = function EnrollListComponent_Factory(t) { return new (t || EnrollListComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_service_phx_channel_service__WEBPACK_IMPORTED_MODULE_2__["PhxChannelService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_service_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"])); };
@@ -4611,7 +4611,7 @@ function DetailComponent_div_35_Template(rf, ctx) { if (rf & 1) {
 } }
 function DetailComponent_span_47_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "span");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "D-");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "D");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 function DetailComponent_div_77_Template(rf, ctx) { if (rf & 1) {
@@ -6791,7 +6791,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Environment", function() { return Environment; });
 const Environment = {
     production: false,
-    socket_channel: 'ws://localhost:4000',
+    socket_channel: 'ws://3.35.47.51:4000',
     // socket_channel: 'ws://localhost:4000',
     // socket_channel: 'ws://121.159.43.37:4000',
     http: 'http://',

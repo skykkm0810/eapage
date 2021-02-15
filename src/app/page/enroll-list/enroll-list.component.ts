@@ -84,6 +84,6 @@ export class EnrollListComponent implements OnInit {
   filePath = Environment.filePath
 
   go() {
-    window.location.href = "/";
+    window.location.href = "./";
   }
 }

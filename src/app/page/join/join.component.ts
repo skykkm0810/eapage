@@ -34,7 +34,7 @@ export class JoinComponent implements OnInit {
     phxChannel.Signup.subscribe( data => {
       console.log(data.body);
       auth.setToken(data.body);
-      window.location.href = '/';
+      window.location.href = './';
       // this.nextBtn(this.event3);
     })
     phxChannel.Invalid.subscribe( data => {
