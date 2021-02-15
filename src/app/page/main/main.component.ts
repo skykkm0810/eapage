@@ -16,7 +16,6 @@ export class MainComponent implements OnDestroy, AfterViewInit {
     private phxChannel: PhxChannelService,
   ) {
     phxChannel.LecturesToday.subscribe( data => {
-      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       console.log(data.body)
       this.todayClass = data.body
       setInterval(()=>{

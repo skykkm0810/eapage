@@ -9,6 +9,7 @@
 /* You can add global styles to this file, and also import other style files */
 * {
     padding:0; margin:0;
+    outline: none;
 }
 @font-face {
     src: url('nanumSquare.ttf');
@@ -19,6 +20,9 @@
     font-family: 'nanum_pen';
 }
 html, body { height: 100%; }
+html {
+    scroll-behavior: smooth;
+  }
 body { margin: 0;}
 body {
     font-family: 'nanum' ,sans-serif!important;
@@ -63,9 +67,6 @@ li {
 }
 .text-left {
     text-align: left;
-}
-::-webkit-scrollbar {
-    display: none;
 }
 .need::after {
     content: '*';
