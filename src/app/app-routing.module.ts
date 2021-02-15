@@ -16,6 +16,7 @@ import {MaumdociComponent} from './page/maumdoci/maumdoci.component';
 import {PreopenComponent} from './page/preopen/preopen.component';
 import {JoinTeacherComponent} from './page/join-teacher/join-teacher.component';
 import {TestPageComponent} from './page/test-page/test-page.component';
+
 const routes: Routes = [
   { path: TAGS.LOGIN, component: LoginComponent },
   { path: TAGS.MAIN, component: MainComponent },
