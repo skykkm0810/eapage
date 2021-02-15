@@ -72,6 +72,15 @@ export class JoinComponent implements OnInit {
     interests: null,
     type: false,
   }
+  pwdRule:any = {
+    word:'',
+    color:'',
+  }
+  pwdChk:any = {
+    correct:null,
+    word:'',
+    color:'',
+  };
   
   interests = INTERESTS;
   emailCode : any = '초기값';
@@ -131,6 +140,7 @@ export class JoinComponent implements OnInit {
     var mother = (a.target as HTMLElement).closest('.tabContentBox') as HTMLElement;
     var neccesary = mother.getElementsByClassName('neccesary');
     for(var i=0; i<neccesary.length; i++){
+      console.log(neccesary[i])
       if(neccesary[i].getElementsByTagName('input')[0].checked == false){
         alert('필수 항목은 모두 체크 하셔야 이용 가능합니다.');
         return;
@@ -280,6 +290,36 @@ export class JoinComponent implements OnInit {
   }
   close() {
     this.renderer.setStyle(this.popup.nativeElement, 'display', 'none');
+  }
+  passChk() {
+    if(this.pwdChk.correct == this.info.pwd){
+      this.pwdChk.word = '비밀번호가 일치합니다.';
+      this.pwdChk.color = 'green';
+    }
+    else{
+      this.pwdChk.word = '비밀번호가 일치하지 않습니다.';
+      this.pwdChk.color = 'red';
+    }
+  }
+  pwdLength(e:Event){
+    var input = (e.target) as HTMLInputElement;
+    if(input.value.length < 8 || input.value.length > 20) {
+      this.pwdRule.word = '비밀번호는 8자리 이상, 20자리 이하 이어야 합니다.';
+      this.pwdRule.color = 'red';
+    }
+    else{
+      this.pwdRule.word = '사용가능한 비밀번호 입니다.';
+      this.pwdRule.color = 'green';
+    }
+  }
+  popupRemove(e:Event){
+    var thisClickTag = e.target as HTMLElement;
+    console.log(thisClickTag)
+    var basicInfo = document.getElementsByClassName('basicInfo')[0] as HTMLElement;
+    var outside = document.getElementsByClassName('wrap')[0] as HTMLElement;
+    if(thisClickTag == outside || thisClickTag == basicInfo ){
+        this.close();
+    }
   }
 }
 

@@ -79,7 +79,9 @@ h2 {
     margin: 0 !important;
 }
 .agreeBox > p span {
-    float:right;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
 }
 .agreeBox > div {
     padding-top: 30px;
@@ -327,6 +329,7 @@ h2 {
 .basicInfo .gridBox div {
     width:380px;
     height:70px;
+    position: relative;
 }
 .basicInfo .gridBox div span {
     box-sizing: border-box;
@@ -335,9 +338,8 @@ h2 {
     font-size: 16px;
     color:#3F3D56;
     line-height: 30px;
-    padding-bottom: 15px;
 }
-.basicInfo .gridBox div input {
+.basicInfo .gridBox div .mat-form-field {
     width:380px;
     color:#3F3D56;
     font-size: 22px;
@@ -346,8 +348,6 @@ h2 {
     box-sizing: border-box;
     padding-bottom: 8px;
     border:0;
-    border-bottom: 1px solid #c4c4c4;
-    text-indent: 15px;
 }
 .basicInfo .gridBox div input::placeholder {
     color:#ccc;
@@ -366,6 +366,17 @@ h2 {
     margin:0!important;
     text-align: center;
 }
+
+.basicInfo .gridBox div .chkPsw{
+    display: block;
+    position: absolute;
+    font-size: 14px;
+    left: 140px;
+    top:7px;
+    line-height: 16px;
+    
+}
+
 .basicInfo .gridBox div label input[type=radio]{
     width:auto;
     font-size: 22px;
@@ -420,7 +431,7 @@ h2 {
     line-height: 30px;
     padding-bottom: 15px;
 }
-.jobsInfo .gridBox div input {
+.jobsInfo .gridBox div .mat-form-field {
     width:380px;
     color:#3F3D56;
     font-size: 22px;
@@ -429,8 +440,6 @@ h2 {
     box-sizing: border-box;
     padding-bottom: 8px;
     border:0;
-    border-bottom: 1px solid #c4c4c4;
-    text-indent: 15px;
 }
 .jobsInfo .gridBox div input::placeholder {
     color:#ccc;
@@ -473,14 +482,14 @@ h2 {
 }
 /* 관심영역 */
 .interest {
-    padding-top : 50px;
+    padding-top : 150px;
     position: relative;
 }
 .interestInfo .infoTitle {
     font-size: 20px;
     position: absolute;
     left:0;
-    top:70px;
+    top:170px;
     color:#dd5e5e;
 }
 .interestInfo .gridBox {

@@ -13,6 +13,7 @@ export const TAGS : Record<string, string> = {
   MAUM: 'maum',
   PREOPEN: 'preopen',
   JOINTEACHER: 'joinTeacher',
+  TESTPAGE: 'test',
 } 
 
 export const INTERESTS = [
