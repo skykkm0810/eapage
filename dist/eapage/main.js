@@ -2069,7 +2069,7 @@ JoinComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/ninano/dev/eap/src/main.ts */"zUnb");
+module.exports = __webpack_require__(/*! /home/user/dev/eap/src/main.ts */"zUnb");
 
 
 /***/ }),
@@ -6791,7 +6791,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Environment", function() { return Environment; });
 const Environment = {
     production: false,
-    socket_channel: 'ws://3.35.47.51:4000',
+    socket_channel: 'ws://localhost:4000',
     // socket_channel: 'ws://localhost:4000',
     // socket_channel: 'ws://121.159.43.37:4000',
     http: 'http://',
@@ -8102,7 +8102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Banks", function() { return Banks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Agreement", function() { return Agreement; });
 const TAGS = {
-    MAIN: '',
+    MAIN: 'main',
     LOGIN: 'login',
     JOIN: 'join',
     ENROLLCLASS: 'enrollClass/:id',
@@ -9719,8 +9719,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    { path: _interface_interface__WEBPACK_IMPORTED_MODULE_2__["TAGS"].LOGIN, component: _layout_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
+    { path: '', pathMatch: 'full', redirectTo: 'main' },
     { path: _interface_interface__WEBPACK_IMPORTED_MODULE_2__["TAGS"].MAIN, component: _page_main_main_component__WEBPACK_IMPORTED_MODULE_4__["MainComponent"] },
+    { path: _interface_interface__WEBPACK_IMPORTED_MODULE_2__["TAGS"].LOGIN, component: _layout_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
     { path: _interface_interface__WEBPACK_IMPORTED_MODULE_2__["TAGS"].JOIN, component: _page_join_join_component__WEBPACK_IMPORTED_MODULE_5__["JoinComponent"] },
     { path: _interface_interface__WEBPACK_IMPORTED_MODULE_2__["TAGS"].ENROLLCLASS, component: _page_enroll_class_enroll_class_component__WEBPACK_IMPORTED_MODULE_6__["EnrollClassComponent"] },
     { path: _interface_interface__WEBPACK_IMPORTED_MODULE_2__["TAGS"].ENROLLLIST, component: _page_enroll_list_enroll_list_component__WEBPACK_IMPORTED_MODULE_7__["EnrollListComponent"] },
