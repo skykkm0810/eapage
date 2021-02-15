@@ -2866,7 +2866,7 @@ class LoginComponent {
         this.phxChannel = phxChannel;
         phxChannel.Access.subscribe(() => {
             this.close();
-            window.location.href = '/';
+            window.location.href = './';
         });
         phxChannel.Invalid.subscribe(() => {
             alert('계정정보가 틀렸습니다.');
