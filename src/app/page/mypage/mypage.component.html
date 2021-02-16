@@ -1,4 +1,5 @@
-<div class="wrap">
+<script src="./assets/js/address.js"></script>
+<div class="wrap" (click)='popupRemove($event)'>
   <div class="innerWrap">
     <h2>마이페이지</h2>
     <ul class="tabBox">
@@ -94,33 +95,55 @@
         <div class="basic">
           <div class="basicInfo">
             <span class="bold infoTitle">기본 정보</span>
+            <button mat-button (click)="changePw()" class="changePwd tryToChange" type='button'>비밀번호 변경</button>
             <div class="gridBox">
               <div>
-                <span>이름</span>
-                <input type="text" name="b.name"  [(ngModel)]="user.name" required>
+                <span class="need">이름</span>
+                <mat-form-field>
+                  <input matInput type="text" name="b.name"  [(ngModel)]="user.name" required>
+                </mat-form-field>
               </div>
               <div>
-                <span>비밀번호</span>
-                <input type="password" name="b.pwd"  [(ngModel)]="user.pwd" required>
+                <span class="need">연락처</span>
+                <mat-form-field>
+                  <input matInput type="tel" name="b.branch"   [(ngModel)]="user.contact" required>
+                  <mat-hint [ngStyle]='{"color":"#666", "font-size":"14px"}'>- 없이 번호로 입력</mat-hint>
+                </mat-form-field>
+              </div>
+              <div class="pwdParts" hidden>
+                <span class="need">비밀번호</span>
+                <span class="chkPsw" [ngStyle]='{"color":pwdRule.color}'>{{pwdRule.word}}</span>
+                <mat-form-field>
+                  <input matInput type="password" name="b.pwd"  [(ngModel)]="user.pwd" required minlength="8" maxlength="20" (change)='pwdLength($event)'>
+                </mat-form-field>
+              </div>
+              <div class="pwdChkPart" hidden>
+                <span class="need">비밀번호 확인</span>
+                <span class="chkPsw" [ngStyle]='{"color":pwdChk.color}'>{{pwdChk.word}}</span>
+                <mat-form-field>
+                  <input matInput type="password" name="b.pwd2" required [(ngModel)]="pwdChk.correct" (keyup)='passChk()'>
+                </mat-form-field>
               </div>
               <div>
-                <span>연락처</span>
-                <input type="text" name="b.branch"   [(ngModel)]="user.contact" required>
+                <span class="need">주소</span>
+                <mat-form-field >
+                  <input matInput type="text" name="b.addr"   [(ngModel)]="user.addr" required>
+                </mat-form-field>
               </div>
               <div>
-                <span>주소</span>
-                <input type="text" name="b.addr"   [(ngModel)]="user.addr" required>
+                <span class="need">상세주소</span>
+                <mat-form-field>
+                  <input matInput type="text" name="b.subaddr"   [(ngModel)]="user.subaddr" required>
+                </mat-form-field>
               </div>
               <div>
-                <span>상세주소</span>
-                <input type="text" name="b.subaddr"   [(ngModel)]="user.subaddr" required>
+                <span class="need">생년월일</span>
+                <mat-form-field>
+                  <input matInput type="date" name="j.birth"  [(ngModel)]="user.birth" required>
+                </mat-form-field>
               </div>
               <div>
-                <span>생년월일</span>
-                <input type="date" name="j.birth"  [(ngModel)]="user.birth" required>
-              </div>
-              <div>
-                <span>성별</span>
+                <span class="need">성별</span>
                 <mat-radio-group name="gender" [(ngModel)]="user.gender">
                   <mat-radio-button value="남성" class="bold">&nbsp;&nbsp; 남 </mat-radio-button>
                   <mat-radio-button value="여성" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>

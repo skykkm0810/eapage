@@ -10,7 +10,7 @@
     </ul>
     <form action="/">
 
-      <div class="agreement tabContentBox">
+      <div class="agreement tabContentBox ">
         <p class="bold">서비스 이용을 위해 이용약관 동의가 필요합니다.</p>
         <div class="agreeBox">
           <p class="allAgree bold">전체 동의<span class="agreeHole pointer" (click)='allchk($event)'></span></p>
@@ -51,14 +51,21 @@
           <div class="mailAddress">
             <div>
               <span class="need">이메일 주소</span>
-              <input type="email" name="e.email" [(ngModel)]="info.email">
+              <mat-form-field>
+                <input matInput type="email" name="e.email" [(ngModel)]="info.email">
+                <mat-hint>
+                  {{emailCodeMessage}}
+                </mat-hint>
+              </mat-form-field>
             </div>
-            <button mat-button (click)="send()">인증코드 전송</button>
+            <button mat-button (click)="send($event)">인증코드 전송</button>
           </div>
           <div class="mailCertifi">
             <div>
               <span class="need">인증코드</span>
-              <input type="text" name="e.code" class="neccesary" required>
+              <mat-form-field>
+                <input matInput type="text" name="e.code" class="neccesary" required>
+              </mat-form-field>
             </div>
             <button mat-button (click)="clear($event)">인증코드 확인</button>
           </div>
@@ -68,32 +75,42 @@
           <div class="companyCode">
             <div>
               <span class="need">회사코드입력</span>
-              <input type="text" name="c.code" [(ngModel)]="companyInfo.code" required>
+              <mat-form-field>
+                <input matInput type="text" name="c.code" [(ngModel)]="companyInfo.code" required>
+              </mat-form-field>
             </div>
             <button mat-button (click)="confirm()">회사 코드 확인</button>
           </div>
           <div class="companyName">
             <div>
               <span class="need">직장명</span>
-              <input type="text" name="c.name" [(ngModel)]="companyInfo.name" disabled>
+              <mat-form-field>
+                <input matInput type="text" name="c.name" [(ngModel)]="companyInfo.name" disabled>
+              </mat-form-field>
             </div>
           </div>
           <div class="companyPart">
             <div>
               <span class="need">소속 / 지점</span>
-              <input type="text" name="c.spot" [(ngModel)]="info.spot">
+              <mat-form-field>
+                <input matInput type="text" name="c.spot" [(ngModel)]="info.spot">
+              </mat-form-field>
             </div>
           </div>
           <div class="companyPart">
             <div>
               <span class="need">부서명</span>
-              <input type="text" name="c.part" [(ngModel)]="info.part">
+              <mat-form-field>
+                <input matInput type="text" name="c.part" [(ngModel)]="info.part">
+              </mat-form-field>
             </div>
           </div>
           <div class="companyRank">
             <div>
               <span class="need">직급</span>
-              <input type="text" name="c.rank" [(ngModel)]="info.rank" required>
+              <mat-form-field>
+                <input matInput type="text" name="c.rank" [(ngModel)]="info.rank" required>
+              </mat-form-field>
             </div>
           </div>
           <div class="btnBox">
@@ -114,7 +131,7 @@
                 </mat-form-field>
               </div>
               <div>
-                <span class="need">Password</span>
+                <span class="need">비밀번호</span>
                 <span class="chkPsw" [ngStyle]='{"color":pwdRule.color}'>{{pwdRule.word}}</span>
                 <mat-form-field>
                   <input matInput type="password" name="b.pwd" [(ngModel)]="info.pwd" required minlength="8" maxlength="20" (change)='pwdLength($event)'>
@@ -127,7 +144,7 @@
                 </mat-form-field>
               </div>
               <div>
-                <span class="need">Password 확인</span>
+                <span class="need">비밀번호 확인</span>
                 <span class="chkPsw" [ngStyle]='{"color":pwdChk.color}'>{{pwdChk.word}}</span>
                 <mat-form-field>
                   <input matInput type="password" name="b.pwd2" required [(ngModel)]="pwdChk.correct" (keyup)='passChk()'>
@@ -136,7 +153,8 @@
               <div>
                 <span class="need">연락처</span>
                 <mat-form-field>
-                  <input matInput type="text" name="b.branch" [(ngModel)]="info.contact" required>
+                  <input matInput type="tel" name="b.branch" [(ngModel)]="info.contact" required>
+                  <mat-hint [ngStyle]='{"color":"#666", "font-size":"14px"}'>- 없이 번호로 입력</mat-hint>
                 </mat-form-field>
               </div>
               <div>

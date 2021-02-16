@@ -1,10 +1,10 @@
 <script src="./assets/js/address.js"></script>
-<div class="wrap">
+<div class="wrap" (click)='popupRemove($event)'>
   <div class="innerWrap">
     <h2>회원가입</h2>
     <ul class="tabBox">
       <li class="bold on">이용약관 동의</li>
-      <li class="bold ">본인 인증</li>
+      <!-- <li class="bold ">본인 인증</li> -->
       <li class="bold ">회원 정보 입력</li>
     </ul>
     <form action="/">
@@ -18,23 +18,23 @@
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.userRule }}
             </div>
-            <label class="pointer"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
-                name="a_info_useage" class="hidden" required> 동의 </label>
+            <label class="pointer need neccesary"><span class="agreeHole" (click)="onechk($event)"></span><input
+                type="checkbox" name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div>
             <p class="agreeKinds"><span class="underline">개인정보취급방침</span> 이용약관 (필수)</p>
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.privRule }}
             </div>
-            <label class="pointer"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
-                name="a_info_useage" class="hidden" required> 동의 </label>
+            <label class="pointer need neccesary"><span class="agreeHole" (click)="onechk($event)"></span><input
+                type="checkbox" name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div>
             <p class="agreeKinds"><span class="underline">마케팅 활용 동의</span> (선택)</p>
             <div class="agreeDetail" style="white-space:pre-wrap;">
               {{ agreement.marketing }}
             </div>
-            <label class="pointer"><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
+            <label class="pointer "><span class="agreeHole" (click)="onechk($event)"></span><input type="checkbox"
                 name="a_info_useage" class="hidden" required> 동의 </label>
           </div>
           <div class="btnBox">
@@ -42,7 +42,7 @@
           </div>
         </div>
       </div>
-      <div class="certification tabContentBox hidden">
+      <!-- <div class="certification tabContentBox hidden">
         <p class="bold">마음도씨 이용을 위해 본인인증이 필요합니다.</p>
         <div class="emailBox">
           <p class="emailTitle bold">이메일 인증<span class="designA"></span></p>
@@ -67,7 +67,7 @@
           </div>
         </div>
 
-      </div>
+      </div> -->
 
       <div class="personal tabContentBox hidden">
         <form action="/">
@@ -75,7 +75,7 @@
             <div class="basicInfo">
               <span class="bold infoTitle">기본 정보</span>
               <div class="floatImg">
-                <img src="{{filePath}}{{info.file}}" width="100%" height="100%" alt="">
+                <img src="{{filePath}}{{info.file}}" width="100%" height="100%" alt="/">
               </div>
               <label class="changeBtn pointer">
                 <input type="file" id="file" name="teacher_profile" hidden (change)="showPicture($event)">
@@ -83,33 +83,60 @@
               <div class="gridBox">
                 <div>
                   <span class="need">이름</span>
-                  <input [(ngModel)]="info.name" type="text" name="myt.name" required>
+                  <mat-form-field>
+                    <input matInput [(ngModel)]="info.name" type="text" name="myt.name" required>
+                  </mat-form-field>
                 </div>
                 <div>
                   <span class="need">아이디</span>
-                  <input [(ngModel)]="info.uname" type="text" name="myt.uname" required>
+                  <mat-form-field>
+                    <input matInput [(ngModel)]="info.uname" type="text" name="myt.uname" required>
+                  </mat-form-field>
                 </div>
                 <div>
                   <span class="need">비밀번호</span>
-                  <input [(ngModel)]="info.pwd" type="password" name="myt.password">
+                  <span class="chkPsw" [ngStyle]='{"color":pwdRule.color}'>{{pwdRule.word}}</span>
+                  <mat-form-field>
+                    <input matInput [(ngModel)]="info.pwd" type="password" name="myt.password" minlength="8" maxlength="20" (change)='pwdLength($event)'>
+                  </mat-form-field>
                 </div>
                 <div>
-                  <span class="need">이메일</span>
-                  <input [(ngModel)]="info.email" type="text" name="myt.email" disabled>
+                  <span class="need">비밀번호 확인</span>
+                  <span class="chkPsw" [ngStyle]='{"color":pwdChk.color}'>{{pwdChk.word}}</span>
+                  <mat-form-field>
+                    <input matInput type="password" name="b.pwd2" required [(ngModel)]="pwdChk.correct" (keyup)='passChk()'>
+                  </mat-form-field>
                 </div>
                 <div>
                   <span class="need">생년월일</span>
-                  <input [(ngModel)]="info.birth" type="date" name="myt.homepage" required>
+                  <mat-form-field>
+                    <input  matInput [(ngModel)]="info.birth" type="date" name="myt.homepage" required>
+                  </mat-form-field>
                 </div>
                 <div>
                   <span class="need">연락처</span>
-                  <input [(ngModel)]="info.contact" type="text" name="myt.contact" required>
+                  <mat-form-field>
+                    <input  matInput [(ngModel)]="info.contact" type="tel" name="myt.contact" required placehoslder="- 없이 번호로 입력">
+                    <mat-hint [ngStyle]='{"color":"#666", "font-size":"14px"}'>- 없이 번호로 입력</mat-hint>
+                  </mat-form-field>
                 </div>
-                <div>
+                <div class="addrDiv">
                   <span class="need">주소</span>
-                  <input [(ngModel)]="info.addr" type="text" name="myt.address" required>
+                  <mat-form-field (click)="addr()">
+                    <input matInput [(ngModel)]="info.addr" type="text" name="myt.address" disabled required>
+                  </mat-form-field>
                 </div>
                 <div>
+                  <span class="need">상세주소</span>
+                  <mat-form-field>
+                    <input matInput type="text" name="b.subaddr" [(ngModel)]="info.subaddr" required>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <span class="need">이메일</span>
+                  <mat-form-field>
+                    <input  matInput [(ngModel)]="info.email" type="text" name="myt.email">
+                  </mat-form-field>
                 </div>
                 <div>
                   <span class="need">성별</span>
@@ -118,13 +145,9 @@
                     <mat-radio-button value="여성" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
                   </mat-radio-group>
                 </div>
-                <div></div>
-                <div>
-                  <span class="need">경력정보 요약</span>
-                  <mat-form-field>
-                    <textarea matInput name="career" [(ngModel)]="info.career" cdkTextareaAutosize cdkAutosizeMinRows="1"
-                    cdkAutosizeMaxRows="6"></textarea>
-                  </mat-form-field>
+                <div class="careerbox">
+                  <span>경력정보 요약</span>
+                    <textarea matInput name="career" [(ngModel)]="info.career" rows="8"></textarea>
                 </div>
               </div>
             </div>
@@ -135,9 +158,10 @@
               <div class="billKinds">
                 <span class="need" style="height:60px;">계산서 유형</span>
                 <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="info.accType">
+                  <mat-radio-button value="세금계산서" class="bold">&nbsp;&nbsp; 세금계산서 </mat-radio-button>
                   <mat-radio-button value="계산서(비과세)" class="bold">&nbsp;&nbsp; 계산서(비과세) </mat-radio-button>
                   <mat-radio-button value="개인사업소득" class="bold">&nbsp;&nbsp; 개인사업소득 </mat-radio-button>
-                  <mat-radio-button value="세금계산서" class="bold">&nbsp;&nbsp; 세금계산서 </mat-radio-button>
+                  <mat-radio-button value="개인기타소득" class="bold">&nbsp;&nbsp; 개인기타소득 </mat-radio-button>
                 </mat-radio-group>
               </div>
               <div>

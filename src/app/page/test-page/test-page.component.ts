@@ -16,5 +16,12 @@ export class TestPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+  phoneFormat(e:Event) {
+    var number = (e.target as HTMLInputElement).value;
+    console.log(number);
+  }
+  show(e:Event){
+    var number = (e.target as HTMLInputElement).value;
+    console.log(number)
+  }
 }

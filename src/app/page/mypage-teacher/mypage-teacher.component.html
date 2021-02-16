@@ -1,4 +1,5 @@
-<div class="wrap">
+<script src="./assets/js/address.js"></script>
+<div class="wrap" (click)='popupRemove($event)'>
   <div class="innerWrap">
     <h2>마이페이지</h2>
     <ul class="tabBox">
@@ -170,6 +171,7 @@
         <div class="basic">
           <div class="basicInfo">
             <span class="bold infoTitle">기본 정보</span>
+            <button mat-button (click)="changePw()" class="changePwd tryToChange" type='button'>비밀번호 변경</button>
             <div class="floatImg"><img src="{{filePath}}{{info.file}}" width="100%" height="100%" alt=""></div>
             <label class="changeBtn pointer">
               <input type="file" id="file" name="teacher_profile" hidden (change)="showPicture($event)">
@@ -177,27 +179,55 @@
             <div class="gridBox">
               <div>
                 <span class="need">이름</span>
-                <input [(ngModel)]="info.name" type="text" name="myt.name" required>
-              </div>
-              <div>
-                <span class="need">비밀번호</span>
-                <input [(ngModel)]="info.pwd" type="password" name="myt.password">
+                <mat-form-field>
+                  <input matInput [(ngModel)]="info.name" type="text" name="myt.name" required>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">이메일</span>
-                <input [(ngModel)]="info.email" type="text" name="myt.email" required>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="info.email" type="text" name="myt.email" required>
+                </mat-form-field>
+              </div>
+              <div class="pwdParts" hidden>
+                <span class="need">비밀번호</span>
+                <span class="chkPsw" [ngStyle]='{"color":pwdRule.color}'>{{pwdRule.word}}</span>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="info.pwd" type="password" name="myt.password" (change)='pwdLength($event)'>
+                </mat-form-field>
+              </div>
+              <div class="pwdChkPart" hidden>
+                <span class="need">비밀번호 확인</span>
+                <span class="chkPsw" [ngStyle]='{"color":pwdChk.color}'>{{pwdChk.word}}</span>
+                <mat-form-field>
+                  <input matInput type="password" name="b.pwd2" required [(ngModel)]="pwdChk.correct"
+                    (keyup)='passChk()'>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">생년월일</span>
-                <input [(ngModel)]="info.birth" type="date" name="myt.homepage" required>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="info.birth" type="date" name="myt.homepage" required>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">연락처</span>
-                <input [(ngModel)]="info.contact" type="text" name="myt.contact" required>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="info.contact" type="text" name="myt.contact" required>
+                  <mat-hint [ngStyle]='{"color":"#666", "font-size":"14px"}'>- 없이 번호로 입력</mat-hint>
+                </mat-form-field>
+              </div>
+              <div  class="addrDiv">
+                <span class="need">주소</span>
+                <mat-form-field>
+                  <input matInput [(ngModel)]="info.addr" type="text" name="myt.address" required>
+                </mat-form-field>
               </div>
               <div>
-                <span class="need">주소</span>
-                <input [(ngModel)]="info.addr" type="text" name="myt.address" required>
+                <span class="need">상세주소</span>
+                <mat-form-field>
+                  <input matInput type="text" name="b.subaddr" [(ngModel)]="info.subaddr" required>
+                </mat-form-field>
               </div>
               <div>
                 <span class="need">성별</span>
@@ -206,13 +236,9 @@
                   <mat-radio-button value="여성" class="bold">&nbsp;&nbsp; 녀 </mat-radio-button>
                 </mat-radio-group>
               </div>
-              <div></div>
-              <div>
+              <div class="careerBox">
                 <span class="need">경력정보 요약</span>
-                <mat-form-field>
-                  <textarea matInput name="career" [(ngModel)]="info.career" cdkTextareaAutosize cdkAutosizeMinRows="1"
-                  cdkAutosizeMaxRows="6"></textarea>
-                </mat-form-field>
+                <textarea name="career" [(ngModel)]="info.career" rows='8'></textarea>
               </div>
             </div>
           </div>
@@ -223,9 +249,10 @@
             <div class="billKinds">
               <span class="need" style="height:60px;">계산서 유형</span>
               <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="info.accType">
+                <mat-radio-button value="세금계산서" class="bold">&nbsp;&nbsp; 세금계산서 </mat-radio-button>
                 <mat-radio-button value="계산서(비과세)" class="bold">&nbsp;&nbsp; 계산서(비과세) </mat-radio-button>
                 <mat-radio-button value="개인사업소득" class="bold">&nbsp;&nbsp; 개인사업소득 </mat-radio-button>
-                <mat-radio-button value="세금계산서" class="bold">&nbsp;&nbsp; 세금계산서 </mat-radio-button>
+                <mat-radio-button value="개인기타소득" class="bold">&nbsp;&nbsp; 개인기타소득 </mat-radio-button>
               </mat-radio-group>
             </div>
             <div>
@@ -239,10 +266,10 @@
                 </mat-select>
               </mat-form-field>
               <input type="text" name="bill.masterWhere" [(ngModel)]="info.bankAcc">
-              </div>
-              <div>
-                <span class="need">주민등록번호 혹은 사업자등록번호</span>
-                <input type="text" name="myt.masterWhere" [(ngModel)]="info.reg">
+            </div>
+            <div>
+              <span class="need">주민등록번호 혹은 사업자등록번호</span>
+              <input type="text" name="myt.masterWhere" [(ngModel)]="info.reg">
             </div>
           </div>
         </div>
@@ -252,22 +279,23 @@
             <div>
               <span>학력<button mat-button (click)="addEdu()">추가</button></span>
               <div *ngFor="let e of edus">
-                <mat-form-field  >
+                <mat-form-field>
                   <mat-label>학력</mat-label>
                   <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="e.level">
                     <mat-option *ngFor="let t of levels" value="{{ t.value }}">{{ t.name }}</mat-option>
                   </mat-select>
                 </mat-form-field>
-                <mat-form-field >
+                <mat-form-field>
                   <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="e.coll" placeholder="학교명">
                 </mat-form-field>
-                <mat-form-field >
+                <mat-form-field>
                   <input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="e.dep" placeholder="학과명">
                 </mat-form-field>
-                <mat-form-field >
-                  <input matInput type="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="e.grad" placeholder="졸업일">
+                <mat-form-field>
+                  <input matInput type="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="e.grad"
+                    placeholder="졸업일">
                 </mat-form-field>
-                <mat-form-field >
+                <mat-form-field>
                   <mat-label>졸업유무</mat-label>
                   <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="e.status">
                     <mat-option *ngFor="let t of collStat" value="{{ t.value }}">{{ t.name }}</mat-option>
@@ -352,4 +380,4 @@
           <div class="btnBox">
             <button mat-button (click)="click()">변경</button>
           </div>
-      </div>
+        </div>
