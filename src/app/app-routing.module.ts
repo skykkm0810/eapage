@@ -18,7 +18,6 @@ import {JoinTeacherComponent} from './page/join-teacher/join-teacher.component';
 import {TestPageComponent} from './page/test-page/test-page.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'main'},
   { path: TAGS.MAIN, component: MainComponent },
   { path: TAGS.LOGIN, component: LoginComponent },
   { path: TAGS.JOIN, component: JoinComponent },
