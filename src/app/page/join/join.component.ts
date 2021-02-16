@@ -299,7 +299,6 @@ export class JoinComponent implements OnInit {
       this.emailCodeMessage = '작성하신 메일로 코드를 전송하였습니다.';
       thisTag.textContent = '재전송';
     }
-    alert('메일을 확인해주세요');
   }
 
   nochild() {

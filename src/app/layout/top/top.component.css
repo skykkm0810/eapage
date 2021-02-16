@@ -29,7 +29,6 @@
 .gnb {
     position: absolute;
     right:0;
-    width: 240px;
     height:30px;
 }
 .gnb li {
@@ -86,7 +85,6 @@
 }
 
 .useful {
-    width:153px;
     height:50px;
     position: absolute;
     top:30px;
@@ -96,7 +94,7 @@
 }
 .useful li {
     display: inline-block;
-    width:33%;
+    width:50px;
     height:27px;
     background: no-repeat center center / contain;
 }
