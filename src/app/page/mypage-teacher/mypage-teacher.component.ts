@@ -44,6 +44,7 @@ export class MypageTeacherComponent implements OnInit {
         addr: data.addr,
         accType: data.inst.accType,
         bankName: data.inst.bankName,
+        subaddr: data.subaddr,
         companyId: 0,
         reg: data.inst.reg,
         email: data.email,
