@@ -22,7 +22,7 @@
     background: url(../../../assets/images/icon/white/chk.png) no-repeat center center / cover;
 }
 /* --------------------------------------------------- */
-.wrap { padding-bottom: 50px;}
+.wrap { padding-bottom: 50px; color:#3F3D56;}
 .innerWrap {
     padding-top: 40px;
 }
@@ -150,11 +150,10 @@ h2 {
     padding-top: 104px;
 }
 .emailBox .mailCertifi {
-    padding-top: 56px;
+    padding-top: 70px;
 }
 .emailBox > div > div {
     width:380px;
-    height:70px;
 }
 .emailBox > div > div span {
     display:block;
@@ -163,7 +162,7 @@ h2 {
     color:#3F3D56;
     line-height: 30px;
 }
-.emailBox > div > div input {
+.emailBox > div > div .mat-form-field {
     width:380px;
     color:#3F3D56;
     font-size: 22px;
@@ -172,8 +171,8 @@ h2 {
     box-sizing: border-box;
     padding-bottom: 8px;
     border:0;
-    border-bottom: 1px solid #c4c4c4;
-    text-indent: 15px;
+    text-indent: 5px;
+    
 }
 .emailBox > div > div input::placeholder{
     color:#ccc;
@@ -193,7 +192,7 @@ h2 {
     padding:0;
     position: absolute;
     right:0;
-    bottom:0;
+    bottom:-20px;
 }
 .emailBox > div.btnBox {
     padding-top: 300px;
@@ -248,7 +247,7 @@ h2 {
     color:#3F3D56;
     line-height: 30px;
 }
-.companyBox > div > div input {
+.companyBox > div > div .mat-form-field {
     width:100%;
     color:#3F3D56;
     font-size: 22px;
@@ -257,10 +256,9 @@ h2 {
     box-sizing: border-box;
     padding-bottom: 8px;
     border:0;
-    border-bottom: 1px solid #c4c4c4;
-    text-indent: 15px;
+    text-indent: 5px;
 }
-.companyBox .companyCode > div > input  {
+.companyBox .companyCode > div > .mat-form-field  {
     width: 380px;
 }
 .companyBox > div > div input::placeholder{
@@ -289,7 +287,7 @@ h2 {
 }
 
 .companyBox .btnBox {
-    padding-top: 50px;
+    padding-top: 150px;
     text-align: center;
 } 
 .companyBox .btnBox .next {
@@ -324,11 +322,10 @@ h2 {
     width:790px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px 30px;
+    column-gap: 30px;
 }
 .basicInfo .gridBox div {
     width:380px;
-    height:70px;
     position: relative;
 }
 .basicInfo .gridBox div span {
@@ -344,7 +341,6 @@ h2 {
     color:#3F3D56;
     font-size: 22px;
     display:block;
-    height:40px;
     box-sizing: border-box;
     padding-bottom: 8px;
     border:0;
@@ -374,7 +370,6 @@ h2 {
     left: 140px;
     top:7px;
     line-height: 16px;
-    
 }
 
 .basicInfo .gridBox div label input[type=radio]{

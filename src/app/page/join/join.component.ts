@@ -6,7 +6,15 @@ import { Agreement, INTERESTS } from '../../interface/interface';
 import { PhxChannelService } from '../../service/phx-channel.service';
 import { SocketioService } from '../../service/socketio.service';
 import { postcode } from 'src/assets/js/postcode.js';
+import {ErrorStateMatcher} from '@angular/material/core';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
+// export class MyErrorStateMatcher implements ErrorStateMatcher {
+//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+//     const isSubmitted = form && form.submitted;
+//     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+//   }
+// }
 @Component({
   selector: 'app-join',
   templateUrl: './join.component.html',
@@ -81,7 +89,14 @@ export class JoinComponent implements OnInit {
     word:'',
     color:'',
   };
-  
+  emailCodeMessage='';
+  // 에러시
+  // emailFormControl = new FormControl('', [
+  //   Validators.required,
+  //   Validators.email,
+  // ]);
+
+  // matcher = new MyErrorStateMatcher();
   interests = INTERESTS;
   emailCode : any = '초기값';
   companyCode : any = '초기값';
@@ -263,16 +278,27 @@ export class JoinComponent implements OnInit {
     }
     const inter = this.interests.filter( data => data.completed == true );
     this.info.interests = inter;
+    this.info.contact = this.info.contact+'';
     console.log(this.info);
     this.phxChannel.send('user', this.info);
   }
 
-  send() {
+  send(e:Event) {
+    var thisTag = e.target as HTMLElement;
+    var sendCodeNum = 0;
     const code = Math.round(Math.random()*899999) + 100000;
     const msg = { to: this.info.email, code: code }
     this.emailCode = code;
     console.log(msg);
     this.mailer.mailSend(msg);
+    if(thisTag.textContent == '재전송'){
+      sendCodeNum ++; 
+      this.emailCodeMessage ='코드를 재전송 하였습니다. ('+ sendCodeNum +')'
+    }
+    else{
+      this.emailCodeMessage = '작성하신 메일로 코드를 전송하였습니다.';
+      thisTag.textContent = '재전송';
+    }
     alert('메일을 확인해주세요');
   }
 
@@ -311,10 +337,10 @@ export class JoinComponent implements OnInit {
       this.pwdRule.word = '사용가능한 비밀번호 입니다.';
       this.pwdRule.color = 'green';
     }
+    console.log(this.pwdRule.word)
   }
   popupRemove(e:Event){
     var thisClickTag = e.target as HTMLElement;
-    console.log(thisClickTag)
     var basicInfo = document.getElementsByClassName('basicInfo')[0] as HTMLElement;
     var outside = document.getElementsByClassName('wrap')[0] as HTMLElement;
     if(thisClickTag == outside || thisClickTag == basicInfo ){

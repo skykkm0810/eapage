@@ -85,6 +85,17 @@ export class JoinTeacherComponent implements OnInit {
   accTypes = selAccountType;
   levels = selLevel;
   collStat = selCollStat;
+
+  pwdRule:any = {
+    word:'',
+    color:'',
+  }
+  pwdChk:any = {
+    correct:null,
+    word:'',
+    color:'',
+  };
+
   @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
   
   showPicture(event : Event){
@@ -145,7 +156,7 @@ export class JoinTeacherComponent implements OnInit {
     }
   }
   onechk(m:Event){
-    var thischk = m.currentTarget as HTMLElement;
+    var thischk = m.target as HTMLElement;
     m.preventDefault();
     var allchk = document.querySelector('.agreeBox .allAgree .agreeHole') as HTMLInputElement;
     allchk.classList.remove('checked')
@@ -155,7 +166,7 @@ export class JoinTeacherComponent implements OnInit {
     }
     else{
       thischk.classList.add('checked');
-      (thischk.querySelector('input') as HTMLInputElement).checked = true;
+      (thischk.closest('label').querySelector('input') as HTMLInputElement).checked = true;
     }
   }
   tabclick(a:Event){
@@ -295,7 +306,7 @@ export class JoinTeacherComponent implements OnInit {
         return;
       }
     }
-    if ( !this.info.uname || !this.info.pwd || !this.info.name || !this.info.gender || !this.info.contact ) {
+    if ( !this.info.uname || !this.info.pwd || !this.info.name || !this.info.gender || !this.info.contact || !this.info.accType || !this.info.bankName || !this.info.bankAcc || !this.info.reg) {
       alert('필수 항목을 입력해주세요');
     } else {
       this.info.edus = this.edus;
@@ -305,6 +316,7 @@ export class JoinTeacherComponent implements OnInit {
       const rea = this.react.filter( data => data.completed == true );
       this.info.cause = cau;
       this.info.react = rea;
+      this.info.contact =this.info.contact +''; 
       console.log(this.info);
       this.phxChannel.send('inst', this.info);
     }
@@ -328,12 +340,39 @@ export class JoinTeacherComponent implements OnInit {
 
   addr() {
     postcode( this.renderer, this.popup.nativeElement, data => {
-      console.log(data);
       this.info.addr = `(${data.zonecode}) ${data.roadAddress}`;
-      console.log(this.info);
     })
   }
   close() {
     this.renderer.setStyle(this.popup.nativeElement, 'display', 'none');
+  }
+  popupRemove(e:Event){
+    var thisClickTag = e.target as HTMLElement;
+    var basicInfo = document.getElementsByClassName('basicInfo')[0] as HTMLElement;
+    var outside = document.getElementsByClassName('wrap')[0] as HTMLElement;
+    if(thisClickTag == outside || thisClickTag == basicInfo ){
+        this.close();
+    }
+  }
+  passChk() {
+    if(this.pwdChk.correct == this.info.pwd){
+      this.pwdChk.word = '비밀번호가 일치합니다.';
+      this.pwdChk.color = 'green';
+    }
+    else{
+      this.pwdChk.word = '비밀번호가 일치하지 않습니다.';
+      this.pwdChk.color = 'red';
+    }
+  }
+  pwdLength(e:Event){
+    var input = (e.target) as HTMLInputElement;
+    if(input.value.length < 8 || input.value.length > 20) {
+      this.pwdRule.word = '비밀번호는 8자리 이상, 20자리 이하 이어야 합니다.';
+      this.pwdRule.color = 'red';
+    }
+    else{
+      this.pwdRule.word = '사용가능한 비밀번호 입니다.';
+      this.pwdRule.color = 'green';
+    }
   }
 }

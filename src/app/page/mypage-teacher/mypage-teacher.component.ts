@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, ɵɵresolveBody } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SocketioService } from '../../service/socketio.service';
+
 import { MatDialog } from '@angular/material/dialog';
 import { AddressComponent } from '../../modal/address/address.component';
 import { Agreement, INTERESTS, react, cause, Banks, selAccountType, selCollStat, selGender, selLevel } from '../../interface/interface';
@@ -6,6 +10,8 @@ import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { Environment } from 'src/app/environment/environment';
 import { FileUploadService } from 'src/app/service/file-upload.service';
+import { postcode } from 'src/assets/js/postcode.js';
+
 
 @Component({
   selector: 'app-mypage-teacher',
@@ -19,6 +25,8 @@ export class MypageTeacherComponent implements OnInit {
     private phxChannel: PhxChannelService,
     private auth: AuthService,
     private uploader: FileUploadService,
+    private renderer: Renderer2,
+
   ) {
     uploader.Resp.subscribe( data => {
       console.log(data);
@@ -90,6 +98,7 @@ export class MypageTeacherComponent implements OnInit {
     console.log(this.info);
     this.phxChannel.get('inst', this.info);
   }
+  @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
 
 
   info: any = {
@@ -175,6 +184,15 @@ export class MypageTeacherComponent implements OnInit {
   accTypes = selAccountType;
   levels = selLevel;
   collStat = selCollStat;
+  pwdRule:any = {
+    word:'',
+    color:'',
+  }
+  pwdChk:any = {
+    correct:null,
+    word:'',
+    color:'',
+  };
 
   changePassword(e:Event){
     var button =(e.target as HTMLElement);
@@ -304,6 +322,65 @@ export class MypageTeacherComponent implements OnInit {
       this.info.react = rea;
       console.log(this.info);
       this.phxChannel.up('inst', this.info);
+    }
+  }
+  changePw() {
+    var pwdchkTag = document.getElementsByClassName('pwdChkPart')[0] as HTMLElement;
+    var pwdtag = document.getElementsByClassName('pwdParts')[0] as HTMLElement;
+    var thisButton = document.getElementsByClassName('changePwd')[0] as HTMLElement;
+    if( thisButton.classList.contains('tryToChange')){
+      pwdtag.hidden = false;
+      pwdchkTag.hidden = false;
+      thisButton.classList.remove('tryToChange');
+      thisButton.classList.add('changeCancel');
+      thisButton.textContent ='변경 취소';
+    }
+    else {
+      pwdtag.hidden = true;
+      (pwdtag.getElementsByTagName('input')[0] as HTMLInputElement).value = '';
+      pwdchkTag.hidden = true;
+      (pwdchkTag.getElementsByTagName('input')[0] as HTMLInputElement).value = '';
+      thisButton.classList.remove('changeCancel');
+      thisButton.classList.add('tryToChange');
+      thisButton.textContent ='비밀번호 변경';
+    }
+  }
+  passChk() {
+    if(this.pwdChk.correct == this.info.pwd){
+      this.pwdChk.word = '비밀번호가 일치합니다.';
+      this.pwdChk.color = 'green';
+    }
+    else{
+      this.pwdChk.word = '비밀번호가 일치하지 않습니다.';
+      this.pwdChk.color = 'red';
+    }
+  }
+  pwdLength(e:Event){
+    var input = (e.target) as HTMLInputElement;
+    if(input.value.length < 8 || input.value.length > 20) {
+      this.pwdRule.word = '비밀번호는 8자리 이상, 20자리 이하 이어야 합니다.';
+      this.pwdRule.color = 'red';
+    }
+    else{
+      this.pwdRule.word = '사용가능한 비밀번호 입니다.';
+      this.pwdRule.color = 'green';
+    }
+    console.log(this.pwdRule.word)
+  }
+  addr() {
+    postcode( this.renderer, this.popup.nativeElement, data => {
+      this.info.addr = `(${data.zonecode}) ${data.roadAddress}`;
+    })
+  }
+  close() {
+    this.renderer.setStyle(this.popup.nativeElement, 'display', 'none');
+  }
+  popupRemove(e:Event){
+    var thisClickTag = e.target as HTMLElement;
+    var basicInfo = document.getElementsByClassName('basicInfo')[0] as HTMLElement;
+    var outside = document.getElementsByClassName('wrap')[0] as HTMLElement;
+    if(thisClickTag == outside || thisClickTag == basicInfo ){
+        this.close();
     }
   }
 }

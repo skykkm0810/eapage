@@ -2,5 +2,8 @@
 
 <p>test-page works!</p>
 <mat-form-field>
-    <input matInput type="date">
+    <input matInput type="number" (change)='phoneFormat($event)'>
   </mat-form-field>
+<input type="number" (change)='show($event)'>
+<input type="tel" (change)='show($event)'>
+  
