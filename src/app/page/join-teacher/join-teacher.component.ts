@@ -32,7 +32,7 @@ export class JoinTeacherComponent implements OnInit {
     phxChannel.InstUp.subscribe( data => {
       // console.log(data);
       auth.setToken(data.body);
-      window.location.href = '/';
+      window.location.href = './';
     })
     phxChannel.Invalid.subscribe( data => {
       alert('아이디가 이미 존재합니다.')

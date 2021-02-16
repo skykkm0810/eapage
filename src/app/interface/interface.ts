@@ -1,5 +1,5 @@
 export const TAGS : Record<string, string> = {
-  MAIN: 'main',
+  MAIN: '',
   LOGIN: 'login',
   JOIN: 'join',
   ENROLLCLASS: 'enrollClass/:id',
