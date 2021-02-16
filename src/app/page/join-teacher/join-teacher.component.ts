@@ -335,7 +335,6 @@ export class JoinTeacherComponent implements OnInit {
     this.emailCode = code;
     console.log(msg);
     this.mailer.mailSend(msg);
-    alert('메일을 확인해주세요');
   }
 
   addr() {

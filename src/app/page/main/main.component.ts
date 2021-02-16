@@ -28,8 +28,14 @@ export class MainComponent implements OnDestroy, AfterViewInit {
           let hours = Math.floor((Number(calTime) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           let mins = Math.floor((Number(calTime) % (1000 * 60 * 60)) / (1000 * 60));
           let secs = Math.floor((Number(calTime) % (1000 * 60)) / 1000);
-          var remain = hours+':'+mins+":"+secs;
-          this.todayClass[i].remains = remain;
+          var remain ='시작까지 '+hours+':'+mins+":"+secs;
+          if(hours < 0 || mins <0 || secs < 0){
+            remain = '종료됨'
+            this.todayClass[i].remains = remain;
+          }
+          else{
+            this.todayClass[i].remains = remain;
+          }
         }
       },1000)
       

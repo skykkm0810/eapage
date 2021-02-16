@@ -15,28 +15,5 @@ export class MaumdociComponent implements OnInit {
   
   ngOnInit(): void {
   }
-
-  @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
-
-  addr() {
-    postcode( this.renderer, this.popup.nativeElement, data => {
-      console.log(data);
-    })
-  }
-
-  close() {
-    this.renderer.setStyle(this.popup.nativeElement, 'display', 'none');
-  }
-
-
-  // daumAddressOptions =  {
-  //   class: ['btn', 'btn-primary']
-  // };
-  // setDaumAddressApi(data){
-  //   // 여기로 주소값이 반환
-  //   console.log(data);
-  // }
-  fun(){
-    console.log(document.getElementsByTagName('input')[0].value) 
-  }
+  
 }

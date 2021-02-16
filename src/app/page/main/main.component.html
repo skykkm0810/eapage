@@ -37,7 +37,7 @@
           <div class="bannerTexts">
             {{d[0].subtitle}}
           </div>
-          <div class="goArrow pointer" routerLink='./detail/{{d[0].id}}'></div>
+          <div class="goArrow pointer" routerLink='detail/{{d[0].id}}'></div>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
           <div class="bannerTexts">
             {{p[0].subtitle}}
           </div>
-          <div class="goArrow pointer" routerLink='./detail/{{p[0].id}}'></div>
+          <div class="goArrow pointer" routerLink='detail/{{p[0].id}}'></div>
         </div>
         
       </div>
@@ -82,7 +82,7 @@
             <p class="teacher">강사 <span class="name">{{t.lecture[0].inst.name}}</span></p>
             <p class="title bold">{{t.lecture[0].title}}</p>
             <p class="description">{{t.lecture[0].subtitle}}</p>
-            <p class="remainTime bold">시작까지 <span class="time">{{t.remains}}</span></p>
+            <p class="remainTime bold"><span class="time">{{t.remains}}</span></p>
             <div class="calendarIcon">
               <div class="unfill">
                 <p class="day">{{t.date | date: 'd'}}</p>
@@ -92,7 +92,7 @@
                 <p class="year bold">{{t.date | date: 'Y'}}</p>
               </div>
             </div>
-            <div class="goArrow pointer" [routerLink]="['detail/3']"></div>
+            <div class="goArrow pointer" routerLink='detail/{{t.lecture[0].id}}'></div>
           </div>
         </div>
       </div>

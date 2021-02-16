@@ -12,14 +12,14 @@
         <li class="pointer login" *ngIf="sign" (click)="signout()">
           <h2>로그아웃</h2>
         </li>
-        <li class="pointer howToUse" (click)="modal()">이용방법</li>
+        <!-- <li class="pointer howToUse" (click)="modal()">이용방법</li> -->
         <!-- <li class="pointer enrollCompany"><h2>기업등록</h2></li> -->
       </ul>
     </div>
     <div class="ltop">
       <ul class="snb">
         <!-- <li class="pointer whatIs" (click)= "active($event)">마음도씨란?</li> -->
-        <li class="pointer whatIs" (click)="modal()">마음도씨란?</li>
+        <li class="pointer whatIs" [routerLink]="['maum']" (click)="active($event)">마음도씨란?</li>
         <li class="pointer allLives" [routerLink]="['allLive']" (click)="active($event)">모든라이브</li>
         <!-- <li class="pointer preOpen" [routerLink]="['preopen']" (click)="active($event)">오픈예정</li> -->
         <li class="pointer todayLives" [routerLink]="['todayLive']" (click)="active($event)">오늘의라이브</li>
@@ -55,7 +55,7 @@
     <div class="contentsBox">
       <div>
         <div class="content">
-          <span class="headName pointer" (click)="modal()">마음도씨란?</span>
+          <span class="headName pointer" [routerLink]="['maum']" (click)="closeBox()">마음도씨란?</span>
         </div>
         <div class="content">
           <span class="headName pointer" (click)='modal()'>한국EAP협회 소개</span>
