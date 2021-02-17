@@ -48,12 +48,12 @@
           <div class="goArrow pointer" (click)="detail(l)"></div>
         </div> -->
         <div *ngFor='let r of info' class="designedBox">
-          <div class="process">{{r.process}}</div>
+          <div class="process">OPEN 예정</div>
           <!-- 프로세스 'OPEN 예정' 필요  -->
-          <div class="classcategory" [style.background]='class[0].color'><span class="inlineBlock textHidden maincategory">인생여정</span><span class="subcategory">인생 2막</span></div>
+          <div class="classcategory" [style.background]='class[0].color'><span class="inlineBlock textHidden maincategory">인생여정</span><span class="subcategory">{{r.interests}}</span></div>
           <!-- 서브 카테고리 마다 색이 들어가야함  메인 카테고리 , 서브 카테고리 필요-->
           <div class="itemHeader">{{r.title}}</div>
-          <div class="itemImg"><img src="../../../assets/images/banner/flower.png" alt="/"></div>
+          <div class="itemImg"><img src="{{filePath}}{{r.thumbnail1}}" alt="/"></div>
           <!-- 섬네일을 못불러와서 임의로 넣음  -->
           <div class='degreeBox' *ngIf='r.degree'>
             <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}"
@@ -69,9 +69,6 @@
               <!-- 해시태그 필요 밑은 더미 -->
             <span>&nbsp;#릴렉스&nbsp;</span>
             <span>&nbsp;#스트레칭&nbsp;</span>
-          </div>
-          <div class="smallText" *ngIf='r.degree'>
-            <span>{{r.subtitle}}</span>
           </div>
           <!-- <div class="bigText" *ngIf='r.hashTag'> -->
             <div class="bigText">

@@ -15,7 +15,7 @@ export class AllLiveComponent implements AfterViewInit {
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    phxChannel.Lectures.subscribe( data => {
+    phxChannel.LectureOpen.subscribe( data => {
       this.info = [];
       let filtered;
       if( this.search.text ) {
@@ -56,7 +56,7 @@ export class AllLiveComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.phxChannel.gets('lecture', '');
+    this.phxChannel.gets('lecture:open', '');
     
     this.search = this.route.snapshot.params;
     console.log(this.search)

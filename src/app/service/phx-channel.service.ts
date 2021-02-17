@@ -22,6 +22,8 @@ export class PhxChannelService {
   @Output() Lectures: EventEmitter<any> = new EventEmitter();
   @Output() LecturesToday: EventEmitter<any> = new EventEmitter();
   @Output() Lecture: EventEmitter<any> = new EventEmitter();
+  @Output() LectureOpen: EventEmitter<any> = new EventEmitter();
+  @Output() LectureClose: EventEmitter<any> = new EventEmitter();
   @Output() LectureControled: EventEmitter<any> = new EventEmitter();
   @Output() Users: EventEmitter<any> = new EventEmitter();
   @Output() User: EventEmitter<any> = new EventEmitter();
@@ -106,6 +108,12 @@ export class PhxChannelService {
     })
     this.lectureChannel.on('lecture:controled:list', payload => {
       this.LectureControled.emit(payload);
+    })
+    this.lectureChannel.on('lecture:open:list', payload => {
+      this.LectureOpen.emit(payload.body);
+    })
+    this.lectureChannel.on('lecture:close:list', payload => {
+      this.LectureClose.emit(payload.body);
     })
     
     
@@ -212,6 +220,12 @@ export class PhxChannelService {
         break;
       case 'lecture':
         this.lectureChannel.push("lecture:list:req", {body: message});
+        break;
+      case 'lecture:open':
+        this.lectureChannel.push("lecture:open:list:req", {body: message});
+        break;
+      case 'lecture:close':
+        this.lectureChannel.push("lecture:close:list:req", {body: message});
         break;
       case 'lecture:today':
         this.lectureChannel.push("lecture:today:list:req", {body: message});

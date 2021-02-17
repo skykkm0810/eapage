@@ -14,29 +14,26 @@ export class PreopenComponent  {
     private phxChannel: PhxChannelService,
     private router: Router
   ) {
-
-    phxChannel.Lectures.subscribe( data => {
+    phxChannel.LectureClose.subscribe( data => {
       this.info = [];
-      data.forEach( data => {
-        let time = new Date().getTime();
-        if( data.currs.length > 0 ) {
-          let datatime = new Date(data.currs[0].date).getTime();
-          if( datatime > time ){
-            data.process = '예정';
-          } else {
-            data.process = '종료';
-          }
+      data.forEach( d => {
+        if ( d.interests == '연애결혼' || d.interests == '자녀양육' || d.interests == '부부/가족관계' || d.interests == '인생 2막' ) {
+          d.color = '#DD5E5E';
+        } else if ( d.interests == '대인관계' || d.interests == '커뮤니케이션' || d.interests == '리더십' || d.interests == '조직적응' ) {
+          d.color = '#3EB3E7';
+        } else if ( d.interests == '명상요가' || d.interests == '몸 마음 건강' || d.interests == '예술치유' || d.interests == '힐링DIY' ) {
+          d.color = '#0AD1D1';
+        } else if ( d.interests == '자기이해' || d.interests == '심리특강' ) {
+          d.color = '#B775EF';
         }
-        data.degree = Math.floor(data.receipts.length/data.least * 100);
-        this.info.push(data);
+        console.log(d);
+        this.info.push(d);
       })
-      console.log(this.info);
-      this.loaded = true;
     })
   }
 
   ngAfterViewInit() {
-    this.phxChannel.gets('lecture', '');
+    this.phxChannel.gets('lecture:close', '');
 
     var tempBar = document.getElementsByClassName('tempDynamic');
     for(var i=0; i<tempBar.length; i++){
@@ -108,12 +105,11 @@ export class PreopenComponent  {
   info = [
     { currs: [{date: null, dur: null, stage: null}],
      subtitle: '', 
-     interests: [{value: ''}], 
+     interests: '', 
      thumbnail1: '', 
      limit: null, 
      degree: null,
      title: '', 
-     process: '',
      categorycolor:'',
     }];
   
