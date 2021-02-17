@@ -25,6 +25,8 @@ export class PhxChannelService {
   @Output() LectureOpen: EventEmitter<any> = new EventEmitter();
   @Output() LectureClose: EventEmitter<any> = new EventEmitter();
   @Output() LectureControled: EventEmitter<any> = new EventEmitter();
+  @Output() Like: EventEmitter<any> = new EventEmitter();
+  @Output() UnLike: EventEmitter<any> = new EventEmitter();
   @Output() Users: EventEmitter<any> = new EventEmitter();
   @Output() User: EventEmitter<any> = new EventEmitter();
   @Output() UserUp: EventEmitter<any> = new EventEmitter();
@@ -115,6 +117,12 @@ export class PhxChannelService {
     this.lectureChannel.on('lecture:close:list', payload => {
       this.LectureClose.emit(payload.body);
     })
+    this.lectureChannel.on('like:unlike', payload => {
+      this.UnLike.emit(payload);
+    })
+    this.lectureChannel.on('like:like', payload => {
+      this.Like.emit(payload);
+    })
     
     
 
@@ -202,6 +210,9 @@ export class PhxChannelService {
         break;
       case 'review':
         this.lectureChannel.push('review:add:req', {body: message});
+        break;
+      case 'like':
+        this.lectureChannel.push('like:check:req', {body: message});
         break;
               
       default:

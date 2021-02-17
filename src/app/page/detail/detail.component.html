@@ -3,19 +3,19 @@
   <section class="category container">
     <div class="row">
       <div class="col-3 content">
-        <img src="../../../assets/images/icon2/life.png" style="padding-right: 20px">
+        <img src="../../../assets/images/icon2/life.png" style="padding-right: 20px" height="78px">
         인생여정
       </div>
       <div class="col-3 content">
-        <img src="../../../assets/images/icon2/social.png" style="padding-right: 20px">
+        <img src="../../../assets/images/icon2/social.png" style="padding-right: 20px" height="78px">
         사회생활
       </div>
       <div class="col-3 content">
-        <img src="../../../assets/images/icon2/healing.png" style="padding-right: 20px">
+        <img src="../../../assets/images/icon2/healing.png" style="padding-right: 20px" height="78px">
         힐링
       </div>
       <div class="col-3 content">
-        <img src="../../../assets/images/icon2/mental.png" style="padding-right: 20px">
+        <img src="../../../assets/images/icon2/mental.png" style="padding-right: 20px" height="78px">
         심리
       </div>
     </div>
@@ -138,7 +138,7 @@
           </div>
         </div>
         <div class="row class-button">
-          <button mat-button style="background-color: #c4c4c4;">찜하기</button>
+          <button mat-button style="background-color: #c4c4c4;" (click)="likes()">찜하기</button>
           <button mat-button style="background-color: #3F3D56;" (click)="apply()">수강하기</button>
         </div>
       </div>
@@ -148,10 +148,10 @@
   <!-- Submenus -->
   <div class="submenu container">
     <div class="row">
-      <div class="col title pointer"(click)='moveScroll($event)'>상세정보</div>
-      <div class="col title pointer"(click)='moveScroll($event)'>커리큘럼</div>
-      <div class="col title pointer"(click)='moveScroll($event)'>리뷰쓰기</div>
-      <div class="col title pointer"(click)='moveScroll($event)'>취소/환불</div>
+      <div class="col title pointer" (click)="scroll(det)">상세정보</div>
+      <div class="col title pointer" (click)="scroll(curr)">커리큘럼</div>
+      <div class="col title pointer" (click)="scroll(review)">리뷰쓰기</div>
+      <div class="col title pointer" (click)="scroll(refund)">취소/환불</div>
     </div>
 
   </div>
@@ -162,7 +162,7 @@
     </div>
   </section>
   <!-- Lecture introduction -->
-  <section class="foryou container">
+  <section class="foryou container" #det>
     <!--
             <div class="row">
                 <img src="../../../assets/images/img/class_introduction.jpg">
@@ -305,10 +305,10 @@
 
 
   <!-- Curriculum -->
-  <section class="curriculum container">
+  <section class="curriculum container" #curr>
 
     <div class="row section-title">
-      curriculum
+      Curriculum
     </div>
     <div class="row dot-sm"></div>
     <div class="row dot-xsm"></div>
@@ -423,7 +423,7 @@
     </div>
   </section>
 
-  <section class="review container">
+  <section class="review container" #review>
     <!--
         <div class="row">
             <img src="../../../assets/images/img/instructor_introduction.jpg">
@@ -467,14 +467,14 @@
   </section>
 
   <!-- Refund -->
-  <section class="refund container">
+  <section class="refund container" #refund>
     <div class="row">
       <img src="../../../assets/images/img/cancel-exchange.png">
     </div>
   </section>
 </div>
 <!-- 추천 -->
-<section class="recommamd">
+<!-- <section class="recommamd">
   <div class="title">마음도씨 추천 라이브
     <div class="littleSqure"></div>
   </div>
@@ -486,23 +486,23 @@
           <div class="classcategory hidden" [style.background]='r.color'>{{r.category}}</div>
           <div class="itemHeader">{{r.title}}</div>
           <div class="itemImg"><img src="{{r.img}}" alt="/"></div>
-          <!-- <div class='degreeBox' *ngIf='r.degree'> -->
-            <!-- <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}" class="thermoBar textHidden">{{r.degree}}</span></span> -->
-            <!-- <span class="remainDate">일 남음</span> -->
-            <!-- <span class="degrees">{{r.degree}}ºC 마음도씨</span> -->
-          <!-- </div> -->
+          <div class='degreeBox' *ngIf='r.degree'>
+            <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}" class="thermoBar textHidden">{{r.degree}}</span></span>
+            <span class="remainDate">일 남음</span>
+            <span class="degrees">{{r.degree}}ºC 마음도씨</span>
+          </div>
           <div class='hashTag' *ngIf='r.hashTag'>
             <span *ngFor='let h of r.hashTag'>&nbsp;{{h.tag}}&nbsp;</span>
           </div>
-          <!-- <div class="smallText" *ngIf='r.degree'> -->
-            <!-- <span>{{r.text}}</span> -->
-          <!-- </div> -->
+          <div class="smallText" *ngIf='r.degree'>
+            <span>{{r.text}}</span>
+          </div>
           <div class="bigText" *ngIf='r.hashTag'>
             <span>{{r.text}}</span>
           </div>
-          <!-- <span class="goDetail inlineBlock pointer" *ngIf='r.degree'></span> -->
+          <span class="goDetail inlineBlock pointer" *ngIf='r.degree'></span>
         </li>
       </ul>
     </div>
   </div>
-</section>
+</section> -->

@@ -50,7 +50,7 @@
         <div *ngFor='let r of info' class="designedBox">
           <div class="process">OPEN 예정</div>
           <!-- 프로세스 'OPEN 예정' 필요  -->
-          <div class="classcategory" [style.background]='class[0].color'><span class="inlineBlock textHidden maincategory">인생여정</span><span class="subcategory">{{r.interests}}</span></div>
+          <div class="classcategory" [style.background]='r.color'><span class="inlineBlock textHidden maincategory">인생여정</span><span class="subcategory">{{r.interests}}</span></div>
           <!-- 서브 카테고리 마다 색이 들어가야함  메인 카테고리 , 서브 카테고리 필요-->
           <div class="itemHeader">{{r.title}}</div>
           <div class="itemImg"><img src="{{filePath}}{{r.thumbnail1}}" alt="/"></div>

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Environment } from 'src/app/environment/environment';
 import { AuthService } from 'src/app/service/auth.service';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-detail',
@@ -15,13 +16,34 @@ export class DetailComponent {
     private route: ActivatedRoute,
     private router: Router,
     private phxChannel: PhxChannelService,
-    private auth: AuthService
+    private auth: AuthService,
+    private bar: MatSnackBar,
   ) {
-    phxChannel.Inst.subscribe( data => {
+  }
+  
+  ngOnInit() {
+    this.subs[0] = this.phxChannel.Like.subscribe( data => {
+      this.bar.open('찜하기!', '닫기', {
+        duration: 1000,
+        verticalPosition: this.vP,
+        horizontalPosition: this.hP,
+      }) 
+    })
+
+    this.subs[1] = this.phxChannel.UnLike.subscribe( data => {
+      this.bar.open('찜하기를 취소하셨습니다.', '닫기', {
+        duration: 1000,
+        verticalPosition: this.vP,
+        horizontalPosition: this.hP,
+      }) 
+    })
+
+    console.log(this.subs);
+    this.phxChannel.Inst.subscribe( data => {
       this.instInfo = data;
       console.log(this.instInfo);
     })
-    phxChannel.Lecture.subscribe( data => {
+    this.phxChannel.Lecture.subscribe( data => {
       this.info = data;
       if(this.info.kit){
         this.kit = '../../../assets/images/icon/pink/kit.png'
@@ -44,6 +66,8 @@ export class DetailComponent {
           this.dday_c = false;
           this.dday = '종료';
         } else {
+          let d1 = new Date(this.info.dday).setHours(0,0,0,0);
+          let d2 = new Date().setHours(0,0,0,0);
           let time = Math.ceil((d1 - d2) / 1000 / 60 / 60 / 24 - 1);
           this.dday_c = true;
           this.dday = time+"";
@@ -65,10 +89,10 @@ export class DetailComponent {
       }
 
 
-      phxChannel.get('inst', this.info.inst)
+      this.phxChannel.get('inst', this.info.inst)
       console.log(this.info);
     })
-    phxChannel.UserReceipt.subscribe( data => {
+    this.phxChannel.UserReceipt.subscribe( data => {
       console.log(data);
       data.body.forEach( d => {
         if (d.lectureId == this.injected.id*1) {
@@ -76,13 +100,11 @@ export class DetailComponent {
         }
       })
     })
-    phxChannel.ReviewAdd.subscribe( data => {
+    this.phxChannel.ReviewAdd.subscribe( data => {
       this.reviews = data.body;
       this.reviewed = true;
     })
-  }
-  
-  ngOnInit() {
+
     // var number = (document.querySelector('.progress-container .right').textContent)
     // this.number = number;
     this.injected = this.route.snapshot.params;
@@ -90,6 +112,7 @@ export class DetailComponent {
     this.phxChannel.get('lecture', this.injected);
     if (this.login = this.auth.isAuthenticated()) {
       this.user = JSON.parse(this.auth.getUserData());
+      console.log(this.user);
       this.phxChannel.gets('user:receipt', { uid: this.user.id*1 });
     };
 
@@ -99,7 +122,10 @@ export class DetailComponent {
       this.reviewText = "주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다.";
     }
   }
-  
+  subs = [];
+
+  hP: MatSnackBarHorizontalPosition = 'center';
+  vP: MatSnackBarVerticalPosition = 'top';
   detail = {
     // 리뷰 
     review:[
@@ -127,6 +153,8 @@ export class DetailComponent {
       {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#가족관계'},{tag:'#공감하기'},{tag:'#행복'}],color:"#954FD0",category:'인생 2막',title:'함께하는 가족관계 형성하기' , img:'assets/images/banner/week3.png', text:'일도 중요하지만 가정은 더욱 소중하기에, 나의 가정을 행복하게 가꾸기 위한 프로그램'},
     ]
   }
+
+  like = false;
   kit = ''
   reviewable = false;
   reviews = this.detail.review;
@@ -136,7 +164,7 @@ export class DetailComponent {
   login = false;
   reviewText = "리뷰를 작성하려면 로그인을 해주세요.";
   number;
-  user = { name: '', id: 0};
+  user = { name: '', id: 0, companyId: 0, uname: '' };
   injected;
   info = {
     currs: [{ date: null, dur: null, id: null, lectureId: null, stage: null, title: '', timetable: [
@@ -165,6 +193,8 @@ export class DetailComponent {
     thumbnail2: '',
     thumbnail3: '',
     thumbnail4: '',
+    company: false,
+    companyId: null,
     title: "",
     dday: null,
     degree: 0,
@@ -187,7 +217,11 @@ export class DetailComponent {
         if( this.reviewable ) {
           alert('이미 신청한 강의입니다.');
         } else {
-          this.router.navigate(['enrollClass/'+this.injected.id])
+          if( this.info.company == true && this.user.companyId*1 != this.info.companyId*1 ) {
+            alert('소속 고객사만 신청할 수 있습니다.');
+          } else {
+            this.router.navigate(['enrollClass/'+this.injected.id])
+          }
         }
       } else {
         alert('이 강의는 신청할 수 없는 상태입니다.');
@@ -269,20 +303,18 @@ export class DetailComponent {
     this.phxChannel.send('review', form);
     console.log(form);
   }
-  moveScroll(e:Event) {
-    var text = (e.target as HTMLElement).textContent;
-    if(text == '상세정보'){
-      window.scrollTo(0,1133);
+  scroll( el ) {
+    el.scrollIntoView();
+  }
+  likes() {
+    if ( !this.login ) {
+      this.bar.open('로그인을 해주셔야합니다.', '닫기', {
+        duration: 1000,
+        verticalPosition: this.vP,
+        horizontalPosition: this.hP,
+      })     
+    } else {
+      this.phxChannel.send('like', { userId: this.user.id, lectureId: this.injected.id*1 });
     }
-    else if (text == '커리큘럼'){
-      window.scrollTo(0,6033);
-    }
-    else if (text == '리뷰쓰기'){
-      window.scrollTo(0,9133);
-    }
-    else if (text == '취소/환불'){
-      window.scrollTo(0,9833);
-    }
-
   }
 }

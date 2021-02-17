@@ -26,7 +26,6 @@ export class PreopenComponent  {
         } else if ( d.interests == '자기이해' || d.interests == '심리특강' ) {
           d.color = '#B775EF';
         }
-        console.log(d);
         this.info.push(d);
       })
     })
@@ -111,6 +110,7 @@ export class PreopenComponent  {
      degree: null,
      title: '', 
      categorycolor:'',
+     color: '',
     }];
   
   onselect(c:any,e:Event){
