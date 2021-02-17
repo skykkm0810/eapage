@@ -42,7 +42,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
       for(var i=0; i<this.todayClass.length; i++){
         this.todayClass[i].color = '#66cccc';
       }
-      
+      console.log(this.todayClass)
     })
     phxChannel.Lectures.subscribe( data => {
       // console.log(data);
@@ -88,7 +88,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
       this.topClass.push({data:data.body.top9[0],idn:9})
       this.topClass.push({data:data.body.top10[0],idn:10})
       
-      console.log(this.topClass)
+      // console.log(this.topClass)
     })
 
   }
