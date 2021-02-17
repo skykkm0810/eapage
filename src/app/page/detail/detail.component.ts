@@ -40,12 +40,11 @@ export class DetailComponent {
       if( this.info.dday != null ) {
         let d1 = new Date(this.info.dday).getTime();
         let d2 = new Date().getTime();
-        console.log(d1, d2);
         if ( d1 < d2 ) {
           this.dday_c = false;
           this.dday = '종료';
         } else {
-          let time = Math.ceil((d2 - d1) / 1000 / 60 / 60 / 24);
+          let time = Math.ceil((d1 - d2) / 1000 / 60 / 60 / 24 - 1);
           this.dday_c = true;
           this.dday = time+"";
         }

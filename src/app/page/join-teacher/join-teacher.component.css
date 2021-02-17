@@ -318,18 +318,25 @@ h2 {
   .basicInfo .floatImg {
     position: absolute;
     left:0;
-    top:150px;
+    top:170px;
     width:175px;
     height: 210px;
     border:1px solid #ccc;
     background: url(../../../assets/images/noImg.png) no-repeat center center / contain;
+  }
+  .basicInfo .floatImg span {
+    position: absolute;
+    top: -30px;
+    left:0;
+    display: block;
+    font-size: 16px;
   }
   .basicInfo .changeBtn {
       width:25px;
       height:25px;
       background: url(../../../assets/images/icon/pink/edit.png) no-repeat center center / cover;
       position: absolute;
-      top:370px;
+      top:390px;
       left:150px;
       z-index:2;      
   }
