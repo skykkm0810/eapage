@@ -208,18 +208,17 @@ export class JoinComponent implements OnInit {
     this.nextBtn(a);
   }
 
-  event3: any;
   beforeNext3(a:Event){
-    this.event3 = a;
-    var mother = (a.target as HTMLElement).closest('.tabContentBox') as HTMLElement;
-    var neccesary = mother.getElementsByTagName('input');
-    for(var i=0; i<neccesary.length; i++){
-      if((neccesary[i] as HTMLInputElement).value == ''){
-        alert('모든 필수 항목을 채워주셔야 이용 가능합니다.');
-        return;
-      }
+    if(!this.info.uname || !this.info.pwd || !this.info.name || !this.info.contact || !this.info.birth
+      || !this.info.addr || !this.info.subaddr || !this.info.gender || !this.companyInfo.name || !this.info.spot ||
+      !this.info.part || !this.info.rank || !this.info.email){
+      alert('모든 필수항목이 채워져 있어야 합니다.');
+      return;
     }
-    this.reg();
+    else{
+      alert('성공적으로 가입되셨습니다.')
+      this.reg();
+    }
   }
   nextBtn(b:Event){
     var mother = (b.target as HTMLElement).closest('.tabContentBox')

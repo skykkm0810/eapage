@@ -75,6 +75,7 @@
             <div class="basicInfo">
               <span class="bold infoTitle">기본 정보</span>
               <div class="floatImg">
+                <span class="need">사진정보</span>
                 <img src="{{filePath}}{{info.file}}" width="100%" height="100%" alt="/">
               </div>
               <label class="changeBtn pointer">
@@ -289,7 +290,7 @@
           <div class="btnBox">
             <!-- 서브밋 버튼이 되어야함 -->
             <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
-            <button mat-button class="next bold" (click)="reg()">완료</button>
+            <button mat-button class="next bold" (click)="beforeNext3()">완료</button>
           </div>
       <!-- <div class="finish tabContentBox hidden">
           <div class="finishBox">

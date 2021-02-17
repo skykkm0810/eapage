@@ -10,7 +10,7 @@
         </li>
       </ul>
       <div class="subList" *ngIf="selectedC">
-        <li *ngFor='let sc of selectedC.subtitle' class="pointer" (click)='bold($event)'z>{{sc.subname}}</li>
+        <li *ngFor='let sc of selectedC.subtitle' class="pointer" (click)='bold($event)'>{{sc.subname}}</li>
       </div>
     </div>
     <div class="showLives">
@@ -21,6 +21,7 @@
                     <option value="종료">종료</option>
                 </select> -->
       </h3>
+      <p class="bold" style="padding: 50px; font-size: 22px; text-align: center;" *ngIf="info.length == 0"> 오픈예정인 라이브가 없습니다.</p>
       <div class="liveListGrid">
         <!-- <div class="live" *ngFor="let l of info">
           <span class="inlineBlock process">{{l.process}}</span>

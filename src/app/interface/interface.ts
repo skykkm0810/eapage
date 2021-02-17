@@ -548,3 +548,90 @@ export const Agreement = {
   서비스와 관련된 신상품 소식, 이벤트 안내, 고객 혜택 등 다양한 정보를 제공합니다.
   `
 };
+//  카테고리
+export const category = [
+  { title:'인생여정',
+    image: '../../../assets/images/icon/pink/category1.png',
+    subtitle: [
+      {subname:'연애결혼'},
+      {subname:'자녀양육'},
+      {subname:'부부/가족관계'},
+      {subname:'인생 2막'},
+      ]
+  },
+  { title:'사회생활',
+    image: '../../../assets/images/icon/pink/category2.png',
+    subtitle: [
+      {subname:'대인관계'},
+      {subname:'커뮤니케이션'},
+      {subname:'리더십'},
+      {subname:'조직적응'},
+      ]
+  },
+  { title:'힐링',
+    image: '../../../assets/images/icon/pink/category3.png',
+    subtitle: [
+      {subname:'명상요가'},
+      {subname:'몸마음건강'},
+      {subname:'예술 치유'},
+      {subname:'힐링 DIY'},
+      ]
+  },
+  { title:'심리',
+    image: '../../../assets/images/icon/pink/category4.png',
+    subtitle: [
+      {subname:'자기 이해'},
+      {subname:'심리 특강'},
+      ]
+  },
+]
+
+
+// fake data
+export let lectList = [
+  {
+    applied: '2021-01-27T16:00:00',
+    file: [{
+      path: 'thumbnail.png'
+    }],
+    title: '바쁠수록 마음챙김, 차분하게 명상',
+    subtitle: '커리큘럼 1회차 제목',
+    number: 1,
+    student:30,
+    students:[
+      {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222',address:'어딘가에 살겠지~'},
+      {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222',address:'어딘가에 살겠지~'},
+      {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222',address:'어딘가에 살겠지~'},
+    ],
+  },
+  {
+    applied: '2021-01-27T16:00:00',
+    file: [{
+      path: 'thumbnail.png'
+    }],
+    title: '바쁠수록 마음챙김, 차분하게 명상',
+    subtitle: '커리큘럼 1회차 제목',
+    number: 1,
+    student:30,
+    students:[
+      {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222',address:'어딘가에 살겠지~'},
+      {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222',address:'어딘가에 살겠지~'},
+      {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222',address:'어딘가에 살겠지~'},
+    ],
+  },
+  {
+    applied: '2021-01-27T16:00:00',
+    file: [{
+      path: 'thumbnail.png'
+    }],
+    title: '바쁠수록 마음챙김, 차분하게 명상',
+    subtitle: '커리큘럼 1회차 제목',
+    number: 1,
+    student:30,
+    students:[
+      {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222',address:'어딘가에 살겠지~'},
+      {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222',address:'어딘가에 살겠지~'},
+      {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222',address:'어딘가에 살겠지~'},
+    ],
+  },
+]

@@ -239,18 +239,16 @@ export class JoinTeacherComponent implements OnInit {
     this.nextBtn(a);
   }
 
-  event3: any;
-  beforeNext3(a:Event){
-    this.event3 = a;
-    var mother = (a.target as HTMLElement).closest('.tabContentBox') as HTMLElement;
-    var neccesary = mother.getElementsByTagName('input');
-    for(var i=0; i<neccesary.length; i++){
-      if((neccesary[i] as HTMLInputElement).value == ''){
-        alert('모든 필수 항목을 채워주셔야 이용 가능합니다.');
+  beforeNext3(){
+    if(this.info.file == 'unknown.jpg' || !this.info.name || !this.info.uname || !this.info.pwd || !this.info.birth || !this.info.contact
+      || !this.info.addr || !this.info.subaddr || !this.info.email || !this.info.gender || !this.info.accType || !this.info.bankName ||
+      !this.info.bankAcc || !this.info.reg){
+        alert('필수정보란은 모든 필수항목이 채워져 있어야합니다.')
         return;
-      }
     }
-    this.reg();
+    else{
+      this.reg();
+    }
   }
   nextBtn(b:Event){
     var mother = (b.target as HTMLElement).closest('.tabContentBox')
@@ -298,17 +296,14 @@ export class JoinTeacherComponent implements OnInit {
   }
 
   reg() {
-    if ( this.info.pwd == undefined || this.info.pwd == '' ) {
-      delete this.info.pwd;
-    } else {
-      if(this.info.pwd.length > 20 || this.info.pwd.length< 8 ){
-        alert('비밀번호는 8자리 이상, 20자리 이하로 만들어야 합니다.');
-        return;
-      }
-    }
-    if ( !this.info.uname || !this.info.pwd || !this.info.name || !this.info.gender || !this.info.contact || !this.info.accType || !this.info.bankName || !this.info.bankAcc || !this.info.reg) {
-      alert('필수 항목을 입력해주세요');
-    } else {
+    // if ( this.info.pwd == undefined || this.info.pwd == '' ) {
+      // delete this.info.pwd;
+    // } else {
+      // if(this.info.pwd.length > 20 || this.info.pwd.length< 8 ){
+        // alert('비밀번호는 8자리 이상, 20자리 이하로 만들어야 합니다.');
+        // return;
+      // }
+    // }
       this.info.edus = this.edus;
       this.info.certs = this.certs;
       this.info.careers = this.careers;
@@ -319,7 +314,6 @@ export class JoinTeacherComponent implements OnInit {
       this.info.contact =this.info.contact +''; 
       console.log(this.info);
       this.phxChannel.send('inst', this.info);
-    }
   }
 
   nochild() {

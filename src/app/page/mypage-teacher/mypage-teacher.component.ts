@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild, ɵɵresolveBody } 
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SocketioService } from '../../service/socketio.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 import { MatDialog } from '@angular/material/dialog';
 import { AddressComponent } from '../../modal/address/address.component';
@@ -21,6 +22,7 @@ import { postcode } from 'src/assets/js/postcode.js';
 export class MypageTeacherComponent implements OnInit {
 
   constructor(
+    private snackBar: MatSnackBar,
     public dialog:MatDialog,
     private phxChannel: PhxChannelService,
     private auth: AuthService,
@@ -132,53 +134,7 @@ export class MypageTeacherComponent implements OnInit {
   react = react;
   filePath = Environment.filePath;
 
-  lectList = [
-    {
-      applied: '2021-01-27T16:00:00',
-      file: [{
-        path: 'thumbnail.png'
-      }],
-      title: '바쁠수록 마음챙김, 차분하게 명상',
-      subtitle: '커리큘럼 1회차 제목',
-      number: 1,
-      student:30,
-      students:[
-        {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222',address:'어딘가에 살겠지~'},
-        {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222',address:'어딘가에 살겠지~'},
-        {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222',address:'어딘가에 살겠지~'},
-      ],
-    },
-    {
-      applied: '2021-01-27T16:00:00',
-      file: [{
-        path: 'thumbnail.png'
-      }],
-      title: '바쁠수록 마음챙김, 차분하게 명상',
-      subtitle: '커리큘럼 1회차 제목',
-      number: 1,
-      student:30,
-      students:[
-        {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222',address:'어딘가에 살겠지~'},
-        {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222',address:'어딘가에 살겠지~'},
-        {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222',address:'어딘가에 살겠지~'},
-      ],
-    },
-    {
-      applied: '2021-01-27T16:00:00',
-      file: [{
-        path: 'thumbnail.png'
-      }],
-      title: '바쁠수록 마음챙김, 차분하게 명상',
-      subtitle: '커리큘럼 1회차 제목',
-      number: 1,
-      student:30,
-      students:[
-        {name:'김슬기',company:'일심전자 본사', contact:'010-1111-2222',address:'어딘가에 살겠지~'},
-        {name:'이슬기',company:'일심전자 본사', contact:'010-3333-2222',address:'어딘가에 살겠지~'},
-        {name:'배슬기',company:'일심전자 본사', contact:'010-5555-2222',address:'어딘가에 살겠지~'},
-      ],
-    },
-  ]
+  
 
   banks = Banks;
   genders = selGender;
@@ -206,9 +162,9 @@ export class MypageTeacherComponent implements OnInit {
     }
   }
   showPicture(event : Event){
-    console.log();
     var reader = new FileReader();
     var imgBox = document.getElementsByClassName('fakeUpload')[0] as HTMLElement;
+    console.log(imgBox);
     var file = (event.target as HTMLInputElement).files[0];
     imgBox.style.background = 'no-repeat center center / contain';
     reader.onload = function(e){
@@ -302,6 +258,15 @@ export class MypageTeacherComponent implements OnInit {
   showadd(obj){
     const dialogRef = this.dialog.open(AddressComponent);
   }
+  openSnakbar(text , btn){
+    this.snackBar.open(text,btn, {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: 'snack-bar',
+    })
+
+  }
   click() {
     if ( this.info.pwd == undefined || this.info.pwd == '' ) {
       delete this.info.pwd;
@@ -311,8 +276,11 @@ export class MypageTeacherComponent implements OnInit {
         return;
       }
     }
-    if ( !this.info.name || !this.info.gender || !this.info.contact ) {
-      alert('필수 항목을 입력해주세요');
+    if(this.info.file == '' || !this.info.name || !this.info.uname || !this.info.pwd || !this.info.birth || !this.info.contact
+      || !this.info.addr || !this.info.subaddr || !this.info.email || !this.info.gender || !this.info.accType || !this.info.bankName ||
+      !this.info.bankAcc || !this.info.reg) {
+      this.openSnakbar('필수 항목을 입력해주세요','닫기');
+      // alert('필수 항목을 입력해주세요');
     } else {
       this.info.edus = this.edus;
       this.info.certs = this.certs;
@@ -323,6 +291,8 @@ export class MypageTeacherComponent implements OnInit {
       this.info.react = rea;
       console.log(this.info);
       this.phxChannel.up('inst', this.info);
+      alert('변경이 완료되었습니다.')
+      location.reload();
     }
   }
   changePw() {

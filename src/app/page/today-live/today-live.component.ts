@@ -122,6 +122,7 @@ export class TodayLiveComponent implements AfterViewInit {
       bigList[i].classList.remove('clicked')
     }
     thisList.classList.add('clicked')
+    this.title = thisList.textContent;
   }
   filter(e:Event){
     var subList = (e.target as HTMLElement);

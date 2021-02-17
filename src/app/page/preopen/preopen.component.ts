@@ -122,14 +122,13 @@ export class PreopenComponent  {
       bigList[i].classList.remove('clicked')
     }
     thisList.classList.add('clicked')
-    this.title = thisList.textContent
-    for(var i=0; i<lives.length; i++){
-      (lives[i] as HTMLElement).style.display='none';
-      if(lives[i].getElementsByClassName('maincategory')[0].textContent == thisList.textContent){
-      (lives[i] as HTMLElement).style.display='block';
-      }
-      // lives[i].getElementsByClassName('small')[0];
-    }
+    this.title = thisList.textContent;
+    // for(var i=0; i<lives.length; i++){
+      // (lives[i] as HTMLElement).style.display='none';
+      // if(lives[i].getElementsByClassName('maincategory')[0].textContent == thisList.textContent){
+      // (lives[i] as HTMLElement).style.display='block';
+      // }
+    // }
   }
   filter(e:Event){
     var subList = (e.target as HTMLElement);

@@ -64,16 +64,16 @@
       <div class="double">
         <div class="content">
           <span class="headName pointer" [routerLink]="['allLive']" (click)="closeBox()">모든라이브</span>
-          <span class="subname pointer" (click)='allFind($event)'>인생여정</span>
-          <span class="subname pointer" (click)='allFind($event)'>사회생활</span>
-          <span class="subname pointer" (click)='allFind($event)'>힐링</span>
-          <span class="subname pointer" (click)='allFind($event)'>심리</span>
+          <span class="subname searchButton pointer" (click)='allFind($event)'>인생여정</span>
+          <span class="subname searchButton pointer" (click)='allFind($event)'>사회생활</span>
+          <span class="subname searchButton pointer" (click)='allFind($event)'>힐링</span>
+          <span class="subname searchButton pointer" (click)='allFind($event)'>심리</span>
         </div>
         <div class="content">
           <span class="headName pointer" [routerLink]="['todayLive']" (click)="closeBox()">오늘의 라이브</span>
         </div>
         <div class="content">
-          <span class="headName pointer" (click)="modal()">오픈 예정</span>
+          <span class="headName pointer" [routerLink]="['preopen']" (click)="closeBox()" >오픈 예정</span>
           <span class="subname pointer"(click)="modal()">인생여정</span>
           <span class="subname pointer"(click)="modal()">사회생활</span>
           <span class="subname pointer"(click)="modal()">힐링</span>

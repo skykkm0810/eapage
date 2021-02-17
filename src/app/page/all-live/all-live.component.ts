@@ -23,7 +23,7 @@ export class AllLiveComponent implements AfterViewInit {
       } else {
         filtered = data;
       }
-      console.log(filtered);
+      // console.log(filtered);
       filtered.forEach( data => {
         let time = new Date().getTime();
         if( data.currs.length > 0 ) {
@@ -37,7 +37,7 @@ export class AllLiveComponent implements AfterViewInit {
         // 온도
         data.degree = Math.floor(data.receipts.length/data.least * 100);
         // 남은 날짜
-        var liveTime = new Date(Date.parse(data.created)).getTime()/1000;
+        var liveTime = new Date(Date.parse(data.dday)).getTime()/1000;
         var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
         if (Number(calTime) >= 0) {
           let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
@@ -60,7 +60,6 @@ export class AllLiveComponent implements AfterViewInit {
     
     this.search = this.route.snapshot.params;
     console.log(this.search)
-
     
   }
   search;
