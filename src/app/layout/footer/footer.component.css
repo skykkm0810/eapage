@@ -51,7 +51,7 @@ footer .bfoot{
     top:16px;
     width:178px;
     height:58px;
-    background: url('../../../assets/images/eapLogo_bottom.png') no-repeat center center / contain;
+    background: url('../../../assets/images/logo_bottom.png') no-repeat center center / contain;
 }
 .bfoot small {
     display: block;

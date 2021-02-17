@@ -10,7 +10,7 @@
         </li>
       </ul>
       <div class="subList" *ngIf="selectedC">
-        <li *ngFor='let sc of selectedC.subtitle' class="pointer" (click)='bold($event)'z>{{sc.subname}}</li>
+        <li *ngFor='let sc of selectedC.subtitle' class="pointer" (click)='bold($event)'>{{sc.subname}}</li>
       </div>
     </div>
     <div class="showLives">
@@ -21,6 +21,7 @@
                     <option value="종료">종료</option>
                 </select> -->
       </h3>
+      <p class="bold" style="padding: 50px; font-size: 22px; text-align: center;" *ngIf="info.length == 0"> 오픈예정인 라이브가 없습니다.</p>
       <div class="liveListGrid">
         <!-- <div class="live" *ngFor="let l of info">
           <span class="inlineBlock process">{{l.process}}</span>
@@ -50,7 +51,7 @@
         <div *ngFor='let r of info' class="designedBox">
           <div class="process">{{r.process}}</div>
           <!-- 프로세스 'OPEN 예정' 필요  -->
-          <div class="classcategory" [style.background]='class[0].color'><span class="inlineBlock textHidden maincategory">인생여정</span><span class="subcategory">인생 2막</span></div>
+          <div class="classcategory" [style.background]='class[0].color'><span class="maincategory"></span><span class="subcategory textHidden"></span></div>
           <!-- 서브 카테고리 마다 색이 들어가야함  메인 카테고리 , 서브 카테고리 필요-->
           <div class="itemHeader">{{r.title}}</div>
           <div class="itemImg"><img src="../../../assets/images/banner/flower.png" alt="/"></div>
