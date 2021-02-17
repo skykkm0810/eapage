@@ -52,8 +52,12 @@ export class MainComponent implements OnDestroy, AfterViewInit {
     phxChannel.LectureControled.subscribe( data => {
       console.log(data.body);
       // 메인
-      this.mainClass.push(data.body.main1);
-      this.mainClass.push(data.body.main2);
+      if ( data.body.main1.length > 0 ) {
+        this.mainClass.push(data.body.main1);
+      }
+      if ( data.body.main2.length > 0 ) {
+        this.mainClass.push(data.body.main2);
+      }
       var mainLength = this.mainClass.length;
       for(var i=0; i<mainLength; i++){
         // 온도추가
@@ -74,19 +78,43 @@ export class MainComponent implements OnDestroy, AfterViewInit {
 
       }
       // 오픈 예정
-      this.preopenClass.push(data.body.open1);
-      this.preopenClass.push(data.body.open2);
+      if ( data.body.open1.length > 0 ) {
+        this.preopenClass.push(data.body.open1);
+      }
+      if ( data.body.open2.length > 0 ) {
+        this.preopenClass.push(data.body.open2);
+      }
       // top 라이브
-      this.topClass.push({data:data.body.top1[0],idn:1})
-      this.topClass.push({data:data.body.top2[0],idn:2})
-      this.topClass.push({data:data.body.top3[0],idn:3})
-      this.topClass.push({data:data.body.top4[0],idn:4})
-      this.topClass.push({data:data.body.top5[0],idn:5})
-      this.topClass.push({data:data.body.top6[0],idn:6})
-      this.topClass.push({data:data.body.top7[0],idn:7})
-      this.topClass.push({data:data.body.top8[0],idn:8})
-      this.topClass.push({data:data.body.top9[0],idn:9})
-      this.topClass.push({data:data.body.top10[0],idn:10})
+      if ( data.body.top1.length > 0 ) {
+        this.topClass.push({data:data.body.top1[0],idn:1})
+      }
+      if ( data.body.top2.length > 0 ) {
+        this.topClass.push({data:data.body.top2[0],idn:2})
+      }
+      if ( data.body.top3.length > 0 ) {
+        this.topClass.push({data:data.body.top3[0],idn:3})
+      }
+      if ( data.body.top4.length > 0 ) {
+        this.topClass.push({data:data.body.top4[0],idn:4})
+      }
+      if ( data.body.top5.length > 0 ) {
+        this.topClass.push({data:data.body.top5[0],idn:5})
+      }
+      if ( data.body.top6.length > 0 ) {
+        this.topClass.push({data:data.body.top6[0],idn:6})
+      }
+      if ( data.body.top7.length > 0 ) {
+        this.topClass.push({data:data.body.top7[0],idn:7})
+      }
+      if ( data.body.top8.length > 0 ) {
+        this.topClass.push({data:data.body.top8[0],idn:8})
+      }
+      if ( data.body.top9.length > 0 ) {
+        this.topClass.push({data:data.body.top9[0],idn:9})
+      }
+      if ( data.body.top10.length > 0 ) {
+        this.topClass.push({data:data.body.top10[0],idn:10})
+      }
       
       // console.log(this.topClass)
     })

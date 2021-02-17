@@ -109,6 +109,7 @@ export class PreopenComponent  {
      limit: null, 
      degree: null,
      title: '', 
+     id: '',
      categorycolor:'',
      color: '',
     }];

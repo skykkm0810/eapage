@@ -48,7 +48,7 @@
           </div>
           <div class="goArrow pointer" (click)="detail(l)"></div>
         </div> -->
-        <div *ngFor='let r of info' class="designedBox">
+        <div *ngFor='let r of info' class="designedBox" routerLink="/detail/{{r.id}}">
           <div class="process">OPEN 예정</div>
           <!-- 프로세스 'OPEN 예정' 필요  -->
           <div class="classcategory" [style.background]='r.color'><span class="inlineBlock textHidden maincategory">인생여정</span><span class="subcategory">{{r.interests}}</span></div>
