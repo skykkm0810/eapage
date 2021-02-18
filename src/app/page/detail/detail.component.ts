@@ -22,6 +22,7 @@ export class DetailComponent {
   }
   
   ngOnInit() {
+    window.scrollTo(0,0);
     this.subs[0] = this.phxChannel.Like.subscribe( data => {
       this.bar.open('찜하기!', '닫기', {
         duration: 1000,
