@@ -29,20 +29,23 @@ export class AllLiveComponent implements AfterViewInit {
       filtered.forEach( data => {
         // 프로세스
         let time = new Date().getTime();
-        if( data.currs.length > 0 ) {
-          let datatime = new Date(data.currs[0].date).getTime();
-          if( datatime > time ){
-            data.process = new Date(data.dday).getMonth() + 1 + '월' + new Date(data.dday).getDate() + '일 ' + new Date(data.dday).getHours() + ':' + new Date(data.dday).getMinutes();
-            if(data.dday == null){
-              data.process = 'OPEN 예정';
-            }
-          }
-          else {
-            data.process = '종료';
+        let datatime = new Date(data.dday).getTime();
+        if( datatime > time ){
+          data.process = new Date(data.dday).getMonth() + 1 + '월' + new Date(data.dday).getDate() + '일 ' + new Date(data.dday).getHours() + ':' + new Date(data.dday).getMinutes();
+          if(data.dday == null){
+            data.process = 'OPEN 예정';
           }
         }
+        else {
+          data.process = '종료';
+        }
         // 온도
-        data.degree = Math.floor(data.receipts.length/data.least * 100);
+        if(data.least == null || data.least == undefined){
+          data.degree = '0';
+        }
+        else{
+          data.degree = Math.floor(data.receipts.length/data.least * 100);
+        }
         // 남은 날짜
         var liveTime = new Date(Date.parse(data.dday)).getTime()/1000;
         var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);

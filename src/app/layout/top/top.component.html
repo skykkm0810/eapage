@@ -19,10 +19,10 @@
     <div class="ltop">
       <ul class="snb">
         <!-- <li class="pointer whatIs" (click)= "active($event)">마음도씨란?</li> -->
-        <li class="pointer whatIs" [routerLink]="['maum']" (click)="active($event)">마음도씨란?</li>
-        <li class="pointer allLives"  (click)="HyperLink('allLive' , $event)">모든라이브</li>
-        <li class="pointer preOpen" [routerLink]="['preopen']" (click)="active($event)">오픈예정</li>
-        <li class="pointer todayLives" [routerLink]="['todayLive']" (click)="active($event)">오늘의라이브</li>
+        <li class="pointer maum" [routerLink]="['maum']">마음도씨란?</li>
+        <li class="pointer allLive"  (click)="HyperLink('allLive')">모든라이브</li>
+        <li class="pointer preopen" [routerLink]="['preopen']">오픈예정</li>
+        <li class="pointer todayLive" [routerLink]="['todayLive']">오늘의라이브</li>
         <!-- <li class="pointer review" (click)= "active($event)">리뷰보기</li> -->
         <li class="pointer review" (click)="modal()">리뷰보기</li>
       </ul>

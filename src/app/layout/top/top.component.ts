@@ -31,6 +31,7 @@ export class TopComponent implements AfterViewInit{
 
   ngOnInit(): void {
     this.sign_check();
+    this.active();
   }
   ngAfterViewInit():void{
     this.boxPosition();
@@ -38,6 +39,7 @@ export class TopComponent implements AfterViewInit{
   sign = false;
   info;
   display = 'none';
+  url = window.location.href;
   sign_check() {
     if (!this.auth.isAuthenticated()) {
       this.sign = false;
@@ -47,15 +49,16 @@ export class TopComponent implements AfterViewInit{
       this.info = JSON.parse(this.auth.getUserData());
     }
   }
-  active(e:Event){
-    var menu = e.target as HTMLElement;
-    var allmenu = document.querySelectorAll('.snb li');
-    for(var i=0; i<allmenu.length; i++){
-      allmenu[i].classList.remove('on');
-    }
-    menu.classList.add('on');
+  active(){
+    var parts = this.url.split('/');
+    console.log(parts);
+    // var menu=''
+    // var allmenu = document.querySelectorAll('.snb li');
+    // for(var i=0; i<allmenu.length; i++){
+      // allmenu[i].classList.remove('on');
+    // }
+    // menu.classList.add('on');
   }
-
 
   mypage() {
     if ( this.info.type == false ) {
@@ -116,7 +119,7 @@ export class TopComponent implements AfterViewInit{
   }
   enterkey() {
   }
-  HyperLink(loc, e:Event){
+  HyperLink(loc){
     location.href = './' + loc;
   }
   

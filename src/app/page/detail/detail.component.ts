@@ -59,7 +59,13 @@ export class DetailComponent {
       data.currs.forEach( data => {
         this.sum += data.dur*1;
       })
-      this.info.degree = Math.ceil(data.receipts.length*1 / data.least * 100);
+      if(this.info.least == null || this.info.least == undefined){
+        this.info.degree = 0;
+      }
+      else{
+        this.info.degree = Math.floor(data.receipts.length/data.least * 100);
+      }
+      // this.info.degree = Math.ceil(data.receipts.length*1 / data.least * 100);
       if( this.info.dday != null ) {
         let d1 = new Date(this.info.dday).getTime();
         let d2 = new Date().getTime();
@@ -72,6 +78,7 @@ export class DetailComponent {
           let time = Math.round((d1 - d2) / 1000 / 60 / 60 / 24 );
           this.dday_c = true;
           this.dday = time+"";
+          console.log(d1,d2,time,this.dday);
         }
       } else {
         this.dday_c = false;
