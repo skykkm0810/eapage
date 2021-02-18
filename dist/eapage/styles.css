@@ -73,5 +73,9 @@ li {
     color: #DD5E5E;
     vertical-align: super;
 }
+.snackbar {
+    background-color: aliceblue;
+    color: #DD5E5E;
+}
 
 /*# sourceMappingURL=styles.css.map*/

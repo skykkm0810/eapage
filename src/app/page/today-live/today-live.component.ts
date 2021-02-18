@@ -2,7 +2,8 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Environment } from 'src/app/environment/environment';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
-import {CATEGORY} from '../../interface/interface';
+import { CATEGORY } from '../../interface/interface';
+
 @Component({
   selector: 'app-today-live',
   templateUrl: './today-live.component.html',
@@ -87,9 +88,10 @@ export class TodayLiveComponent implements AfterViewInit {
       interests: [{value: ''}], 
       thumbnail1: '', 
       limit: null, 
-      title: '', 
+      title: '',
+      id: null,
       color:'',
-      maincategory:''
+      maincategory: '',
     }],
     process: '',
     categorycolor:'',

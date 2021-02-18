@@ -3,19 +3,19 @@
   <!-- <section class="category container">
     <div class="row">
       <div class="col-3 content">
-        <img src="../../../assets/images/icon2/life.png" style="padding-right: 20px" height="78px">
+        <img src="../../../assets/images/icon2/life.png" style="padding-right: 20px">
         인생여정
       </div>
       <div class="col-3 content">
-        <img src="../../../assets/images/icon2/social.png" style="padding-right: 20px" height="78px">
+        <img src="../../../assets/images/icon2/social.png" style="padding-right: 20px">
         사회생활
       </div>
       <div class="col-3 content">
-        <img src="../../../assets/images/icon2/healing.png" style="padding-right: 20px" height="78px">
+        <img src="../../../assets/images/icon2/healing.png" style="padding-right: 20px">
         힐링
       </div>
       <div class="col-3 content">
-        <img src="../../../assets/images/icon2/mental.png" style="padding-right: 20px" height="78px">
+        <img src="../../../assets/images/icon2/mental.png" style="padding-right: 20px">
         심리
       </div>
     </div>
@@ -40,16 +40,16 @@
         </div>
         <div class="row thumbnail">
           <div class="col-3 item" *ngIf="info.thumbnail1 != null">
-            <img src="{{filePath}}{{info.thumbnail1}}" (mouseover)='thumbnail($event)'>
+            <img src="{{filePath}}{{info.thumbnail1}}" (mouseover)='thumbnail($event)' height="78px" width="100%">
           </div>
           <div class="col-3 item" *ngIf="info.thumbnail2 != null">
-            <img src="{{filePath}}{{info.thumbnail2}}" (mouseover)='thumbnail($event)'>
+            <img src="{{filePath}}{{info.thumbnail2}}" (mouseover)='thumbnail($event)' height="78px" width="100%">
           </div>
           <div class="col-3 item" *ngIf="info.thumbnail3 != null">
-            <img src="{{filePath}}{{info.thumbnail3}}" (mouseover)='thumbnail($event)'>
+            <img src="{{filePath}}{{info.thumbnail3}}" (mouseover)='thumbnail($event)' height="78px" width="100%">
           </div>
           <div class="col-3 item" *ngIf="info.thumbnail4 != null">
-            <img src="{{filePath}}{{info.thumbnail4}}" (mouseover)='thumbnail($event)'>
+            <img src="{{filePath}}{{info.thumbnail4}}" (mouseover)='thumbnail($event)' height="78px" width="100%">
           </div>
         </div>
       </div>
@@ -200,7 +200,10 @@
       <div class="col-4"></div>
     </div>
     <div class="row testimonial-li">
-      <div class="col-4 entry">
+      <div *ngIf="info.reviewimg != null">
+        <img src="{{filePath}}{{info.reviewimg}}" alt="" width="100%">
+      </div>
+      <!-- <div class="col-4 entry">
         <div class="row testi-star-wrap">
           <img src="../../../assets/images/icon2/star-full.png" class="testi-star">
           <img src="../../../assets/images/icon2/star-full.png" class="testi-star">
@@ -242,7 +245,7 @@
           내 몸을 바라보며 소통하고, 느끼는 것이 참 행복하다는 것을
           알게 되었습니다. 명상을 하고, 몸을 이완시키는 것이 특히 매우매우 좋아요.
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
   <section class="intro container">
@@ -322,16 +325,14 @@
           <col width="80px">
           <col width="180px">
           <col width="240px">
-          <col width="90px">
-          <col width="120px">
-          <col width="390px">
+          <col width="165px">
+          <col width="435px">
         </colgroup>
         <thead>
           <tr>
             <th scope="col">회기</th>
             <th scope="col">일정</th>
             <th scope="col">주제명</th>
-            <th scope="col">교시</th>
             <th scope="col">시간</th>
             <th scope="col">내용</th>
           </tr>
@@ -341,15 +342,13 @@
             <td>{{c.stage}} 차</td>
             <td>{{c.date | date: 'M월 d일 E'}}<br>{{c.date | date: 'HH:mm'}}({{c.dur}}분)</td>
             <td>{{c.title}}</td>
-            <td class="dividedCell" colspan="3">
+            <td class="dividedCell" colspan="2">
               <table class='innerTable'>
                 <colgroup>
-                  <col width='90px'>
-                  <col width='120px'>
-                  <col width='390px'>
+                  <col width='165px'>
+                  <col width='435px'>
                 </colgroup>
                 <tr *ngFor='let cur of c.timetable'>
-                  <td>{{cur.stage}}</td>
                   <td>{{cur.dur}}분</td>
                   <td class="whitewrap">{{cur.desc}}</td>
                 </tr>
