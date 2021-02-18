@@ -278,7 +278,6 @@ export class JoinComponent implements OnInit {
     const inter = this.interests.filter( data => data.completed == true );
     this.info.interests = inter;
     this.info.contact = this.info.contact+'';
-    console.log(this.info);
     this.phxChannel.send('user', this.info);
   }
 
