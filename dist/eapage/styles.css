@@ -19,7 +19,7 @@
     src: url('NanumPenScript-Regular.ttf');
     font-family: 'nanum_pen';
 }
-html, body { height: 100%; }
+html, body { height: 100%; min-width: 1440px; }
 html {
     scroll-behavior: smooth;
   }
@@ -76,6 +76,12 @@ li {
 .snackbar {
     background-color: aliceblue;
     color: #DD5E5E;
+}
+.whiteWrap {
+    white-space: pre-wrap;
+}
+.textOverflow {
+    text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=styles.css.map*/
