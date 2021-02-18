@@ -79,6 +79,7 @@ export class PreopenComponent  {
      categorycolor:'',
      color: '',
      maincategory:'',
+     hash:'',
     }];
   
   onselect(c:any,e:Event){

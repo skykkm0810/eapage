@@ -49,7 +49,7 @@
           </div>
           <div class="goArrow pointer" (click)="detail(l)"></div>
         </div> -->
-        <div *ngFor='let r of info' class="designedBox" routerLink="/detail/{{r.id}}">
+        <div *ngFor='let r of info' class="designedBox">
           <div class="process">OPEN 예정</div>
           <div class="classcategory" [style.background]='r.color'><span class="inlineBlock textHidden maincategory">{{r.maincategory}}</span><span class="subcategory">{{r.interests}}</span></div>
           <div class="itemHeader">{{r.title}}</div>
@@ -61,7 +61,7 @@
             <!-- <span class="degrees">ºC 마음도씨</span> -->
           <!-- </div> -->
             <div class='hashTag'>
-              <span>&nbsp;&nbsp;</span>
+              <span>{{r.hash}}</span>
           </div>
             <div class="bigText">
             <span>{{r.subtitle}}</span>

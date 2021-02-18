@@ -71,3 +71,9 @@ li {
     background-color: aliceblue;
     color: #DD5E5E;
 }
+.whiteWrap {
+    white-space: pre-wrap;
+}
+.textOverflow {
+    text-overflow: ellipsis;
+}

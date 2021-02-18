@@ -40,7 +40,16 @@ export class MainComponent implements OnDestroy, AfterViewInit {
       },1000)
       
       for(var i=0; i<this.todayClass.length; i++){
-        this.todayClass[i].color = '#66cccc';
+        if ( this.todayClass[i].lecture[0].interests == '연애결혼' || this.todayClass[i].lecture[0].interests == '자녀양육' || this.todayClass[i].lecture[0].interests == '부부/가족관계' || this.todayClass[i].lecture[0].interests == '인생 2막' ) {
+          this.todayClass[i].color = '#DD5E5E';
+        } else if ( this.todayClass[i].lecture[0].interests == '대인관계' || this.todayClass[i].lecture[0].interests == '커뮤니케이션' || this.todayClass[i].lecture[0].interests == '리더십' || this.todayClass[i].lecture[0].interests == '조직적응' ) {
+          this.todayClass[i].color = '#3EB3E7';
+        } else if ( this.todayClass[i].lecture[0].interests == '명상요가' || this.todayClass[i].lecture[0].interests == '몸 마음 건강' || this.todayClass[i].lecture[0].interests == '예술 치유' || this.todayClass[i].lecture[0].interests == '힐링DIY' ) {
+          this.todayClass[i].color = '#0AD1D1';
+        } else if ( this.todayClass[i].lecture[0].interests == '자기 이해' || this.todayClass[i].lecture[0].interests == '심리특강' ) {
+          this.todayClass[i].color = '#B775EF';
+        }
+        // this.todayClass[i].color = '#66cccc';
       }
       console.log(this.todayClass)
     })
@@ -160,7 +169,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
   mainClass=[];
   preopenClass=[];
   topClass=[];
-  todayClass=[{ remains: null, lecture: [{name: '', inst: { name: '' }, thumbnail1: '', title: '', subtitle: ''}], date: null, color: '' }];
+  todayClass=[{ remains: null, lecture: [{name: '', inst: { name: '' }, thumbnail1: '', title: '', subtitle: '',interests:''}], date: null, color: '' }];
   int_remainTime;
 
   

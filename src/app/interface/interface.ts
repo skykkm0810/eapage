@@ -14,6 +14,7 @@ export const TAGS : Record<string, string> = {
   PREOPEN: 'preopen',
   JOINTEACHER: 'joinTeacher',
   TESTPAGE: 'test',
+  BROADCAST:'broadcast/:id',
 } 
 
 export const INTERESTS = [

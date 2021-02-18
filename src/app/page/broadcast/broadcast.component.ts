@@ -6,11 +6,11 @@ import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  selector: 'app-broadcast',
+  templateUrl: './broadcast.component.html',
+  styleUrls: ['./broadcast.component.css']
 })
-export class DetailComponent {
+export class BroadcastComponent {
 
   constructor(
     private route: ActivatedRoute,
@@ -122,11 +122,26 @@ export class DetailComponent {
       this.phxChannel.gets('user:receipt', { uid: this.user.id*1 });
     };
 
-    this.categoryArrow();
     console.log(this.login);
     if ( this.login == true ) {
       this.reviewText = "주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다.";
     }
+
+    // 채팅창 커서
+    var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLInputElement;
+    console.log(chatInput);
+    var line = document.getElementsByClassName('nml')[0] as HTMLElement;
+    chatInput.addEventListener('focus',()=>{
+      line.style.display ='block';
+    })
+    chatInput.addEventListener('focusout',()=>{
+      line.style.display ='none';
+    })
+    
+    
+  }
+  ngAfterViewInit():void{
+
   }
   subs = [];
 
@@ -221,9 +236,13 @@ export class DetailComponent {
 
   filePath = Environment.filePath;
 
-  progress(){
-
-  }
+  // fakeChat
+  fakeChat = [
+    {name:'전태현',text:'안녕하세요 반갑습니다. 잘 부탁드리겠습니다.'},
+    {name:'김진혁',text:'올 시즌은 과연 몇 골이나 넣을까?'},
+    {name:'Cesinha',text:'vamos and Thank you gogo DaeguFC!! come on my fans i miss you. how many you guys come? :)'},
+  ]
+  chatText='';
 
   apply() {
     if ( this.auth.isAuthenticated() ) {
@@ -245,28 +264,7 @@ export class DetailComponent {
     }
   }
   
-  categoryArrow(){
-    var categoryTag = document.getElementsByClassName('title-header')[0] as HTMLElement;
-    var arrow = document.querySelector('.arrow img') as HTMLElement;
-    var categoryText:any = categoryTag.textContent;
-    switch(categoryText){
-      case '인생여정': 
-        arrow.style.paddingLeft = '150px'
-        break;
-      case '사회생활': 
-        arrow.style.paddingLeft = 150+ 285 + 'px'
-        break;
-      case '힐링': 
-        arrow.style.paddingLeft = 150+ 285 + 285 +'px'
-        break;
-      case '심리': 
-        arrow.style.paddingLeft = 150+ 285 + 285 + 'px'
-        break;
-      default: 
-        break;
-    }
-
-  }
+ 
   thumbnail(e:Event){
     var image = e.target as HTMLElement;
     var url = image.getAttribute('src');
@@ -332,4 +330,26 @@ export class DetailComponent {
       this.phxChannel.send('like', { userId: this.user.id, lectureId: this.injected.id*1 });
     }
   }
+  chatUp(txt){
+    var obj = {name:this.user.name , text: txt };
+    this.fakeChat.push(obj);
+    this.chatText = '';
+    this.whenOverFlow()
+  }
+  whenOverFlow(){
+    var chatMount = document.getElementsByClassName('chatLine');
+    var chatBody = document.getElementsByClassName('chatBody')[0] as HTMLElement;
+    var bodyHeight = chatBody.offsetHeight;
+    var TotalHeight = 0;
+    for(var i=0; i< chatMount.length; i++){
+      TotalHeight = TotalHeight + chatMount[i].clientHeight;
+    }
+    console.log(TotalHeight);
+    if(TotalHeight > bodyHeight){
+      chatBody.classList.remove('noOver');
+      chatBody.scrollTop = TotalHeight;
+      
+    }
+  }
 }
+

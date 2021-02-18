@@ -24,6 +24,10 @@ export class TopComponent implements AfterViewInit{
     public golink:MatDialog,
     private guard: AuthGuard,
   ) {
+    router.events.subscribe((val) => {
+      this.url = this.router.url.split('/')[1];
+      this.active(this.url);
+    })
     auth.Log.subscribe( () => {
       this.sign_check();
     })
@@ -38,7 +42,7 @@ export class TopComponent implements AfterViewInit{
   sign = false;
   info;
   display = 'none';
-  url = window.location.href;
+  url;
   sign_check() {
     if (!this.auth.isAuthenticated()) {
       this.sign = false;
@@ -48,15 +52,18 @@ export class TopComponent implements AfterViewInit{
       this.info = JSON.parse(this.auth.getUserData());
     }
   }
-  active(){
-    var parts = this.url.split('/');
-    console.log(parts);
-    // var menu=''
-    // var allmenu = document.querySelectorAll('.snb li');
-    // for(var i=0; i<allmenu.length; i++){
-      // allmenu[i].classList.remove('on');
-    // }
-    // menu.classList.add('on');
+  active(txt){
+    if(txt == ''|| txt==undefined){
+      return;
+    }
+    else{
+      var menu = document.getElementsByClassName(txt)[0] as HTMLElement;
+      var allmenu = document.querySelectorAll('.snb li');
+      for(var i=0; i<allmenu.length; i++){
+        allmenu[i].classList.remove('on');
+      }
+      menu.classList.add('on');
+    }
   }
 
   mypage() {

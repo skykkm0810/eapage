@@ -64,6 +64,7 @@ import { JoinTeacherComponent } from './page/join-teacher/join-teacher.component
 import { ReadyComponent } from './page/ready/ready.component';
 import { TestPageComponent } from './page/test-page/test-page.component';
 import { UserInfoComponent } from './modal/user-info/user-info.component';
+import { BroadcastComponent } from './page/broadcast/broadcast.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { UserInfoComponent } from './modal/user-info/user-info.component';
     JoinTeacherComponent,
     ReadyComponent,
     TestPageComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    BroadcastComponent
   ],
   imports: [
     BrowserModule,

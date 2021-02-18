@@ -16,6 +16,7 @@ import {MaumdociComponent} from './page/maumdoci/maumdoci.component';
 import {PreopenComponent} from './page/preopen/preopen.component';
 import {JoinTeacherComponent} from './page/join-teacher/join-teacher.component';
 import {TestPageComponent} from './page/test-page/test-page.component';
+import {BroadcastComponent} from './page/broadcast/broadcast.component';
 
 const routes: Routes = [
   { path: TAGS.MAIN, component: MainComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: TAGS.PREOPEN, component: PreopenComponent },
   { path: TAGS.JOINTEACHER, component: JoinTeacherComponent },
   { path: TAGS.TESTPAGE, component: TestPageComponent },
+  { path: TAGS.BROADCAST, component: BroadcastComponent },
 ];
 
 @NgModule({
