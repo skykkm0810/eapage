@@ -164,7 +164,7 @@ export class DetailComponent {
   login = false;
   reviewText = "리뷰를 작성하려면 로그인을 해주세요.";
   number;
-  user = { name: '', id: 0, companyId: 0, uname: '' };
+  user = { name: '', id: 0, companyId: 0, uname: '', type: false };
   injected;
   info = {
     currs: [{ date: null, dur: null, id: null, lectureId: null, stage: null, title: '', timetable: [
@@ -214,6 +214,10 @@ export class DetailComponent {
 
   apply() {
     if ( this.auth.isAuthenticated() ) {
+      if( this.user.type ) {
+        alert('강사는 신청할 수 없습니다.');
+        return;
+      }
       if( this.dday_c ) {
         if( this.reviewable ) {
           alert('이미 신청한 강의입니다.');
@@ -221,6 +225,7 @@ export class DetailComponent {
           if( this.info.company == true && this.user.companyId*1 != this.info.companyId*1 ) {
             alert('소속 고객사만 신청할 수 있습니다.');
           } else {
+
             this.router.navigate(['enrollClass/'+this.injected.id])
           }
         }
