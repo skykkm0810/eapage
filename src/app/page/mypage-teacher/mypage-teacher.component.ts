@@ -4,8 +4,9 @@ import { Subscription } from 'rxjs';
 import { SocketioService } from '../../service/socketio.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddressComponent } from '../../modal/address/address.component';
+import { UserInfoComponent } from '../../modal/user-info/user-info.component';
 import { Agreement, INTERESTS, react, cause, Banks, selAccountType, selCollStat, selGender, selLevel } from '../../interface/interface';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -23,11 +24,12 @@ export class MypageTeacherComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
-    public dialog:MatDialog,
+    public userInfo:MatDialog,
     private phxChannel: PhxChannelService,
     private auth: AuthService,
     private uploader: FileUploadService,
     private renderer: Renderer2,
+    
 
   ) {
     uploader.Resp.subscribe( data => {
@@ -255,9 +257,9 @@ export class MypageTeacherComponent implements OnInit {
     const index: number = this.careers.indexOf(value);
     this.careers.splice(index, 1);
   }
-  showadd(obj){
-    const dialogRef = this.dialog.open(AddressComponent);
-  }
+  // showadd(obj){
+  //   const dialogRef = this.dialog.open(AddressComponent);
+  // }
   openSnakbar(text , btn){
     this.snackBar.open(text,btn, {
       duration: 3000,
@@ -353,5 +355,27 @@ export class MypageTeacherComponent implements OnInit {
     if(thisClickTag == outside || thisClickTag == basicInfo ){
         this.close();
     }
+  }
+  warning = 0;
+  infoShow(info) {
+    if(this.warning == 0){
+      if(
+        confirm(`개인의 신원정보를 업무 외 용도로 이용하거나 , 제 3자에 노출할 경우 개인정보법에 의거하여 처벌받을 수 있음을 알려드립니다.\n 상세정보를 확인하시겠습니까?`)
+      ){
+        this.warning = 1;
+        const userInfo = this.userInfo.open(UserInfoComponent,{
+          data:{data:info}
+        });
+      }
+      else{
+        return;
+      }
+    }
+    else{
+      const userInfo = this.userInfo.open(UserInfoComponent,{
+        data:{data:info}
+      });
+    }
+    
   }
 }

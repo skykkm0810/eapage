@@ -28,6 +28,7 @@ export class PreopenComponent  {
         }
         this.info.push(d);
       })
+      console.log(data)
     })
   }
 

@@ -51,28 +51,18 @@
         </div> -->
         <div *ngFor='let r of info' class="designedBox" routerLink="/detail/{{r.id}}">
           <div class="process">OPEN 예정</div>
-          <!-- 프로세스 'OPEN 예정' 필요  -->
           <div class="classcategory" [style.background]='r.color'><span class="inlineBlock textHidden maincategory">{{r.maincategory}}</span><span class="subcategory">{{r.interests}}</span></div>
-          <!-- 서브 카테고리 마다 색이 들어가야함  메인 카테고리 , 서브 카테고리 필요-->
           <div class="itemHeader">{{r.title}}</div>
           <div class="itemImg"><img src="{{filePath}}{{r.thumbnail1}}" alt="/"></div>
-          <!-- 섬네일을 못불러와서 임의로 넣음  -->
-          <div class='degreeBox' *ngIf='r.degree'>
-            <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}"
-                class="thermoBar textHidden">{{r.degree}}</span></span>
-                <!-- 온도 더미 -->
-            <span class="remainDate">일 남음</span>
-            <!-- 남는 날짜 계산을 우짜지.. -->
-            <span class="degrees">70 ºC 마음도씨</span>
+          <!-- <div class='degreeBox' *ngIf='r.degree'> -->
+            <!-- <span class="thermo"><span [ngStyle]="{'width.px': r.degree*3}" -->
+                <!-- class="thermoBar textHidden">{{r.degree}}</span></span> -->
+            <!-- <span class="remainDate">일 남음</span> -->
+            <!-- <span class="degrees">ºC 마음도씨</span> -->
+          <!-- </div> -->
+            <div class='hashTag'>
+              <span>&nbsp;&nbsp;</span>
           </div>
-          <!-- <div class='hashTag' *ngIf='r.hashTag'> -->
-            <div class='hashTag' >
-              <!-- <span *ngFor='let h of r.hashTag'>&nbsp;#심리안정&nbsp;</span> -->
-              <!-- 해시태그 필요 밑은 더미 -->
-            <span>&nbsp;#릴렉스&nbsp;</span>
-            <span>&nbsp;#스트레칭&nbsp;</span>
-          </div>
-          <!-- <div class="bigText" *ngIf='r.hashTag'> -->
             <div class="bigText">
             <span>{{r.subtitle}}</span>
           </div>

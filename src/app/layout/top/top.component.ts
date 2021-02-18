@@ -31,7 +31,6 @@ export class TopComponent implements AfterViewInit{
 
   ngOnInit(): void {
     this.sign_check();
-    this.active();
   }
   ngAfterViewInit():void{
     this.boxPosition();

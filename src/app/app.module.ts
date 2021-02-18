@@ -63,6 +63,7 @@ import { PreopenComponent } from './page/preopen/preopen.component';
 import { JoinTeacherComponent } from './page/join-teacher/join-teacher.component';
 import { ReadyComponent } from './page/ready/ready.component';
 import { TestPageComponent } from './page/test-page/test-page.component';
+import { UserInfoComponent } from './modal/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { TestPageComponent } from './page/test-page/test-page.component';
     PreopenComponent,
     JoinTeacherComponent,
     ReadyComponent,
-    TestPageComponent
+    TestPageComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

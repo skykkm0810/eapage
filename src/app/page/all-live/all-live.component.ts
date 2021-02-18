@@ -101,6 +101,7 @@ export class AllLiveComponent implements AfterViewInit {
      categorycolor:'',
      remain:'',
      company:'',
+     companys:[],
      color:'',
      maincategory:'',
     }];
