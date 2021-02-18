@@ -11,7 +11,7 @@
     src: url('../src/assets/font/NanumPenScript-Regular.ttf');
     font-family: 'nanum_pen';
 }
-html, body { height: 100%; }
+html, body { height: 100%; min-width: 1440px; }
 html {
     scroll-behavior: smooth;
   }

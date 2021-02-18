@@ -36,17 +36,17 @@
 
       <div class="streamBox">
         <div class="iframeBox">
-          <iframe src="" frameborder="0"></iframe>
+          <!-- <iframe src="" frameborder="0"></iframe> -->
         </div>
         <div class="chatBox">
           <div class="chatHeader">
             <span style="color:#555; font-size: 22px; line-height:28px">라이브 채팅</span>
           </div>
-          <div class="chatBody noOver">
+          <div class="chatBody noOver" #chatScroll >
             <!-- 챗 라인 하나  -->
             <p class="chatLine" *ngFor='let c of fakeChat'>
               <span class="name">{{c.name}}</span>
-              <span class="text">{{c.text}}</span>
+              <span class="text whitewrap">{{c.text}}</span>
             </p>
             <!-- 채팅 하나 끝 -->
           </div>
@@ -57,7 +57,13 @@
           </div>
         </div>
         <div class="streamUnderBar">
-          
+          <span class="liveStatus uppercase">● live</span>
+          <!-- 제목 -->
+          <span class="className">바쁠수록 차분하게, 마음챙김 영상</span>
+          <!-- 강사이름 -->
+          <span class="teacherName">강사이름</span>
+          <span class="gocurri pointer" (click)='scroll(curr)'><span class="currImg"></span>커리큘럼</span>
+          <span class="goreview pointer" (click)='scroll(review)'><span class="rvwImg"></span>리뷰작성</span>
         </div>
       </div>
     </div>

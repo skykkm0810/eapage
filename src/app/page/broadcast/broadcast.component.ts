@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Environment } from 'src/app/environment/environment';
 import { AuthService } from 'src/app/service/auth.service';
@@ -10,7 +10,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
   templateUrl: './broadcast.component.html',
   styleUrls: ['./broadcast.component.css']
 })
-export class BroadcastComponent {
+export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   constructor(
     private route: ActivatedRoute,
@@ -129,7 +129,7 @@ export class BroadcastComponent {
 
     // 채팅창 커서
     var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLInputElement;
-    console.log(chatInput);
+    // console.log(chatInput);
     var line = document.getElementsByClassName('nml')[0] as HTMLElement;
     chatInput.addEventListener('focus',()=>{
       line.style.display ='block';
@@ -140,9 +140,52 @@ export class BroadcastComponent {
     
     
   }
+
+
   ngAfterViewInit():void{
+    var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
+    chatInput.addEventListener('keypress',(e)=>{
+      console.log(e)
+      if(e.ctrlKey == false  && e.shiftKey == false){
+        if(e.code =="NumpadEnter" || e.key == "Enter"){
+          e.preventDefault();
+          this.chatUp(this.chatText);
+        }
+      }
+      else if(e.ctrlKey == true ){
+        if(e.code =="NumpadEnter" || e.key == "Enter"){
+          alert();
+        }
+      }
+    })
+    this.scrollToB();
+  }
+
+  ngAfterViewChecked(): void {
+    let diff = this.chatContainer.nativeElement.scrollHeight - this.chatContainer.nativeElement.scrollTop;
+    console.log(this.chatContainer.nativeElement.scrollHeight)
+    if ( this.chatContainer.nativeElement.scrollHeight > 450){
+      var chatBody = document.getElementsByClassName('chatBody')[0] as HTMLElement;
+      chatBody.classList.remove('noOver');
+
+    }
+    if ( diff < 500) {
+      this.scrollToB();
+    }
 
   }
+
+  @ViewChild('chatScroll') private chatContainer: ElementRef;
+
+  scrollToB(): void {
+    try {
+      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
   subs = [];
 
   hP: MatSnackBarHorizontalPosition = 'center';
@@ -331,25 +374,36 @@ export class BroadcastComponent {
     }
   }
   chatUp(txt){
-    var obj = {name:this.user.name , text: txt };
-    this.fakeChat.push(obj);
-    this.chatText = '';
-    this.whenOverFlow()
-  }
-  whenOverFlow(){
-    var chatMount = document.getElementsByClassName('chatLine');
-    var chatBody = document.getElementsByClassName('chatBody')[0] as HTMLElement;
-    var bodyHeight = chatBody.offsetHeight;
-    var TotalHeight = 0;
-    for(var i=0; i< chatMount.length; i++){
-      TotalHeight = TotalHeight + chatMount[i].clientHeight;
+    if(txt == ''){
+      return;
     }
-    console.log(TotalHeight);
-    if(TotalHeight > bodyHeight){
-      chatBody.classList.remove('noOver');
-      chatBody.scrollTop = TotalHeight;
+    else{
+      var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
+      var obj = {name:this.user.name , text: txt };
+      this.fakeChat.push(obj);
+      this.chatText = '';
+      chatInput.focus();
+    }
+      // this.whenOverFlow()
+  }
+
+  // whenOverFlow(){
+  //   var chatMount = document.getElementsByClassName('chatLine');
+  //   var chatBody = document.getElementsByClassName('chatBody')[0] as HTMLElement;
+  //   var bodyHeight = chatBody.offsetHeight;
+  //   var TotalHeight = 0;
+    
+
+  //   for(var i=0; i< chatMount.length; i++){
+  //     TotalHeight = TotalHeight + chatMount[i].clientHeight;
+  //   }
+  //   console.log(TotalHeight);
+  //   if(TotalHeight > bodyHeight){
+  //     chatBody.classList.remove('noOver');
+  //     chatBody.scrollTop = TotalHeight;
       
-    }
-  }
+  //   }
+  // }
+  
 }
 
