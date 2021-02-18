@@ -41,7 +41,12 @@ export class TodayLiveComponent implements AfterViewInit {
         }
 
         // 온도
-        el.degree = Math.floor(el.lecture[0].receipts.length/el.lecture[0].least * 100);
+        if(el.least == null || el.least == undefined){
+          el.degree = '0';
+        }
+        else{
+          el.degree = Math.floor(el.receipts.length/el.least * 100);
+        }
         // 남은 날짜
         var liveTime = new Date(Date.parse(el.date)).getTime()/1000;
         var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
