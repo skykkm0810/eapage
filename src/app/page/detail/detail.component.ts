@@ -64,15 +64,14 @@ export class DetailComponent {
         let d2 = new Date().getTime();
         if ( d1 < d2 ) {
           this.dday_c = false;
-          this.dday = '종료';
+          this.dday = '마감';
         } else {
-          let d1 = new Date(this.info.dday).setHours(0,0,0,0);
-          let d2 = new Date().setHours(0,0,0,0);
-          let time = Math.ceil((d1 - d2) / 1000 / 60 / 60 / 24 - 1);
+          d1 = new Date(this.info.dday).setHours(0,0,0,0);
+          d2 = new Date().setHours(0,0,0,0);
+          let time = Math.round((d1 - d2) / 1000 / 60 / 60 / 24 );
           this.dday_c = true;
           this.dday = time+"";
         }
-        console.log(this.dday_c);
       } else {
         this.dday_c = false;
         this.dday = '오픈 예정';
@@ -188,6 +187,7 @@ export class DetailComponent {
     least: 0,
     max: 0,
     subtitle: "",
+    reviewimg: null,
     targets: [{ desc: '', id: null, lectureId: null, point: null }],
     thumbnail1: '',
     thumbnail2: '',
@@ -312,6 +312,7 @@ export class DetailComponent {
         duration: 1000,
         verticalPosition: this.vP,
         horizontalPosition: this.hP,
+        // panelClass: 'snackbar',
       })     
     } else {
       this.phxChannel.send('like', { userId: this.user.id, lectureId: this.injected.id*1 });
