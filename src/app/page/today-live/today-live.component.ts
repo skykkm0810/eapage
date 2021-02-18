@@ -2,7 +2,7 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Environment } from 'src/app/environment/environment';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
-
+import {CATEGORY} from '../../interface/interface';
 @Component({
   selector: 'app-today-live',
   templateUrl: './today-live.component.html',
@@ -18,16 +18,28 @@ export class TodayLiveComponent implements AfterViewInit {
       this.info = [];
       console.log(data.body);
       data.body.forEach( el => {
-        let time = new Date().getTime();
-        if( el.lecture[0].currs.length > 0 ) {
-          let datatime = new Date(el.lecture[0].currs[0].date).getTime();
-          if( datatime > time ){
-            el.process = '예정';
-          } else {
-            el.process = '진행';
-          }
+        // let time = new Date().getTime();
+        // if( el.lecture[0].currs.length > 0 ) {
+        //   let datatime = new Date(el.lecture[0].currs[0].date).getTime();
+        //   if( datatime > time ){
+        //     el.process = '예정';
+        //   } else {
+        //     el.process = '진행';
+        //   }
+        // }
+        // console.log(el)
+
+        // 카테고리
+        if ( el.lecture[0].interests == '연애결혼' || el.lecture[0].interests == '자녀양육' || el.lecture[0].interests == '부부/가족관계' || el.lecture[0].interests == '인생 2막' ) {
+          el.lecture[0].color = '#DD5E5E'; el.lecture[0].maincategory = '인생여정';
+        } else if ( el.lecture[0].interests == '대인관계' || el.lecture[0].interests == '커뮤니케이션' || el.lecture[0].interests == '리더십' || el.lecture[0].interests == '조직적응' ) {
+          el.lecture[0].color = '#3EB3E7'; el.lecture[0].maincategory = '사회생활';
+        } else if ( el.lecture[0].interests == '명상요가' || el.lecture[0].interests == '몸 마음 건강' || el.lecture[0].interests == '예술치유' || el.lecture[0].interests == '힐링elIY' ) {
+          el.lecture[0].color = '#0AD1D1'; el.lecture[0].maincategory = '힐링';
+        } else if ( el.lecture[0].interests == '자기 이해' || el.lecture[0].interests == '심리특강' ) {
+          el.lecture[0].color = '#B775EF'; el.lecture[0].maincategory = '심리';
         }
-        console.log(el)
+
         // 온도
         el.degree = Math.floor(el.lecture[0].receipts.length/el.lecture[0].least * 100);
         // 남은 날짜
@@ -59,42 +71,7 @@ export class TodayLiveComponent implements AfterViewInit {
   title = '전체보기';
   today = new Date();
   selectedC : any;
-  category = [
-    { title:'인생여정',
-      image: '../../../assets/images/icon/pink/category1.png',
-      subtitle: [
-        {subname:'연애ㆍ결혼'},
-        {subname:'자녀양육'},
-        {subname:'부부 / 가족관계'},
-        {subname:'인생 2막'},
-        ]
-    },
-    { title:'사회생활',
-      image: '../../../assets/images/icon/pink/category2.png',
-      subtitle: [
-        {subname:'대인관계'},
-        {subname:'커뮤니케이션'},
-        {subname:'리더십'},
-        {subname:'조직적응'},
-        ]
-    },
-    { title:'힐링',
-      image: '../../../assets/images/icon/pink/category3.png',
-      subtitle: [
-        {subname:'명상ㆍ요가'},
-        {subname:'몸마음건강'},
-        {subname:'예술치유'},
-        {subname:'힐링DIY'},
-        ]
-    },
-    { title:'심리',
-      image: '../../../assets/images/icon/pink/category4.png',
-      subtitle: [
-        {subname:'자기이해'},
-        {subname:'심리특강'},
-        ]
-    },
-  ]
+  category = CATEGORY;
   filePath = Environment.filePath;
   loaded = false;
   info = [{
@@ -106,6 +83,8 @@ export class TodayLiveComponent implements AfterViewInit {
       thumbnail1: '', 
       limit: null, 
       title: '', 
+      color:'',
+      maincategory:''
     }],
     process: '',
     categorycolor:'',
@@ -118,11 +97,18 @@ export class TodayLiveComponent implements AfterViewInit {
     this.selectedC = c;
     var thisList = (e.target as HTMLElement).closest('li');
     var bigList = document.querySelectorAll('.bigList li');
+    var lives = document.querySelectorAll('.designedBox');
     for(var i=0; i<bigList.length; i++){
       bigList[i].classList.remove('clicked')
     }
     thisList.classList.add('clicked')
     this.title = thisList.textContent;
+    for(var i=0; i<lives.length; i++){
+      (lives[i] as HTMLElement).style.display='none';
+      if(lives[i].getElementsByClassName('maincategory')[0].textContent == thisList.textContent){
+        (lives[i] as HTMLElement).style.display='block';
+      }
+    }
   }
   filter(e:Event){
     var subList = (e.target as HTMLElement);
@@ -147,6 +133,18 @@ export class TodayLiveComponent implements AfterViewInit {
 
   detail( el ) {
     this.router.navigate(['detail/' + el.id])
+  }
+  reset(){
+    var lives = document.getElementsByClassName('designedBox');
+    this.title = '전체보기';
+    this.selectedC ='';
+    for(var i=0; i<lives.length; i++){
+      (lives[i] as HTMLElement).style.display='block';
+    }
+    var bigList = document.querySelectorAll('.bigList li');
+    for(var i=0; i<bigList.length; i++){
+      bigList[i].classList.remove('clicked')
+    }
   }
 
   

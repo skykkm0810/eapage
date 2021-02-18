@@ -2,7 +2,7 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Environment } from 'src/app/environment/environment';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
-
+import { CATEGORY} from '../../interface/interface'
 @Component({
   selector: 'app-preopen',
   templateUrl: './preopen.component.html',
@@ -18,13 +18,13 @@ export class PreopenComponent  {
       this.info = [];
       data.forEach( d => {
         if ( d.interests == '연애결혼' || d.interests == '자녀양육' || d.interests == '부부/가족관계' || d.interests == '인생 2막' ) {
-          d.color = '#DD5E5E';
+          d.color = '#DD5E5E'; d.maincategory = '인생여정';
         } else if ( d.interests == '대인관계' || d.interests == '커뮤니케이션' || d.interests == '리더십' || d.interests == '조직적응' ) {
-          d.color = '#3EB3E7';
-        } else if ( d.interests == '명상요가' || d.interests == '몸 마음 건강' || d.interests == '예술치유' || d.interests == '힐링DIY' ) {
-          d.color = '#0AD1D1';
-        } else if ( d.interests == '자기이해' || d.interests == '심리특강' ) {
-          d.color = '#B775EF';
+          d.color = '#3EB3E7'; d.maincategory = '사회생활';
+        } else if ( d.interests == '명상요가' || d.interests == '몸 마음 건강' || d.interests == '예술 치유' || d.interests == '힐링DIY' ) {
+          d.color = '#0AD1D1'; d.maincategory = '힐링';
+        } else if ( d.interests == '자기 이해' || d.interests == '심리특강' ) {
+          d.color = '#B775EF'; d.maincategory = '심리';
         }
         this.info.push(d);
       })
@@ -54,42 +54,7 @@ export class PreopenComponent  {
   title = '전체보기';
   selectedC : any;
   // 카테고리
-  category = [
-    { title:'인생여정',
-      image: '../../../assets/images/icon/pink/category1.png',
-      subtitle: [
-        {subname:'연애·결혼'},
-        {subname:'자녀양육'},
-        {subname:'부부·가족'},
-        {subname:'인생 2막'},
-        ]
-    },
-    { title:'사회생활',
-      image: '../../../assets/images/icon/pink/category2.png',
-      subtitle: [
-        {subname:'대인관계'},
-        {subname:'커뮤니케이션'},
-        {subname:'리더십'},
-        {subname:'조직적응'},
-        ]
-    },
-    { title:'힐링',
-      image: '../../../assets/images/icon/pink/category3.png',
-      subtitle: [
-        {subname:'명상ㆍ요가'},
-        {subname:'몸마음건강'},
-        {subname:'예술치유'},
-        {subname:'힐링DIY'},
-        ]
-    },
-    { title:'심리',
-      image: '../../../assets/images/icon/pink/category4.png',
-      subtitle: [
-        {subname:'자기이해'},
-        {subname:'심리특강'},
-        ]
-    },
-  ]
+  category = CATEGORY;
   // 강의 
   class = [
     // {process:'진행중',remain:'',openDay:'2021-02-22',degree:100 ,color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
@@ -112,6 +77,7 @@ export class PreopenComponent  {
      id: '',
      categorycolor:'',
      color: '',
+     maincategory:'',
     }];
   
   onselect(c:any,e:Event){
@@ -124,12 +90,12 @@ export class PreopenComponent  {
     }
     thisList.classList.add('clicked')
     this.title = thisList.textContent;
-    // for(var i=0; i<lives.length; i++){
-      // (lives[i] as HTMLElement).style.display='none';
-      // if(lives[i].getElementsByClassName('maincategory')[0].textContent == thisList.textContent){
-      // (lives[i] as HTMLElement).style.display='block';
-      // }
-    // }
+    for(var i=0; i<lives.length; i++){
+      (lives[i] as HTMLElement).style.display='none';
+      if(lives[i].getElementsByClassName('maincategory')[0].textContent == thisList.textContent){
+        (lives[i] as HTMLElement).style.display='block';
+      }
+    }
   }
   filter(e:Event){
     var subList = (e.target as HTMLElement);
@@ -154,6 +120,18 @@ export class PreopenComponent  {
 
   detail( el ) {
     this.router.navigate(['detail/' + el.id])
+  }
+  reset(){
+    var lives = document.getElementsByClassName('designedBox');
+    this.title = '전체보기';
+    this.selectedC ='';
+    for(var i=0; i<lives.length; i++){
+      (lives[i] as HTMLElement).style.display='block';
+    }
+    var bigList = document.querySelectorAll('.bigList li');
+    for(var i=0; i<bigList.length; i++){
+      bigList[i].classList.remove('clicked')
+    }
   }
   
 }

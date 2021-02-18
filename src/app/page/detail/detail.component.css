@@ -68,8 +68,14 @@ img {
 }
 
 .thumbnail .item {
-    /* margin-left: auto;
-    margin-right: auto; */
+    height:76px;
+    background-color: #eee;
+
+}
+.thumbnail .item img {
+    display: block;
+    margin:0 auto;
+    height:100%;
 }
 
 .title {

@@ -549,7 +549,7 @@ export const Agreement = {
   `
 };
 //  카테고리
-export const category = [
+export const CATEGORY = [
   { title:'인생여정',
     image: '../../../assets/images/icon/pink/category1.png',
     subtitle: [
@@ -572,9 +572,9 @@ export const category = [
     image: '../../../assets/images/icon/pink/category3.png',
     subtitle: [
       {subname:'명상요가'},
-      {subname:'몸마음건강'},
-      {subname:'예술 치유'},
-      {subname:'힐링 DIY'},
+      {subname:'몸 마음 건강'},
+      {subname:'예술치유'},
+      {subname:'힐링DIY'},
       ]
   },
   { title:'심리',

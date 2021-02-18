@@ -116,5 +116,8 @@ export class TopComponent implements AfterViewInit{
   }
   enterkey() {
   }
-
+  HyperLink(loc, e:Event){
+    location.href = './' + loc;
+  }
+  
 }

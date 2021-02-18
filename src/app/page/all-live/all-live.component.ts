@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Environment } from 'src/app/environment/environment';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { ActivatedRoute } from "@angular/router";
+import { CATEGORY} from '../../interface/interface';
+
 @Component({
   selector: 'app-all-live',
   templateUrl: './all-live.component.html',
@@ -23,14 +25,19 @@ export class AllLiveComponent implements AfterViewInit {
       } else {
         filtered = data;
       }
-      // console.log(filtered);
+      console.log(filtered);
       filtered.forEach( data => {
+        // 프로세스
         let time = new Date().getTime();
         if( data.currs.length > 0 ) {
           let datatime = new Date(data.currs[0].date).getTime();
           if( datatime > time ){
-            data.process = '예정';
-          } else {
+            data.process = new Date(data.dday).getMonth() + 1 + '월' + new Date(data.dday).getDate() + '일 ' + new Date(data.dday).getHours() + ':' + new Date(data.dday).getMinutes();
+            if(data.dday == null){
+              data.process = 'OPEN 예정';
+            }
+          }
+          else {
             data.process = '종료';
           }
         }
@@ -41,12 +48,21 @@ export class AllLiveComponent implements AfterViewInit {
         var calTime = new Date((liveTime - new Date().getTime()/1000)*1000);
         if (Number(calTime) >= 0) {
           let days = Math.floor(Number(calTime) / (1000 * 60 * 60 * 24));
-          data.remain = days
+          data.remain = days + '일 남음'
         }
         else{
-          data.remain = '0'
+          data.remain = '종료'
         }
-        
+        // 카테고리
+        if ( data.interests == '연애결혼' || data.interests == '자녀양육' || data.interests == '부부/가족관계' || data.interests == '인생 2막' ) {
+          data.color = '#DD5E5E'; data.maincategory = '인생여정';
+        } else if ( data.interests == '대인관계' || data.interests == '커뮤니케이션' || data.interests == '리더십' || data.interests == '조직적응' ) {
+          data.color = '#3EB3E7'; data.maincategory = '사회생활';
+        } else if ( data.interests == '명상요가' || data.interests == '몸 마음 건강' || data.interests == '예술치유' || data.interests == '힐링dataIY' ) {
+          data.color = '#0AD1D1'; data.maincategory = '힐링';
+        } else if ( data.interests == '자기 이해' || data.interests == '심리특강' ) {
+          data.color = '#B775EF'; data.maincategory = '심리';
+        }
         this.info.push(data);
       })
       console.log(this.info);
@@ -66,43 +82,8 @@ export class AllLiveComponent implements AfterViewInit {
   color:'#000'
   title = '전체보기';
   selectedC : any;
-  
-  category = [
-    { title:'인생여정',
-      image: '../../../assets/images/icon/pink/category1.png',
-      subtitle: [
-        {subname:'연애결혼'},
-        {subname:'자녀양육'},
-        {subname:'부부/가족관계'},
-        {subname:'인생 2막'},
-        ]
-    },
-    { title:'사회생활',
-      image: '../../../assets/images/icon/pink/category2.png',
-      subtitle: [
-        {subname:'대인관계'},
-        {subname:'커뮤니케이션'},
-        {subname:'리더십'},
-        {subname:'조직적응'},
-        ]
-    },
-    { title:'힐링',
-      image: '../../../assets/images/icon/pink/category3.png',
-      subtitle: [
-        {subname:'명상요가'},
-        {subname:'몸마음건강'},
-        {subname:'예술 치유'},
-        {subname:'힐링 DIY'},
-        ]
-    },
-    { title:'심리',
-      image: '../../../assets/images/icon/pink/category4.png',
-      subtitle: [
-        {subname:'자기 이해'},
-        {subname:'심리 특강'},
-        ]
-    },
-  ]
+  category = CATEGORY;
+ 
   filePath = Environment.filePath;
   loaded = false;
   info = [
@@ -117,15 +98,25 @@ export class AllLiveComponent implements AfterViewInit {
      categorycolor:'',
      remain:'',
      company:'',
+     color:'',
+     maincategory:'',
     }];
     onselect(c:any,e:Event){
       this.selectedC = c;
+      var lives = document.getElementsByClassName('designedBox');
       var thisList = (e.target as HTMLElement).closest('li');
       var bigList = document.querySelectorAll('.bigList li');
       for(var i=0; i<bigList.length; i++){
         bigList[i].classList.remove('clicked')
       }
       thisList.classList.add('clicked')
+      this.title = thisList.textContent;
+      for(var i=0; i<lives.length; i++){
+          (lives[i] as HTMLElement).style.display='none';
+          if(lives[i].getElementsByClassName('maincategory')[0].textContent == thisList.textContent){
+          (lives[i] as HTMLElement).style.display='block';
+        }
+      }
     }
   filter(e:Event){
     var subList = (e.target as HTMLElement);
@@ -150,5 +141,17 @@ export class AllLiveComponent implements AfterViewInit {
 
   detail( el ) {
     this.router.navigate(['detail/' + el.id])
+  }
+  reset(){
+    var lives = document.getElementsByClassName('designedBox');
+    this.title = '전체보기';
+    this.selectedC ='';
+    for(var i=0; i<lives.length; i++){
+      (lives[i] as HTMLElement).style.display='block';
+    }
+    var bigList = document.querySelectorAll('.bigList li');
+    for(var i=0; i<bigList.length; i++){
+      bigList[i].classList.remove('clicked')
+    }
   }
 }

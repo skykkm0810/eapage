@@ -18,15 +18,16 @@
         </div>
         <div class="showLives">
             <h3 class="show_title bold">{{title}} 
-                <span class="inlineBlock bold">&nbsp; {{today| date:'yyyy-MM-dd'}}</span>
+                <mat-icon class="rewind pointer rotate" (click)='reset()'>loop</mat-icon>
+                <span class="inlineBlock bold float-right">&nbsp; {{today| date:'yyyy-MM-dd'}}</span>
             </h3>
             <p class="bold" style="padding: 50px; font-size: 22px; text-align: center;" *ngIf="info.length == 0"> 오늘의 라이브 강의가 없습니다.</p>
             <div class="liveListGrid">
               <div *ngFor='let r of info' class="designedBox">
                 <div class="process">{{r.process|date:'hh시 mm분'}} OPEN</div>
                 <!-- 프로세스 'OPEN 예정' 필요  -->
-                <div class="classcategory hidden"><span class="subcategory">{{r.lecture[0].interests}}</span></div>
-                <div class="company" *ngIf='r.company'>{{r.company}}</div>
+                <div class="classcategory" [style.background]='r.lecture[0].color'><span class="inlineBlock textHidden maincategory">{{r.lecture[0].maincategory}}</span><span class="subcategory">{{r.lecture[0].interests}}</span></div>
+                <!-- <div class="company" *ngIf='r.company'>{{r.company}}</div> -->
                 <div class="itemHeader">{{r.lecture[0].title}}</div>
                 <div class="itemImg"><img src="{{filePath}}{{r.lecture[0].thumbnail1}}" alt="/"></div>
                 <!-- 섬네일을 못불러와서 임의로 넣음  -->
