@@ -104,7 +104,7 @@
     <div class="innerWrap">
       <h2>이달의 TOP 라이브</h2>
       <div class="contentBox">
-            <div class="pointer" *ngFor = 'let m of topClass'>
+            <div class="pointer topLive" *ngFor = 'let m of topClass' routerLink='detail/3'>
               <span class="no">{{m.idn}}</span>
               <img src="{{filePath}}{{m.data.thumbnail1}}" alt="/">
               <div>
