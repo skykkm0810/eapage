@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 
+
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -65,6 +66,7 @@ import { ReadyComponent } from './page/ready/ready.component';
 import { TestPageComponent } from './page/test-page/test-page.component';
 import { UserInfoComponent } from './modal/user-info/user-info.component';
 import { BroadcastComponent } from './page/broadcast/broadcast.component';
+import { LectureInfoListComponent } from './page/lecture-info-list/lecture-info-list.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,8 @@ import { BroadcastComponent } from './page/broadcast/broadcast.component';
     ReadyComponent,
     TestPageComponent,
     UserInfoComponent,
-    BroadcastComponent
+    BroadcastComponent,
+    LectureInfoListComponent
   ],
   imports: [
     BrowserModule,

@@ -50,6 +50,7 @@ export class TopComponent implements AfterViewInit{
       this.sign = true;
       // console.log(this.auth.getUserData());
       this.info = JSON.parse(this.auth.getUserData());
+      console.log(this.info);
     }
   }
   active(txt){
@@ -111,6 +112,8 @@ export class TopComponent implements AfterViewInit{
       document.location.href = 'allLive';
     }
     this.closeBox();
+  }
+  allFind2(e:Event){
   }
   boxPosition(){
     var menu = document.getElementsByClassName('menu')[0] as HTMLElement;

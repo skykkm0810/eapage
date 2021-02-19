@@ -1,0 +1,22 @@
+.wrap { 
+    padding-bottom: 50px;
+}
+.innerWrap {
+  padding-top: 40px;
+}
+h2 {
+  text-indent: 10px;
+  color:#3F3D56;
+  border-bottom:1px solid #c4c4c4;
+}
+/* table */
+.search {
+  width:50%;
+}
+table {
+  width:100%;
+  box-shadow: none;
+  border-left: 1px solid #c4c4c4;
+  border-top: 1px solid #c4c4c4;
+  border-right: 1px solid #c4c4c4;
+}

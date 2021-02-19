@@ -17,6 +17,7 @@ import {PreopenComponent} from './page/preopen/preopen.component';
 import {JoinTeacherComponent} from './page/join-teacher/join-teacher.component';
 import {TestPageComponent} from './page/test-page/test-page.component';
 import {BroadcastComponent} from './page/broadcast/broadcast.component';
+import {LectureInfoListComponent} from './page/lecture-info-list/lecture-info-list.component';
 
 const routes: Routes = [
   { path: TAGS.MAIN, component: MainComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: TAGS.JOINTEACHER, component: JoinTeacherComponent },
   { path: TAGS.TESTPAGE, component: TestPageComponent },
   { path: TAGS.BROADCAST, component: BroadcastComponent },
+  { path: TAGS.LECTUREINFOLIST, component: LectureInfoListComponent },
 ];
 
 @NgModule({
