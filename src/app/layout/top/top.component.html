@@ -12,9 +12,13 @@
         <li class="pointer login" *ngIf="sign" (click)="signout()">
           <h2>로그아웃</h2>
         </li>
-        <li class="pointer" *ngIf="sign">
-          <h2>오늘 내 강의</h2>
+        <li class="pointer" *ngIf="sign && info.type">
+          <h2>수강기록부</h2>
         </li>
+
+        <!-- <li class="pointer" *ngIf="sign">
+          <h2>오늘 내 강의</h2>
+        </li> -->
         <!-- <li class="pointer howToUse" (click)="modal()">이용방법</li> -->
         <!-- <li class="pointer enrollCompany"><h2>기업등록</h2></li> -->
       </ul>

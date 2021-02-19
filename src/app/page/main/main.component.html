@@ -18,7 +18,7 @@
     <span class="right pointer" (click)='bannerSliderRight()'></span>
     <div class="innerWrap">
       <div class="banner">
-        <div *ngFor ='let d of mainClass' class="clive">
+        <div *ngFor='let d of mainClass' class="clive">
           <div class="openTime uppercase bold">{{d[0].dday|date:'MM월 dd일 - hh시 mm분'}} ({{d[0].currs[0].dur}}분)</div>
           <p class="cardTitle bold">{{d[0].title}}</p>
           <div class="bannerImg">
@@ -53,66 +53,69 @@
           <div class="openTime uppercase bold">OPEN 예정</div>
           <p class="cardTitle bold">{{p[0].title}}</p>
           <div class="bannerImg">
-            <img src="{{filePath}}{{p[0].thumbnail1}}" alt="배너사진" >
+            <img src="{{filePath}}{{p[0].thumbnail1}}" alt="배너사진">
           </div>
-          
+
           <div class="bannerTexts">
             {{p[0].subtitle}}
           </div>
           <div class="goArrow pointer" routerLink='detail/{{p[0].id}}'></div>
         </div>
-        
+
       </div>
     </div>
   </section>
-  
+
   <section class="today">
     <h2>오늘의 라이브</h2>
     <div class="innerWrap">
-      <p class="bold" style="padding: 50px; font-size: 22px; text-align: center;" *ngIf="todayClass.length == 0"> 오늘의 라이브 강의가 없습니다.</p>
+      <p class="bold hidden todayNo" style="padding: 50px; font-size: 22px; text-align: center;">
+        오늘의 라이브 강의가 없습니다.</p>
       <div *ngIf="todayClass.length > 0">
-        <div class="content" *ngFor='let t of todayClass'>
-          <div class="img">
-            <div class="subject textHidden">
-              <!-- <img src="{{t.tagimg}}" alt="/"> -->
-            </div>
-            <div class="backImg"><img src="{{filePath}}{{t.lecture[0].thumbnail1}}" alt="/"></div>
-          </div>
-          <div class="todayClassInfo" [style.background] = 't.color'>
-            <p class="teacher">강사 <span class="name">{{t.lecture[0].inst.name}}</span></p>
-            <p class="title bold">{{t.lecture[0].title}}</p>
-            <p class="description">{{t.lecture[0].subtitle}}</p>
-            <p class="remainTime bold"><span class="time">{{t.remains}}</span></p>
-            <div class="calendarIcon">
-              <div class="unfill">
-                <p class="day">{{t.date | date: 'd'}}</p>
-                <p class="uppercase month">{{t.date | date: 'MMMM'}}</p>
+        <div class="isthere" *ngFor='let t of todayClass'>
+          <div class="content" *ngIf = 't.open == true'>
+            <div class="img">
+              <div class="subject textHidden">
+                <!-- <img src="{{t.tagimg}}" alt="/"> -->
               </div>
-              <div class="fill">
-                <p class="year bold">{{t.date | date: 'Y'}}</p>
-              </div>
+              <div class="backImg"><img src="{{filePath}}{{t.lecture[0].thumbnail1}}" alt="/"></div>
             </div>
-            <div class="goArrow pointer" routerLink='detail/3'></div>
+            <div class="todayClassInfo" [style.background]='t.color'>
+              <p class="teacher">강사 <span class="name">{{t.lecture[0].inst.name}}</span></p>
+              <p class="title bold">{{t.lecture[0].title}}</p>
+              <p class="description">{{t.lecture[0].subtitle}}</p>
+              <p class="remainTime bold"><span class="time">{{t.remains}}</span></p>
+              <div class="calendarIcon">
+                <div class="unfill">
+                  <p class="day">{{t.date | date: 'd'}}</p>
+                  <p class="uppercase month">{{t.date | date: 'MMMM'}}</p>
+                </div>
+                <div class="fill">
+                  <p class="year bold">{{t.date | date: 'Y'}}</p>
+                </div>
+              </div>
+              <div class="goArrow pointer" routerLink='detail/{{t.lecture[0].id}}'></div>
+            </div>
+
           </div>
         </div>
       </div>
-      
     </div>
   </section>
-  
+
   <section class='month'>
     <div class="innerWrap">
       <h2>이달의 TOP 라이브</h2>
       <div class="contentBox">
-            <div class="pointer" *ngFor = 'let m of topClass'>
-              <span class="no">{{m.idn}}</span>
-              <img src="{{filePath}}{{m.data.thumbnail1}}" alt="/">
-              <div>
-                <p class="big">{{m.data.title}}</p>
-                <p class="small">{{m.data.subtitle}}</p>
-              </div>
-            </div>
-            
+        <div class="pointer topLive" *ngFor='let m of topClass' routerLink='detail/{{m.data.id}}'>
+          <span class="no">{{m.idn}}</span>
+          <img src="{{filePath}}{{m.data.thumbnail1}}" alt="/">
+          <div>
+            <p class="big">{{m.data.title}}</p>
+            <p class="small">{{m.data.subtitle}}</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

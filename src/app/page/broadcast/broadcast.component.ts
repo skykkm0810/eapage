@@ -160,11 +160,11 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     })
     this.scrollToB();
   }
-
+  
   ngAfterViewChecked(): void {
     let diff = this.chatContainer.nativeElement.scrollHeight - this.chatContainer.nativeElement.scrollTop;
     console.log(this.chatContainer.nativeElement.scrollHeight)
-    if ( this.chatContainer.nativeElement.scrollHeight > 450){
+    if ( this.chatContainer.nativeElement.scrollHeight > 460){
       var chatBody = document.getElementsByClassName('chatBody')[0] as HTMLElement;
       chatBody.classList.remove('noOver');
 
@@ -330,6 +330,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     box.style.borderColor = '#DD5E5E;'
   }
   
+  
   review_add() {
     if ( !this.login ) {
       alert('리뷰를 쓰시려면 로그인을 하셔야합니다.');
@@ -359,6 +360,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     console.log(form);
   }
   scroll( el ) {
+    var tag = document.getElementById(el) as HTMLElement;
     el.scrollIntoView();
   }
   likes() {

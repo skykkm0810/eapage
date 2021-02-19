@@ -6,6 +6,7 @@ export const TAGS : Record<string, string> = {
   ENROLLLIST: 'enrollList/:id',
   MYPAGE: 'mypage/:id',
   MYPAGETEACHER: 'mypageTeacher/:id',
+  LECTUREINFOLIST: 'lectureInfoList/:id',
   DETAIL: 'detail/:id',
   ALLLIVE: 'allLive',
   ALLLIVE2: 'allLive/search/:text',
