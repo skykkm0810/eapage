@@ -128,6 +128,8 @@ export class DetailComponent {
       this.reviewText = "주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다.";
     }
   }
+
+  
   subs = [];
 
   hP: MatSnackBarHorizontalPosition = 'center';
@@ -220,7 +222,7 @@ export class DetailComponent {
   dday_c = false;
 
   filePath = Environment.filePath;
-
+  isthere = document.getElementsByClassName('isthere');
   progress(){
 
   }

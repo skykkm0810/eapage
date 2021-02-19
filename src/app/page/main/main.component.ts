@@ -125,7 +125,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
         this.topClass.push({data:data.body.top10[0],idn:10})
       }
       
-      // console.log(this.topClass)
+      console.log(this.topClass)
     })
 
   }
@@ -158,7 +158,14 @@ export class MainComponent implements OnDestroy, AfterViewInit {
     this.phxChannel.gets('lecture:today', '');
     this.phxChannel.gets('lecture', '');
     this.phxChannel.gets('lecture:controled', '');
+// 오늘라이브 없을시에
+    var isthere = document.getElementsByClassName('isthere');
+    var content = document.querySelectorAll('.today .content');
+    var shownothing = document.getElementsByClassName('todayNo')[0] as HTMLElement;
 
+    if(content.length == 0 ){
+      shownothing.style.display = 'block';
+    }
   }
 
   ngOnDestroy(): void {
@@ -169,7 +176,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
   mainClass=[];
   preopenClass=[];
   topClass=[];
-  todayClass=[{ remains: null, lecture: [{name: '', inst: { name: '' }, thumbnail1: '', title: '', subtitle: '',interests:''}], date: null, color: '' }];
+  todayClass=[{ remains: null, lecture: [{id:null,name: '', inst: { name: '' }, thumbnail1: '', title: '', subtitle: '',interests:''}], date: null, color: '' ,open:undefined}];
   int_remainTime;
 
   
