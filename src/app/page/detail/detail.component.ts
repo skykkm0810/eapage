@@ -50,7 +50,6 @@ export class DetailComponent {
       }
       else{
         this.kit = '../../../assets/images/icon/white/kit.png'
-
       }
       this.sum = 0;
       this.stgs = this.info.currs.length;
