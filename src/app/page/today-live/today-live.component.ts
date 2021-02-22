@@ -77,6 +77,7 @@ export class TodayLiveComponent implements AfterViewInit {
   title = '전체보기';
   today = new Date();
   selectedC : any;
+  selectedSC:any;
   category = CATEGORY;
   filePath = Environment.filePath;
   loaded = false;
@@ -100,42 +101,25 @@ export class TodayLiveComponent implements AfterViewInit {
     id: null,
     degree: null,
   }];
-  onselect(c:any,e:Event){
+  onselect(c){
     this.selectedC = c;
-    var thisList = (e.target as HTMLElement).closest('li');
-    var bigList = document.querySelectorAll('.bigList li');
-    var lives = document.querySelectorAll('.designedBox');
-    for(var i=0; i<bigList.length; i++){
-      bigList[i].classList.remove('clicked')
-    }
-    thisList.classList.add('clicked')
-    this.title = thisList.textContent;
+    var lives = document.getElementsByClassName('designedBox');
     for(var i=0; i<lives.length; i++){
-      (lives[i] as HTMLElement).style.display='none';
-      if(lives[i].getElementsByClassName('maincategory')[0].textContent == thisList.textContent){
+        (lives[i] as HTMLElement).style.display='none';
+        if(lives[i].getElementsByClassName('maincategory')[0].textContent == c.title){
         (lives[i] as HTMLElement).style.display='block';
       }
     }
   }
-  filter(e:Event){
-    var subList = (e.target as HTMLElement);
+  filter(sc){
+    this.selectedSC = sc;
     var lives = document.querySelectorAll('.designedBox');
-
     for(var i=0; i<lives.length; i++){
       (lives[i] as HTMLElement).style.display='none';
-      if(lives[i].getElementsByClassName('subcategory')[0].textContent == subList.textContent){
+      if(lives[i].getElementsByClassName('subcategory')[0].textContent == sc.subname){
       (lives[i] as HTMLElement).style.display='block';
       }
-      // lives[i].getElementsByClassName('small')[0];
     }
-  }
-  bold(e:Event){
-    var list = (e.target as HTMLElement).closest('.subList').getElementsByTagName('li');
-    for(var i=0; i<list.length; i++){
-      (list[i] as HTMLElement).classList.remove('bold');
-    }
-    (e.target as HTMLElement).classList.add('bold');
-    this.filter(e)
   }
 
   detail( el ) {
@@ -145,6 +129,7 @@ export class TodayLiveComponent implements AfterViewInit {
     var lives = document.getElementsByClassName('designedBox');
     this.title = '전체보기';
     this.selectedC ='';
+    this.selectedSC ='';
     for(var i=0; i<lives.length; i++){
       (lives[i] as HTMLElement).style.display='block';
     }

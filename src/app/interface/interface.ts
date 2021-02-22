@@ -13,6 +13,7 @@ export const TAGS : Record<string, string> = {
   TODAYLIVE: 'todayLive',
   MAUM: 'maum',
   PREOPEN: 'preopen',
+  PREOPEN2: 'preopen/search/:text',
   JOINTEACHER: 'joinTeacher',
   TESTPAGE: 'test',
   BROADCAST:'broadcast/:id',

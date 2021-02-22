@@ -33,6 +33,7 @@ const routes: Routes = [
   { path: TAGS.TODAYLIVE, component: TodayLiveComponent },
   { path: TAGS.MAUM, component: MaumdociComponent },
   { path: TAGS.PREOPEN, component: PreopenComponent },
+  { path: TAGS.PREOPEN2, component: PreopenComponent },
   { path: TAGS.JOINTEACHER, component: JoinTeacherComponent },
   { path: TAGS.TESTPAGE, component: TestPageComponent },
   { path: TAGS.BROADCAST, component: BroadcastComponent },

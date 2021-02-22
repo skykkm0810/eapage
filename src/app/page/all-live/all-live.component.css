@@ -14,7 +14,7 @@
     margin:0 25px;
     position: relative;
 }
-.bigList li.clicked::after {
+.bigList li.selected::after {
     content: "▲";
     position: absolute;
     bottom:-25px;

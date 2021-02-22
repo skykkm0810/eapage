@@ -23,6 +23,7 @@ import { postcode } from 'src/assets/js/postcode.js';
 export class MypageTeacherComponent implements OnInit {
 
   constructor(
+    private router : Router,
     private snackBar: MatSnackBar,
     public userInfo:MatDialog,
     private phxChannel: PhxChannelService,
@@ -84,7 +85,25 @@ export class MypageTeacherComponent implements OnInit {
           this.lecture_yet.push(el);
         } else {
           let day = new Date(el.currs[idx].date).getTime()
-          if( day > today.getTime() ) {
+          let firstday = new Date(el.currs[0].date).getTime()
+          if( day + 1800000 > today.getTime()) {
+            // 진행 예정 , 진행 중
+            el.processText = '진행 예정';
+            if(firstday < today.getTime()){
+              el.processText = '진행 중';
+            }
+            // 버튼 생성
+            for(var i=0; i< el.currs.length; i++){
+              var time = new Date(el.currs[i].date).getTime();
+              // var time = new Date('2021-02-22T19:30').getTime();
+              if(time - today.getTime() < 1800000){
+                el.currs[i].set = true;
+              }
+              else {
+                el.currs[i].set = false;
+                
+              }
+            }
             this.lecture_yet.push(el);
           } else {
             this.lecture_end.push(el);
@@ -377,5 +396,10 @@ export class MypageTeacherComponent implements OnInit {
       });
     }
     
+  }
+  goLive(id) {
+    if(confirm('라이브 수업을 시작하시겠습니까?')){
+      this.router.navigate(['/broadcast/'+id]);
+    }
   }
 }
