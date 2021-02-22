@@ -19,6 +19,8 @@ export class PhxChannelService {
   @Output() Insts: EventEmitter<any> = new EventEmitter();
   @Output() Inst: EventEmitter<any> = new EventEmitter();
   @Output() InstUp: EventEmitter<any> = new EventEmitter();
+  @Output() InstReceipts: EventEmitter<any> = new EventEmitter();
+  
   @Output() Lectures: EventEmitter<any> = new EventEmitter();
   @Output() LecturesToday: EventEmitter<any> = new EventEmitter();
   @Output() Lecture: EventEmitter<any> = new EventEmitter();
@@ -84,6 +86,10 @@ export class PhxChannelService {
     this.instChannel.on('inst:up', payload => {
       // console.log('eap:inst from phx channel: ', payload);
       this.InstUp.emit(payload);
+    })
+    this.instChannel.on('inst:receipts:list', payload => {
+      // console.log('eap:inst from phx channel: ', payload);
+      this.InstReceipts.emit(payload);
     })
     
 
@@ -228,6 +234,9 @@ export class PhxChannelService {
     switch (channel) {
       case 'inst':
         this.instChannel.push("inst:list:req", {body: message});
+        break;
+      case 'inst:receipt':
+        this.instChannel.push("inst:receipts:list:req", {body: message});
         break;
       case 'Rinst':
         this.instChannel.push("inst:list:ready:req", {body: message});
