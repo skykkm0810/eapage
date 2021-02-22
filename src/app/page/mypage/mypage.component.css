@@ -32,6 +32,26 @@
   text-decoration: underline;
   color:#666;
 }
+/* 수업버튼 */
+.currsNum {
+  position:relative;
+}
+.goLive {
+  position: absolute;
+  font-size: 16px;
+  width:100px;
+  height:30px;
+  border :1px solid #DD5E5E;
+  color:#DD5E5E;
+  border-radius: 10px;
+  bottom:-25px;
+  left: calc(50% - 50px);
+}
+.goLive:hover {
+  color:#fff;
+  background-color: #DD5E5E;
+}
+
 /* --------------------------------------------------- */
 .wrap { padding-bottom: 50px;}
 .innerWrap {
@@ -662,6 +682,8 @@ h2 {
 }
 .lecTb img {
   width: 95%;
+  max-height: 220px;
+  min-height: 185px;
   padding: 20px 0;
 }
 .lecTb h1 {
