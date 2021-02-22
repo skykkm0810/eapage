@@ -25,8 +25,8 @@
         </div> -->
         <div class="streamUnderBar">
           <span class="liveStatus uppercase ">● live</span>
-          <span class="className">바쁠수록 차분하게, 마음챙김 영상</span>
-          <span class="teacherName">강사이름</span>
+          <span class="className">{{ info.title }}</span>
+          <span class="teacherName">{{ info.inst.name }}</span>
           <span class="gocurri pointer" (click)='scroll(curr)'><span class="currImg"></span>커리큘럼</span>
           <span class="goreview pointer" (click)='scroll(review)'><span class="rvwImg"></span>리뷰작성</span>
         </div>

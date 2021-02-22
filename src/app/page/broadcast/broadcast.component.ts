@@ -43,6 +43,61 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     this.phxChannel.Inst.subscribe( data => {
       this.instInfo = data;
     })
+    this.phxChannel.Curr.subscribe( data => {
+      console.log(data);
+      this.info = data.lecture;
+      if(this.info.kit){
+        this.kit = '../../../assets/images/icon/pink/kit.png'
+      }
+      else{
+        this.kit = '../../../assets/images/icon/white/kit.png'
+      }
+      this.sum = 0;
+      this.stgs = this.info.currs.length;
+      this.reviews = data.lecture.reviews;
+      data.lecture.currs.forEach( data => {
+        this.sum += data.dur*1;
+      })
+      if(this.info.least == null || this.info.least == undefined){
+        this.info.degree = 0;
+      }
+      else{
+        this.info.degree = Math.floor(data.lecture.receipts.length/data.lecture.least * 100);
+      }
+      // this.info.degree = Math.ceil(data.receipts.length*1 / data.least * 100);
+      if( this.info.dday != null ) {
+        let d1 = new Date(this.info.dday).getTime();
+        let d2 = new Date().getTime();
+        if ( d1 < d2 ) {
+          this.dday_c = false;
+          this.dday = '마감';
+        } else {
+          d1 = new Date(this.info.dday).setHours(0,0,0,0);
+          d2 = new Date().setHours(0,0,0,0);
+          let time = Math.round((d1 - d2) / 1000 / 60 / 60 / 24 );
+          this.dday_c = true;
+          this.dday = time+"";
+          console.log(d1,d2,time,this.dday);
+        }
+      } else {
+        this.dday_c = false;
+        this.dday = '오픈 예정';
+      }
+
+
+      if ( data.lecture.reviews.length > 0 ) {
+        data.lecture.reviews.forEach( el => {
+          if ( el.userId == this.user.id*1 ) {
+            this.reviewed = true;
+            console.log('hello');
+          }
+        })
+      }
+
+
+      this.phxChannel.get('inst', this.info.inst)
+      console.log(this.info);
+    })
     this.phxChannel.Lecture.subscribe( data => {
       this.info = data;
       if(this.info.kit){
@@ -50,7 +105,6 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
       }
       else{
         this.kit = '../../../assets/images/icon/white/kit.png'
-
       }
       this.sum = 0;
       this.stgs = this.info.currs.length;
@@ -115,7 +169,8 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     // this.number = number;
     this.injected = this.route.snapshot.params;
     // console.log(this.injected);
-    this.phxChannel.get('lecture', this.injected);
+    // this.phxChannel.get('lecture', this.injected);
+    this.phxChannel.get('curr', this.injected);
     if (this.login = this.auth.isAuthenticated()) {
       this.user = JSON.parse(this.auth.getUserData());
       console.log(this.user);
@@ -127,63 +182,63 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
       this.reviewText = "주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다.";
     }
 
-    // 채팅창 커서
-    var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLInputElement;
-    // console.log(chatInput);
-    var line = document.getElementsByClassName('nml')[0] as HTMLElement;
-    chatInput.addEventListener('focus',()=>{
-      line.style.display ='block';
-    })
-    chatInput.addEventListener('focusout',()=>{
-      line.style.display ='none';
-    })
+    // // 채팅창 커서
+    // var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLInputElement;
+    // // console.log(chatInput);
+    // var line = document.getElementsByClassName('nml')[0] as HTMLElement;
+    // chatInput.addEventListener('focus',()=>{
+    //   line.style.display ='block';
+    // })
+    // chatInput.addEventListener('focusout',()=>{
+    //   line.style.display ='none';
+    // })
     
     
   }
 
 
   ngAfterViewInit():void{
-    var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
-    chatInput.addEventListener('keypress',(e)=>{
-      console.log(e)
-      if(e.ctrlKey == false  && e.shiftKey == false){
-        if(e.code =="NumpadEnter" || e.key == "Enter"){
-          e.preventDefault();
-          this.chatUp(this.chatText);
-        }
-      }
-      else if(e.ctrlKey == true ){
-        if(e.code =="NumpadEnter" || e.key == "Enter"){
-          alert();
-        }
-      }
-    })
-    this.scrollToB();
+    // var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
+    // chatInput.addEventListener('keypress',(e)=>{
+    //   console.log(e)
+    //   if(e.ctrlKey == false  && e.shiftKey == false){
+    //     if(e.code =="NumpadEnter" || e.key == "Enter"){
+    //       e.preventDefault();
+    //       this.chatUp(this.chatText);
+    //     }
+    //   }
+    //   else if(e.ctrlKey == true ){
+    //     if(e.code =="NumpadEnter" || e.key == "Enter"){
+    //       alert();
+    //     }
+    //   }
+    // })
+    // this.scrollToB();
   }
   
   ngAfterViewChecked(): void {
-    let diff = this.chatContainer.nativeElement.scrollHeight - this.chatContainer.nativeElement.scrollTop;
-    console.log(this.chatContainer.nativeElement.scrollHeight)
-    if ( this.chatContainer.nativeElement.scrollHeight > 460){
-      var chatBody = document.getElementsByClassName('chatBody')[0] as HTMLElement;
-      chatBody.classList.remove('noOver');
+    // let diff = this.chatContainer.nativeElement.scrollHeight - this.chatContainer.nativeElement.scrollTop;
+    // console.log(this.chatContainer.nativeElement.scrollHeight)
+    // if ( this.chatContainer.nativeElement.scrollHeight > 460){
+    //   var chatBody = document.getElementsByClassName('chatBody')[0] as HTMLElement;
+    //   chatBody.classList.remove('noOver');
 
-    }
-    if ( diff < 500) {
-      this.scrollToB();
-    }
+    // }
+    // if ( diff < 500) {
+    //   this.scrollToB();
+    // }
 
   }
 
-  @ViewChild('chatScroll') private chatContainer: ElementRef;
+  // @ViewChild('chatScroll') private chatContainer: ElementRef;
 
-  scrollToB(): void {
-    try {
-      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // scrollToB(): void {
+  //   try {
+  //     this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
 
   subs = [];
@@ -360,7 +415,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     console.log(form);
   }
   scroll( el ) {
-    var tag = document.getElementById(el) as HTMLElement;
+    // var tag = document.getElementById(el) as HTMLElement;
     el.scrollIntoView();
   }
   likes() {
@@ -375,19 +430,19 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
       this.phxChannel.send('like', { userId: this.user.id, lectureId: this.injected.id*1 });
     }
   }
-  chatUp(txt){
-    if(txt == ''){
-      return;
-    }
-    else{
-      var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
-      var obj = {name:this.user.name , text: txt };
-      this.fakeChat.push(obj);
-      this.chatText = '';
-      chatInput.focus();
-    }
-      // this.whenOverFlow()
-  }
+  // chatUp(txt){
+  //   if(txt == ''){
+  //     return;
+  //   }
+  //   else{
+  //     var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
+  //     var obj = {name:this.user.name , text: txt };
+  //     this.fakeChat.push(obj);
+  //     this.chatText = '';
+  //     chatInput.focus();
+  //   }
+  //     // this.whenOverFlow()
+  // }
 
   // whenOverFlow(){
   //   var chatMount = document.getElementsByClassName('chatLine');

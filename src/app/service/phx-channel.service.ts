@@ -25,6 +25,7 @@ export class PhxChannelService {
   @Output() LectureOpen: EventEmitter<any> = new EventEmitter();
   @Output() LectureClose: EventEmitter<any> = new EventEmitter();
   @Output() LectureControled: EventEmitter<any> = new EventEmitter();
+  @Output() Curr: EventEmitter<any> = new EventEmitter();
   @Output() Like: EventEmitter<any> = new EventEmitter();
   @Output() UnLike: EventEmitter<any> = new EventEmitter();
   @Output() Users: EventEmitter<any> = new EventEmitter();
@@ -84,7 +85,7 @@ export class PhxChannelService {
       // console.log('eap:inst from phx channel: ', payload);
       this.InstUp.emit(payload);
     })
-
+    
 
     this.lectureChannel = this.socket.channel('eap:lecture', {});
     this.lectureChannel
@@ -123,7 +124,9 @@ export class PhxChannelService {
     this.lectureChannel.on('like:like', payload => {
       this.Like.emit(payload);
     })
-    
+    this.lectureChannel.on('curr:detail', payload => {
+      this.Curr.emit(payload.body);
+    })
     
 
     this.userChannel = this.socket.channel('eap:user', {});
@@ -267,26 +270,29 @@ export class PhxChannelService {
     switch (channel) {
       case 'inst':
         this.instChannel.push("inst:detail:req", {body: message});
-        break;
+      break;
       case 'lecture':
         this.lectureChannel.push("lecture:detail:req", {body: message});
-        break;
+      break;
       case 'user':
         this.userChannel.push("user:detail:req", {body: message});
-        break;
+      break;
       case 'receipt':
         this.userChannel.push("receipt:detail:req", {body: message});
-        break;
+      break;
       case 'company':
         this.companyChannel.push("company:detail:req", {body: message});
-        break;
+      break;
       case 'access':
         this.userChannel.push("user:access:req", {body: message});
-        break;
+      break;
+      case 'curr':
+        this.lectureChannel.push("curr:detail:req", {body: message});
+      break;  
             
       default:
         // this.instChannel.push(event, {body: message});
-        break;
+      break;
     }
   }
 
@@ -294,16 +300,16 @@ export class PhxChannelService {
     switch (channel) {
       case 'inst':
         this.instChannel.push("inst:up:req", {body: message});
-        break;
+      break;
       case 'lecture':
         this.lectureChannel.push("lecture:up:req", {body: message});
-        break;
+      break;
       case 'user':
         this.userChannel.push("user:up:req", {body: message});
-        break;
+      break;
       case 'company':
         this.companyChannel.push("company:up:req", {body: message});
-        break;
+      break;
             
       default:
         // this.instChannel.push(event, {body: message});
