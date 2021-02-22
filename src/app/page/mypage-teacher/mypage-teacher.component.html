@@ -7,7 +7,6 @@
       <li class="bold pointer " (click)="tabclick($event)">완료된 강의 목록</li>
       <li class="bold pointer " (click)="tabclick($event)">개인 정보 변경</li>
     </ul>
-
     <div class="agreement tabContentBox">
       <table class="lecTb">
         <colgroup>
@@ -42,10 +41,12 @@
                   <p class="ft-bold ft-22" style="text-align: left;">{{ l.title }}</p>
                   <p class="subtitle ft-16">{{ l.subtitle }}</p>
                 </div>
-                <p class="ft-22 ft-bold">{{ l.currs.length }}회차</p>
+                <p class="ft-22 ft-bold">총{{ l.currs.length }}회차</p>
                 <p class="ft-22 ft-bold showStudent pointer" (click)="showStudent($event)">{{ l.receipts.length }}명</p>
                 <!-- <p class="ft-16">{{ c.datetime | date: 'YY년 MM월 dd일'}}<br>{{ c.datetime | date: 'HH시 mm분'}}</p> -->
-                <p> <span class="startClass block pointer">강의시작</span> </p>
+                <p> 
+                  <span class="block">{{l.processText}}</span>
+                 </p>
               </div>
               <div class="studentList hidden">
                 <table class="lecTb">
@@ -81,6 +82,16 @@
                   </tbody>
                 </table>
               </div>
+              <div class ="tdgCtnr2" *ngFor='let c of l.currs'>
+                <p class="subtitle ft-16">{{ c.stage }}. {{ c.title }}</p>
+                <p class="ft-22 ft-bold currsNum">{{ c.stage }}회차</p>
+                <p class="ft-16"></p>
+                <p class="ft-22 ft-bold">
+                  <span *ngIf='c.set === false' class="block ft-16" style='font-weight: normal; line-height: 20px;'>강의시간 {{c.date | date:'yy-MM-dd HH:mm'}}</span>
+                  <span *ngIf='c.set === true' class="startClass block pointer" (click)='goLive(c.id)'>강의시작</span>
+                </p>
+              </div>
+              
             </td>
           </tr>
         </tbody>
@@ -121,10 +132,10 @@
                   <p class="ft-bold ft-22" style="text-align: left;">{{ l.title }}</p>
                   <p class="subtitle ft-16">{{ l.subtitle }}</p>
                 </div>
-                <p class="ft-22 ft-bold">{{ l.currs.length }}회차</p>
+                <p class="ft-22 ft-bold">총 {{ l.currs.length }}회차</p>
                 <p class="ft-22 ft-bold showStudent pointer" (click)="showStudent($event)">{{ l.receipts.length }}명</p>
                 <!-- <p class="ft-16">{{ c.datetime | date: 'YY년 MM월 dd일'}}<br>{{ c.datetime | date: 'HH시 mm분'}}</p> -->
-                <p> <span class="startClass block pointer">강의시작</span> </p>
+                <p> <span class="endClass block">강의완료</span> </p>
               </div>
               <div class="studentList hidden">
                 <table class="lecTb">
@@ -145,13 +156,13 @@
                   <tbody>
                     <tr *ngFor="let ss of l.receipts">
                       <td>
-                        <p class="ft-bold ft-22">{{ ss.user.name }}</p>
+                        <p class="ft-bold ft-22">{{ ss.user[0].name }}</p>
                       </td>
                       <td>
-                        <p class="ft-16">{{ ss.user.company[0].name }}</p>
+                        <p class="ft-16">{{ ss.user[0].company[0].name }}</p>
                       </td>
                       <td>
-                        <p class="ft-16">{{ss.user.contact}}</p>
+                        <p class="ft-16">{{ss.user[0].contact}}</p>
                       </td>
                       <td>
                         <p><span class="inlineBlock pointer sendKit"></span></p>

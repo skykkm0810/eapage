@@ -4,6 +4,7 @@ import { Environment } from 'src/app/environment/environment';
 import { AuthService } from 'src/app/service/auth.service';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { APP_BASE_HREF } from '@angular/common';
 
 @Component({
   selector: 'app-broadcast',
@@ -45,6 +46,21 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     })
     this.phxChannel.Curr.subscribe( data => {
       console.log(data);
+      // 줌 여부 , 시간 여부 확인 후 리다이렉트
+      let today = new Date().getTime();
+      let studyTime = new Date(data.date).getTime();
+      if(today - studyTime > 1800000 || studyTime - today > 1800000){
+        alert('잘못된 경로로 들어오게 되어 이전 화면으로 돌아갑니다.');
+        window.history.back();
+      } 
+      if(data.zoom == false){
+        alert('아직 강의가 시작되지 않았습니다. 잠시 후에 다시 시도해주세요.');
+        window.history.back();
+      }
+      
+      
+      
+
       this.info = data.lecture;
       if(this.info.kit){
         this.kit = '../../../assets/images/icon/pink/kit.png'
@@ -96,7 +112,6 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
 
 
       this.phxChannel.get('inst', this.info.inst)
-      console.log(this.info);
     })
     this.phxChannel.Lecture.subscribe( data => {
       this.info = data;
@@ -259,18 +274,6 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
       {img:'assets/images/icon/star/star1.png', text:'', value: 1},
       {img:'', text:'별점 주기'},
     ],
-    // 로그인 된 사람 정보
-    im:'갱갱미',
-
-    // 강의
-    recommand:[
-      {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#스트레스'},{tag:'#심리안정'},{tag:'#릴렉스'}] ,color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
-      {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#스트레칭'},{tag:'#운동'},{tag:'#릴렉스'}],color:"#00C6C6",category:'부부·가족',title:'요가로 이용한 스트레스 풀기' , img:'assets/images/banner/week2.png', text:'요가를 이용해 심신을 수양하는 프로그램'},
-      // {process:'진행중',degree:50 ,color:"#954FD0",category:'인생 2막',title:'두줄 까지는 안전한가요? 세줄은 좀 힘들어 보이는데' , img:'assets/images/banner/week3.png', text:'글자길이'},
-      // {process:'OPEN 예정',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#DD5E5E",category:'연애·결혼',title:'플라워디퓨저' , img:'assets/images/banner/week1.png', text:'각종 가공 플라워를 이용한 힐링 프로그램'},
-      // {process:'OPEN 예정',hashTag:[{tag:'#스트레칭'},{tag:'#심리안정'},{tag:'#릴렉스'}],color:"#00C6C6",category:'부부·가족',title:'글자를 늘려보려고 길게 적어보았습니다.' , img:'assets/images/banner/week2.png', text:'각종 가공의 그것들을 이용한 어쩃든 무엇을 하는 프로그램'},
-      {process:'OPEN 예정',remain:'',openDay:'2021-02-22',hashTag:[{tag:'#가족관계'},{tag:'#공감하기'},{tag:'#행복'}],color:"#954FD0",category:'인생 2막',title:'함께하는 가족관계 형성하기' , img:'assets/images/banner/week3.png', text:'일도 중요하지만 가정은 더욱 소중하기에, 나의 가정을 행복하게 가꾸기 위한 프로그램'},
-    ]
   }
 
   like = false;
@@ -295,7 +298,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     feats: [{point: '', desc: '' }],
     exps: [{point: '', desc: '' }],
     sums: [{point: '', desc: '' }],
-    inst: [{ id: null }],
+    inst: [{ id: null ,name:null}],
     interests: [{ completed: true, lectureId: null, name: '', value: '' }],
     limit: null,
     mainImg: '',
@@ -335,12 +338,12 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
   filePath = Environment.filePath;
 
   // fakeChat
-  fakeChat = [
-    {name:'전태현',text:'안녕하세요 반갑습니다. 잘 부탁드리겠습니다.'},
-    {name:'김진혁',text:'올 시즌은 과연 몇 골이나 넣을까?'},
-    {name:'Cesinha',text:'vamos and Thank you gogo DaeguFC!! come on my fans i miss you. how many you guys come? :)'},
-  ]
-  chatText='';
+  // fakeChat = [
+  //   {name:'전태현',text:'안녕하세요 반갑습니다. 잘 부탁드리겠습니다.'},
+  //   {name:'김진혁',text:'올 시즌은 과연 몇 골이나 넣을까?'},
+  //   {name:'Cesinha',text:'vamos and Thank you gogo DaeguFC!! come on my fans i miss you. how many you guys come? :)'},
+  // ]
+  // chatText='';
 
   apply() {
     if ( this.auth.isAuthenticated() ) {

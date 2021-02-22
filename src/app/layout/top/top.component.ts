@@ -1,5 +1,5 @@
 import { Component, OnInit ,AfterViewInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { MatDialog} from '@angular/material/dialog';
 import { ReadyComponent} from '../../page/ready/ready.component';
 import { TodayLiveComponent} from '../../page/today-live/today-live.component';
@@ -18,6 +18,7 @@ export class TopComponent implements AfterViewInit{
 
   constructor(
     private router: Router,
+    private route:ActivatedRoute,
     private auth: AuthService,
     public dialog:MatDialog,
     public sign_in:MatDialog,
@@ -115,7 +116,17 @@ export class TopComponent implements AfterViewInit{
     }
     this.closeBox();
   }
-  allFind2(e:Event){
+  mfd(e:Event){
+    var tag = e.target as HTMLElement;
+    let text = tag.textContent;
+    var bigCategory = tag.closest('.content').getElementsByClassName('headName')[0] as HTMLElement;
+    if(bigCategory.classList.contains('allLive')){
+      this.router.navigate(['/allLive/search/',text]);
+    }
+    else if (bigCategory.classList.contains('preopen')){
+      this.router.navigate(['/preopen/search/',text]);
+    }
+    this.closeBox();
   }
   boxPosition(){
     var menu = document.getElementsByClassName('menu')[0] as HTMLElement;

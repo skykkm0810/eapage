@@ -41,7 +41,7 @@
                 <p class="ft-bold ft-22" style="text-align: left; padding: 20px 40px;">{{ l.lecture[0].title }}</p>
                 <div class="tdgCtnr" *ngFor="let c of l.lecture[0].currs">
                   <p class="subtitle ft-16">{{ c.stage }}. {{ c.title }}</p>
-                  <p class="ft-22 ft-bold currsNum">{{ c.stage }}회차 <span *ngIf='c.set === true' class="goLive pointer" (click)='goLive(c.id)'>수업시작</span></p>
+                  <p class="ft-22 ft-bold currsNum">{{ c.stage }}회차 <br><span *ngIf='c.set === true' class="goLive pointer block" (click)='goLive(c.id)'>수업시작</span></p>
                   <p class="ft-16"><span *ngIf="c.date != null">{{ c.date | date: 'Y-M-d' }}<br>{{ c.date | date: 'HH:mm' }}</span></p>
                   <p class="ft-22 ft-bold">{{ c.dur }}분</p>
                 </div>

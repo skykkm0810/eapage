@@ -6,13 +6,13 @@
         <li class="pointer login" *ngIf="!sign" (click)="signin()">
           <h2>로그인</h2>
         </li>
-        <li class="pointer join" *ngIf="!sign" (click)='closeBox()' [routerLink]="['join']">
+        <li class="pointer join" *ngIf="!sign" (clck)[routerLink]="['join']">
           <h2>회원가입</h2>
         </li>
         <li class="pointer login" *ngIf="sign" (click)="signout()">
           <h2>로그아웃</h2>
         </li>
-        <li class="pointer" *ngIf="sign && info.type" [routerLink]="['lectureInfoList/:{{info.id}}']">
+        <li class="pointer" *ngIf="sign && info.type" [routerLink]="['lectureInfoList/{{info.id}}']">
           <h2>수강기록부</h2>
         </li>
 
@@ -24,7 +24,7 @@
       </ul>
     </div>
     <div class="ltop">
-      <ul class="snb" (click)='closeBox()'>
+      <ul class="snb">
         <!-- <li class="pointer whatIs" (click)= "active($event)">마음도씨란?</li> -->
         <li class="pointer maum" [routerLink]="['maum']">마음도씨란?</li>
         <li class="pointer allLive"  (click)="HyperLink('allLive')">모든라이브</li>
@@ -70,17 +70,17 @@
       </div>
       <div class="double">
         <div class="content">
-          <span class="headName pointer" [routerLink]="['allLive']" (click)="closeBox()">모든라이브</span>
-          <span class="subname pointer" (click)='allFind($event)'>인생여정</span>
-          <span class="subname pointer" (click)='allFind($event)'>사회생활</span>
-          <span class="subname pointer" (click)='allFind($event)'>힐링</span>
-          <span class="subname pointer" (click)='allFind($event)'>심리</span>
+          <span class="headName allLive pointer" [routerLink]="['allLive']" (click)="closeBox()">모든라이브</span>
+          <span class="subname pointer" (click)='mfd($event)'>인생여정</span>
+          <span class="subname pointer" (click)='mfd($event)'>사회생활</span>
+          <span class="subname pointer" (click)='mfd($event)'>힐링</span>
+          <span class="subname pointer" (click)='mfd($event)'>심리</span>
         </div>
         <div class="content">
           <span class="headName pointer" [routerLink]="['todayLive']" (click)="closeBox()">오늘의 라이브</span>
         </div>
         <div class="content">
-          <span class="headName pointer" [routerLink]="['preopen']" (click)="closeBox()" >오픈 예정</span>
+          <span class="headName preopen pointer" [routerLink]="['preopen']" (click)="closeBox()" >오픈 예정</span>
           <span class="subname pointer"(click)="modal()">인생여정</span>
           <span class="subname pointer"(click)="modal()">사회생활</span>
           <span class="subname pointer"(click)="modal()">힐링</span>
