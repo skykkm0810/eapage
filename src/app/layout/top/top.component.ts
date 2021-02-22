@@ -78,9 +78,11 @@ export class TopComponent implements AfterViewInit{
     const dialogRef = this.dialog.open(ReadyComponent);
   }
   signin(){
+    this.closeBox();
     const dialogRef2 = this.sign_in.open(LoginComponent);
   }
   signout() {
+    this.closeBox();
     this.auth.signout();
   }
   searchBox(){

@@ -47,14 +47,22 @@ export class MypageComponent implements OnInit {
         if( el.lecture[0].currs[idx].date == null ) {
           this.receipt_yet.push(el);
         } else {
-          let day = new Date(el.lecture[0].currs[idx].date).getTime()
-          if( day > today.getTime() ) {
+          // let day = new Date(el.lecture[0].currs[idx].date).getTime();
+          let day = new Date('2021-02-22T11:30:00').getTime();
+          if( day + 1800000 > today.getTime()) {
+            if(day - today.getTime() < 1800000) {
+              console.log('30분 이하'); 
+              el.lecture[0].currs[idx].set = true;
+            } else {
+              el.lecture[0].currs[idx].set = false;
+            }
             this.receipt_yet.push(el);
           } else {
             this.receipt_end.push(el);
           }
         }
       })
+      console.log(this.receipt_yet);
     })
     phxChannel.UserUp.subscribe( () => {
       window.location.reload();
@@ -92,6 +100,7 @@ export class MypageComponent implements OnInit {
       this.phxChannel.get('user', this.user);
       this.phxChannel.gets('receipt', this.user);
     }
+
   }
 
   cred;
@@ -130,6 +139,7 @@ export class MypageComponent implements OnInit {
     word:'',
     color:'',
   };
+  buttonON = 0;
   @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
 
   allchk(e:Event){
@@ -288,6 +298,11 @@ export class MypageComponent implements OnInit {
     var outside = document.getElementsByClassName('wrap')[0] as HTMLElement;
     if(thisClickTag == outside || thisClickTag == basicInfo ){
         this.close();
+    }
+  }
+  goLive(id) {
+    if(confirm('라이브 수업을 시작하시겠습니까?')){
+      this.router.navigate(['/broadcast/'+id]);
     }
   }
 }
