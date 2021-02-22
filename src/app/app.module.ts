@@ -67,6 +67,7 @@ import { TestPageComponent } from './page/test-page/test-page.component';
 import { UserInfoComponent } from './modal/user-info/user-info.component';
 import { BroadcastComponent } from './page/broadcast/broadcast.component';
 import { LectureInfoListComponent } from './page/lecture-info-list/lecture-info-list.component';
+import { SafePipe } from './pipe/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { LectureInfoListComponent } from './page/lecture-info-list/lecture-info-
     TestPageComponent,
     UserInfoComponent,
     BroadcastComponent,
-    LectureInfoListComponent
+    LectureInfoListComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

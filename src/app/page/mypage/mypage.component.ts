@@ -111,7 +111,7 @@ export class MypageComponent implements OnInit {
     {
       date: null,
       lecture: [{
-        currs: [{ date: null, dur: 0, stage: 1, title: ''}],
+        currs: [{id: null, set: false, date: null, dur: 0, stage: 1, title: ''}],
         title: '',
         thumbnail1: '',
       }]
@@ -121,7 +121,7 @@ export class MypageComponent implements OnInit {
     {
       date: null,
       lecture: [{
-        currs: [{ date: null, dur: 0, stage: 1, title: ''}],
+        currs: [{id: null, set: false, date: null, dur: 0, stage: 1, title: ''}],
         title: '',
         thumbnail1: '',
       }]

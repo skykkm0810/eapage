@@ -4,8 +4,8 @@
     <div class="innerWrap">
 
       <div class="streamBox">
-        <div class="iframeBox">
-          <iframe src="" frameborder="0"></iframe>
+        <div class="iframeBox" *ngIf="link != ''">
+          <iframe [src]="link | safe" frameborder="0"></iframe>
         </div>
         <!-- <div class="chatBox">
           <div class="chatHeader">
@@ -26,7 +26,7 @@
         <div class="streamUnderBar">
           <span class="liveStatus uppercase ">● live</span>
           <span class="className">{{ info.title }}</span>
-          <span class="teacherName">{{ info.inst.name }}</span>
+          <span class="teacherName">{{ instInfo.name }}</span>
           <span class="gocurri pointer" (click)='scroll(curr)'><span class="currImg"></span>커리큘럼</span>
           <span class="goreview pointer" (click)='scroll(review)'><span class="rvwImg"></span>리뷰작성</span>
         </div>

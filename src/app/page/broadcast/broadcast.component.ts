@@ -1,9 +1,18 @@
 import { Component, OnInit, AfterViewInit, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Environment } from 'src/app/environment/environment';
+import { Environment, ZOOM } from 'src/app/environment/environment';
 import { AuthService } from 'src/app/service/auth.service';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { getSyntheticLeadingComments } from 'typescript';
+import { ZoomMtg } from '@zoomus/websdk';
+import { Buffer } from 'buffer';
+import * as hmacSha256 from 'crypto-js/hmac-sha256';
+import sha256 from 'crypto-js/sha256';
+import * as base64JS from 'js-base64';
+import * as encBase64 from 'crypto-js/enc-base64';
+import { SocketioService } from 'src/app/service/socketio.service';
+
 
 @Component({
   selector: 'app-broadcast',
@@ -16,6 +25,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     private route: ActivatedRoute,
     private router: Router,
     private phxChannel: PhxChannelService,
+    private zoom: SocketioService,
     private auth: AuthService,
     private bar: MatSnackBar,
   ) {
@@ -40,11 +50,21 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     })
 
     console.log(this.subs);
+    this.zoom.ZoomUrl.subscribe( data => {
+      console.log(data);
+      this.link = this.zoomLink(this.user.name, this.curr.zroom+'', this.curr.zpwd, data, ZOOM.API_KEY);
+    })
     this.phxChannel.Inst.subscribe( data => {
       this.instInfo = data;
     })
     this.phxChannel.Curr.subscribe( data => {
       console.log(data);
+      this.curr = data;
+      if ( data.zoom ) {
+        this.zoom.get_url( data.zroom );
+        //     this.link = this.zoomLink(this.user.name, data.zroom+'', data.zpwd, res.result, ZOOM.API_KEY);
+        //     console.log(this.link);
+      }
       this.info = data.lecture;
       if(this.info.kit){
         this.kit = '../../../assets/images/icon/pink/kit.png'
@@ -193,11 +213,14 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     //   line.style.display ='none';
     // })
     
+    // this.genSign( ZOOM.API_KEY, ZOOM.API_SECRET, '71590475599', '0')
     
   }
 
+  
 
-  ngAfterViewInit():void{
+  ngAfterViewInit(): void{
+    
     // var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
     // chatInput.addEventListener('keypress',(e)=>{
     //   console.log(e)
@@ -242,6 +265,9 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
 
 
   subs = [];
+  signature = '';
+  link = '';
+  curr = { zoom: false, zroom: '', zlink: '', zpwd: ''};
 
   hP: MatSnackBarHorizontalPosition = 'center';
   vP: MatSnackBarVerticalPosition = 'top';
@@ -430,6 +456,12 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
       this.phxChannel.send('like', { userId: this.user.id, lectureId: this.injected.id*1 });
     }
   }
+
+  zoomLink(name, mn, pwd, sign, key) {
+    console.log(mn, pwd, sign, key);
+    return `https://arpark.info/mtg/meeting.html?name=helo&mn=${mn}&email=kgc2966@gmail.com&pwd=${pwd}&role=0&lang=ko-KO&signature=${sign}&china=0&apiKey=${key}`;
+  }
+
   // chatUp(txt){
   //   if(txt == ''){
   //     return;
@@ -461,6 +493,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
       
   //   }
   // }
-  
+
 }
 
+// https://arpark.info/mtg/meeting.html?name=7IiY7KCV6rCA64ql&mn=71590475599&email=&pwd=2jRxY4&role=0&lang=ko-KO&signature=XzJJdDZEMkdUMXFReGVtYWVlVWNaQS43MTU5MDQ3NTU5OS4xNjEzOTkyOTQzODE2LjAuaDRLTVpFWktvWVI3c3B2L092c3NyU3pwZ29NNFBIZzVBZzFPZHJNRDdJdz0&china=0&apiKey=_2It6D2GT1qQxemaeeUcZA
