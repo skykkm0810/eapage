@@ -178,17 +178,18 @@ export class AllLiveComponent implements AfterViewInit {
       color:'',
       maincategory:'',
     }];
-      onselect(c){
-      this.info = this.all;
-      this.selectedC = c;
-      var lives = document.getElementsByClassName('designedBox');
-      for(var i=0; i<lives.length; i++){
-          (lives[i] as HTMLElement).style.display='none';
-          if(lives[i].getElementsByClassName('maincategory')[0].textContent == c.title){
-          (lives[i] as HTMLElement).style.display='block';
-        }
+
+  onselect(c){
+    this.info = this.all;
+    this.selectedC = c;
+    var lives = document.getElementsByClassName('designedBox');
+    for(var i=0; i<lives.length; i++){
+        (lives[i] as HTMLElement).style.display='none';
+        if(lives[i].getElementsByClassName('maincategory')[0].textContent == c.title){
+        (lives[i] as HTMLElement).style.display='block';
       }
     }
+  }
   
   filter(sc){
     this.selectedSC = sc;

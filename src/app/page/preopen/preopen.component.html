@@ -2,7 +2,7 @@
   <div class="innerWrap">
     <div class="Categories">
       <ul class="bigList">
-        <li *ngFor='let c of category' [class.selected]="c === selectedC" (click)='onselect(c,$event)' class="pointer">
+        <li *ngFor='let c of category' [class.selected]="c === selectedC" (click)='onselect(c)' class="pointer">
           <span class="inlineBlock img">
             <img src="{{c.image}}" alt="{{c.title}} 아이콘">
           </span>
@@ -10,7 +10,7 @@
         </li>
       </ul>
       <div class="subList" *ngIf="selectedC">
-        <li *ngFor='let sc of selectedC.subtitle' class="pointer" (click)='bold($event)'>{{sc.subname}}</li>
+        <li *ngFor='let sc of selectedC.subtitle' [class.bold]= 'sc === selectedSC' class="pointer" (click)='filter(sc)'>{{sc.subname}}</li>
       </div>
     </div>
     <div class="showLives">
