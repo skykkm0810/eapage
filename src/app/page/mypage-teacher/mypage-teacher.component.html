@@ -230,8 +230,8 @@
               </div>
               <div  class="addrDiv">
                 <span class="need">주소</span>
-                <mat-form-field>
-                  <input matInput [(ngModel)]="info.addr" type="text" name="myt.address" required>
+                <mat-form-field (click)="addr()">
+                  <input matInput [(ngModel)]="info.addr" type="text" name="myt.address" disabled>
                 </mat-form-field>
               </div>
               <div>
@@ -392,3 +392,10 @@
             <button mat-button (click)="click()">변경</button>
           </div>
         </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div #daum_popup class="daum" style="display:none;position:fixed;overflow:hidden;z-index:1;">
+</div>

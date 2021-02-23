@@ -113,6 +113,9 @@ export class MypageComponent implements OnInit {
 
   }
 
+
+  @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
+
   cred;
   user;
   info;
@@ -150,7 +153,6 @@ export class MypageComponent implements OnInit {
     color:'',
   };
   buttonON = 0;
-  @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
 
   allchk(e:Event){
     var thischk = e.target as HTMLElement;
