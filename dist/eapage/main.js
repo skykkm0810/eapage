@@ -2322,7 +2322,7 @@ JoinComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/dev/eap/src/main.ts */"zUnb");
+module.exports = __webpack_require__(/*! /home/ninano/dev/eap/src/main.ts */"zUnb");
 
 
 /***/ }),
@@ -8919,9 +8919,11 @@ class MypageComponent {
             data.body.forEach(el => {
                 let idx = el.lecture[0].currs.length;
                 console.log(idx);
+                let yet = false;
                 for (var i = 0; i < idx; i++) {
                     if (el.lecture[0].currs[i].date == null) {
-                        this.receipt_yet.push(el);
+                        yet = true;
+                        el.lecture[0].currs[i].set = false;
                     }
                     else {
                         let day = new Date(el.lecture[0].currs[i].date).getTime();
@@ -8934,12 +8936,18 @@ class MypageComponent {
                             else {
                                 el.lecture[0].currs[i].set = false;
                             }
-                            this.receipt_yet.push(el);
+                            yet = true;
                         }
                         else {
-                            this.receipt_end.push(el);
+                            yet = false;
                         }
                     }
+                }
+                if (yet) {
+                    this.receipt_yet.push(el);
+                }
+                else {
+                    this.receipt_end.push(el);
                 }
             });
             console.log(this.receipt_yet);
