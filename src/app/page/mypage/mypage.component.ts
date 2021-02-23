@@ -72,7 +72,7 @@ export class MypageComponent implements OnInit {
           this.receipt_end.push(el);
         }
       })
-      console.log(this.receipt_yet);
+      console.log(this.receipt_yet, this.receipt_end);
     })
     phxChannel.UserUp.subscribe( () => {
       window.location.reload();

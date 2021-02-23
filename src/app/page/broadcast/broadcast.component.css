@@ -188,7 +188,65 @@ img {
     
 }
 
-
+/* 출석부 */
+.studentList {
+    margin-top: 20px;
+}
+.studentList tr td {
+    padding:10px 0;
+    border-bottom:1px dashed #c4c4c4;
+    vertical-align: middle;
+}
+.studentList tr:last-child td {
+    border:0;
+}
+.sendKit {
+    width:33px;
+    height:30px;
+    background: url(../../../assets/images/icon/white/kit.png) no-repeat center center / cover;
+}
+.studentInfo {
+  width:90px;
+  height: 40px;
+  border-radius: 4px;
+  border:2px solid #F2A6A3;
+  color: #F2A6A3;
+  font-weight: bold;
+}
+.lecTb {
+    width: 100%;
+  }
+  .lecTb tr {
+    text-align: center;
+    height:50px;
+  }
+  .lecTb tr th {
+    border-bottom: 1px solid #C4C4C4;
+  }
+  .lecTb tr td {
+    border-bottom: 1px solid #C4C4C4;
+    padding: 20px 0;
+    vertical-align: middle;
+  }
+  .lecTb th {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .lecTb img {
+    width: 95%;
+    max-height: 220px;
+    min-height: 185px;
+    vertical-align: middle;
+  }
+  .lecTb h1 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .lecTb p{
+    text-align: center;
+    padding: 10px 15px;
+    margin: 0;
+  }
 
 
 
