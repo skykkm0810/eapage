@@ -65,7 +65,7 @@ export class MypageComponent implements OnInit {
           }
         }
       })
-      console.log(this.receipt_yet);
+      console.log(this.receipt_yet, this.receipt_end);
     })
     phxChannel.UserUp.subscribe( () => {
       window.location.reload();

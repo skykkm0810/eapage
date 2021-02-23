@@ -34,8 +34,8 @@
               <td class="ft-22 c-pink">
                 <span>{{ l.date | date: 'Y-M-d' }}</span>
               </td>
-              <td>
-                <img src="{{ filePath }}{{ l.lecture[0].thumbnail1 }}" alt="" class="classImg">
+              <td routerLink='/detail/{{l.lectureId}}'>
+                <img src="{{ filePath }}{{ l.lecture[0].thumbnail1 }}" alt="" class="classImg pointer">
               </td>
               <td colspan="4">
                 <p class="ft-bold ft-22" style="text-align: left; padding: 20px 40px;">{{ l.lecture[0].title }}</p>
@@ -75,8 +75,8 @@
               <td class="ft-22 c-pink">
                 <span>{{ l.date | date: 'Y-M-d' }}</span>
               </td>
-              <td>
-                <img src="{{ filePath }}{{ l.lecture[0].thumbnail1 }}" alt="" class="classImg">
+              <td routerLink='/detail/{{l.lectureId}}'>
+                <img src="{{ filePath }}{{ l.lecture[0].thumbnail1 }}" alt="" class="classImg pointer">
               </td>
               <td colspan="4">
                 <p class="ft-bold ft-22" style="text-align: left; padding: 20px 40px;">{{ l.lecture[0].title }}</p>

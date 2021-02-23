@@ -56,20 +56,20 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     })
 
     this.phxChannel.Curr.subscribe( data => {
-
       // 줌 여부 , 시간 여부 확인 후 리다이렉트
       let today = new Date().getTime();
       let studyTime = new Date(data.date).getTime();
-      if(today - studyTime > 1800000 || studyTime - today > 1800000){
-        alert('잘못된 경로로 들어오게 되어 이전 화면으로 돌아갑니다.');
-        window.history.back();
-      } 
-      if(data.zoom == false){
-        alert('아직 강의가 시작되지 않았습니다. 잠시 후에 다시 시도해주세요.');
-        window.history.back();
-      }
-      
-      this.curr = data;
+      // if(today - studyTime > 1800000 || studyTime - today > 1800000){
+        //   alert('잘못된 경로로 들어오게 되어 이전 화면으로 돌아갑니다.');
+        //   window.history.back();
+        // } 
+        // if(data.zoom == false){
+          //   alert('아직 강의가 시작되지 않았습니다. 잠시 후에 다시 시도해주세요.');
+          //   window.history.back();
+          // }
+          
+          this.curr = data;
+          console.log(this.curr.lecture.receipts)
       if ( data.zoom ) {
         this.zoom.get_url( data.zroom );
       }
@@ -277,7 +277,14 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
   subs = [];
   signature = '';
   link = '';
-  curr = { zoom: false, zroom: '', zlink: '', zpwd: ''};
+  curr = { zoom: false, zroom: '', zlink: '', zpwd: '',
+          lecture:{
+            receipts:{
+              user:{},
+              date:''
+            },
+          }
+        };
 
   hP: MatSnackBarHorizontalPosition = 'center';
   vP: MatSnackBarVerticalPosition = 'top';

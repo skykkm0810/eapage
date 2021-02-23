@@ -23,7 +23,7 @@
             <span class="chatUpBtn pointer"(click)='chatUp(this.chatText)'></span>
           </div>
         </div> -->
-        <div class="streamUnderBar">
+        <div class="streamUnderBar hidden">
           <span class="liveStatus uppercase ">● live</span>
           <span class="className">{{ info.title }}</span>
           <span class="teacherName">{{ instInfo.name }}</span>
@@ -33,7 +33,43 @@
       </div>
     </div>
   </section>
+  <!-- <div class="innerWrap">
 
+    <div class="studentList">
+      <table class="lecTb">
+        <colgroup>
+          <col width="150px">
+          <col width="220px">
+          <col width="130px">
+          <col width="130px">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>이름</th>
+            <th>소속회사</th>
+            <th>신청일</th>
+            <th>출석여부</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ss of this.curr.lecture[].receipts">
+            <td>
+              <p class="ft-bold ft-22">{{ ss.user[0].name }}</p>
+            </td>
+            <td>
+              <p class="ft-16">{{ ss.user[0].company[0].name }}</p>
+            </td>
+            <td>
+              <p class="ft-16">{{ ss.date | date:'yyyy-MM-dd hh:mm' }}</p>
+            </td>
+            <td>
+              <p><button mat-button class="studentInfo" (click)="infoShow(ss)">상세정보</button></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> -->
   <!-- Submenus -->
   <div class="submenu container">
     <div class="row">

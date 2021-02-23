@@ -297,7 +297,7 @@ export class MypageTeacherComponent implements OnInit {
         return;
       }
     }
-    if(this.info.file == '' || !this.info.name || !this.info.uname || !this.info.pwd || !this.info.birth || !this.info.contact
+    if(this.info.file == '' || !this.info.name || !this.info.birth || !this.info.contact
       || !this.info.addr || !this.info.subaddr || !this.info.email || !this.info.gender || !this.info.accType || !this.info.bankName ||
       !this.info.bankAcc || !this.info.reg) {
       this.openSnakbar('필수 항목을 입력해주세요','닫기');
