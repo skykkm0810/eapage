@@ -8919,33 +8919,35 @@ class MypageComponent {
             data.body.forEach(el => {
                 let idx = el.lecture[0].currs.length;
                 console.log(idx);
-                let pushed = false;
+                let yet = false;
                 for (var i = 0; i < idx; i++) {
-                    if (!pushed) {
-                        if (el.lecture[0].currs[i].date == null) {
-                            this.receipt_yet.push(el);
-                            pushed = true;
-                        }
-                        else {
-                            let day = new Date(el.lecture[0].currs[i].date).getTime();
-                            // let day = new Date('2021-02-22T17:30:00').getTime();
-                            if (day + 1800000 > today.getTime()) {
-                                if (day - today.getTime() < 1800000) {
-                                    console.log('30분 이하');
-                                    el.lecture[0].currs[i].set = true;
-                                }
-                                else {
-                                    el.lecture[0].currs[i].set = false;
-                                }
-                                this.receipt_yet.push(el);
-                                pushed = true;
+                    if (el.lecture[0].currs[i].date == null) {
+                        yet = true;
+                        el.lecture[0].currs[i].set = false;
+                    }
+                    else {
+                        let day = new Date(el.lecture[0].currs[i].date).getTime();
+                        // let day = new Date('2021-02-22T17:30:00').getTime();
+                        if (day + 1800000 > today.getTime()) {
+                            if (day - today.getTime() < 1800000) {
+                                console.log('30분 이하');
+                                el.lecture[0].currs[i].set = true;
                             }
                             else {
-                                this.receipt_end.push(el);
-                                pushed = true;
+                                el.lecture[0].currs[i].set = false;
                             }
+                            yet = true;
+                        }
+                        else {
+                            yet = false;
                         }
                     }
+                }
+                if (yet) {
+                    this.receipt_yet.push(el);
+                }
+                else {
+                    this.receipt_end.push(el);
                 }
             });
             console.log(this.receipt_yet);
