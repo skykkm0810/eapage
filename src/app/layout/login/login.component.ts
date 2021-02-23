@@ -36,7 +36,9 @@ export class LoginComponent implements OnInit {
   }
   pwdOk = false;
   info;
-
+  newpwd=null;
+  newpwd2='';
+  whyno = false;
   access() {
     this.phxChannel.get('access', this.info);
   }
@@ -56,8 +58,13 @@ export class LoginComponent implements OnInit {
     var boxwrap = document.getElementsByClassName('boxwrap')[0] as HTMLElement;
     boxwrap.style.marginTop = -1100+'px';
   }
-  newPwd(){
+  
+  sendCode(){
     // 아이디 이메일 확인 후 
+    alert('가입 이메일로 인증코드를 전송하였습니다.');
+    this.whyno = true;
+  }
+  newPwd(){
     this.pwdOk = true;
   }
   chgpwd(){

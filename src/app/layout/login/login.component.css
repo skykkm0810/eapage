@@ -1,3 +1,6 @@
+.hidden {
+  display: none!important;
+}
   #loginBox {
     background-color: #fff;
     width: 400px;
@@ -52,7 +55,15 @@
     color:#fff;
     background-color:darkorange ;
   }
-  
+  .sencode {
+    display: block;
+    width: calc(100% - 3rem);
+    border:1px solid salmon;
+    color:salmon;
+    margin: 20px auto;
+    padding:0.5rem;
+    background-color: #fff;
+  }
   .AccountBox {
     text-align: center;
     padding-top: 20px;

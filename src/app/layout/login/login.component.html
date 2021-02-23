@@ -50,14 +50,23 @@
         <mat-form-field>
           <input matInput placeholder="가입 이메일">
         </mat-form-field>
-        <button mat-button class="uppercase findButton" (click)="newPwd()">인증 확인</button>
+        <mat-form-field [class.hidden]='whyno === false'>
+            <input matInput placeholder="인증코드를 입력해주세요" type='number'>
+        </mat-form-field>
+        <button mat-button class="uppercase sencode" (click)="sendCode()" [class.hidden]='whyno === true'>인증코드 전송</button>
+        <button mat-button class="uppercase findButton" [class.hidden]='whyno === false' (click)="newPwd()">새 비밀번호</button>
       </div>
       <div class="secondInput inputData" [class.hidden]='pwdOk === false'>
         <mat-form-field>
-          <input matInput placeholder="변경할 비밀번호">
+          <input matInput placeholder="변경할 비밀번호" type='password' [(ngModel)]='newpwd' minlength="8" maxlength="20">
+          <mat-hint>
+              비밀번호는 8자 이상 20자 이하로 설정해주세요
+          </mat-hint>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="비밀번호 확인">
+          <input matInput placeholder="비밀번호 확인" type='password' [(ngModel)]='newpwd2' minlength="8" maxlength="20">
+          <mat-error *ngIf='newpwd2 != newpwd'>비밀번호가 서로 일치하지 않습니다.</mat-error>
+          <mat-hint *ngIf='newpwd2 == newpwd' [ngStyle]="{'color':'green'}">비밀번호가 일치합니다.</mat-hint>
         </mat-form-field>
         <button mat-button class="uppercase loginButton" (click)="chgpwd()">비밀번호 변경</button>
       </div>
