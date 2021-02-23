@@ -282,7 +282,7 @@ export class MypageTeacherComponent implements OnInit {
   openSnakbar(text , btn){
     this.snackBar.open(text,btn, {
       duration: 3000,
-      horizontalPosition: 'right',
+      horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'snack-bar',
     })
@@ -297,9 +297,7 @@ export class MypageTeacherComponent implements OnInit {
         return;
       }
     }
-    if(this.info.file == '' || !this.info.name || !this.info.birth || !this.info.contact
-      || !this.info.addr || !this.info.subaddr || !this.info.email || !this.info.gender || !this.info.accType || !this.info.bankName ||
-      !this.info.bankAcc || !this.info.reg) {
+    if(this.info.file == '' || !this.info.name || !this.info.birth || !this.info.contact || !this.info.addr || !this.info.subaddr || !this.info.email || !this.info.gender || !this.info.accType || !this.info.bankName || !this.info.bankAcc || !this.info.reg) {
       this.openSnakbar('필수 항목을 입력해주세요','닫기');
       // alert('필수 항목을 입력해주세요');
     } else {
