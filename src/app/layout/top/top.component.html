@@ -6,7 +6,7 @@
         <li class="pointer login" *ngIf="!sign" (click)="signin()">
           <h2>로그인</h2>
         </li>
-        <li class="pointer join" *ngIf="!sign" (clck)[routerLink]="['join']">
+        <li class="pointer join" *ngIf="!sign" [routerLink]="['join']">
           <h2>회원가입</h2>
         </li>
         <li class="pointer login" *ngIf="sign" (click)="signout()">
