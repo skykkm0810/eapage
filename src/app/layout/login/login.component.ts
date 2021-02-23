@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       pwd: null,
     }
   }
-
+  pwdOk = false;
   info;
 
   access() {
@@ -42,5 +42,26 @@ export class LoginComponent implements OnInit {
   }
   close() {
     this.dialogRef.close();
+  }
+  findId(){
+    var boxwrap = document.getElementsByClassName('boxwrap')[0] as HTMLElement;
+    boxwrap.style.marginTop = -550+'px';
+  }
+  idSend(){
+    // 이름 이메일 확인 후
+    alert('가입 이메일로 아이디를 전송하였습니다.');
+    this.close();
+  }
+  findPWD(){
+    var boxwrap = document.getElementsByClassName('boxwrap')[0] as HTMLElement;
+    boxwrap.style.marginTop = -1100+'px';
+  }
+  newPwd(){
+    // 아이디 이메일 확인 후 
+    this.pwdOk = true;
+  }
+  chgpwd(){
+    // 비밀번호 변경 
+    this.close();
   }
 }
