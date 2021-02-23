@@ -83,5 +83,8 @@ li {
 .textOverflow {
     text-overflow: ellipsis;
 }
+#zmmtg-root {
+    display: none;
+}
 
 /*# sourceMappingURL=styles.css.map*/

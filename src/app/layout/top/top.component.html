@@ -12,7 +12,7 @@
         <li class="pointer login" *ngIf="sign" (click)="signout()">
           <h2>로그아웃</h2>
         </li>
-        <li class="pointer" *ngIf="sign && info.type" [routerLink]="['lectureInfoList/{{info.id}}']">
+        <li class="pointer" *ngIf="sign && info.type" [routerLink]="['/lectureInfoList/'+info.id]">
           <h2>수강기록부</h2>
         </li>
 

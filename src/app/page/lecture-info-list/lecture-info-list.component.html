@@ -23,34 +23,34 @@
           <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="marry">
+        <ng-container matColumnDef="merry">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> 결혼유무 </th>
-          <td mat-cell *matCellDef="let row"> {{row.marry }} </td>
+          <td mat-cell *matCellDef="let row"> {{row.merry }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="copWork">
+        <ng-container matColumnDef="workType">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> 업종 </th>
-          <td mat-cell *matCellDef="let row"> {{row.copWork }} </td>
+          <td mat-cell *matCellDef="let row"> {{row.workType }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="psnWork">
+        <ng-container matColumnDef="rank">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> 직급 </th>
-          <td mat-cell *matCellDef="let row"> {{row.psnWork }} </td>
+          <td mat-cell *matCellDef="let row"> {{row.rank }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="className">
+        <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> 강의명 </th>
-          <td mat-cell *matCellDef="let row"> {{row.className}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.title}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="classTime">
+        <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> 수강일 </th>
-          <td mat-cell *matCellDef="let row"> {{row.classTime}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.date | date: 'Y년 M월 d일'}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="reviewPoint">
+        <ng-container matColumnDef="star">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> 만족도 </th>
-          <td mat-cell *matCellDef="let row"> {{row.reviewPoint}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.star}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="tableHeader"  [ngStyle]="{ 'background-color': '#FFEEEE'}"></tr>

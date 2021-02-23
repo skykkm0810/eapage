@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ExportService } from '../../service/export.service';
 import { PhxChannelService } from 'src/app/service/phx-channel.service';
+import { AuthService } from 'src/app/service/auth.service';
+import { forEachChild } from 'typescript';
 
 @Component({
   selector: 'app-lecture-info-list',
@@ -14,26 +16,56 @@ import { PhxChannelService } from 'src/app/service/phx-channel.service';
 export class LectureInfoListComponent {
   
   constructor(
+    private phxChannel: PhxChannelService,
+    private auth: AuthService,
   ) { 
-    this.tableData = new MatTableDataSource(this.FAKE);
-
-    
+    this.tableData = new MatTableDataSource(this.info);
+    this.tableData.paginator = this.paginator;
+    this.tableData.sort = this.sort;
   }
 
   ngOnInit(): void {
-    this.tableData.paginator = this.paginator;
-    this.tableData.sort = this.sort;
+    this.phxChannel.InstReceipts.subscribe( data => {
+      console.log(data.body);
+      this.info = [];
+      data.body.forEach( d => {
+        let d1 = new Date(d.birth).getFullYear();
+        let d2 = new Date().getFullYear();
+        d.age = d2 - d1 + 1;
+
+        if( d.currs.length > 0 ) {
+          if ( d.currs[0].date != null ) {
+            d.date = d.currs[0].date;
+          }
+        }
+        if( d.reviews.length > 0 ) {
+          d.star = d.reviews[0].value;
+        }
+        this.info.push(d);
+      })
+      console.log(this.info);
+      this.tableData = new MatTableDataSource(this.info);
+      this.tableData.paginator = this.paginator;
+      this.tableData.sort = this.sort;
+    })
+
+    
+    
+    
+    this.user = JSON.parse(this.auth.getUserData());
+    this.phxChannel.gets('inst:receipt', { id: this.user.id })
+
   }
   ngAfterViewInit(): void{
-    this.tableData.paginator = this.paginator;
-    this.tableData.sort = this.sort;
   }
-  FAKE = [
-    {name:'깽미',age:'29',gender:'남',marry:'무',copWork:'IT',psnWork:'연구원',className:'개발 잘하는 기초',classTime:'2021-02-28',reviewPoint:4},
-    {name:'이지은',age:'29',gender:'여',marry:'무',copWork:'엔터테인먼트',psnWork:'엔터테이너',className:'개발 잘하는 기초',classTime:'2021-02-28',reviewPoint:5},
+
+  user;
+  subs;
+  info = [
+    {name:'깽미',age:'29',gender:'남',merry:'무',workType:'IT',rank:'연구원',title:'개발 잘하는 기초',date:'2021-02-28',star:4},
   ]
 
-  tableHeader = ['name','age','gender','marry','copWork','psnWork','className','classTime','reviewPoint']
+  tableHeader = ['name','age','gender','merry','workType','rank','title','date','star']
   tableData : MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

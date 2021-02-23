@@ -87,7 +87,7 @@
                 <p class="ft-22 ft-bold currsNum">{{ c.stage }}회차</p>
                 <p class="ft-16"></p>
                 <p class="ft-22 ft-bold">
-                  <span *ngIf='c.set === false' class="block ft-16" style='font-weight: normal; line-height: 20px;'>강의시간 {{c.date | date:'yy-MM-dd HH:mm'}}</span>
+                  <span *ngIf='c.set === false' class="block ft-16" style='font-weight: normal; line-height: 20px;'>{{c.date | date:'yy-MM-dd HH:mm'}}</span>
                   <span *ngIf='c.set === true' class="startClass block pointer" (click)='goLive(c.id)'>강의시작</span>
                 </p>
               </div>
