@@ -30,7 +30,6 @@ export class JoinTeacherComponent implements OnInit {
     private uploader: FileUploadService,
   ) {
     phxChannel.InstUp.subscribe( data => {
-      // console.log(data);
       auth.setToken(data.body);
       window.location.href = './';
     })
