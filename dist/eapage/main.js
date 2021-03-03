@@ -8784,8 +8784,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ZOOM", function() { return ZOOM; });
 const Environment = {
     production: false,
-    // socket_channel: 'ws://3.35.47.51:4000',
-    socket_channel: 'ws://localhost:4000',
+    socket_channel: 'ws://3.35.47.51:4000',
+    // socket_channel: 'ws://localhost:4000',
     // socket_channel: 'ws://59.23.5.92:4000',
     // socket_channel: 'ws://121.159.43.37:4000',
     http: 'http://',
