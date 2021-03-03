@@ -43,9 +43,9 @@ export class MypageComponent implements OnInit {
       this.receipt_end = [];
       this.receipt_yet = [];
       data.body.forEach( el => {
-        console.log(el);
+        // console.log(el);
         let idx = el.lecture[0].currs.length;
-        console.log(idx);
+        // console.log(idx);
         let yet = false;
         for(var i =0; i<idx; i++){
           if( el.lecture[0].currs[i].date == null ) {
@@ -53,6 +53,7 @@ export class MypageComponent implements OnInit {
             el.lecture[0].currs[i].set = false;
           } else {
             let day = new Date(el.lecture[0].currs[i].date).getTime();
+            console.log(day)
             if( day + 1800000 > today.getTime()) {
               if( el.lecture[0].currs[i].zoom == true ) {
                 if((day - today.getTime()) < 1800000) {

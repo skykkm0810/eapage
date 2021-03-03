@@ -97,7 +97,16 @@ export class MypageTeacherComponent implements OnInit {
               var time = new Date(el.currs[i].date).getTime();
               // var time = new Date('2021-02-22T19:30').getTime();
               if(time - today.getTime() < 1800000){
-                el.currs[i].set = true;
+                if( el.currs[i].zoom == true ) {
+                  if((today.getTime() - time) < 1800000) {
+                    el.currs[i].set = true;
+                  } else {
+                    el.currs[i].set = false;
+                  }
+                } else {
+                  el.currs[i].set = false;
+                }
+                // el.currs[i].set = true;
               }
               else {
                 el.currs[i].set = false;
