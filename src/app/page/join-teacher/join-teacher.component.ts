@@ -220,21 +220,7 @@ export class JoinTeacherComponent implements OnInit {
     var mother = (a.target as HTMLElement).closest('.tabContentBox') as HTMLElement;
     var neccesary = mother.getElementsByClassName('neccesary');
     var inpputs = mother.getElementsByTagName('input');
-    // for(var i=0; i<inpputs.length; i++){
-    //   if(!neccesary[0].classList.contains('clear')){
-    //     alert('이메일 코드 인증 확인이 필요합니다.');
-    //     return;
-    //   }
-    //   else if (!neccesary[0].classList.contains('clear')){
-    //     alert('회사 코드 인증 확인이 필요합니다.');
-    //     return; 
-    //   }
-
-    //   if(inpputs[i].value == ""){
-    //     alert('모든 필수항목이 채워져 있어야합니다.');
-    //     return;
-    //   }
-    // }
+    
     
     this.nextBtn(a);
   }
@@ -243,7 +229,7 @@ export class JoinTeacherComponent implements OnInit {
     if(this.info.file == 'unknown.jpg' || !this.info.name || !this.info.uname || !this.info.pwd || !this.info.birth || !this.info.contact
       || !this.info.addr || !this.info.subaddr || !this.info.email || !this.info.gender || !this.info.accType || !this.info.bankName ||
       !this.info.bankAcc || !this.info.reg){
-        alert('필수정보란은 모든 필수항목이 채워져 있어야합니다.')
+        alert('필수정보란은 모든 필수항목이 채워져 있어야합니다.');
         return;
     }
     else{
@@ -296,14 +282,7 @@ export class JoinTeacherComponent implements OnInit {
   }
 
   reg() {
-    // if ( this.info.pwd == undefined || this.info.pwd == '' ) {
-      // delete this.info.pwd;
-    // } else {
-      // if(this.info.pwd.length > 20 || this.info.pwd.length< 8 ){
-        // alert('비밀번호는 8자리 이상, 20자리 이하로 만들어야 합니다.');
-        // return;
-      // }
-    // }
+    
       this.info.edus = this.edus;
       this.info.certs = this.certs;
       this.info.careers = this.careers;

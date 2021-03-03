@@ -1,6 +1,5 @@
 <div id="loginBox">
   <div class="boxwrap">
-
     <div id="login">
       <p class="uppercase title">
         login
@@ -51,16 +50,18 @@
           <input matInput placeholder="가입 이메일">
         </mat-form-field>
         <mat-form-field [class.hidden]='whyno === false'>
-            <input matInput placeholder="인증코드를 입력해주세요" type='number'>
+          <input matInput placeholder="인증코드를 입력해주세요" type='number'>
         </mat-form-field>
-        <button mat-button class="uppercase sencode" (click)="sendCode()" [class.hidden]='whyno === true'>인증코드 전송</button>
-        <button mat-button class="uppercase findButton" [class.hidden]='whyno === false' (click)="newPwd()">새 비밀번호</button>
+        <button mat-button class="uppercase sencode" (click)="sendCode()" [class.hidden]='whyno === true'>인증코드
+          전송</button>
+        <button mat-button class="uppercase findButton" [class.hidden]='whyno === false' (click)="newPwd()">새
+          비밀번호</button>
       </div>
       <div class="secondInput inputData" [class.hidden]='pwdOk === false'>
         <mat-form-field>
           <input matInput placeholder="변경할 비밀번호" type='password' [(ngModel)]='newpwd' minlength="8" maxlength="20">
           <mat-hint>
-              비밀번호는 8자 이상 20자 이하로 설정해주세요
+            비밀번호는 8자 이상 20자 이하로 설정해주세요
           </mat-hint>
         </mat-form-field>
         <mat-form-field>
@@ -72,3 +73,4 @@
       </div>
     </div>
   </div>
+</div>

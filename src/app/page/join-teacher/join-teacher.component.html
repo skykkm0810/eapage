@@ -42,32 +42,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="certification tabContentBox hidden">
-        <p class="bold">마음도씨 이용을 위해 본인인증이 필요합니다.</p>
-        <div class="emailBox">
-          <p class="emailTitle bold">이메일 인증<span class="designA"></span></p>
-
-          <div class="mailAddress">
-            <div>
-              <span class="need">이메일 주소</span>
-              <input type="email" name="e.email" [(ngModel)]="info.email">
-            </div>
-            <button mat-button (click)="send()">인증코드 전송</button>
-          </div>
-          <div class="mailCertifi">
-            <div>
-              <span class="need">인증코드</span>
-              <input type="text" name="e.code" class="neccesary" required>
-            </div>
-            <button mat-button (click)="clear($event)">인증코드 확인</button>
-          </div>
-          <div class="btnBox">
-            <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
-            <button mat-button class="next bold" (click)='beforeNext2($event)'>다음</button>
-          </div>
-        </div>
-
-      </div> -->
+      
 
       <div class="personal tabContentBox hidden">
         <form action="/">
@@ -288,20 +263,11 @@
             </div>
           </div>
           <div class="btnBox">
-            <!-- 서브밋 버튼이 되어야함 -->
+         
             <button mat-button class="next bold" (click)='prevBtn($event)'>이전</button>
             <button mat-button class="next bold" (click)="beforeNext3()">완료</button>
           </div>
-      <!-- <div class="finish tabContentBox hidden">
-          <div class="finishBox">
-            <div class="charactor"></div>
-            <p class="bold"><span>{{ info.name }}</span> 님 환영합니다!</p>
-            <p class="bold">마음도씨 회원가입이 완료 되었습니다.</p>
-          </div>
-          <div class="btnBox">
-            <button mat-button [routerLink]="['']" class="next bold">확인</button>
-          </div>
-        </div>- -->
+     
     </form>
   </div>
 
