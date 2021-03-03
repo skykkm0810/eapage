@@ -725,9 +725,19 @@ class MypageTeacherComponent {
                         // 버튼 생성
                         for (var i = 0; i < el.currs.length; i++) {
                             var time = new Date(el.currs[i].date).getTime();
-                            // var time = new Date('2021-02-22T19:30').getTime();
                             if (time - today.getTime() < 1800000) {
-                                el.currs[i].set = true;
+                                if (el.currs[i].zoom == true) {
+                                    if ((today.getTime() - time) < 1800000) {
+                                        el.currs[i].set = true;
+                                    }
+                                    else {
+                                        el.currs[i].set = false;
+                                    }
+                                }
+                                else {
+                                    el.currs[i].set = false;
+                                }
+                                // el.currs[i].set = true;
                             }
                             else {
                                 el.currs[i].set = false;
@@ -9079,9 +9089,9 @@ class MypageComponent {
             this.receipt_end = [];
             this.receipt_yet = [];
             data.body.forEach(el => {
-                console.log(el);
+                // console.log(el);
                 let idx = el.lecture[0].currs.length;
-                console.log(idx);
+                // console.log(idx);
                 let yet = false;
                 for (var i = 0; i < idx; i++) {
                     if (el.lecture[0].currs[i].date == null) {
@@ -9090,6 +9100,7 @@ class MypageComponent {
                     }
                     else {
                         let day = new Date(el.lecture[0].currs[i].date).getTime();
+                        console.log(day);
                         if (day + 1800000 > today.getTime()) {
                             if (el.lecture[0].currs[i].zoom == true) {
                                 if ((day - today.getTime()) < 1800000) {

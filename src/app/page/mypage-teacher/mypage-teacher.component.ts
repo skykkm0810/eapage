@@ -95,7 +95,6 @@ export class MypageTeacherComponent implements OnInit {
             // 버튼 생성
             for(var i=0; i< el.currs.length; i++){
               var time = new Date(el.currs[i].date).getTime();
-              // var time = new Date('2021-02-22T19:30').getTime();
               if(time - today.getTime() < 1800000){
                 if( el.currs[i].zoom == true ) {
                   if((today.getTime() - time) < 1800000) {
