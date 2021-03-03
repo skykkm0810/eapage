@@ -8806,7 +8806,7 @@ const Environment = {
     zoom_socket: 'https://eapzoom.arpark.info',
     mailer: 'https://eapmail.arpark.info',
     fileUpload: 'https://eapup.arpark.info',
-    filePath: 'https://file.arpark.info'
+    filePath: 'https://file.arpark.info/'
 };
 const ZOOM = {
     API_KEY: '_2It6D2GT1qQxemaeeUcZA',
