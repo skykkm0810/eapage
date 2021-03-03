@@ -43,6 +43,7 @@ export class MypageComponent implements OnInit {
       this.receipt_end = [];
       this.receipt_yet = [];
       data.body.forEach( el => {
+        console.log(el);
         let idx = el.lecture[0].currs.length;
         console.log(idx);
         let yet = false;
@@ -52,11 +53,13 @@ export class MypageComponent implements OnInit {
             el.lecture[0].currs[i].set = false;
           } else {
             let day = new Date(el.lecture[0].currs[i].date).getTime();
-            // let day = new Date('2021-02-22T17:30:00').getTime();
             if( day + 1800000 > today.getTime()) {
-              if(day - today.getTime() < 1800000) {
-                console.log('30분 이하'); 
-                el.lecture[0].currs[i].set = true;
+              if( el.lecture[0].currs[i].zoom == true ) {
+                if((day - today.getTime()) < 1800000) {
+                  el.lecture[0].currs[i].set = true;
+                } else {
+                  el.lecture[0].currs[i].set = false;
+                }
               } else {
                 el.lecture[0].currs[i].set = false;
               }

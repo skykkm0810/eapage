@@ -79,7 +79,7 @@ export class MypageTeacherComponent implements OnInit {
       this.lecture_end = [];
       this.lecture_yet = [];
       data.lectures.forEach( el => {
-        // console.log(el);
+        console.log(el);
         let idx = el.currs.length - 1;
         if( el.currs[idx].date == null ) {
           this.lecture_yet.push(el);
@@ -101,7 +101,6 @@ export class MypageTeacherComponent implements OnInit {
               }
               else {
                 el.currs[i].set = false;
-                
               }
             }
             this.lecture_yet.push(el);

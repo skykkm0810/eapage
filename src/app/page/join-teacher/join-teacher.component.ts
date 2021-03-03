@@ -283,6 +283,14 @@ export class JoinTeacherComponent implements OnInit {
 
   reg() {
     
+    if ( this.info.pwd == undefined || this.info.pwd == '' ) {
+      delete this.info.pwd;
+    } else {
+      if(this.info.pwd.length > 20 || this.info.pwd.length< 8 ){
+        alert('비밀번호는 8자리 이상, 20자리 이하로 만들어야 합니다.');
+        return;
+      }
+    }
       this.info.edus = this.edus;
       this.info.certs = this.certs;
       this.info.careers = this.careers;
