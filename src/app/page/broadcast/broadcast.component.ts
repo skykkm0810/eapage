@@ -26,7 +26,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
   ) {
   }
   
-  ngOnInit() {
+  ngOnInit() {    
     window.scrollTo(0,0);
     this.subs[0] = this.phxChannel.Like.subscribe( data => {
       this.bar.open('찜하기!', '닫기', {
@@ -233,7 +233,11 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
   
 
   ngAfterViewInit(): void{
-    
+    // this.getMedia({audio:true, video:true});
+    if( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ){
+      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+      });
+    }
     // var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
     // chatInput.addEventListener('keypress',(e)=>{
     //   console.log(e)
@@ -396,7 +400,17 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     }
   }
   
- 
+  async getMedia(constraints) {
+    let stream = null;
+  
+    try {
+      stream = await navigator.mediaDevices.getUserMedia(constraints);
+      /* 스트림 사용 */
+    } catch(err) {
+      /* 오류 처리 */
+    }
+  }
+
   thumbnail(e:Event){
     var image = e.target as HTMLElement;
     var url = image.getAttribute('src');
