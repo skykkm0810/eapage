@@ -4186,6 +4186,7 @@ class BroadcastComponent {
         this.zoom.ZoomUrl.subscribe(data => {
             console.log(data);
             this.link = this.zoomLink(this.user.name, this.curr.zroom + '', this.curr.zpwd, data, src_app_environment_environment__WEBPACK_IMPORTED_MODULE_2__["ZOOM"].API_KEY);
+            location.href = this.link;
         });
         this.phxChannel.Inst.subscribe(data => {
             this.instInfo = data;

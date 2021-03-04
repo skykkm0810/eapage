@@ -49,6 +49,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     this.zoom.ZoomUrl.subscribe( data => {
       console.log(data);
       this.link = this.zoomLink(this.user.name, this.curr.zroom+'', this.curr.zpwd, data, ZOOM.API_KEY);
+      location.href=this.link;
     })
 
     this.phxChannel.Inst.subscribe( data => {
