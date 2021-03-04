@@ -49,7 +49,6 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     this.zoom.ZoomUrl.subscribe( data => {
       console.log(data);
       this.link = this.zoomLink(this.user.name, this.curr.zroom+'', this.curr.zpwd, data, ZOOM.API_KEY);
-      location.href=this.link;
     })
 
     this.phxChannel.Inst.subscribe( data => {
@@ -215,7 +214,6 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     if ( this.login == true ) {
       this.reviewText = "주제와 무관한 리뷰나 악플은 경고조치 없이 삭제 될수 있습니다.";
     }
-
     // // 채팅창 커서
     // var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLInputElement;
     // // console.log(chatInput);
@@ -228,17 +226,16 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     // })
     
     // this.genSign( ZOOM.API_KEY, ZOOM.API_SECRET, '71590475599', '0')
-    
   }
 
   
 
   ngAfterViewInit(): void{
     // this.getMedia({audio:true, video:true});
-    if( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ){
-      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-      });
-    }
+    // if( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ){
+    //   navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+    //   });
+    // }
     // var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
     // chatInput.addEventListener('keypress',(e)=>{
     //   console.log(e)
@@ -481,8 +478,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
   }
 
   zoomLink(name, mn, pwd, sign, key) {
-    console.log(mn, pwd, sign, key);
-    return `https://arpark.info/mtg/meeting.html?name=helo&mn=${mn}&email=kgc2966@gmail.com&pwd=${pwd}&role=0&lang=ko-KO&signature=${sign}&china=0&apiKey=${key}`;
+    return `/mtg/meeting.html?name=${name}&mn=${mn}&email=kgc2966@gmail.com&pwd=${pwd}&role=0&lang=ko-KO&signature=${sign}&china=0&apiKey=${key}`;
   }
 
   // chatUp(txt){

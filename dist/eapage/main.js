@@ -4186,7 +4186,6 @@ class BroadcastComponent {
         this.zoom.ZoomUrl.subscribe(data => {
             console.log(data);
             this.link = this.zoomLink(this.user.name, this.curr.zroom + '', this.curr.zpwd, data, src_app_environment_environment__WEBPACK_IMPORTED_MODULE_2__["ZOOM"].API_KEY);
-            location.href = this.link;
         });
         this.phxChannel.Inst.subscribe(data => {
             this.instInfo = data;
@@ -4355,10 +4354,10 @@ class BroadcastComponent {
     }
     ngAfterViewInit() {
         // this.getMedia({audio:true, video:true});
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-            });
-        }
+        // if( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ){
+        //   navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+        //   });
+        // }
         // var chatInput = document.getElementsByClassName('chatInput')[0] as HTMLElement;
         // chatInput.addEventListener('keypress',(e)=>{
         //   console.log(e)
@@ -4493,8 +4492,7 @@ class BroadcastComponent {
         }
     }
     zoomLink(name, mn, pwd, sign, key) {
-        console.log(mn, pwd, sign, key);
-        return `https://arpark.info/mtg/meeting.html?name=helo&mn=${mn}&email=kgc2966@gmail.com&pwd=${pwd}&role=0&lang=ko-KO&signature=${sign}&china=0&apiKey=${key}`;
+        return `/mtg/meeting.html?name=${name}&mn=${mn}&email=kgc2966@gmail.com&pwd=${pwd}&role=0&lang=ko-KO&signature=${sign}&china=0&apiKey=${key}`;
     }
 }
 BroadcastComponent.ɵfac = function BroadcastComponent_Factory(t) { return new (t || BroadcastComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_service_phx_channel_service__WEBPACK_IMPORTED_MODULE_4__["PhxChannelService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_service_socketio_service__WEBPACK_IMPORTED_MODULE_5__["SocketioService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_service_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__["MatSnackBar"])); };
