@@ -119,6 +119,7 @@ export class MypageTeacherComponent implements OnInit {
             }
           }
         } else {
+          el.processText = '진행 예정';
           this.lecture_yet.push(el);
         }
       })
