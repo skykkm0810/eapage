@@ -43,32 +43,37 @@ export class MypageComponent implements OnInit {
       this.receipt_end = [];
       this.receipt_yet = [];
       data.body.forEach( el => {
-        // console.log(el);
-        let idx = el.lecture[0].currs.length;
-        // console.log(idx);
         let yet = false;
-        for(var i =0; i<idx; i++){
-          if( el.lecture[0].currs[i].date == null ) {
-            yet = true;
-            el.lecture[0].currs[i].set = false;
-          } else {
-            let day = new Date(el.lecture[0].currs[i].date).getTime();
-            console.log(day)
-            if( day + 1800000 > today.getTime()) {
-              if( el.lecture[0].currs[i].zoom == true ) {
-                if((day - today.getTime()) < 1800000) {
-                  el.lecture[0].currs[i].set = true;
+        // console.log(el);
+        if( el.lecture.length > 0 ) {
+          let idx = el.lecture[0].currs.length;
+          // console.log(idx);
+          for(var i =0; i<idx; i++){
+              
+            if( el.lecture[0].currs[i].date == null ) {
+              yet = true;
+              el.lecture[0].currs[i].set = false;
+            } else {
+              let day = new Date(el.lecture[0].currs[i].date).getTime();
+              console.log(day)
+              if( day + 1800000 > today.getTime()) {
+                if( el.lecture[0].currs[i].zoom == true ) {
+                  if((day - today.getTime()) < 1800000) {
+                    el.lecture[0].currs[i].set = true;
+                  } else {
+                    el.lecture[0].currs[i].set = false;
+                  }
                 } else {
                   el.lecture[0].currs[i].set = false;
                 }
+                yet = true;
               } else {
-                el.lecture[0].currs[i].set = false;
+                yet = false;
               }
-              yet = true;
-            } else {
-              yet = false;
             }
           }
+        } else {
+          yet = true;  
         }
         if( yet ) {
           this.receipt_yet.push(el);

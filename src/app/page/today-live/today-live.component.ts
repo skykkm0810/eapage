@@ -35,9 +35,9 @@ export class TodayLiveComponent implements AfterViewInit {
           el.lecture[0].color = '#DD5E5E'; el.lecture[0].maincategory = '인생여정';
         } else if ( el.lecture[0].interests == '대인관계' || el.lecture[0].interests == '커뮤니케이션' || el.lecture[0].interests == '리더십' || el.lecture[0].interests == '조직적응' ) {
           el.lecture[0].color = '#3EB3E7'; el.lecture[0].maincategory = '사회생활';
-        } else if ( el.lecture[0].interests == '명상요가' || el.lecture[0].interests == '몸 마음 건강' || el.lecture[0].interests == '예술치유' || el.lecture[0].interests == '힐링elIY' ) {
+        } else if ( el.lecture[0].interests == '명상요가' || el.lecture[0].interests == '몸마음건강' || el.lecture[0].interests == '예술치유' || el.lecture[0].interests == '힐링 DIY' ) {
           el.lecture[0].color = '#0AD1D1'; el.lecture[0].maincategory = '힐링';
-        } else if ( el.lecture[0].interests == '자기 이해' || el.lecture[0].interests == '심리특강' ) {
+        } else if ( el.lecture[0].interests == '자기 이해' || el.lecture[0].interests == '심리 특강' ) {
           el.lecture[0].color = '#B775EF'; el.lecture[0].maincategory = '심리';
         }
 

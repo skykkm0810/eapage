@@ -707,47 +707,53 @@ class MypageTeacherComponent {
             let today = new Date();
             this.lecture_end = [];
             this.lecture_yet = [];
-            data.lectures.forEach(el => {
+            let lts = data.lectures.filter(el => el.inst != null);
+            lts.forEach(el => {
                 console.log(el);
                 let idx = el.currs.length - 1;
-                if (el.currs[idx].date == null) {
-                    this.lecture_yet.push(el);
-                }
-                else {
-                    let day = new Date(el.currs[idx].date).getTime();
-                    let firstday = new Date(el.currs[0].date).getTime();
-                    if (day + 1800000 > today.getTime()) {
-                        // 진행 예정 , 진행 중
-                        el.processText = '진행 예정';
-                        if (firstday < today.getTime()) {
-                            el.processText = '진행 중';
-                        }
-                        // 버튼 생성
-                        for (var i = 0; i < el.currs.length; i++) {
-                            var time = new Date(el.currs[i].date).getTime();
-                            if (time - today.getTime() < 1800000) {
-                                if (el.currs[i].zoom == true) {
-                                    if ((today.getTime() - time) < 1800000) {
-                                        el.currs[i].set = true;
+                if (el.currs.length > 0) {
+                    if (el.currs[idx].date == null) {
+                        this.lecture_yet.push(el);
+                    }
+                    else {
+                        let day = new Date(el.currs[idx].date).getTime();
+                        let firstday = new Date(el.currs[0].date).getTime();
+                        if (day + 1800000 > today.getTime()) {
+                            // 진행 예정 , 진행 중
+                            el.processText = '진행 예정';
+                            if (firstday < today.getTime()) {
+                                el.processText = '진행 중';
+                            }
+                            // 버튼 생성
+                            for (var i = 0; i < el.currs.length; i++) {
+                                var time = new Date(el.currs[i].date).getTime();
+                                if (time - today.getTime() < 1800000) {
+                                    if (el.currs[i].zoom == true) {
+                                        if ((today.getTime() - time) < 1800000) {
+                                            el.currs[i].set = true;
+                                        }
+                                        else {
+                                            el.currs[i].set = false;
+                                        }
                                     }
                                     else {
                                         el.currs[i].set = false;
                                     }
+                                    // el.currs[i].set = true;
                                 }
                                 else {
                                     el.currs[i].set = false;
                                 }
-                                // el.currs[i].set = true;
                             }
-                            else {
-                                el.currs[i].set = false;
-                            }
+                            this.lecture_yet.push(el);
                         }
-                        this.lecture_yet.push(el);
+                        else {
+                            this.lecture_end.push(el);
+                        }
                     }
-                    else {
-                        this.lecture_end.push(el);
-                    }
+                }
+                else {
+                    this.lecture_yet.push(el);
                 }
             });
             console.log(this.lecture_yet, this.lecture_end);
@@ -2531,11 +2537,11 @@ class TodayLiveComponent {
                     el.lecture[0].color = '#3EB3E7';
                     el.lecture[0].maincategory = '사회생활';
                 }
-                else if (el.lecture[0].interests == '명상요가' || el.lecture[0].interests == '몸 마음 건강' || el.lecture[0].interests == '예술치유' || el.lecture[0].interests == '힐링elIY') {
+                else if (el.lecture[0].interests == '명상요가' || el.lecture[0].interests == '몸마음건강' || el.lecture[0].interests == '예술치유' || el.lecture[0].interests == '힐링 DIY') {
                     el.lecture[0].color = '#0AD1D1';
                     el.lecture[0].maincategory = '힐링';
                 }
-                else if (el.lecture[0].interests == '자기 이해' || el.lecture[0].interests == '심리특강') {
+                else if (el.lecture[0].interests == '자기 이해' || el.lecture[0].interests == '심리 특강') {
                     el.lecture[0].color = '#B775EF';
                     el.lecture[0].maincategory = '심리';
                 }
@@ -2874,7 +2880,7 @@ class AllLiveComponent {
                 filtered = data.filter(data => data.interests.includes("대인관계") || data.interests.includes("커뮤니케이션") || data.interests.includes("리더십") || data.interests.includes("조직적응"));
             }
             else if (this.search.text === '힐링') {
-                filtered = data.filter(data => data.interests.includes("명상요가") || data.interests.includes("몸 마음 건강") || data.interests.includes("예술치유") || data.interests.includes("힐링DIY"));
+                filtered = data.filter(data => data.interests.includes("명상요가") || data.interests.includes("몸마음건강") || data.interests.includes("예술 치유") || data.interests.includes("힐링 DIY"));
             }
             else if (this.search.text === '심리') {
                 filtered = data.filter(data => data.interests.includes("자기 이해") || data.interests.includes("심리 특강"));
@@ -2976,11 +2982,11 @@ class AllLiveComponent {
                     data.color = '#3EB3E7';
                     data.maincategory = '사회생활';
                 }
-                else if (data.interests == '명상요가' || data.interests == '몸 마음 건강' || data.interests == '예술치유' || data.interests == '힐링dataIY') {
+                else if (data.interests == '명상요가' || data.interests == '몸마음건강' || data.interests == '예술 치유' || data.interests == '힐링 DIY') {
                     data.color = '#0AD1D1';
                     data.maincategory = '힐링';
                 }
-                else if (data.interests == '자기 이해' || data.interests == '심리특강') {
+                else if (data.interests == '자기 이해' || data.interests == '심리 특강') {
                     data.color = '#B775EF';
                     data.maincategory = '심리';
                 }
@@ -9181,36 +9187,41 @@ class MypageComponent {
             this.receipt_end = [];
             this.receipt_yet = [];
             data.body.forEach(el => {
-                // console.log(el);
-                let idx = el.lecture[0].currs.length;
-                // console.log(idx);
                 let yet = false;
-                for (var i = 0; i < idx; i++) {
-                    if (el.lecture[0].currs[i].date == null) {
-                        yet = true;
-                        el.lecture[0].currs[i].set = false;
-                    }
-                    else {
-                        let day = new Date(el.lecture[0].currs[i].date).getTime();
-                        console.log(day);
-                        if (day + 1800000 > today.getTime()) {
-                            if (el.lecture[0].currs[i].zoom == true) {
-                                if ((day - today.getTime()) < 1800000) {
-                                    el.lecture[0].currs[i].set = true;
+                // console.log(el);
+                if (el.lecture.length > 0) {
+                    let idx = el.lecture[0].currs.length;
+                    // console.log(idx);
+                    for (var i = 0; i < idx; i++) {
+                        if (el.lecture[0].currs[i].date == null) {
+                            yet = true;
+                            el.lecture[0].currs[i].set = false;
+                        }
+                        else {
+                            let day = new Date(el.lecture[0].currs[i].date).getTime();
+                            console.log(day);
+                            if (day + 1800000 > today.getTime()) {
+                                if (el.lecture[0].currs[i].zoom == true) {
+                                    if ((day - today.getTime()) < 1800000) {
+                                        el.lecture[0].currs[i].set = true;
+                                    }
+                                    else {
+                                        el.lecture[0].currs[i].set = false;
+                                    }
                                 }
                                 else {
                                     el.lecture[0].currs[i].set = false;
                                 }
+                                yet = true;
                             }
                             else {
-                                el.lecture[0].currs[i].set = false;
+                                yet = false;
                             }
-                            yet = true;
-                        }
-                        else {
-                            yet = false;
                         }
                     }
+                }
+                else {
+                    yet = true;
                 }
                 if (yet) {
                     this.receipt_yet.push(el);

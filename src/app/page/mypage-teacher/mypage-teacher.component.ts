@@ -78,43 +78,48 @@ export class MypageTeacherComponent implements OnInit {
       let today = new Date();
       this.lecture_end = [];
       this.lecture_yet = [];
-      data.lectures.forEach( el => {
+      let lts = data.lectures.filter( el => el.inst != null );
+      lts.forEach( el => {
         console.log(el);
         let idx = el.currs.length - 1;
-        if( el.currs[idx].date == null ) {
-          this.lecture_yet.push(el);
-        } else {
-          let day = new Date(el.currs[idx].date).getTime()
-          let firstday = new Date(el.currs[0].date).getTime()
-          if( day + 1800000 > today.getTime()) {
-            // 진행 예정 , 진행 중
-            el.processText = '진행 예정';
-            if(firstday < today.getTime()){
-              el.processText = '진행 중';
-            }
-            // 버튼 생성
-            for(var i=0; i< el.currs.length; i++){
-              var time = new Date(el.currs[i].date).getTime();
-              if(time - today.getTime() < 1800000){
-                if( el.currs[i].zoom == true ) {
-                  if((today.getTime() - time) < 1800000) {
-                    el.currs[i].set = true;
+        if( el.currs.length > 0 ) {
+          if( el.currs[idx].date == null ) {
+            this.lecture_yet.push(el);
+          } else {
+            let day = new Date(el.currs[idx].date).getTime()
+            let firstday = new Date(el.currs[0].date).getTime()
+            if( day + 1800000 > today.getTime()) {
+              // 진행 예정 , 진행 중
+              el.processText = '진행 예정';
+              if(firstday < today.getTime()){
+                el.processText = '진행 중';
+              }
+              // 버튼 생성
+              for(var i=0; i< el.currs.length; i++){
+                var time = new Date(el.currs[i].date).getTime();
+                if(time - today.getTime() < 1800000){
+                  if( el.currs[i].zoom == true ) {
+                    if((today.getTime() - time) < 1800000) {
+                      el.currs[i].set = true;
+                    } else {
+                      el.currs[i].set = false;
+                    }
                   } else {
                     el.currs[i].set = false;
                   }
-                } else {
+                  // el.currs[i].set = true;
+                }
+                else {
                   el.currs[i].set = false;
                 }
-                // el.currs[i].set = true;
               }
-              else {
-                el.currs[i].set = false;
-              }
+              this.lecture_yet.push(el);
+            } else {
+              this.lecture_end.push(el);
             }
-            this.lecture_yet.push(el);
-          } else {
-            this.lecture_end.push(el);
           }
+        } else {
+          this.lecture_yet.push(el);
         }
       })
       console.log( this.lecture_yet, this.lecture_end );
