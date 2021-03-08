@@ -41,6 +41,7 @@ export class AllLiveComponent implements AfterViewInit {
       }
       console.log(filtered);
       filtered.forEach( data => {
+        console.log(data);
         // 프로세스
         let time = new Date().getTime();
         let datatime = new Date(data.dday).getTime();
@@ -124,7 +125,6 @@ export class AllLiveComponent implements AfterViewInit {
         }
         this.all.push(data);
       })
-      console.log(this.info);
       this.loaded = true;
     })
   }
@@ -133,7 +133,6 @@ export class AllLiveComponent implements AfterViewInit {
     this.phxChannel.gets('lecture:open', '');
     
     this.search = this.route.snapshot.params;
-    console.log(this.search)
     
   }
   routedata;
@@ -146,7 +145,7 @@ export class AllLiveComponent implements AfterViewInit {
  
   filePath = Environment.filePath;
   loaded = false;
-  info = [
+  info: any = [
     { currs: [{date: null, dur: null, stage: null}],
      subtitle: '', 
      interests: [{value: ''}], 
@@ -161,8 +160,9 @@ export class AllLiveComponent implements AfterViewInit {
      companys:[],
      color:'',
      maincategory:'',
+     dday: '',
     }];
-  all = [
+  all: any = [
     { currs: [{date: null, dur: null, stage: null}],
       subtitle: '', 
       interests: [{value: ''}], 

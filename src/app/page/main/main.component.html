@@ -19,7 +19,7 @@
     <div class="innerWrap">
       <div class="banner">
         <div *ngFor='let d of mainClass' class="clive">
-          <div class="openTime uppercase bold">{{d[0].dday|date:'MM월 dd일 - hh시 mm분'}} ({{d[0].currs[0].dur}}분)</div>
+          <div class="openTime uppercase bold">{{d[0].dday|date:'MM월 dd일 - HH시 mm분'}} ({{d[0].currs[0].dur}}분)</div>
           <p class="cardTitle bold">{{d[0].title}}</p>
           <div class="bannerImg">
             <img src="{{filePath}}{{d[0].thumbnail1}}" alt="배너사진">

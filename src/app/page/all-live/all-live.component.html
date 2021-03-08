@@ -29,7 +29,7 @@
             </h3>
             <div class="liveListGrid">
               <div *ngFor='let r of info' class="designedBox">
-                <div class="process">{{r.process}}</div>
+                <div class="process" *ngIf="r.dday != null">{{r.dday | date: 'M월d일 HH:mm'}}</div>
                 <div class="classcategory hidden"><span class="inlineBlock textHidden maincategory">{{r.maincategory}}</span><span class="subcategory">{{r.interests}}</span></div>
                 <div class="company" *ngIf='r.company'>{{r.companys[0].name}}</div>
                 <div class="itemHeader">{{r.title}}</div>

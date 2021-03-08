@@ -24,7 +24,7 @@
             <p class="bold" style="padding: 50px; font-size: 22px; text-align: center;" *ngIf="info.length == 0"> 오늘의 라이브 강의가 없습니다.</p>
             <div class="liveListGrid">
               <div *ngFor='let r of info' class="designedBox">
-                <div class="process">{{r.process|date:'hh시 mm분'}} OPEN</div>
+                <div class="process">{{r.process|date:'HH시 mm분'}} OPEN</div>
                 <div class="classcategory" [style.background]='r.lecture[0].color'><span class="inlineBlock textHidden maincategory">{{r.lecture[0].maincategory}}</span><span class="subcategory">{{r.lecture[0].interests}}</span></div>
                 <div class="itemHeader">{{r.lecture[0].title}}</div>
                 <div class="itemImg"><img src="{{filePath}}{{r.lecture[0].thumbnail1}}" alt="/"></div>
