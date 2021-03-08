@@ -18,6 +18,8 @@ import {JoinTeacherComponent} from './page/join-teacher/join-teacher.component';
 import {TestPageComponent} from './page/test-page/test-page.component';
 import {BroadcastComponent} from './page/broadcast/broadcast.component';
 import {LectureInfoListComponent} from './page/lecture-info-list/lecture-info-list.component';
+import {RqstCompanyClassComponent} from './page/rqst-company-class/rqst-company-class.component';
+import {RqstPersonalClassComponent} from './page/rqst-personal-class/rqst-personal-class.component';
 
 const routes: Routes = [
   { path: TAGS.MAIN, component: MainComponent },
@@ -38,6 +40,8 @@ const routes: Routes = [
   { path: TAGS.TESTPAGE, component: TestPageComponent },
   { path: TAGS.BROADCAST, component: BroadcastComponent },
   { path: TAGS.LECTUREINFOLIST, component: LectureInfoListComponent },
+  { path: TAGS.RQSTPSNCLASS, component: RqstCompanyClassComponent },
+  { path: TAGS.RQSTCPNCLASS, component: RqstPersonalClassComponent },
 ];
 
 @NgModule({
