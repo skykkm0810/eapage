@@ -41,7 +41,7 @@ export class AllLiveComponent implements AfterViewInit {
       }
       console.log(filtered);
       filtered.forEach( data => {
-        console.log(data);
+        // console.log(data);
         // 프로세스
         let time = new Date().getTime();
         let datatime = new Date(data.dday).getTime();
@@ -76,13 +76,14 @@ export class AllLiveComponent implements AfterViewInit {
           data.color = '#DD5E5E'; data.maincategory = '인생여정';
         } else if ( data.interests == '대인관계' || data.interests == '커뮤니케이션' || data.interests == '리더십' || data.interests == '조직적응' ) {
           data.color = '#3EB3E7'; data.maincategory = '사회생활';
-        } else if ( data.interests == '명상요가' || data.interests == '몸 마음 건강' || data.interests == '예술치유' || data.interests == '힐링dataIY' ) {
+        } else if ( data.interests == '명상요가' || data.interests == '몸마음건강' || data.interests == '예술 치유' || data.interests == '힐링 DIY' ) {
           data.color = '#0AD1D1'; data.maincategory = '힐링';
-        } else if ( data.interests == '자기 이해' || data.interests == '심리특강' ) {
+        } else if ( data.interests == '자기 이해' || data.interests == '심리 특강' ) {
           data.color = '#B775EF'; data.maincategory = '심리';
         }
         this.info.push(data);
       })
+      console.log(this.info);
       data.forEach( data => {
         // 프로세스
         let time = new Date().getTime();

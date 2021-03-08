@@ -1,0 +1,14 @@
+.innerWrap {
+    padding-top: 120px;
+}
+.title {
+    font-size: 26px;
+    color:#3f3d56;
+    font-weight: bold;
+    border-bottom: 1px solid #C4C4C4;
+    border-spacing: 11px;
+}
+.desc {
+    font-size: 22px;
+    color:#555555;
+}

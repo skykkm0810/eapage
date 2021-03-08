@@ -17,6 +17,8 @@ export const TAGS : Record<string, string> = {
   JOINTEACHER: 'joinTeacher',
   TESTPAGE: 'test',
   BROADCAST:'broadcast/:id',
+  RQSTPSNCLASS:'rqstCompanyClass',
+  RQSTCPNCLASS:'rqstPersonalClass',
 } 
 
 export const INTERESTS = [

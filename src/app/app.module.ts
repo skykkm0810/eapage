@@ -68,6 +68,8 @@ import { UserInfoComponent } from './modal/user-info/user-info.component';
 import { BroadcastComponent } from './page/broadcast/broadcast.component';
 import { LectureInfoListComponent } from './page/lecture-info-list/lecture-info-list.component';
 import { SafePipe } from './pipe/safe.pipe';
+import { RqstPersonalClassComponent } from './page/rqst-personal-class/rqst-personal-class.component';
+import { RqstCompanyClassComponent } from './page/rqst-company-class/rqst-company-class.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +97,9 @@ import { SafePipe } from './pipe/safe.pipe';
     UserInfoComponent,
     BroadcastComponent,
     LectureInfoListComponent,
-    SafePipe
+    SafePipe,
+    RqstPersonalClassComponent,
+    RqstCompanyClassComponent
   ],
   imports: [
     BrowserModule,

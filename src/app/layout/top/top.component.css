@@ -254,7 +254,6 @@
     font-size:18px;
     padding-bottom: 10px;
 }
-.content .headName:hover,
-.content .subname:hover {
+.content .pointer:hover {
     text-decoration: underline;
 }
