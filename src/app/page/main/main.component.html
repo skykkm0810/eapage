@@ -69,11 +69,11 @@
   <section class="today">
     <h2>오늘의 라이브</h2>
     <div class="innerWrap">
-      <p class="bold hidden todayNo" style="padding: 50px; font-size: 22px; text-align: center;">
+      <p *ngIf="todayClass.length == 0" class="bold hidden todayNo" style="padding: 50px; font-size: 22px; text-align: center;">
         오늘의 라이브 강의가 없습니다.</p>
       <div *ngIf="todayClass.length > 0">
         <div class="isthere" *ngFor='let t of todayClass'>
-          <div class="content" *ngIf = 't.open == true'>
+          <div class="content" *ngIf = 't.lecture[0].open == true'>
             <div class="img">
               <div class="subject textHidden">
                 <!-- <img src="{{t.tagimg}}" alt="/"> -->

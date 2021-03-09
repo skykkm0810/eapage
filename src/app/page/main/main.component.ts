@@ -176,7 +176,7 @@ export class MainComponent implements OnDestroy, AfterViewInit {
   mainClass=[];
   preopenClass=[];
   topClass=[];
-  todayClass=[{ remains: null, lecture: [{id:null,name: '', inst: { name: '' }, thumbnail1: '', title: '', subtitle: '',interests:''}], date: null, color: '' ,open:undefined}];
+  todayClass=[{ remains: null, lecture: [{ open: false, id:null,name: '', inst: { name: '' }, thumbnail1: '', title: '', subtitle: '',interests:''}], date: null, color: '' ,open:undefined}];
   int_remainTime;
 
   
