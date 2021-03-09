@@ -5,6 +5,7 @@
     <ul class="tabBox">
       <li class="bold pointer on" (click)="tabclick($event)">신청 강의 목록</li>
       <li class="bold pointer " (click)="tabclick($event)">완료된 강의 목록</li>
+      <li class="bold pointer " (click)="tabclick($event)">나의 문의</li>
       <li class="bold pointer " (click)="tabclick($event)">개인 정보 변경</li>
     </ul>
     <form action="/">
@@ -42,6 +43,50 @@
                 <div class="tdgCtnr" *ngFor="let c of l.lecture[0].currs">
                   <p class="subtitle ft-16">{{ c.stage }}. {{ c.title }}</p>
                   <p class="ft-22 ft-bold currsNum">{{ c.stage }}회차 <br><span *ngIf='c.set === true' class="goLive pointer block" (click)='goLive(c.id)'>수업시작</span></p>
+                  <p class="ft-16"><span *ngIf="c.date != null">{{ c.date | date: 'Y-M-d' }}<br>{{ c.date | date: 'HH:mm' }}</span></p>
+                  <p class="ft-22 ft-bold">{{ c.dur }}분</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="inquire tabContentBox hidden">
+        <div class="titleBox">
+          <p class="title">문의 내역</p>
+        </div>
+        <table class="lecTb">
+          <colgroup>
+            <col width="175px">
+            <col width="230px">
+            <col width="370px">
+            <col width="130px">
+            <col width="180px">
+            <col width="110px">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>결제일</th>
+              <th>강의 이미지</th>
+              <th>강의 제목</th>
+              <th>회차</th>
+              <th>강의 일정</th>
+              <th>강의 시간</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let l of receipt_end">
+              <td class="ft-22 c-pink">
+                <span>{{ l.date | date: 'Y-M-d' }}</span>
+              </td>
+              <td [routerLink]="['/detail/'+l.lecture[0].id]">
+                <img src="{{ filePath }}{{ l.lecture[0].thumbnail1 }}" alt="" class="classImg pointer">
+              </td>
+              <td colspan="4">
+                <p class="ft-bold ft-22" style="text-align: left; padding: 20px 40px;">{{ l.lecture[0].title }}</p>
+                <div class="tdgCtnr" *ngFor="let c of l.lecture[0].currs">
+                  <p class="subtitle ft-16">{{ c.stage }}. {{ c.title }}</p>
+                  <p class="ft-22 ft-bold">{{ c.stage }}회차</p>
                   <p class="ft-16"><span *ngIf="c.date != null">{{ c.date | date: 'Y-M-d' }}<br>{{ c.date | date: 'HH:mm' }}</span></p>
                   <p class="ft-22 ft-bold">{{ c.dur }}분</p>
                 </div>

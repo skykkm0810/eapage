@@ -64,7 +64,7 @@ h2 {
 .tabBox li {
   height:60px;
   display: inline-block;
-  width:calc(33.3% - 2px);
+  width:calc(25% - 2px);
   border-right:1px solid #F7F8FC;
   border-top: 1px solid #F7F8FC;
   border-bottom:1px solid #3F3D56;

@@ -247,7 +247,10 @@
       <div class="col-2"></div>
     </div>
     <div class="row">
-      <div class="introductionImg"></div>
+      <div class="introductionImg">
+        <!--  -->
+        <img src="{{filePath}}{{info.thumbnail1}}" alt="강의 썸네일 사진">
+      </div>
       <div class="classpoint" *ngFor='let p of info.sums'>
         <span class="uppercase title">POINT {{p.point}}</span>
         <span class="content">{{p.desc}}</span>
@@ -257,6 +260,7 @@
       <div class="col-6" style="border-left: 1px solid #dd5e5e; margin-top: 30px;">계획했던 일이 잘 풀리지 않는 사람</div>
       <div class="col-6" style="margin-top: 30px;">매일 피곤하고 지병이 생길 것 같은 사람</div> -->
     </div>
+    
   </section>
   <section class="presents container">
     <!--
@@ -398,9 +402,9 @@
         </p>
       </div>
     </div>
-    <div class="row instructor-picli">
+    <!-- <div class="row instructor-picli">
       <img src="{{filePath}}{{info.mainImg}}">
-    </div>
+    </div> -->
   </section>
 
   <section class="review container" #review>

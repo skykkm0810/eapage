@@ -105,8 +105,8 @@
 /* 검색 박스 */
 .searchBox {
     position: absolute;
-    top:100px;
-    right:190px;
+    top:15px;
+    right:0px;
     width:790px;
     height:70px;
     background-color: #3F3D56;
@@ -121,7 +121,7 @@
     height:15px;
     background: url(../../../assets/images/icon/arrow_category.png);
     position: absolute;
-    right:30px;
+    right:10px;
     top:-15px;
 }
 .closeBtn {
@@ -173,8 +173,8 @@
 
 .menuBox {
     position: absolute;
-    top:100px;
-    right:240px;
+    top:15px;
+    right:30px;
     width:940px;
     height:420px;
     box-sizing: border-box;
@@ -250,7 +250,7 @@
 }
 .content .subname {
     display: block;
-    text-indent: 20px;
+    text-indent: 15px;
     font-size:18px;
     padding-bottom: 10px;
 }

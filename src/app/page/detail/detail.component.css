@@ -616,13 +616,14 @@ img {
     display: block;
     box-sizing: initial;
     padding-top: 55px;
-    width:800px;
+    width:560px;
+    height:384px;
     margin:0 auto;
 }
-/* .introductionImg img {
+.introductionImg img {
     width:100%;
     height:100%;
-} */
+}
 .classpoint {
     display: block;
     width:1000px;

@@ -6,9 +6,13 @@
     color:#3f3d56;
     font-weight: bold;
     border-bottom: 1px solid #C4C4C4;
-    border-spacing: 11px;
+    padding-bottom: 11px;
 }
 .desc {
     font-size: 22px;
     color:#555555;
+    line-height: 28px;
+}
+.templateBox {
+    padding-top: 40px;
 }

@@ -41,6 +41,7 @@
     </div>
   </div>
 </div>
+<div class="innerWrap">
 <div class="searchBox hidden">
   <span class="closeBtn pointer" (click)='closeBox()'></span>
   <div class="inputBox">
@@ -48,31 +49,32 @@
     <span class="searchButton pointer" (click)='allFind($event)'></span>
   </div>
 </div>
-<div class="menuBox hidden">
-  <div class="boxHeader">
-    <span class="closeBtn pointer" (click)='closeBox()'></span>
-    <ul class="headerList">
-      <li>마음도씨</li>
-      <li class="double">라이브</li>
-      <li>리뷰</li>
-      <li>이용안내</li>
-    </ul>
-  </div>
-  <div class="boxBody">
-    <div class="contentsBox">
-      <div>
-        <div class="content">
-          <span class="headName pointer" [routerLink]="['maum']" (click)="closeBox()">마음도씨란?</span>
+
+  <div class="menuBox hidden">
+    <div class="boxHeader">
+      <span class="closeBtn pointer" (click)='closeBox()'></span>
+      <ul class="headerList">
+        <li>마음도씨</li>
+        <li class="double">라이브</li>
+        <li>리뷰보기</li>
+        <li>이용안내</li>
+      </ul>
+    </div>
+    <div class="boxBody">
+      <div class="contentsBox">
+        <div>
+          <div class="content">
+            <span class="headName pointer" [routerLink]="['maum']" (click)="closeBox()">마음도씨란?</span>
+          </div>
+          <div class="content">
+            <span class="headName pointer" (click)='modal()'>한국EAP협회 소개</span>
+          </div>
         </div>
-        <div class="content">
-          <span class="headName pointer" (click)='modal()'>한국EAP협회 소개</span>
-        </div>
-      </div>
-      <div class="double">
-        <div class="content">
-          <span class="headName allLive pointer" [routerLink]="['allLive']" (click)="closeBox()">모든라이브</span>
-          <span class="subname pointer" (click)='mfd($event)'>인생여정</span>
-          <span class="subname pointer" (click)='mfd($event)'>사회생활</span>
+        <div class="double">
+          <div class="content">
+            <span class="headName allLive pointer" [routerLink]="['allLive']" (click)="closeBox()">모든라이브</span>
+            <span class="subname pointer" (click)='mfd($event)'>인생여정</span>
+            <span class="subname pointer" (click)='mfd($event)'>사회생활</span>
           <span class="subname pointer" (click)='mfd($event)'>힐링</span>
           <span class="subname pointer" (click)='mfd($event)'>심리</span>
         </div>
@@ -89,16 +91,18 @@
       </div>
       <div>
         <div class="content">
-          <span class="headName pointer" (click)="modal()">리뷰</span>
+          <span class="headName pointer" (click)="modal()">리뷰보기</span>
         </div>
       </div>
       <div>
         <div class="content">
-          <span class="headName uppercase"(click)="modal()">class 신청</span>
-          <span class="subname pointer"(click)="modal()" >개인형 클래스신청</span>
-          <span class="subname pointer"(click)="modal()">맞춤형 클래스신청</span>
+          <span class="headName uppercase">class 신청</span>
+          <span class="subname pointer"(click)="modal()" >개인 신청 클래스</span>
+          <span class="subname pointer" [routerLink]="['rqstCompanyClass']" (click)="closeBox()">고객사 맞춤형 클래스</span>
         </div>
       </div>
     </div>
   </div>
+</div>
+
 </div>
