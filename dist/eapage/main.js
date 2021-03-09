@@ -2862,6 +2862,11 @@ class AllLiveComponent {
             this.all = [];
             this.info = [];
             let filtered;
+            data.filter(dt => dt.dday != null);
+            data.sort(function (a, b) {
+                let rst = new Date(a.dday).getTime() - new Date(b.dday).getTime();
+                return rst;
+            });
             if (this.search.text === '인생여정') {
                 filtered = data.filter(data => data.interests.includes("연애결혼") || data.interests.includes("자녀양육") || data.interests.includes("부부/가족관계") || data.interests.includes("인생 2막"));
             }
@@ -2875,7 +2880,7 @@ class AllLiveComponent {
                 filtered = data.filter(data => data.interests.includes("자기 이해") || data.interests.includes("심리 특강"));
             }
             else if (this.search.text) {
-                filtered = data.filter(data => data.title.includes(this.search.text));
+                filtered = data.filter(data => data.title.toLowerCase().includes(this.search.text.toLowerCase()));
             }
             else {
                 filtered = data;
@@ -2986,7 +2991,8 @@ class AllLiveComponent {
     }
     ngAfterViewInit() {
         this.phxChannel.gets('lecture:open', '');
-        this.search = this.route.snapshot.params;
+        // this.search = this.route.snapshot.params;
+        this.route.params.subscribe(data => this.search = data);
     }
     onselect(c) {
         this.info = this.all;
@@ -4178,7 +4184,7 @@ class BroadcastComponent {
         this.star = { img: '', value: 0 };
         this.login = false;
         this.reviewText = "리뷰를 작성하려면 로그인을 해주세요.";
-        this.user = { name: '', id: 0, companyId: 0, uname: '' };
+        this.user = { name: '', id: 0, companyId: 0, uname: '', type: false };
         this.info = {
             currs: [{ date: null, dur: null, id: null, lectureId: null, stage: null, title: '', timetable: [
                         { stage: '', dur: '', desc: '' }
@@ -4253,6 +4259,7 @@ class BroadcastComponent {
         });
         this.phxChannel.Curr.subscribe(data => {
             console.log(data);
+            this.lId = data.lectureId;
             // 줌 여부 , 시간 여부 확인 후 리다이렉트
             let today = new Date().getTime();
             let studyTime = new Date(data.date).getTime();
@@ -4321,59 +4328,58 @@ class BroadcastComponent {
             }
             this.phxChannel.get('inst', this.info.inst);
         });
-        this.phxChannel.Lecture.subscribe(data => {
-            this.info = data;
-            if (this.info.kit) {
-                this.kit = './assets/images/icon/pink/kit.png';
-            }
-            else {
-                this.kit = './assets/images/icon/white/kit.png';
-            }
-            this.sum = 0;
-            this.stgs = this.info.currs.length;
-            this.reviews = data.reviews;
-            data.currs.forEach(data => {
-                this.sum += data.dur * 1;
-            });
-            if (this.info.least == null || this.info.least == undefined) {
-                this.info.degree = 0;
-            }
-            else {
-                this.info.degree = Math.floor(data.receipts.length / data.least * 100);
-            }
-            // this.info.degree = Math.ceil(data.receipts.length*1 / data.least * 100);
-            if (this.info.dday != null) {
-                let d1 = new Date(this.info.dday).getTime();
-                let d2 = new Date().getTime();
-                if (d1 < d2) {
-                    this.dday_c = false;
-                    this.dday = '마감';
-                }
-                else {
-                    d1 = new Date(this.info.dday).setHours(0, 0, 0, 0);
-                    d2 = new Date().setHours(0, 0, 0, 0);
-                    let time = Math.round((d1 - d2) / 1000 / 60 / 60 / 24);
-                    this.dday_c = true;
-                    this.dday = time + "";
-                    console.log(d1, d2, time, this.dday);
-                }
-            }
-            else {
-                this.dday_c = false;
-                this.dday = '오픈 예정';
-            }
-            if (data.reviews.length > 0) {
-                data.reviews.forEach(el => {
-                    if (el.userId == this.user.id * 1) {
-                        this.reviewed = true;
-                        console.log('hello');
-                    }
-                });
-            }
-            this.phxChannel.get('inst', this.info.inst);
-            console.log(this.info);
-        });
+        // this.phxChannel.Lecture.subscribe( data => {
+        //   this.info = data;
+        //   if(this.info.kit){
+        //     this.kit = './assets/images/icon/pink/kit.png'
+        //   }
+        //   else{
+        //     this.kit = './assets/images/icon/white/kit.png'
+        //   }
+        //   this.sum = 0;
+        //   this.stgs = this.info.currs.length;
+        //   this.reviews = data.reviews;
+        //   data.currs.forEach( data => {
+        //     this.sum += data.dur*1;
+        //   })
+        //   if(this.info.least == null || this.info.least == undefined){
+        //     this.info.degree = 0;
+        //   }
+        //   else{
+        //     this.info.degree = Math.floor(data.receipts.length/data.least * 100);
+        //   }
+        //   // this.info.degree = Math.ceil(data.receipts.length*1 / data.least * 100);
+        //   if( this.info.dday != null ) {
+        //     let d1 = new Date(this.info.dday).getTime();
+        //     let d2 = new Date().getTime();
+        //     if ( d1 < d2 ) {
+        //       this.dday_c = false;
+        //       this.dday = '마감';
+        //     } else {
+        //       d1 = new Date(this.info.dday).setHours(0,0,0,0);
+        //       d2 = new Date().setHours(0,0,0,0);
+        //       let time = Math.round((d1 - d2) / 1000 / 60 / 60 / 24 );
+        //       this.dday_c = true;
+        //       this.dday = time+"";
+        //       console.log(d1,d2,time,this.dday);
+        //     }
+        //   } else {
+        //     this.dday_c = false;
+        //     this.dday = '오픈 예정';
+        //   }
+        //   if ( data.reviews.length > 0 ) {
+        //     data.reviews.forEach( el => {
+        //       if ( el.userId == this.user.id*1 ) {
+        //         this.reviewed = true;
+        //         console.log('hello');
+        //       }
+        //     })
+        //   }
+        //   this.phxChannel.get('inst', this.info.inst)
+        //   console.log(this.info);
+        // })
         this.phxChannel.UserReceipt.subscribe(data => {
+            this.receipt = data.body;
             console.log(data);
             data.body.forEach(d => {
                 if (d.lectureId == this.injected.id * 1) {
@@ -4515,6 +4521,16 @@ class BroadcastComponent {
             alert('리뷰를 쓰시려면 로그인을 하셔야합니다.');
             return;
         }
+        if (this.user.type) {
+            alert('강사는 리뷰를 쓸 수 없습니다.');
+            return;
+        }
+        console.log(this.receipt, this.lId);
+        this.receipt.forEach(d => {
+            if (d.lectureId == this.lId * 1) {
+                this.reviewable = true;
+            }
+        });
         if (!this.reviewable) {
             alert('수강을 하셔야 리뷰를 쓸 수 있습니다.');
             return;
@@ -4549,7 +4565,7 @@ class BroadcastComponent {
             });
         }
         else {
-            this.phxChannel.send('like', { userId: this.user.id, lectureId: this.injected.id * 1 });
+            this.phxChannel.send('like', { userId: this.user.id, lectureId: this.lId * 1 });
         }
     }
     zoomLink(name, mn, pwd, sign, key) {
@@ -7208,8 +7224,12 @@ class DetailComponent {
             alert('리뷰를 쓰시려면 로그인을 하셔야합니다.');
             return;
         }
+        if (this.user.type) {
+            alert('강사는 리뷰를 쓸 수 없습니다.');
+            return;
+        }
         if (!this.reviewable) {
-            alert('수강을 하셔야 리뷰를 쓸 수 있습니다.');
+            alert('수강 신청을 하셔야 리뷰를 쓸 수 있습니다.');
             return;
         }
         if (this.reviewed) {

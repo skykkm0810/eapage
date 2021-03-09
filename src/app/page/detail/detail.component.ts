@@ -300,8 +300,12 @@ export class DetailComponent {
       alert('리뷰를 쓰시려면 로그인을 하셔야합니다.');
       return;
     } 
+    if ( this.user.type ) {
+      alert('강사는 리뷰를 쓸 수 없습니다.');
+      return;
+    }
     if ( !this.reviewable ) {
-      alert('수강을 하셔야 리뷰를 쓸 수 있습니다.');
+      alert('수강 신청을 하셔야 리뷰를 쓸 수 있습니다.');
       return;
     }
     if ( this.reviewed ) {

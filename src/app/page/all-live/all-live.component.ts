@@ -22,6 +22,11 @@ export class AllLiveComponent implements AfterViewInit {
       this.all = [];
       this.info = [];
       let filtered;
+      data.filter( dt => dt.dday != null )
+      data.sort(function(a, b) {
+        let rst = new Date(a.dday).getTime() - new Date(b.dday).getTime();
+        return rst;
+      })
       if( this.search.text === '인생여정' ) {
         filtered = data.filter( data => data.interests.includes("연애결혼") || data.interests.includes("자녀양육") || data.interests.includes("부부/가족관계") || data.interests.includes("인생 2막") )
       } 
@@ -35,11 +40,12 @@ export class AllLiveComponent implements AfterViewInit {
         filtered = data.filter( data => data.interests.includes("자기 이해") || data.interests.includes("심리 특강") )
       } 
       else if( this.search.text ) {
-        filtered = data.filter( data => data.title.includes(this.search.text) )
+        filtered = data.filter( data => data.title.toLowerCase().includes(this.search.text.toLowerCase()) )
       } else {
         filtered = data;
       }
       console.log(filtered);
+
       filtered.forEach( data => {
         // console.log(data);
         // 프로세스
@@ -133,7 +139,8 @@ export class AllLiveComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.phxChannel.gets('lecture:open', '');
     
-    this.search = this.route.snapshot.params;
+    // this.search = this.route.snapshot.params;
+    this.route.params.subscribe( data => this.search = data )
     
   }
   routedata;
