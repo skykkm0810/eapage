@@ -19,7 +19,7 @@
     <div class="innerWrap">
       <div class="banner">
         <div *ngFor='let d of mainClass' class="clive">
-          <div class="openTime uppercase bold">{{d[0].dday|date:'MM월 dd일 - hh시 mm분'}} ({{d[0].currs[0].dur}}분)</div>
+          <div class="openTime uppercase bold">{{d[0].dday|date:'MM월 dd일 - HH시 mm분'}} ({{d[0].currs[0].dur}}분)</div>
           <p class="cardTitle bold">{{d[0].title}}</p>
           <div class="bannerImg">
             <img src="{{filePath}}{{d[0].thumbnail1}}" alt="배너사진">
@@ -69,11 +69,11 @@
   <section class="today">
     <h2>오늘의 라이브</h2>
     <div class="innerWrap">
-      <p class="bold hidden todayNo" style="padding: 50px; font-size: 22px; text-align: center;">
+      <p *ngIf="todayClass.length == 0" class="bold hidden todayNo" style="padding: 50px; font-size: 22px; text-align: center;">
         오늘의 라이브 강의가 없습니다.</p>
       <div *ngIf="todayClass.length > 0">
         <div class="isthere" *ngFor='let t of todayClass'>
-          <div class="content" *ngIf = 't.open == true'>
+          <div class="content" *ngIf = 't.lecture[0].open == true'>
             <div class="img">
               <div class="subject textHidden">
                 <!-- <img src="{{t.tagimg}}" alt="/"> -->

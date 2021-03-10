@@ -22,6 +22,11 @@ export class AllLiveComponent implements AfterViewInit {
       this.all = [];
       this.info = [];
       let filtered;
+      data.filter( dt => dt.dday != null )
+      data.sort(function(a, b) {
+        let rst = new Date(a.dday).getTime() - new Date(b.dday).getTime();
+        return rst;
+      })
       if( this.search.text === '인생여정' ) {
         filtered = data.filter( data => data.interests.includes("연애결혼") || data.interests.includes("자녀양육") || data.interests.includes("부부/가족관계") || data.interests.includes("인생 2막") )
       } 
@@ -29,18 +34,20 @@ export class AllLiveComponent implements AfterViewInit {
         filtered = data.filter( data => data.interests.includes("대인관계") || data.interests.includes("커뮤니케이션") || data.interests.includes("리더십") || data.interests.includes("조직적응") )
       }
       else if( this.search.text === '힐링' ) {
-        filtered = data.filter( data => data.interests.includes("명상요가") || data.interests.includes("몸 마음 건강") || data.interests.includes("예술치유") || data.interests.includes("힐링DIY") )
+        filtered = data.filter( data => data.interests.includes("명상요가") || data.interests.includes("몸마음건강") || data.interests.includes("예술 치유") || data.interests.includes("힐링 DIY") )
       }
       else if( this.search.text === '심리' ) {
         filtered = data.filter( data => data.interests.includes("자기 이해") || data.interests.includes("심리 특강") )
       } 
       else if( this.search.text ) {
-        filtered = data.filter( data => data.title.includes(this.search.text) )
+        filtered = data.filter( data => data.title.toLowerCase().includes(this.search.text.toLowerCase()) )
       } else {
         filtered = data;
       }
       console.log(filtered);
+
       filtered.forEach( data => {
+        // console.log(data);
         // 프로세스
         let time = new Date().getTime();
         let datatime = new Date(data.dday).getTime();
@@ -75,13 +82,14 @@ export class AllLiveComponent implements AfterViewInit {
           data.color = '#DD5E5E'; data.maincategory = '인생여정';
         } else if ( data.interests == '대인관계' || data.interests == '커뮤니케이션' || data.interests == '리더십' || data.interests == '조직적응' ) {
           data.color = '#3EB3E7'; data.maincategory = '사회생활';
-        } else if ( data.interests == '명상요가' || data.interests == '몸 마음 건강' || data.interests == '예술치유' || data.interests == '힐링dataIY' ) {
+        } else if ( data.interests == '명상요가' || data.interests == '몸마음건강' || data.interests == '예술 치유' || data.interests == '힐링 DIY' ) {
           data.color = '#0AD1D1'; data.maincategory = '힐링';
-        } else if ( data.interests == '자기 이해' || data.interests == '심리특강' ) {
+        } else if ( data.interests == '자기 이해' || data.interests == '심리 특강' ) {
           data.color = '#B775EF'; data.maincategory = '심리';
         }
         this.info.push(data);
       })
+      console.log(this.info);
       data.forEach( data => {
         // 프로세스
         let time = new Date().getTime();
@@ -117,14 +125,13 @@ export class AllLiveComponent implements AfterViewInit {
           data.color = '#DD5E5E'; data.maincategory = '인생여정';
         } else if ( data.interests == '대인관계' || data.interests == '커뮤니케이션' || data.interests == '리더십' || data.interests == '조직적응' ) {
           data.color = '#3EB3E7'; data.maincategory = '사회생활';
-        } else if ( data.interests == '명상요가' || data.interests == '몸 마음 건강' || data.interests == '예술치유' || data.interests == '힐링dataIY' ) {
+        } else if ( data.interests == '명상요가' || data.interests == '몸마음건강' || data.interests == '예술 치유' || data.interests == '힐링 DIY' ) {
           data.color = '#0AD1D1'; data.maincategory = '힐링';
-        } else if ( data.interests == '자기 이해' || data.interests == '심리특강' ) {
+        } else if ( data.interests == '자기 이해' || data.interests == '심리 특강' ) {
           data.color = '#B775EF'; data.maincategory = '심리';
         }
         this.all.push(data);
       })
-      console.log(this.info);
       this.loaded = true;
     })
   }
@@ -132,8 +139,8 @@ export class AllLiveComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.phxChannel.gets('lecture:open', '');
     
-    this.search = this.route.snapshot.params;
-    console.log(this.search)
+    // this.search = this.route.snapshot.params;
+    this.route.params.subscribe( data => this.search = data )
     
   }
   routedata;
@@ -146,7 +153,7 @@ export class AllLiveComponent implements AfterViewInit {
  
   filePath = Environment.filePath;
   loaded = false;
-  info = [
+  info: any = [
     { currs: [{date: null, dur: null, stage: null}],
      subtitle: '', 
      interests: [{value: ''}], 
@@ -161,8 +168,9 @@ export class AllLiveComponent implements AfterViewInit {
      companys:[],
      color:'',
      maincategory:'',
+     dday: '',
     }];
-  all = [
+  all: any = [
     { currs: [{date: null, dur: null, stage: null}],
       subtitle: '', 
       interests: [{value: ''}], 

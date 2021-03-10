@@ -57,6 +57,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
 
     this.phxChannel.Curr.subscribe( data => {
       console.log(data);
+      this.lId = data.lectureId;
       // 줌 여부 , 시간 여부 확인 후 리다이렉트
       let today = new Date().getTime();
       let studyTime = new Date(data.date).getTime();
@@ -70,15 +71,13 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
         window.history.back();
         return;
       }
-          
+      
       this.curr = data;
       console.log(this.curr.lecture.receipts)
       if ( data.zoom ) {
         this.zoom.get_url( data.zroom );
       }
       
-      
-
       this.info = data.lecture;
       if(this.info.kit){
         this.kit = '../../../assets/images/icon/pink/kit.png'
@@ -131,61 +130,62 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
 
       this.phxChannel.get('inst', this.info.inst)
     })
-    this.phxChannel.Lecture.subscribe( data => {
-      this.info = data;
-      if(this.info.kit){
-        this.kit = '../../../assets/images/icon/pink/kit.png'
-      }
-      else{
-        this.kit = '../../../assets/images/icon/white/kit.png'
-      }
-      this.sum = 0;
-      this.stgs = this.info.currs.length;
-      this.reviews = data.reviews;
-      data.currs.forEach( data => {
-        this.sum += data.dur*1;
-      })
-      if(this.info.least == null || this.info.least == undefined){
-        this.info.degree = 0;
-      }
-      else{
-        this.info.degree = Math.floor(data.receipts.length/data.least * 100);
-      }
-      // this.info.degree = Math.ceil(data.receipts.length*1 / data.least * 100);
-      if( this.info.dday != null ) {
-        let d1 = new Date(this.info.dday).getTime();
-        let d2 = new Date().getTime();
-        if ( d1 < d2 ) {
-          this.dday_c = false;
-          this.dday = '마감';
-        } else {
-          d1 = new Date(this.info.dday).setHours(0,0,0,0);
-          d2 = new Date().setHours(0,0,0,0);
-          let time = Math.round((d1 - d2) / 1000 / 60 / 60 / 24 );
-          this.dday_c = true;
-          this.dday = time+"";
-          console.log(d1,d2,time,this.dday);
-        }
-      } else {
-        this.dday_c = false;
-        this.dday = '오픈 예정';
-      }
+    // this.phxChannel.Lecture.subscribe( data => {
+    //   this.info = data;
+    //   if(this.info.kit){
+    //     this.kit = '../../../assets/images/icon/pink/kit.png'
+    //   }
+    //   else{
+    //     this.kit = '../../../assets/images/icon/white/kit.png'
+    //   }
+    //   this.sum = 0;
+    //   this.stgs = this.info.currs.length;
+    //   this.reviews = data.reviews;
+    //   data.currs.forEach( data => {
+    //     this.sum += data.dur*1;
+    //   })
+    //   if(this.info.least == null || this.info.least == undefined){
+    //     this.info.degree = 0;
+    //   }
+    //   else{
+    //     this.info.degree = Math.floor(data.receipts.length/data.least * 100);
+    //   }
+    //   // this.info.degree = Math.ceil(data.receipts.length*1 / data.least * 100);
+    //   if( this.info.dday != null ) {
+    //     let d1 = new Date(this.info.dday).getTime();
+    //     let d2 = new Date().getTime();
+    //     if ( d1 < d2 ) {
+    //       this.dday_c = false;
+    //       this.dday = '마감';
+    //     } else {
+    //       d1 = new Date(this.info.dday).setHours(0,0,0,0);
+    //       d2 = new Date().setHours(0,0,0,0);
+    //       let time = Math.round((d1 - d2) / 1000 / 60 / 60 / 24 );
+    //       this.dday_c = true;
+    //       this.dday = time+"";
+    //       console.log(d1,d2,time,this.dday);
+    //     }
+    //   } else {
+    //     this.dday_c = false;
+    //     this.dday = '오픈 예정';
+    //   }
 
 
-      if ( data.reviews.length > 0 ) {
-        data.reviews.forEach( el => {
-          if ( el.userId == this.user.id*1 ) {
-            this.reviewed = true;
-            console.log('hello');
-          }
-        })
-      }
+    //   if ( data.reviews.length > 0 ) {
+    //     data.reviews.forEach( el => {
+    //       if ( el.userId == this.user.id*1 ) {
+    //         this.reviewed = true;
+    //         console.log('hello');
+    //       }
+    //     })
+    //   }
 
 
-      this.phxChannel.get('inst', this.info.inst)
-      console.log(this.info);
-    })
+    //   this.phxChannel.get('inst', this.info.inst)
+    //   console.log(this.info);
+    // })
     this.phxChannel.UserReceipt.subscribe( data => {
+      this.receipt = data.body;
       console.log(data);
       data.body.forEach( d => {
         if (d.lectureId == this.injected.id*1) {
@@ -278,18 +278,17 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
   //   }
   // }
 
-
   subs = [];
   signature = '';
   link = '';
   curr = { zoom: false, zroom: '', zlink: '', zpwd: '',
-          lecture:{
-            receipts:{
-              user:{},
-              date:''
-            },
-          }
-        };
+    lecture:{
+      receipts:{
+        user:{},
+        date:''
+      },
+    }
+  }
 
   hP: MatSnackBarHorizontalPosition = 'center';
   vP: MatSnackBarVerticalPosition = 'top';
@@ -309,6 +308,8 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
     ],
   }
 
+  receipt
+  lId;
   like = false;
   kit = ''
   reviewable = false;
@@ -319,7 +320,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
   login = false;
   reviewText = "리뷰를 작성하려면 로그인을 해주세요.";
   number;
-  user = { name: '', id: 0, companyId: 0, uname: '' };
+  user: any = { name: '', id: 0, companyId: 0, uname: '', type: false };
   injected;
   info = {
     currs: [{ date: null, dur: null, id: null, lectureId: null, stage: null, title: '', timetable: [
@@ -437,6 +438,16 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
       alert('리뷰를 쓰시려면 로그인을 하셔야합니다.');
       return;
     } 
+    if ( this.user.type ) {
+      alert('강사는 리뷰를 쓸 수 없습니다.');
+      return;
+    }
+    console.log(this.receipt, this.lId)
+    this.receipt.forEach( d => {
+      if (d.lectureId == this.lId*1) {
+        this.reviewable = true;
+      }
+    })
     if ( !this.reviewable ) {
       alert('수강을 하셔야 리뷰를 쓸 수 있습니다.');
       return;
@@ -473,7 +484,7 @@ export class BroadcastComponent implements OnInit, AfterViewInit, AfterViewCheck
         // panelClass: 'snackbar',
       })     
     } else {
-      this.phxChannel.send('like', { userId: this.user.id, lectureId: this.injected.id*1 });
+      this.phxChannel.send('like', { userId: this.user.id, lectureId: this.lId*1 });
     }
   }
 
